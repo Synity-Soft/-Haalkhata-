@@ -1,0 +1,261 @@
+product_id,product_name,product_name_bn,category,subcategory,brand,unit,package_size,perishable_status,typical_shelf_life_days,storage_type,average_cost_price_bdt,average_selling_price_bdt,minimum_margin_percentage,demand_volatility,seasonal_sensitivity,product_popularity,is_essential_item
+PRD001,Miniket rice,মিনিকেট চাল,Rice and grains,Rice,Unbranded,kg,1 kg,Non-perishable,365,Ambient,72.0,82.0,12.2,High,Medium,Low,True
+PRD002,Nazirshail rice,নাজিরশাইল চাল,Rice and grains,Rice,Local brand,kg,1 kg,Non-perishable,365,Ambient,78.0,90.0,13.33,High,High,High,True
+PRD003,Coarse rice,মোটা চাল,Rice and grains,Rice,Rupchanda,kg,1 kg,Non-perishable,365,Ambient,48.0,56.0,14.29,High,Medium,High,True
+PRD004,Masoor dal,মসুর ডাল,Lentils and pulses,Lentils,Local brand,kg,1 kg,Non-perishable,365,Ambient,112.0,130.0,13.85,High,Low,Medium,True
+PRD005,Mung dal,মুগ ডাল,Lentils and pulses,Lentils,Bashundhara,kg,1 kg,Non-perishable,365,Ambient,135.0,155.0,12.9,High,High,High,True
+PRD006,Soybean oil,সয়াবিন তেল,Cooking oil,Edible oil,Rupchanda,litre,1 litre,Non-perishable,365,Ambient,165.0,185.0,10.81,Low,Low,High,True
+PRD007,Mustard oil,সরিষার তেল,Cooking oil,Edible oil,Bashundhara,litre,1 litre,Non-perishable,365,Ambient,250.0,290.0,13.79,High,Medium,Low,True
+PRD008,Atta,আটা,Flour and baking ingredients,Flour,Teer,kg,1 kg,Non-perishable,180,Ambient,48.0,58.0,17.24,Medium,High,High,True
+PRD009,Maida,ময়দা,Flour and baking ingredients,Flour,Bashundhara,kg,1 kg,Non-perishable,180,Ambient,58.0,68.0,14.71,Low,High,Very High,True
+PRD010,Refined sugar,চিনি,Sugar and salt,Sugar,Teer,kg,1 kg,Non-perishable,365,Ambient,105.0,120.0,12.5,Low,Medium,Very High,True
+PRD011,Iodized salt,আয়োডিনযুক্ত লবণ,Sugar and salt,Salt,Bashundhara,kg,1 kg,Non-perishable,730,Ambient,32.0,40.0,20.0,Low,High,Low,True
+PRD012,Turmeric powder,হলুদ গুঁড়া,Spices and condiments,Spice,Bashundhara,packet,1 packet,Non-perishable,365,Ambient,35.0,45.0,22.22,Medium,Medium,Low,False
+PRD013,Chilli powder,মরিচ গুঁড়া,Spices and condiments,Spice,Pran,packet,1 packet,Non-perishable,365,Ambient,45.0,58.0,22.41,High,Medium,High,False
+PRD014,Pasteurized milk,পাস্তুরিত দুধ,Dairy products,Milk,ACI,litre,1 litre,Perishable,7,Chilled,90.0,105.0,14.29,Medium,Low,Low,False
+PRD015,Milk powder 500g,গুঁড়া দুধ ৫০০ গ্রাম,Dairy products,Milk powder,Nestlé,packet,1 packet,Non-perishable,365,Ambient,430.0,480.0,10.42,High,High,Very High,False
+PRD016,Farm egg,ফার্মের ডিম,Eggs,Eggs,Fresh,piece,1 piece,Perishable,21,Ambient,10.0,12.0,16.67,Medium,Medium,Medium,True
+PRD017,Broiler chicken,ব্রয়লার মুরগি,Meat and poultry,Poultry,ACI,kg,1 kg,Perishable,3,Chilled,155.0,180.0,13.89,High,Medium,High,False
+PRD018,Tilapia fish,তেলাপিয়া মাছ,Fish and frozen foods,Fish,Local brand,kg,1 kg,Perishable,2,Chilled,160.0,210.0,23.81,High,High,High,False
+PRD019,Potato,আলু,Vegetables,Vegetable,Bashundhara,kg,1 kg,Perishable,20,Ambient,25.0,38.0,34.21,Medium,Medium,Medium,False
+PRD020,Onion,পেঁয়াজ,Vegetables,Vegetable,Nestlé,kg,1 kg,Perishable,30,Ambient,65.0,90.0,27.78,High,Low,Low,False
+PRD021,Green chilli,কাঁচা মরিচ,Vegetables,Vegetable,Danish,kg,1 kg,Perishable,5,Ambient,90.0,140.0,35.71,Low,Medium,Very High,False
+PRD022,Banana,কলা,Fruits,Fruit,Teer,dozen,1 dozen,Perishable,5,Ambient,65.0,85.0,23.53,Low,Medium,Medium,False
+PRD023,Apple,আপেল,Fruits,Fruit,Danish,kg,1 kg,Perishable,30,Chilled,230.0,290.0,20.69,High,Low,Medium,False
+PRD024,Sliced bread,পাউরুটি,Bread and bakery products,Bread,Pran,packet,1 packet,Perishable,5,Ambient,45.0,60.0,25.0,High,Medium,High,False
+PRD025,Marie biscuit,মেরি বিস্কুট,Biscuits and snacks,Biscuits,Teer,packet,1 packet,Non-perishable,180,Ambient,20.0,25.0,20.0,High,Medium,Low,False
+PRD026,Potato chips,আলুর চিপস,Biscuits and snacks,Snacks,Local brand,packet,1 packet,Non-perishable,120,Ambient,18.0,25.0,28.0,Low,High,Medium,False
+PRD027,Instant noodles,ইনস্ট্যান্ট নুডলস,Instant noodles and packaged food,Noodles,ACI,packet,1 packet,Non-perishable,180,Ambient,18.0,25.0,28.0,High,Low,Very High,False
+PRD028,Bottled water 500ml,বোতলজাত পানি ৫০০ মি.লি.,Beverages and bottled water,Water,Local brand,bottle,1 bottle,Non-perishable,365,Ambient,15.0,20.0,25.0,Low,Medium,High,False
+PRD029,Carbonated drink 500ml,কার্বনেটেড পানীয় ৫০০ মি.লি.,Beverages and bottled water,Soft drink,Unbranded,bottle,1 bottle,Non-perishable,180,Ambient,35.0,45.0,22.22,Medium,Low,High,False
+PRD030,Black tea 200g,কালো চা ২০০ গ্রাম,Tea and coffee,Tea,Nestlé,packet,1 packet,Non-perishable,365,Ambient,105.0,125.0,16.0,High,Medium,High,False
+PRD031,Corn flakes 250g,কর্ন ফ্লেক্স ২৫০ গ্রাম,Breakfast products,Cereal,Nestlé,box,1 box,Non-perishable,270,Ambient,240.0,290.0,17.24,Medium,Low,Very High,False
+PRD032,Baby diaper small pack,শিশুর ডায়াপার ছোট প্যাক,Baby-care essentials,Baby care,Danish,packet,1 packet,Non-perishable,730,Ambient,150.0,190.0,21.05,Low,High,Medium,False
+PRD033,Shampoo sachet,শ্যাম্পু স্যাশে,Personal-care products,Personal care,ACI,piece,1 piece,Non-perishable,730,Ambient,3.0,5.0,40.0,Low,Low,Medium,False
+PRD034,Dishwashing liquid,ডিশওয়াশিং লিকুইড,Household cleaning products,Cleaning,ACI,bottle,1 bottle,Non-perishable,730,Ambient,85.0,105.0,19.05,Medium,High,High,False
+PRD035,Detergent powder 500g,ডিটারজেন্ট পাউডার ৫০০ গ্রাম,Laundry products,Laundry,Fresh,packet,1 packet,Non-perishable,730,Ambient,65.0,80.0,18.75,High,Low,Low,False
+PRD036,Bathing soap,গোসলের সাবান,Toiletries,Toiletries,ACI,piece,1 piece,Non-perishable,730,Ambient,38.0,48.0,20.83,Low,High,Very High,False
+PRD037,Sanitary napkin pack,স্যানিটারি ন্যাপকিন,Basic health and hygiene products,Hygiene,Unbranded,packet,1 packet,Non-perishable,730,Ambient,110.0,140.0,21.43,Medium,High,Very High,False
+PRD038,Tissue box,টিস্যু বক্স,Other daily necessities,Household,Fresh,box,1 box,Non-perishable,730,Ambient,65.0,85.0,23.53,Low,Medium,Low,False
+PRD039,Miniket rice - Value pack 2,মিনিকেট চাল - প্যাক 2,Rice and grains,Rice,ACI,kg,2 kg,Non-perishable,365,Ambient,80.64,91.84,12.2,Low,Low,Low,True
+PRD040,Nazirshail rice - Value pack 2,নাজিরশাইল চাল - প্যাক 2,Rice and grains,Rice,Danish,kg,2 kg,Non-perishable,365,Ambient,87.36,100.8,13.33,High,Low,High,True
+PRD041,Coarse rice - Value pack 2,মোটা চাল - প্যাক 2,Rice and grains,Rice,Unbranded,kg,2 kg,Non-perishable,365,Ambient,53.76,62.72,14.29,Medium,Medium,Very High,True
+PRD042,Masoor dal - Value pack 2,মসুর ডাল - প্যাক 2,Lentils and pulses,Lentils,Bashundhara,kg,2 kg,Non-perishable,365,Ambient,125.44,145.6,13.85,Medium,Low,Medium,True
+PRD043,Mung dal - Value pack 2,মুগ ডাল - প্যাক 2,Lentils and pulses,Lentils,Fresh,kg,2 kg,Non-perishable,365,Ambient,151.2,173.6,12.9,High,High,Low,True
+PRD044,Soybean oil - Value pack 2,সয়াবিন তেল - প্যাক 2,Cooking oil,Edible oil,Unbranded,litre,2 litre,Non-perishable,365,Ambient,184.8,207.2,10.81,Medium,Medium,Medium,True
+PRD045,Mustard oil - Value pack 2,সরিষার তেল - প্যাক 2,Cooking oil,Edible oil,Fresh,litre,2 litre,Non-perishable,365,Ambient,280.0,324.8,13.79,Medium,High,Very High,True
+PRD046,Atta - Value pack 2,আটা - প্যাক 2,Flour and baking ingredients,Flour,Nestlé,kg,2 kg,Non-perishable,180,Ambient,53.76,64.96,17.24,Medium,Medium,Medium,True
+PRD047,Maida - Value pack 2,ময়দা - প্যাক 2,Flour and baking ingredients,Flour,Fresh,kg,2 kg,Non-perishable,180,Ambient,64.96,76.16,14.71,Medium,High,Low,True
+PRD048,Refined sugar - Value pack 2,চিনি - প্যাক 2,Sugar and salt,Sugar,Pran,kg,2 kg,Non-perishable,365,Ambient,117.6,134.4,12.5,Medium,High,Medium,True
+PRD049,Iodized salt - Value pack 2,আয়োডিনযুক্ত লবণ - প্যাক 2,Sugar and salt,Salt,Nestlé,kg,2 kg,Non-perishable,730,Ambient,35.84,44.8,20.0,Medium,High,High,True
+PRD050,Turmeric powder - Value pack 2,হলুদ গুঁড়া - প্যাক 2,Spices and condiments,Spice,Bashundhara,packet,2 packet,Non-perishable,365,Ambient,39.2,50.4,22.22,Low,High,Low,False
+PRD051,Chilli powder - Value pack 2,মরিচ গুঁড়া - প্যাক 2,Spices and condiments,Spice,Bashundhara,packet,2 packet,Non-perishable,365,Ambient,50.4,64.96,22.41,Medium,Medium,Low,False
+PRD052,Pasteurized milk - Value pack 2,পাস্তুরিত দুধ - প্যাক 2,Dairy products,Milk,Rupchanda,litre,2 litre,Perishable,7,Chilled,100.8,117.6,14.29,Low,High,Low,False
+PRD053,Milk powder 500g - Value pack 2,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 2,Dairy products,Milk powder,ACI,packet,2 packet,Non-perishable,365,Ambient,481.6,537.6,10.42,Medium,Low,Medium,False
+PRD054,Farm egg - Value pack 2,ফার্মের ডিম - প্যাক 2,Eggs,Eggs,Nestlé,piece,2 piece,Perishable,21,Ambient,11.2,13.44,16.67,Low,High,Very High,True
+PRD055,Broiler chicken - Value pack 2,ব্রয়লার মুরগি - প্যাক 2,Meat and poultry,Poultry,Danish,kg,2 kg,Perishable,3,Chilled,173.6,201.6,13.89,Low,High,Medium,False
+PRD056,Tilapia fish - Value pack 2,তেলাপিয়া মাছ - প্যাক 2,Fish and frozen foods,Fish,Danish,kg,2 kg,Perishable,2,Chilled,179.2,235.2,23.81,Medium,Low,Low,False
+PRD057,Potato - Value pack 2,আলু - প্যাক 2,Vegetables,Vegetable,Rupchanda,kg,2 kg,Perishable,20,Ambient,28.0,42.56,34.21,High,Medium,High,False
+PRD058,Onion - Value pack 2,পেঁয়াজ - প্যাক 2,Vegetables,Vegetable,Unbranded,kg,2 kg,Perishable,30,Ambient,72.8,100.8,27.78,High,Medium,Low,False
+PRD059,Green chilli - Value pack 2,কাঁচা মরিচ - প্যাক 2,Vegetables,Vegetable,ACI,kg,2 kg,Perishable,5,Ambient,100.8,156.8,35.71,Low,Low,Very High,False
+PRD060,Banana - Value pack 2,কলা - প্যাক 2,Fruits,Fruit,Bashundhara,dozen,2 dozen,Perishable,5,Ambient,72.8,95.2,23.53,Medium,High,Very High,False
+PRD061,Apple - Value pack 2,আপেল - প্যাক 2,Fruits,Fruit,Danish,kg,2 kg,Perishable,30,Chilled,257.6,324.8,20.69,Medium,High,Medium,False
+PRD062,Sliced bread - Value pack 2,পাউরুটি - প্যাক 2,Bread and bakery products,Bread,Unbranded,packet,2 packet,Perishable,5,Ambient,50.4,67.2,25.0,Medium,Medium,Very High,False
+PRD063,Marie biscuit - Value pack 2,মেরি বিস্কুট - প্যাক 2,Biscuits and snacks,Biscuits,Unbranded,packet,2 packet,Non-perishable,180,Ambient,22.4,28.0,20.0,Medium,High,High,False
+PRD064,Potato chips - Value pack 2,আলুর চিপস - প্যাক 2,Biscuits and snacks,Snacks,Nestlé,packet,2 packet,Non-perishable,120,Ambient,20.16,28.0,28.0,Low,Low,Medium,False
+PRD065,Instant noodles - Value pack 2,ইনস্ট্যান্ট নুডলস - প্যাক 2,Instant noodles and packaged food,Noodles,Fresh,packet,2 packet,Non-perishable,180,Ambient,20.16,28.0,28.0,Low,High,Very High,False
+PRD066,Bottled water 500ml - Value pack 2,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 2,Beverages and bottled water,Water,Local brand,bottle,2 bottle,Non-perishable,365,Ambient,16.8,22.4,25.0,High,Low,Very High,False
+PRD067,Carbonated drink 500ml - Value pack 2,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 2,Beverages and bottled water,Soft drink,Pran,bottle,2 bottle,Non-perishable,180,Ambient,39.2,50.4,22.22,Medium,High,High,False
+PRD068,Black tea 200g - Value pack 2,কালো চা ২০০ গ্রাম - প্যাক 2,Tea and coffee,Tea,Teer,packet,2 packet,Non-perishable,365,Ambient,117.6,140.0,16.0,Medium,Low,Low,False
+PRD069,Corn flakes 250g - Value pack 2,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 2,Breakfast products,Cereal,Rupchanda,box,2 box,Non-perishable,270,Ambient,268.8,324.8,17.24,High,High,High,False
+PRD070,Baby diaper small pack - Value pack 2,শিশুর ডায়াপার ছোট প্যাক - প্যাক 2,Baby-care essentials,Baby care,ACI,packet,2 packet,Non-perishable,730,Ambient,168.0,212.8,21.05,Low,Medium,Low,False
+PRD071,Shampoo sachet - Value pack 2,শ্যাম্পু স্যাশে - প্যাক 2,Personal-care products,Personal care,Teer,piece,2 piece,Non-perishable,730,Ambient,3.36,5.6,40.0,High,Medium,Medium,False
+PRD072,Dishwashing liquid - Value pack 2,ডিশওয়াশিং লিকুইড - প্যাক 2,Household cleaning products,Cleaning,Unbranded,bottle,2 bottle,Non-perishable,730,Ambient,95.2,117.6,19.05,High,High,High,False
+PRD073,Detergent powder 500g - Value pack 2,ডিটারজেন্ট পাউডার ৫০০ গ্রাম - প্যাক 2,Laundry products,Laundry,Teer,packet,2 packet,Non-perishable,730,Ambient,72.8,89.6,18.75,High,Low,Medium,False
+PRD074,Bathing soap - Value pack 2,গোসলের সাবান - প্যাক 2,Toiletries,Toiletries,Bashundhara,piece,2 piece,Non-perishable,730,Ambient,42.56,53.76,20.83,Low,Medium,Very High,False
+PRD075,Sanitary napkin pack - Value pack 2,স্যানিটারি ন্যাপকিন - প্যাক 2,Basic health and hygiene products,Hygiene,Rupchanda,packet,2 packet,Non-perishable,730,Ambient,123.2,156.8,21.43,High,Low,Very High,False
+PRD076,Tissue box - Value pack 2,টিস্যু বক্স - প্যাক 2,Other daily necessities,Household,Bashundhara,box,2 box,Non-perishable,730,Ambient,72.8,95.2,23.53,Medium,Low,High,False
+PRD077,Miniket rice - Family pack 3,মিনিকেট চাল - প্যাক 3,Rice and grains,Rice,Rupchanda,kg,3 kg,Non-perishable,365,Ambient,89.28,101.68,12.2,Medium,High,Very High,True
+PRD078,Nazirshail rice - Family pack 3,নাজিরশাইল চাল - প্যাক 3,Rice and grains,Rice,ACI,kg,3 kg,Non-perishable,365,Ambient,96.72,111.6,13.33,Medium,Low,Medium,True
+PRD079,Coarse rice - Family pack 3,মোটা চাল - প্যাক 3,Rice and grains,Rice,Pran,kg,3 kg,Non-perishable,365,Ambient,59.52,69.44,14.29,Medium,Medium,High,True
+PRD080,Masoor dal - Family pack 3,মসুর ডাল - প্যাক 3,Lentils and pulses,Lentils,Local brand,kg,3 kg,Non-perishable,365,Ambient,138.88,161.2,13.85,Low,Medium,Very High,True
+PRD081,Mung dal - Family pack 3,মুগ ডাল - প্যাক 3,Lentils and pulses,Lentils,Local brand,kg,3 kg,Non-perishable,365,Ambient,167.4,192.2,12.9,Medium,High,High,True
+PRD082,Soybean oil - Family pack 3,সয়াবিন তেল - প্যাক 3,Cooking oil,Edible oil,Teer,litre,3 litre,Non-perishable,365,Ambient,204.6,229.4,10.81,Low,High,Medium,True
+PRD083,Mustard oil - Family pack 3,সরিষার তেল - প্যাক 3,Cooking oil,Edible oil,Bashundhara,litre,3 litre,Non-perishable,365,Ambient,310.0,359.6,13.79,Medium,Medium,Low,True
+PRD084,Atta - Family pack 3,আটা - প্যাক 3,Flour and baking ingredients,Flour,ACI,kg,3 kg,Non-perishable,180,Ambient,59.52,71.92,17.24,Low,High,Very High,True
+PRD085,Maida - Family pack 3,ময়দা - প্যাক 3,Flour and baking ingredients,Flour,Unbranded,kg,3 kg,Non-perishable,180,Ambient,71.92,84.32,14.71,Medium,Medium,High,True
+PRD086,Refined sugar - Family pack 3,চিনি - প্যাক 3,Sugar and salt,Sugar,Teer,kg,3 kg,Non-perishable,365,Ambient,130.2,148.8,12.5,High,Medium,High,True
+PRD087,Iodized salt - Family pack 3,আয়োডিনযুক্ত লবণ - প্যাক 3,Sugar and salt,Salt,Unbranded,kg,3 kg,Non-perishable,730,Ambient,39.68,49.6,20.0,High,Medium,Low,True
+PRD088,Turmeric powder - Family pack 3,হলুদ গুঁড়া - প্যাক 3,Spices and condiments,Spice,Pran,packet,3 packet,Non-perishable,365,Ambient,43.4,55.8,22.22,Medium,Low,High,False
+PRD089,Chilli powder - Family pack 3,মরিচ গুঁড়া - প্যাক 3,Spices and condiments,Spice,Rupchanda,packet,3 packet,Non-perishable,365,Ambient,55.8,71.92,22.41,Medium,Medium,Low,False
+PRD090,Pasteurized milk - Family pack 3,পাস্তুরিত দুধ - প্যাক 3,Dairy products,Milk,Fresh,litre,3 litre,Perishable,7,Chilled,111.6,130.2,14.29,Low,Low,High,False
+PRD091,Milk powder 500g - Family pack 3,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 3,Dairy products,Milk powder,Rupchanda,packet,3 packet,Non-perishable,365,Ambient,533.2,595.2,10.42,Medium,Low,Medium,False
+PRD092,Farm egg - Family pack 3,ফার্মের ডিম - প্যাক 3,Eggs,Eggs,Danish,piece,3 piece,Perishable,21,Ambient,12.4,14.88,16.67,Medium,Medium,Low,True
+PRD093,Broiler chicken - Family pack 3,ব্রয়লার মুরগি - প্যাক 3,Meat and poultry,Poultry,ACI,kg,3 kg,Perishable,3,Chilled,192.2,223.2,13.89,Low,Medium,Medium,False
+PRD094,Tilapia fish - Family pack 3,তেলাপিয়া মাছ - প্যাক 3,Fish and frozen foods,Fish,Nestlé,kg,3 kg,Perishable,2,Chilled,198.4,260.4,23.81,High,Medium,Medium,False
+PRD095,Potato - Family pack 3,আলু - প্যাক 3,Vegetables,Vegetable,Nestlé,kg,3 kg,Perishable,20,Ambient,31.0,47.12,34.21,High,Low,High,False
+PRD096,Onion - Family pack 3,পেঁয়াজ - প্যাক 3,Vegetables,Vegetable,Fresh,kg,3 kg,Perishable,30,Ambient,80.6,111.6,27.78,High,Medium,Low,False
+PRD097,Green chilli - Family pack 3,কাঁচা মরিচ - প্যাক 3,Vegetables,Vegetable,Nestlé,kg,3 kg,Perishable,5,Ambient,111.6,173.6,35.71,Medium,Low,Low,False
+PRD098,Banana - Family pack 3,কলা - প্যাক 3,Fruits,Fruit,Local brand,dozen,3 dozen,Perishable,5,Ambient,80.6,105.4,23.53,Medium,Low,Very High,False
+PRD099,Apple - Family pack 3,আপেল - প্যাক 3,Fruits,Fruit,Danish,kg,3 kg,Perishable,30,Chilled,285.2,359.6,20.69,Medium,High,High,False
+PRD100,Sliced bread - Family pack 3,পাউরুটি - প্যাক 3,Bread and bakery products,Bread,ACI,packet,3 packet,Perishable,5,Ambient,55.8,74.4,25.0,Medium,Low,Medium,False
+PRD101,Marie biscuit - Family pack 3,মেরি বিস্কুট - প্যাক 3,Biscuits and snacks,Biscuits,Local brand,packet,3 packet,Non-perishable,180,Ambient,24.8,31.0,20.0,Medium,High,Medium,False
+PRD102,Potato chips - Family pack 3,আলুর চিপস - প্যাক 3,Biscuits and snacks,Snacks,Bashundhara,packet,3 packet,Non-perishable,120,Ambient,22.32,31.0,28.0,Low,High,Medium,False
+PRD103,Instant noodles - Family pack 3,ইনস্ট্যান্ট নুডলস - প্যাক 3,Instant noodles and packaged food,Noodles,Local brand,packet,3 packet,Non-perishable,180,Ambient,22.32,31.0,28.0,Low,Medium,Very High,False
+PRD104,Bottled water 500ml - Family pack 3,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 3,Beverages and bottled water,Water,Local brand,bottle,3 bottle,Non-perishable,365,Ambient,18.6,24.8,25.0,Medium,Medium,Very High,False
+PRD105,Carbonated drink 500ml - Family pack 3,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 3,Beverages and bottled water,Soft drink,Nestlé,bottle,3 bottle,Non-perishable,180,Ambient,43.4,55.8,22.22,Low,Low,Medium,False
+PRD106,Black tea 200g - Family pack 3,কালো চা ২০০ গ্রাম - প্যাক 3,Tea and coffee,Tea,Danish,packet,3 packet,Non-perishable,365,Ambient,130.2,155.0,16.0,Low,High,Medium,False
+PRD107,Corn flakes 250g - Family pack 3,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 3,Breakfast products,Cereal,Nestlé,box,3 box,Non-perishable,270,Ambient,297.6,359.6,17.24,Medium,Low,Low,False
+PRD108,Baby diaper small pack - Family pack 3,শিশুর ডায়াপার ছোট প্যাক - প্যাক 3,Baby-care essentials,Baby care,Local brand,packet,3 packet,Non-perishable,730,Ambient,186.0,235.6,21.05,High,Medium,Medium,False
+PRD109,Shampoo sachet - Family pack 3,শ্যাম্পু স্যাশে - প্যাক 3,Personal-care products,Personal care,Fresh,piece,3 piece,Non-perishable,730,Ambient,3.72,6.2,40.0,Low,Low,Medium,False
+PRD110,Dishwashing liquid - Family pack 3,ডিশওয়াশিং লিকুইড - প্যাক 3,Household cleaning products,Cleaning,ACI,bottle,3 bottle,Non-perishable,730,Ambient,105.4,130.2,19.05,Low,Low,Low,False
+PRD111,Detergent powder 500g - Family pack 3,ডিটারজেন্ট পাউডার ৫০০ গ্রাম - প্যাক 3,Laundry products,Laundry,Local brand,packet,3 packet,Non-perishable,730,Ambient,80.6,99.2,18.75,High,Medium,Very High,False
+PRD112,Bathing soap - Family pack 3,গোসলের সাবান - প্যাক 3,Toiletries,Toiletries,Teer,piece,3 piece,Non-perishable,730,Ambient,47.12,59.52,20.83,Medium,Low,Low,False
+PRD113,Sanitary napkin pack - Family pack 3,স্যানিটারি ন্যাপকিন - প্যাক 3,Basic health and hygiene products,Hygiene,Unbranded,packet,3 packet,Non-perishable,730,Ambient,136.4,173.6,21.43,Medium,Low,Medium,False
+PRD114,Tissue box - Family pack 3,টিস্যু বক্স - প্যাক 3,Other daily necessities,Household,ACI,box,3 box,Non-perishable,730,Ambient,80.6,105.4,23.53,Medium,High,Medium,False
+PRD115,Miniket rice - Value pack 4,মিনিকেট চাল - প্যাক 4,Rice and grains,Rice,Fresh,kg,4 kg,Non-perishable,365,Ambient,97.92,111.52,12.2,High,Medium,Very High,True
+PRD116,Nazirshail rice - Value pack 4,নাজিরশাইল চাল - প্যাক 4,Rice and grains,Rice,ACI,kg,4 kg,Non-perishable,365,Ambient,106.08,122.4,13.33,Low,Medium,Medium,True
+PRD117,Coarse rice - Value pack 4,মোটা চাল - প্যাক 4,Rice and grains,Rice,Teer,kg,4 kg,Non-perishable,365,Ambient,65.28,76.16,14.29,High,Medium,High,True
+PRD118,Masoor dal - Value pack 4,মসুর ডাল - প্যাক 4,Lentils and pulses,Lentils,Rupchanda,kg,4 kg,Non-perishable,365,Ambient,152.32,176.8,13.85,High,Low,Medium,True
+PRD119,Mung dal - Value pack 4,মুগ ডাল - প্যাক 4,Lentils and pulses,Lentils,Rupchanda,kg,4 kg,Non-perishable,365,Ambient,183.6,210.8,12.9,Low,Medium,High,True
+PRD120,Soybean oil - Value pack 4,সয়াবিন তেল - প্যাক 4,Cooking oil,Edible oil,Pran,litre,4 litre,Non-perishable,365,Ambient,224.4,251.6,10.81,Medium,Medium,Medium,True
+PRD121,Mustard oil - Value pack 4,সরিষার তেল - প্যাক 4,Cooking oil,Edible oil,Fresh,litre,4 litre,Non-perishable,365,Ambient,340.0,394.4,13.79,Medium,Low,Medium,True
+PRD122,Atta - Value pack 4,আটা - প্যাক 4,Flour and baking ingredients,Flour,Danish,kg,4 kg,Non-perishable,180,Ambient,65.28,78.88,17.24,Low,Medium,Low,True
+PRD123,Maida - Value pack 4,ময়দা - প্যাক 4,Flour and baking ingredients,Flour,Local brand,kg,4 kg,Non-perishable,180,Ambient,78.88,92.48,14.71,Low,Low,Low,True
+PRD124,Refined sugar - Value pack 4,চিনি - প্যাক 4,Sugar and salt,Sugar,Fresh,kg,4 kg,Non-perishable,365,Ambient,142.8,163.2,12.5,Low,High,Low,True
+PRD125,Iodized salt - Value pack 4,আয়োডিনযুক্ত লবণ - প্যাক 4,Sugar and salt,Salt,Fresh,kg,4 kg,Non-perishable,730,Ambient,43.52,54.4,20.0,Medium,High,Very High,True
+PRD126,Turmeric powder - Value pack 4,হলুদ গুঁড়া - প্যাক 4,Spices and condiments,Spice,Nestlé,packet,4 packet,Non-perishable,365,Ambient,47.6,61.2,22.22,Medium,Low,Medium,False
+PRD127,Chilli powder - Value pack 4,মরিচ গুঁড়া - প্যাক 4,Spices and condiments,Spice,ACI,packet,4 packet,Non-perishable,365,Ambient,61.2,78.88,22.41,High,Medium,High,False
+PRD128,Pasteurized milk - Value pack 4,পাস্তুরিত দুধ - প্যাক 4,Dairy products,Milk,Pran,litre,4 litre,Perishable,7,Chilled,122.4,142.8,14.29,High,High,Medium,False
+PRD129,Milk powder 500g - Value pack 4,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 4,Dairy products,Milk powder,Bashundhara,packet,4 packet,Non-perishable,365,Ambient,584.8,652.8,10.42,High,High,Low,False
+PRD130,Farm egg - Value pack 4,ফার্মের ডিম - প্যাক 4,Eggs,Eggs,Danish,piece,4 piece,Perishable,21,Ambient,13.6,16.32,16.67,Medium,High,Medium,True
+PRD131,Broiler chicken - Value pack 4,ব্রয়লার মুরগি - প্যাক 4,Meat and poultry,Poultry,Local brand,kg,4 kg,Perishable,3,Chilled,210.8,244.8,13.89,Medium,Low,High,False
+PRD132,Tilapia fish - Value pack 4,তেলাপিয়া মাছ - প্যাক 4,Fish and frozen foods,Fish,Nestlé,kg,4 kg,Perishable,2,Chilled,217.6,285.6,23.81,Low,Low,Low,False
+PRD133,Potato - Value pack 4,আলু - প্যাক 4,Vegetables,Vegetable,Fresh,kg,4 kg,Perishable,20,Ambient,34.0,51.68,34.21,Medium,High,Low,False
+PRD134,Onion - Value pack 4,পেঁয়াজ - প্যাক 4,Vegetables,Vegetable,Danish,kg,4 kg,Perishable,30,Ambient,88.4,122.4,27.78,High,Low,Medium,False
+PRD135,Green chilli - Value pack 4,কাঁচা মরিচ - প্যাক 4,Vegetables,Vegetable,Unbranded,kg,4 kg,Perishable,5,Ambient,122.4,190.4,35.71,High,Medium,Low,False
+PRD136,Banana - Value pack 4,কলা - প্যাক 4,Fruits,Fruit,Teer,dozen,4 dozen,Perishable,5,Ambient,88.4,115.6,23.53,Low,Low,Low,False
+PRD137,Apple - Value pack 4,আপেল - প্যাক 4,Fruits,Fruit,Rupchanda,kg,4 kg,Perishable,30,Chilled,312.8,394.4,20.69,High,Medium,Medium,False
+PRD138,Sliced bread - Value pack 4,পাউরুটি - প্যাক 4,Bread and bakery products,Bread,Local brand,packet,4 packet,Perishable,5,Ambient,61.2,81.6,25.0,Low,High,Medium,False
+PRD139,Marie biscuit - Value pack 4,মেরি বিস্কুট - প্যাক 4,Biscuits and snacks,Biscuits,Rupchanda,packet,4 packet,Non-perishable,180,Ambient,27.2,34.0,20.0,Low,High,High,False
+PRD140,Potato chips - Value pack 4,আলুর চিপস - প্যাক 4,Biscuits and snacks,Snacks,Local brand,packet,4 packet,Non-perishable,120,Ambient,24.48,34.0,28.0,Low,High,High,False
+PRD141,Instant noodles - Value pack 4,ইনস্ট্যান্ট নুডলস - প্যাক 4,Instant noodles and packaged food,Noodles,Danish,packet,4 packet,Non-perishable,180,Ambient,24.48,34.0,28.0,High,High,Very High,False
+PRD142,Bottled water 500ml - Value pack 4,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 4,Beverages and bottled water,Water,Local brand,bottle,4 bottle,Non-perishable,365,Ambient,20.4,27.2,25.0,Medium,High,Medium,False
+PRD143,Carbonated drink 500ml - Value pack 4,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 4,Beverages and bottled water,Soft drink,Unbranded,bottle,4 bottle,Non-perishable,180,Ambient,47.6,61.2,22.22,High,Medium,High,False
+PRD144,Black tea 200g - Value pack 4,কালো চা ২০০ গ্রাম - প্যাক 4,Tea and coffee,Tea,Teer,packet,4 packet,Non-perishable,365,Ambient,142.8,170.0,16.0,High,High,Low,False
+PRD145,Corn flakes 250g - Value pack 4,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 4,Breakfast products,Cereal,Fresh,box,4 box,Non-perishable,270,Ambient,326.4,394.4,17.24,High,Low,Medium,False
+PRD146,Baby diaper small pack - Value pack 4,শিশুর ডায়াপার ছোট প্যাক - প্যাক 4,Baby-care essentials,Baby care,Unbranded,packet,4 packet,Non-perishable,730,Ambient,204.0,258.4,21.05,Low,Medium,Medium,False
+PRD147,Shampoo sachet - Value pack 4,শ্যাম্পু স্যাশে - প্যাক 4,Personal-care products,Personal care,Fresh,piece,4 piece,Non-perishable,730,Ambient,4.08,6.8,40.0,High,Low,Low,False
+PRD148,Dishwashing liquid - Value pack 4,ডিশওয়াশিং লিকুইড - প্যাক 4,Household cleaning products,Cleaning,ACI,bottle,4 bottle,Non-perishable,730,Ambient,115.6,142.8,19.05,Low,High,Medium,False
+PRD149,Detergent powder 500g - Value pack 4,ডিটারজেন্ট পাউডার ৫০০ গ্রাম - প্যাক 4,Laundry products,Laundry,Local brand,packet,4 packet,Non-perishable,730,Ambient,88.4,108.8,18.75,Medium,Low,Medium,False
+PRD150,Bathing soap - Value pack 4,গোসলের সাবান - প্যাক 4,Toiletries,Toiletries,Unbranded,piece,4 piece,Non-perishable,730,Ambient,51.68,65.28,20.83,High,Medium,High,False
+PRD151,Sanitary napkin pack - Value pack 4,স্যানিটারি ন্যাপকিন - প্যাক 4,Basic health and hygiene products,Hygiene,Danish,packet,4 packet,Non-perishable,730,Ambient,149.6,190.4,21.43,Medium,Medium,Low,False
+PRD152,Tissue box - Value pack 4,টিস্যু বক্স - প্যাক 4,Other daily necessities,Household,Local brand,box,4 box,Non-perishable,730,Ambient,88.4,115.6,23.53,Low,Low,Low,False
+PRD153,Miniket rice - Family pack 5,মিনিকেট চাল - প্যাক 5,Rice and grains,Rice,ACI,kg,5 kg,Non-perishable,365,Ambient,106.56,121.36,12.2,Low,Low,Low,True
+PRD154,Nazirshail rice - Family pack 5,নাজিরশাইল চাল - প্যাক 5,Rice and grains,Rice,Fresh,kg,5 kg,Non-perishable,365,Ambient,115.44,133.2,13.33,Medium,Low,Medium,True
+PRD155,Coarse rice - Family pack 5,মোটা চাল - প্যাক 5,Rice and grains,Rice,Pran,kg,5 kg,Non-perishable,365,Ambient,71.04,82.88,14.29,Low,High,High,True
+PRD156,Masoor dal - Family pack 5,মসুর ডাল - প্যাক 5,Lentils and pulses,Lentils,Fresh,kg,5 kg,Non-perishable,365,Ambient,165.76,192.4,13.85,Medium,High,Medium,True
+PRD157,Mung dal - Family pack 5,মুগ ডাল - প্যাক 5,Lentils and pulses,Lentils,Teer,kg,5 kg,Non-perishable,365,Ambient,199.8,229.4,12.9,Medium,High,Low,True
+PRD158,Soybean oil - Family pack 5,সয়াবিন তেল - প্যাক 5,Cooking oil,Edible oil,Fresh,litre,5 litre,Non-perishable,365,Ambient,244.2,273.8,10.81,High,Low,High,True
+PRD159,Mustard oil - Family pack 5,সরিষার তেল - প্যাক 5,Cooking oil,Edible oil,Danish,litre,5 litre,Non-perishable,365,Ambient,370.0,429.2,13.79,High,Medium,Medium,True
+PRD160,Atta - Family pack 5,আটা - প্যাক 5,Flour and baking ingredients,Flour,Local brand,kg,5 kg,Non-perishable,180,Ambient,71.04,85.84,17.24,High,Medium,Low,True
+PRD161,Maida - Family pack 5,ময়দা - প্যাক 5,Flour and baking ingredients,Flour,Teer,kg,5 kg,Non-perishable,180,Ambient,85.84,100.64,14.71,High,Medium,Medium,True
+PRD162,Refined sugar - Family pack 5,চিনি - প্যাক 5,Sugar and salt,Sugar,Danish,kg,5 kg,Non-perishable,365,Ambient,155.4,177.6,12.5,Low,Medium,Low,True
+PRD163,Iodized salt - Family pack 5,আয়োডিনযুক্ত লবণ - প্যাক 5,Sugar and salt,Salt,Nestlé,kg,5 kg,Non-perishable,730,Ambient,47.36,59.2,20.0,Medium,Medium,Low,True
+PRD164,Turmeric powder - Family pack 5,হলুদ গুঁড়া - প্যাক 5,Spices and condiments,Spice,ACI,packet,5 packet,Non-perishable,365,Ambient,51.8,66.6,22.22,Medium,Medium,Very High,False
+PRD165,Chilli powder - Family pack 5,মরিচ গুঁড়া - প্যাক 5,Spices and condiments,Spice,Local brand,packet,5 packet,Non-perishable,365,Ambient,66.6,85.84,22.41,Low,High,High,False
+PRD166,Pasteurized milk - Family pack 5,পাস্তুরিত দুধ - প্যাক 5,Dairy products,Milk,Unbranded,litre,5 litre,Perishable,7,Chilled,133.2,155.4,14.29,Low,High,High,False
+PRD167,Milk powder 500g - Family pack 5,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 5,Dairy products,Milk powder,Fresh,packet,5 packet,Non-perishable,365,Ambient,636.4,710.4,10.42,Low,Low,Low,False
+PRD168,Farm egg - Family pack 5,ফার্মের ডিম - প্যাক 5,Eggs,Eggs,Pran,piece,5 piece,Perishable,21,Ambient,14.8,17.76,16.67,Low,High,Medium,True
+PRD169,Broiler chicken - Family pack 5,ব্রয়লার মুরগি - প্যাক 5,Meat and poultry,Poultry,Fresh,kg,5 kg,Perishable,3,Chilled,229.4,266.4,13.89,Medium,Medium,Medium,False
+PRD170,Tilapia fish - Family pack 5,তেলাপিয়া মাছ - প্যাক 5,Fish and frozen foods,Fish,Bashundhara,kg,5 kg,Perishable,2,Chilled,236.8,310.8,23.81,High,Medium,Medium,False
+PRD171,Potato - Family pack 5,আলু - প্যাক 5,Vegetables,Vegetable,Teer,kg,5 kg,Perishable,20,Ambient,37.0,56.24,34.21,Medium,Medium,Very High,False
+PRD172,Onion - Family pack 5,পেঁয়াজ - প্যাক 5,Vegetables,Vegetable,ACI,kg,5 kg,Perishable,30,Ambient,96.2,133.2,27.78,High,Medium,High,False
+PRD173,Green chilli - Family pack 5,কাঁচা মরিচ - প্যাক 5,Vegetables,Vegetable,Bashundhara,kg,5 kg,Perishable,5,Ambient,133.2,207.2,35.71,High,Low,High,False
+PRD174,Banana - Family pack 5,কলা - প্যাক 5,Fruits,Fruit,Fresh,dozen,5 dozen,Perishable,5,Ambient,96.2,125.8,23.53,Medium,Low,Low,False
+PRD175,Apple - Family pack 5,আপেল - প্যাক 5,Fruits,Fruit,Danish,kg,5 kg,Perishable,30,Chilled,340.4,429.2,20.69,Medium,Low,Very High,False
+PRD176,Sliced bread - Family pack 5,পাউরুটি - প্যাক 5,Bread and bakery products,Bread,Fresh,packet,5 packet,Perishable,5,Ambient,66.6,88.8,25.0,High,Medium,Medium,False
+PRD177,Marie biscuit - Family pack 5,মেরি বিস্কুট - প্যাক 5,Biscuits and snacks,Biscuits,Rupchanda,packet,5 packet,Non-perishable,180,Ambient,29.6,37.0,20.0,Medium,Medium,Low,False
+PRD178,Potato chips - Family pack 5,আলুর চিপস - প্যাক 5,Biscuits and snacks,Snacks,Rupchanda,packet,5 packet,Non-perishable,120,Ambient,26.64,37.0,28.0,Medium,Low,Low,False
+PRD179,Instant noodles - Family pack 5,ইনস্ট্যান্ট নুডলস - প্যাক 5,Instant noodles and packaged food,Noodles,ACI,packet,5 packet,Non-perishable,180,Ambient,26.64,37.0,28.0,High,Low,Low,False
+PRD180,Bottled water 500ml - Family pack 5,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 5,Beverages and bottled water,Water,Danish,bottle,5 bottle,Non-perishable,365,Ambient,22.2,29.6,25.0,Low,High,Very High,False
+PRD181,Carbonated drink 500ml - Family pack 5,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 5,Beverages and bottled water,Soft drink,Unbranded,bottle,5 bottle,Non-perishable,180,Ambient,51.8,66.6,22.22,Low,Low,High,False
+PRD182,Black tea 200g - Family pack 5,কালো চা ২০০ গ্রাম - প্যাক 5,Tea and coffee,Tea,Fresh,packet,5 packet,Non-perishable,365,Ambient,155.4,185.0,16.0,Medium,High,Medium,False
+PRD183,Corn flakes 250g - Family pack 5,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 5,Breakfast products,Cereal,Nestlé,box,5 box,Non-perishable,270,Ambient,355.2,429.2,17.24,High,High,Low,False
+PRD184,Baby diaper small pack - Family pack 5,শিশুর ডায়াপার ছোট প্যাক - প্যাক 5,Baby-care essentials,Baby care,Pran,packet,5 packet,Non-perishable,730,Ambient,222.0,281.2,21.05,Medium,Low,Very High,False
+PRD185,Shampoo sachet - Family pack 5,শ্যাম্পু স্যাশে - প্যাক 5,Personal-care products,Personal care,Teer,piece,5 piece,Non-perishable,730,Ambient,4.44,7.4,40.0,Medium,Medium,Very High,False
+PRD186,Dishwashing liquid - Family pack 5,ডিশওয়াশিং লিকুইড - প্যাক 5,Household cleaning products,Cleaning,Pran,bottle,5 bottle,Non-perishable,730,Ambient,125.8,155.4,19.05,High,Low,Very High,False
+PRD187,Detergent powder 500g - Family pack 5,ডিটারজেন্ট পাউডার ৫০০ গ্রাম - প্যাক 5,Laundry products,Laundry,Local brand,packet,5 packet,Non-perishable,730,Ambient,96.2,118.4,18.75,High,Medium,Medium,False
+PRD188,Bathing soap - Family pack 5,গোসলের সাবান - প্যাক 5,Toiletries,Toiletries,Danish,piece,5 piece,Non-perishable,730,Ambient,56.24,71.04,20.83,High,High,Medium,False
+PRD189,Sanitary napkin pack - Family pack 5,স্যানিটারি ন্যাপকিন - প্যাক 5,Basic health and hygiene products,Hygiene,Pran,packet,5 packet,Non-perishable,730,Ambient,162.8,207.2,21.43,High,Low,High,False
+PRD190,Tissue box - Family pack 5,টিস্যু বক্স - প্যাক 5,Other daily necessities,Household,Bashundhara,box,5 box,Non-perishable,730,Ambient,96.2,125.8,23.53,Low,Low,High,False
+PRD191,Miniket rice - Value pack 6,মিনিকেট চাল - প্যাক 6,Rice and grains,Rice,Fresh,kg,6 kg,Non-perishable,365,Ambient,115.2,131.2,12.2,High,High,Very High,True
+PRD192,Nazirshail rice - Value pack 6,নাজিরশাইল চাল - প্যাক 6,Rice and grains,Rice,Bashundhara,kg,6 kg,Non-perishable,365,Ambient,124.8,144.0,13.33,Medium,Low,Medium,True
+PRD193,Coarse rice - Value pack 6,মোটা চাল - প্যাক 6,Rice and grains,Rice,Danish,kg,6 kg,Non-perishable,365,Ambient,76.8,89.6,14.29,High,High,Medium,True
+PRD194,Masoor dal - Value pack 6,মসুর ডাল - প্যাক 6,Lentils and pulses,Lentils,Fresh,kg,6 kg,Non-perishable,365,Ambient,179.2,208.0,13.85,Medium,High,Very High,True
+PRD195,Mung dal - Value pack 6,মুগ ডাল - প্যাক 6,Lentils and pulses,Lentils,Pran,kg,6 kg,Non-perishable,365,Ambient,216.0,248.0,12.9,High,Medium,Very High,True
+PRD196,Soybean oil - Value pack 6,সয়াবিন তেল - প্যাক 6,Cooking oil,Edible oil,Bashundhara,litre,6 litre,Non-perishable,365,Ambient,264.0,296.0,10.81,High,Low,Medium,True
+PRD197,Mustard oil - Value pack 6,সরিষার তেল - প্যাক 6,Cooking oil,Edible oil,Pran,litre,6 litre,Non-perishable,365,Ambient,400.0,464.0,13.79,High,Medium,High,True
+PRD198,Atta - Value pack 6,আটা - প্যাক 6,Flour and baking ingredients,Flour,Teer,kg,6 kg,Non-perishable,180,Ambient,76.8,92.8,17.24,Low,Low,Medium,True
+PRD199,Maida - Value pack 6,ময়দা - প্যাক 6,Flour and baking ingredients,Flour,Pran,kg,6 kg,Non-perishable,180,Ambient,92.8,108.8,14.71,Low,Low,Very High,True
+PRD200,Refined sugar - Value pack 6,চিনি - প্যাক 6,Sugar and salt,Sugar,Rupchanda,kg,6 kg,Non-perishable,365,Ambient,168.0,192.0,12.5,High,Medium,Medium,True
+PRD201,Iodized salt - Value pack 6,আয়োডিনযুক্ত লবণ - প্যাক 6,Sugar and salt,Salt,Nestlé,kg,6 kg,Non-perishable,730,Ambient,51.2,64.0,20.0,Low,Medium,Very High,True
+PRD202,Turmeric powder - Value pack 6,হলুদ গুঁড়া - প্যাক 6,Spices and condiments,Spice,Local brand,packet,6 packet,Non-perishable,365,Ambient,56.0,72.0,22.22,Medium,High,High,False
+PRD203,Chilli powder - Value pack 6,মরিচ গুঁড়া - প্যাক 6,Spices and condiments,Spice,Local brand,packet,6 packet,Non-perishable,365,Ambient,72.0,92.8,22.41,Low,Low,High,False
+PRD204,Pasteurized milk - Value pack 6,পাস্তুরিত দুধ - প্যাক 6,Dairy products,Milk,ACI,litre,6 litre,Perishable,7,Chilled,144.0,168.0,14.29,Medium,High,High,False
+PRD205,Milk powder 500g - Value pack 6,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 6,Dairy products,Milk powder,Unbranded,packet,6 packet,Non-perishable,365,Ambient,688.0,768.0,10.42,High,High,Medium,False
+PRD206,Farm egg - Value pack 6,ফার্মের ডিম - প্যাক 6,Eggs,Eggs,Nestlé,piece,6 piece,Perishable,21,Ambient,16.0,19.2,16.67,Low,Medium,Low,True
+PRD207,Broiler chicken - Value pack 6,ব্রয়লার মুরগি - প্যাক 6,Meat and poultry,Poultry,Fresh,kg,6 kg,Perishable,3,Chilled,248.0,288.0,13.89,Low,Medium,Low,False
+PRD208,Tilapia fish - Value pack 6,তেলাপিয়া মাছ - প্যাক 6,Fish and frozen foods,Fish,Local brand,kg,6 kg,Perishable,2,Chilled,256.0,336.0,23.81,Low,Medium,Low,False
+PRD209,Potato - Value pack 6,আলু - প্যাক 6,Vegetables,Vegetable,Danish,kg,6 kg,Perishable,20,Ambient,40.0,60.8,34.21,Medium,High,Low,False
+PRD210,Onion - Value pack 6,পেঁয়াজ - প্যাক 6,Vegetables,Vegetable,Nestlé,kg,6 kg,Perishable,30,Ambient,104.0,144.0,27.78,High,High,Low,False
+PRD211,Green chilli - Value pack 6,কাঁচা মরিচ - প্যাক 6,Vegetables,Vegetable,Rupchanda,kg,6 kg,Perishable,5,Ambient,144.0,224.0,35.71,Medium,Low,Very High,False
+PRD212,Banana - Value pack 6,কলা - প্যাক 6,Fruits,Fruit,Rupchanda,dozen,6 dozen,Perishable,5,Ambient,104.0,136.0,23.53,High,Low,Medium,False
+PRD213,Apple - Value pack 6,আপেল - প্যাক 6,Fruits,Fruit,ACI,kg,6 kg,Perishable,30,Chilled,368.0,464.0,20.69,High,High,Medium,False
+PRD214,Sliced bread - Value pack 6,পাউরুটি - প্যাক 6,Bread and bakery products,Bread,Fresh,packet,6 packet,Perishable,5,Ambient,72.0,96.0,25.0,High,Low,Medium,False
+PRD215,Marie biscuit - Value pack 6,মেরি বিস্কুট - প্যাক 6,Biscuits and snacks,Biscuits,Danish,packet,6 packet,Non-perishable,180,Ambient,32.0,40.0,20.0,High,High,Very High,False
+PRD216,Potato chips - Value pack 6,আলুর চিপস - প্যাক 6,Biscuits and snacks,Snacks,ACI,packet,6 packet,Non-perishable,120,Ambient,28.8,40.0,28.0,Low,Medium,Very High,False
+PRD217,Instant noodles - Value pack 6,ইনস্ট্যান্ট নুডলস - প্যাক 6,Instant noodles and packaged food,Noodles,Rupchanda,packet,6 packet,Non-perishable,180,Ambient,28.8,40.0,28.0,Medium,Medium,High,False
+PRD218,Bottled water 500ml - Value pack 6,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 6,Beverages and bottled water,Water,Bashundhara,bottle,6 bottle,Non-perishable,365,Ambient,24.0,32.0,25.0,Low,Medium,Very High,False
+PRD219,Carbonated drink 500ml - Value pack 6,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 6,Beverages and bottled water,Soft drink,Pran,bottle,6 bottle,Non-perishable,180,Ambient,56.0,72.0,22.22,Low,High,Medium,False
+PRD220,Black tea 200g - Value pack 6,কালো চা ২০০ গ্রাম - প্যাক 6,Tea and coffee,Tea,Bashundhara,packet,6 packet,Non-perishable,365,Ambient,168.0,200.0,16.0,Low,Low,Low,False
+PRD221,Corn flakes 250g - Value pack 6,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 6,Breakfast products,Cereal,Teer,box,6 box,Non-perishable,270,Ambient,384.0,464.0,17.24,Medium,Medium,Very High,False
+PRD222,Baby diaper small pack - Value pack 6,শিশুর ডায়াপার ছোট প্যাক - প্যাক 6,Baby-care essentials,Baby care,Fresh,packet,6 packet,Non-perishable,730,Ambient,240.0,304.0,21.05,Low,Medium,Low,False
+PRD223,Shampoo sachet - Value pack 6,শ্যাম্পু স্যাশে - প্যাক 6,Personal-care products,Personal care,Local brand,piece,6 piece,Non-perishable,730,Ambient,4.8,8.0,40.0,Low,Low,Very High,False
+PRD224,Dishwashing liquid - Value pack 6,ডিশওয়াশিং লিকুইড - প্যাক 6,Household cleaning products,Cleaning,Nestlé,bottle,6 bottle,Non-perishable,730,Ambient,136.0,168.0,19.05,High,High,Medium,False
+PRD225,Detergent powder 500g - Value pack 6,ডিটারজেন্ট পাউডার ৫০০ গ্রাম - প্যাক 6,Laundry products,Laundry,Unbranded,packet,6 packet,Non-perishable,730,Ambient,104.0,128.0,18.75,Low,Medium,Low,False
+PRD226,Bathing soap - Value pack 6,গোসলের সাবান - প্যাক 6,Toiletries,Toiletries,Fresh,piece,6 piece,Non-perishable,730,Ambient,60.8,76.8,20.83,Medium,Low,Very High,False
+PRD227,Sanitary napkin pack - Value pack 6,স্যানিটারি ন্যাপকিন - প্যাক 6,Basic health and hygiene products,Hygiene,Teer,packet,6 packet,Non-perishable,730,Ambient,176.0,224.0,21.43,Medium,Low,Very High,False
+PRD228,Tissue box - Value pack 6,টিস্যু বক্স - প্যাক 6,Other daily necessities,Household,Danish,box,6 box,Non-perishable,730,Ambient,104.0,136.0,23.53,Medium,High,Medium,False
+PRD229,Miniket rice - Family pack 7,মিনিকেট চাল - প্যাক 7,Rice and grains,Rice,Nestlé,kg,7 kg,Non-perishable,365,Ambient,123.84,141.04,12.2,Medium,Low,Low,True
+PRD230,Nazirshail rice - Family pack 7,নাজিরশাইল চাল - প্যাক 7,Rice and grains,Rice,Unbranded,kg,7 kg,Non-perishable,365,Ambient,134.16,154.8,13.33,Low,Medium,Low,True
+PRD231,Coarse rice - Family pack 7,মোটা চাল - প্যাক 7,Rice and grains,Rice,Fresh,kg,7 kg,Non-perishable,365,Ambient,82.56,96.32,14.29,Medium,High,Medium,True
+PRD232,Masoor dal - Family pack 7,মসুর ডাল - প্যাক 7,Lentils and pulses,Lentils,Rupchanda,kg,7 kg,Non-perishable,365,Ambient,192.64,223.6,13.85,Low,Low,High,True
+PRD233,Mung dal - Family pack 7,মুগ ডাল - প্যাক 7,Lentils and pulses,Lentils,Bashundhara,kg,7 kg,Non-perishable,365,Ambient,232.2,266.6,12.9,Low,High,Medium,True
+PRD234,Soybean oil - Family pack 7,সয়াবিন তেল - প্যাক 7,Cooking oil,Edible oil,Pran,litre,7 litre,Non-perishable,365,Ambient,283.8,318.2,10.81,Medium,Medium,Low,True
+PRD235,Mustard oil - Family pack 7,সরিষার তেল - প্যাক 7,Cooking oil,Edible oil,Nestlé,litre,7 litre,Non-perishable,365,Ambient,430.0,498.8,13.79,Low,High,Low,True
+PRD236,Atta - Family pack 7,আটা - প্যাক 7,Flour and baking ingredients,Flour,Teer,kg,7 kg,Non-perishable,180,Ambient,82.56,99.76,17.24,Medium,High,Low,True
+PRD237,Maida - Family pack 7,ময়দা - প্যাক 7,Flour and baking ingredients,Flour,Danish,kg,7 kg,Non-perishable,180,Ambient,99.76,116.96,14.71,Low,Low,Very High,True
+PRD238,Refined sugar - Family pack 7,চিনি - প্যাক 7,Sugar and salt,Sugar,Rupchanda,kg,7 kg,Non-perishable,365,Ambient,180.6,206.4,12.5,High,Low,Medium,True
+PRD239,Iodized salt - Family pack 7,আয়োডিনযুক্ত লবণ - প্যাক 7,Sugar and salt,Salt,Fresh,kg,7 kg,Non-perishable,730,Ambient,55.04,68.8,20.0,High,Low,Medium,True
+PRD240,Turmeric powder - Family pack 7,হলুদ গুঁড়া - প্যাক 7,Spices and condiments,Spice,Pran,packet,7 packet,Non-perishable,365,Ambient,60.2,77.4,22.22,High,High,Low,False
+PRD241,Chilli powder - Family pack 7,মরিচ গুঁড়া - প্যাক 7,Spices and condiments,Spice,Unbranded,packet,7 packet,Non-perishable,365,Ambient,77.4,99.76,22.41,Low,High,Medium,False
+PRD242,Pasteurized milk - Family pack 7,পাস্তুরিত দুধ - প্যাক 7,Dairy products,Milk,Pran,litre,7 litre,Perishable,7,Chilled,154.8,180.6,14.29,Low,High,Very High,False
+PRD243,Milk powder 500g - Family pack 7,গুঁড়া দুধ ৫০০ গ্রাম - প্যাক 7,Dairy products,Milk powder,Local brand,packet,7 packet,Non-perishable,365,Ambient,739.6,825.6,10.42,Medium,Low,Very High,False
+PRD244,Farm egg - Family pack 7,ফার্মের ডিম - প্যাক 7,Eggs,Eggs,Teer,piece,7 piece,Perishable,21,Ambient,17.2,20.64,16.67,Low,Low,Medium,True
+PRD245,Broiler chicken - Family pack 7,ব্রয়লার মুরগি - প্যাক 7,Meat and poultry,Poultry,Nestlé,kg,7 kg,Perishable,3,Chilled,266.6,309.6,13.89,Low,High,High,False
+PRD246,Tilapia fish - Family pack 7,তেলাপিয়া মাছ - প্যাক 7,Fish and frozen foods,Fish,Danish,kg,7 kg,Perishable,2,Chilled,275.2,361.2,23.81,Medium,Medium,Low,False
+PRD247,Potato - Family pack 7,আলু - প্যাক 7,Vegetables,Vegetable,Danish,kg,7 kg,Perishable,20,Ambient,43.0,65.36,34.21,Low,Low,Low,False
+PRD248,Onion - Family pack 7,পেঁয়াজ - প্যাক 7,Vegetables,Vegetable,ACI,kg,7 kg,Perishable,30,Ambient,111.8,154.8,27.78,Medium,Medium,Low,False
+PRD249,Green chilli - Family pack 7,কাঁচা মরিচ - প্যাক 7,Vegetables,Vegetable,Bashundhara,kg,7 kg,Perishable,5,Ambient,154.8,240.8,35.71,High,Low,High,False
+PRD250,Banana - Family pack 7,কলা - প্যাক 7,Fruits,Fruit,ACI,dozen,7 dozen,Perishable,5,Ambient,111.8,146.2,23.53,Low,High,Medium,False
+PRD251,Apple - Family pack 7,আপেল - প্যাক 7,Fruits,Fruit,Teer,kg,7 kg,Perishable,30,Chilled,395.6,498.8,20.69,Low,Medium,Medium,False
+PRD252,Sliced bread - Family pack 7,পাউরুটি - প্যাক 7,Bread and bakery products,Bread,Pran,packet,7 packet,Perishable,5,Ambient,77.4,103.2,25.0,Low,Low,High,False
+PRD253,Marie biscuit - Family pack 7,মেরি বিস্কুট - প্যাক 7,Biscuits and snacks,Biscuits,Unbranded,packet,7 packet,Non-perishable,180,Ambient,34.4,43.0,20.0,High,Low,Medium,False
+PRD254,Potato chips - Family pack 7,আলুর চিপস - প্যাক 7,Biscuits and snacks,Snacks,Local brand,packet,7 packet,Non-perishable,120,Ambient,30.96,43.0,28.0,Low,Low,Medium,False
+PRD255,Instant noodles - Family pack 7,ইনস্ট্যান্ট নুডলস - প্যাক 7,Instant noodles and packaged food,Noodles,Fresh,packet,7 packet,Non-perishable,180,Ambient,30.96,43.0,28.0,Medium,High,Low,False
+PRD256,Bottled water 500ml - Family pack 7,বোতলজাত পানি ৫০০ মি.লি. - প্যাক 7,Beverages and bottled water,Water,Local brand,bottle,7 bottle,Non-perishable,365,Ambient,25.8,34.4,25.0,Medium,Medium,High,False
+PRD257,Carbonated drink 500ml - Family pack 7,কার্বনেটেড পানীয় ৫০০ মি.লি. - প্যাক 7,Beverages and bottled water,Soft drink,Teer,bottle,7 bottle,Non-perishable,180,Ambient,60.2,77.4,22.22,Low,Medium,Very High,False
+PRD258,Black tea 200g - Family pack 7,কালো চা ২০০ গ্রাম - প্যাক 7,Tea and coffee,Tea,Fresh,packet,7 packet,Non-perishable,365,Ambient,180.6,215.0,16.0,Medium,Low,Low,False
+PRD259,Corn flakes 250g - Family pack 7,কর্ন ফ্লেক্স ২৫০ গ্রাম - প্যাক 7,Breakfast products,Cereal,Local brand,box,7 box,Non-perishable,270,Ambient,412.8,498.8,17.24,Low,Low,High,False
+PRD260,Baby diaper small pack - Family pack 7,শিশুর ডায়াপার ছোট প্যাক - প্যাক 7,Baby-care essentials,Baby care,Fresh,packet,7 packet,Non-perishable,730,Ambient,258.0,326.8,21.05,Medium,High,Very High,False

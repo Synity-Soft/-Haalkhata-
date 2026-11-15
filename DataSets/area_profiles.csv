@@ -1,0 +1,201 @@
+area_id,division,district,neighbourhood,area_type,income_segment,population_density,dominant_customer_groups,student_population_level,garment_worker_population_level,office_worker_population_level,family_population_level,market_activity_level,tourism_activity_level,price_sensitivity,preferred_product_categories,average_shopping_frequency,payday_effect_level,seasonal_demand_sensitivity
+AR001,Dhaka,Dhaka,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Medium,Low,Low,,Weekly,Medium,High
+AR002,Mymensingh,Mymensingh,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,Daily,High,High
+AR003,Dhaka,Dhaka,Uttara Sector 4,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,2-3 times weekly,High,High
+AR004,Rangpur,Rangpur,Uttara Sector 4,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,High,Low,Low,,2-3 times weekly,High,Medium
+AR005,Dhaka,Dhaka,Gulshan,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Medium,Low,Low,,Daily,Medium,High
+AR006,Dhaka,Dhaka,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,High,Low,Low,,Daily,Low,Medium
+AR007,Dhaka,Dhaka,Uttara Sector 4,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Medium,Low,Low,,Daily,High,High
+AR008,Khulna,Khulna,Gulshan,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,High,Low,Low,,Weekly,High,Medium
+AR009,Dhaka,Dhaka,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,High,Low,Low,,Daily,Low,Medium
+AR010,Narayanganj,Narayanganj,Gulshan,Premium / affluent residential,High,High,Premium; affluent residential,Low,Medium,Low,Medium,Very High,Low,Low,,Daily,Medium,High
+AR011,Bogura,Bogura,Gulshan,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,2-3 times weekly,High,High
+AR012,Dhaka,Dhaka,Baridhara,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Medium,Low,Low,,Weekly,Low,Medium
+AR013,Gazipur,Gazipur,Uttara Sector 4,Premium / affluent residential,High,High,Premium; affluent residential,Low,Medium,Low,Medium,Very High,Low,Low,,Daily,Low,High
+AR014,Dhaka,Dhaka,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,Weekly,Medium,Medium
+AR015,Dhaka,Dhaka,Baridhara,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,Daily,Low,Medium
+AR016,Dhaka,Dhaka,Baridhara,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Medium,Low,Low,,Daily,High,Medium
+AR017,Dhaka,Dhaka,Baridhara,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,Daily,High,High
+AR018,Dhaka,Dhaka,Gulshan,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,High,Low,Low,,2-3 times weekly,Medium,Medium
+AR019,Dhaka,Dhaka,Banani,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,2-3 times weekly,Low,Medium
+AR020,Mymensingh,Mymensingh,Uttara Sector 4,Premium / affluent residential,High,High,Premium; affluent residential,Low,Low,Low,Medium,Very High,Low,Low,,Daily,Low,High
+AR021,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Weekly,High,Medium
+AR022,Dhaka,Dhaka,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,Weekly,High,High
+AR023,Cumilla,Cumilla,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Weekly,Medium,Medium
+AR024,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Weekly,Low,Medium
+AR025,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,2-3 times weekly,Medium,High
+AR026,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Daily,Low,High
+AR027,Dhaka,Dhaka,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,Daily,Medium,High
+AR028,Khulna,Khulna,Mohammadpur,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,2-3 times weekly,Low,High
+AR029,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Weekly,Medium,High
+AR030,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Daily,High,Medium
+AR031,Dhaka,Dhaka,Shantinagar,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,2-3 times weekly,Medium,High
+AR032,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,Weekly,High,Medium
+AR033,Cumilla,Cumilla,Mohammadpur,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Weekly,High,Medium
+AR034,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,2-3 times weekly,Low,Medium
+AR035,Khulna,Khulna,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Daily,Medium,High
+AR036,Narayanganj,Narayanganj,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,Very High,Low,Medium,,2-3 times weekly,High,High
+AR037,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,2-3 times weekly,Low,Medium
+AR038,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,2-3 times weekly,Low,High
+AR039,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Weekly,Low,Medium
+AR040,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Daily,High,Medium
+AR041,Narayanganj,Narayanganj,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,High,Low,Medium,,Daily,Low,Medium
+AR042,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,2-3 times weekly,Medium,Medium
+AR043,Gazipur,Gazipur,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,Medium,Low,Medium,,2-3 times weekly,Medium,Medium
+AR044,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,2-3 times weekly,Medium,Medium
+AR045,Narayanganj,Narayanganj,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,Medium,Low,Medium,,Daily,Medium,High
+AR046,Rajshahi,Rajshahi,Mohammadpur,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,2-3 times weekly,Medium,Medium
+AR047,Dhaka,Dhaka,Mirpur 10,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Daily,High,High
+AR048,Narayanganj,Narayanganj,Shantinagar,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,Very High,Low,Medium,,Weekly,High,High
+AR049,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,2-3 times weekly,High,High
+AR050,Rajshahi,Rajshahi,Mohammadpur,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,Daily,Low,High
+AR051,Gazipur,Gazipur,Mohammadpur,Middle-income residential,Medium,High,Middle-income residential,Low,Medium,Low,High,Medium,Low,Medium,,2-3 times weekly,High,High
+AR052,Dhaka,Dhaka,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,2-3 times weekly,High,Medium
+AR053,Dhaka,Dhaka,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,High,Low,Medium,,Weekly,Low,Medium
+AR054,Dhaka,Dhaka,Uttara,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Medium,Low,Medium,,Weekly,Low,High
+AR055,Dhaka,Dhaka,Dhanmondi,Middle-income residential,Medium,High,Middle-income residential,Low,Low,Low,High,Very High,Low,Medium,,2-3 times weekly,Low,High
+AR056,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Daily,High,Medium
+AR057,Dhaka,Dhaka,Old Dhaka,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Weekly,Low,High
+AR058,Dhaka,Dhaka,Demra,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,2-3 times weekly,Medium,Medium
+AR059,Rajshahi,Rajshahi,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Daily,Low,High
+AR060,Dhaka,Dhaka,Old Dhaka,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,2-3 times weekly,Low,Medium
+AR061,Dhaka,Dhaka,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Weekly,Low,High
+AR062,Dhaka,Dhaka,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Daily,Medium,High
+AR063,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Daily,High,Medium
+AR064,Dhaka,Dhaka,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Daily,Medium,High
+AR065,Dhaka,Dhaka,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,Weekly,Medium,High
+AR066,Dhaka,Dhaka,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,Weekly,High,Medium
+AR067,Dhaka,Dhaka,Demra,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Daily,Low,High
+AR068,Dhaka,Dhaka,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Weekly,High,High
+AR069,Rajshahi,Rajshahi,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Weekly,Medium,Medium
+AR070,Dhaka,Dhaka,Old Dhaka,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Weekly,High,Medium
+AR071,Dhaka,Dhaka,Demra,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,2-3 times weekly,Low,Medium
+AR072,Dhaka,Dhaka,Demra,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,2-3 times weekly,High,Medium
+AR073,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,2-3 times weekly,High,High
+AR074,Dhaka,Dhaka,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,2-3 times weekly,Low,High
+AR075,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,Weekly,High,Medium
+AR076,Dhaka,Dhaka,Demra,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Weekly,High,High
+AR077,Khulna,Khulna,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Weekly,Low,Medium
+AR078,Dhaka,Dhaka,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Daily,Low,Medium
+AR079,Dhaka,Dhaka,Old Dhaka,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Medium,Low,Very High,,Daily,Low,Medium
+AR080,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,2-3 times weekly,Medium,High
+AR081,Dhaka,Dhaka,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,Weekly,Low,Medium
+AR082,Dhaka,Dhaka,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,Very High,Low,Very High,,Weekly,Medium,Medium
+AR083,Dhaka,Dhaka,Pallabi,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Low,Low,High,High,Low,Very High,,Weekly,Low,Medium
+AR084,Gazipur,Gazipur,Jatrabari,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Medium,Low,High,Medium,Low,Very High,,Weekly,Low,Medium
+AR085,Narayanganj,Narayanganj,Kamrangirchar,Lower-income / dense urban residential,Low,Very High,Lower-income; dense urban residential,Low,Medium,Low,High,Medium,Low,Very High,,2-3 times weekly,High,High
+AR086,Dhaka,Dhaka,Konabari,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Low,Very High,,2-3 times weekly,High,Medium
+AR087,Chattogram,Chattogram,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Medium,Very High,,Daily,High,Medium
+AR088,Gazipur,Gazipur,Board Bazar,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Low,Very High,,Daily,High,High
+AR089,Chattogram,Chattogram,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Medium,Very High,,Daily,High,Medium
+AR090,Chattogram,Chattogram,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Medium,Very High,,Daily,High,High
+AR091,Chattogram,Chattogram,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Medium,Very High,,Weekly,High,Medium
+AR092,Narayanganj,Narayanganj,Fatullah,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Low,Very High,,Daily,High,Medium
+AR093,Chattogram,Chattogram,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Medium,Very High,,Weekly,High,Medium
+AR094,Chattogram,Chattogram,Fatullah,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Medium,Very High,,Weekly,High,High
+AR095,Narayanganj,Narayanganj,Board Bazar,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,Weekly,High,Medium
+AR096,Dhaka,Dhaka,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Low,Very High,,2-3 times weekly,High,Medium
+AR097,Gazipur,Gazipur,Konabari,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,Weekly,High,High
+AR098,Chattogram,Chattogram,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Medium,Very High,,Weekly,High,High
+AR099,Chattogram,Chattogram,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Medium,Very High,,2-3 times weekly,High,Medium
+AR100,Dhaka,Dhaka,Board Bazar,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Low,Very High,,2-3 times weekly,High,High
+AR101,Dhaka,Dhaka,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,Weekly,High,High
+AR102,Dhaka,Dhaka,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,2-3 times weekly,High,Medium
+AR103,Dhaka,Dhaka,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,Daily,High,Medium
+AR104,Narayanganj,Narayanganj,Fatullah,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Low,Very High,,Daily,High,High
+AR105,Chattogram,Chattogram,Konabari,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Medium,Very High,,Weekly,High,High
+AR106,Narayanganj,Narayanganj,Fatullah,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Low,Very High,,2-3 times weekly,High,High
+AR107,Narayanganj,Narayanganj,Siddhirganj,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,High,Low,Very High,,2-3 times weekly,High,Medium
+AR108,Dhaka,Dhaka,Tongi,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Medium,Low,Very High,,Weekly,High,High
+AR109,Chattogram,Chattogram,Konabari,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Medium,Very High,,Daily,High,Medium
+AR110,Chattogram,Chattogram,Fatullah,Garment / industrial worker areas,Low to Medium,High,Garment; industrial worker areas,Low,High,Low,Medium,Very High,Medium,Very High,,Daily,High,Medium
+AR111,Mymensingh,Mymensingh,Jahangirnagar Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Low,High,,Weekly,Medium,Medium
+AR112,Dhaka,Dhaka,Jahangirnagar Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Low,High,,2-3 times weekly,Medium,High
+AR113,Chattogram,Chattogram,CU Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Medium,Medium,High,,Daily,Low,High
+AR114,Dhaka,Dhaka,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Low,High,,Weekly,High,High
+AR115,Rajshahi,Rajshahi,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Low,High,,Weekly,Medium,High
+AR116,Sylhet,Sylhet,Nilkhet,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Medium,High,,2-3 times weekly,High,Medium
+AR117,Rajshahi,Rajshahi,Nilkhet,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,2-3 times weekly,Low,Medium
+AR118,Rajshahi,Rajshahi,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Low,High,,Daily,High,Medium
+AR119,Dhaka,Dhaka,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,Daily,Medium,Medium
+AR120,Rajshahi,Rajshahi,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,Weekly,High,Medium
+AR121,Mymensingh,Mymensingh,Jahangirnagar Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,Weekly,High,Medium
+AR122,Sylhet,Sylhet,Jahangirnagar Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Very High,Medium,High,,2-3 times weekly,Medium,Medium
+AR123,Dhaka,Dhaka,Nilkhet,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,Weekly,Low,Medium
+AR124,Sylhet,Sylhet,CU Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Medium,High,,Daily,Medium,Medium
+AR125,Rajshahi,Rajshahi,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Medium,Low,High,,Weekly,High,High
+AR126,Rajshahi,Rajshahi,Nilkhet,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Medium,Low,High,,Weekly,High,Medium
+AR127,Mymensingh,Mymensingh,Shahbagh,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,Weekly,Medium,High
+AR128,Dhaka,Dhaka,Chawkbazar,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,High,Low,High,,2-3 times weekly,Low,High
+AR129,Chattogram,Chattogram,CU Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Medium,Medium,High,,2-3 times weekly,High,High
+AR130,Chattogram,Chattogram,Jahangirnagar Gate,University / student areas,Low to Medium,High,University; student areas,High,Low,Low,Medium,Medium,Medium,High,,Daily,High,High
+AR131,Dhaka,Dhaka,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,Medium,Low,Medium,,Weekly,Medium,Medium
+AR132,Dhaka,Dhaka,Paltan,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,High,Low,Medium,,Daily,Medium,High
+AR133,Khulna,Khulna,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,High,Low,Medium,,Daily,Low,Medium
+AR134,Gazipur,Gazipur,Paltan,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Medium,High,Medium,High,Low,Medium,,Weekly,Low,High
+AR135,Dhaka,Dhaka,Motijheel,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,High,Low,Medium,,Weekly,Medium,High
+AR136,Dhaka,Dhaka,Zindabazar,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Very High,Low,Medium,,Daily,High,High
+AR137,Dhaka,Dhaka,Agrabad,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,High,Low,Medium,,Weekly,Low,Medium
+AR138,Rajshahi,Rajshahi,Agrabad,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,High,Low,Medium,,2-3 times weekly,Low,High
+AR139,Dhaka,Dhaka,Motijheel,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Medium,Low,Medium,,Weekly,Medium,Medium
+AR140,Dhaka,Dhaka,Zindabazar,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,Medium,Low,Medium,,Weekly,High,High
+AR141,Dhaka,Dhaka,Agrabad,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Medium,Low,Medium,,Daily,High,High
+AR142,Dhaka,Dhaka,Agrabad,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,Very High,Low,Medium,,2-3 times weekly,High,Medium
+AR143,Rajshahi,Rajshahi,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Very High,Low,Medium,,Weekly,Low,Medium
+AR144,Dhaka,Dhaka,Paltan,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,Very High,Low,Medium,,Weekly,Medium,High
+AR145,Barishal,Barishal,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Medium,Low,High,Medium,Medium,Low,Medium,,2-3 times weekly,Low,High
+AR146,Dhaka,Dhaka,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,High,Low,Medium,,Weekly,Low,Medium
+AR147,Dhaka,Dhaka,Paltan,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Very High,Low,Medium,,2-3 times weekly,Medium,High
+AR148,Dhaka,Dhaka,Zindabazar,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Medium,Low,Medium,,Weekly,High,High
+AR149,Dhaka,Dhaka,Sadar Road,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Very High,Low,Medium,,Weekly,Low,Medium
+AR150,Dhaka,Dhaka,Agrabad,Commercial / office areas,Mixed,Very High,Commercial; office areas,Low,Low,High,Medium,Very High,Low,Medium,,2-3 times weekly,Low,High
+AR151,Dhaka,Dhaka,Kandirpar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,High,Low,Medium,,Daily,Low,High
+AR152,Dhaka,Dhaka,Sonadanga,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,High,Low,Medium,,Daily,Medium,High
+AR153,Bogura,Bogura,Halishahar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,High,Low,Medium,,2-3 times weekly,Medium,High
+AR154,Bogura,Bogura,Bashundhara R/A,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Medium,Low,Medium,,Weekly,Low,High
+AR155,Dhaka,Dhaka,Kandirpar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Very High,Low,Medium,,2-3 times weekly,High,High
+AR156,Dhaka,Dhaka,Kandirpar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Medium,Low,Medium,,Daily,Medium,High
+AR157,Dhaka,Dhaka,Bashundhara R/A,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Very High,Low,Medium,,Daily,High,Medium
+AR158,Dhaka,Dhaka,Halishahar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Medium,Low,Medium,,Daily,Medium,Medium
+AR159,Dhaka,Dhaka,Badda,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Very High,Low,Medium,,Weekly,Low,High
+AR160,Dhaka,Dhaka,Badda,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Medium,Low,Medium,,Daily,Medium,Medium
+AR161,Khulna,Khulna,Sonadanga,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,Daily,Low,Medium
+AR162,Dhaka,Dhaka,Kandirpar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,Weekly,Low,Medium
+AR163,Dhaka,Dhaka,Halishahar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Very High,Low,Medium,,Weekly,Medium,High
+AR164,Dhaka,Dhaka,Halishahar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,2-3 times weekly,High,High
+AR165,Chattogram,Chattogram,Badda,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Very High,Medium,Medium,,Weekly,High,Medium
+AR166,Rajshahi,Rajshahi,Sonadanga,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,2-3 times weekly,High,Medium
+AR167,Dhaka,Dhaka,Bashundhara R/A,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Very High,Low,Medium,,Weekly,Medium,Medium
+AR168,Dhaka,Dhaka,Sonadanga,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,Daily,Low,Medium
+AR169,Dhaka,Dhaka,Halishahar,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Low,Low,Medium,Medium,Medium,Low,Medium,,Weekly,High,Medium
+AR170,Dhaka,Dhaka,Sonadanga,Mixed-income urban neighbourhoods,Mixed,High,Mixed-income urban neighbourhoods,Medium,Low,Medium,Medium,Medium,Low,Medium,,Weekly,Medium,Medium
+AR171,Khulna,Khulna,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Low,Medium,,Weekly,High,High
+AR172,Bogura,Bogura,Tangail Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,Weekly,High,High
+AR173,Cumilla,Cumilla,Tangail Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Medium,Low,Medium,,2-3 times weekly,Low,High
+AR174,Rajshahi,Rajshahi,Jashore Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,Weekly,Medium,High
+AR175,Narayanganj,Narayanganj,Tangail Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Medium,Low,Medium,Very High,Low,Medium,,2-3 times weekly,Medium,Medium
+AR176,Narayanganj,Narayanganj,Savar Bazar,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Medium,Low,Medium,Medium,Low,Medium,,2-3 times weekly,Low,Medium
+AR177,Cumilla,Cumilla,Ishwardi,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,2-3 times weekly,Low,High
+AR178,Rajshahi,Rajshahi,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Medium,Low,Medium,,Weekly,Low,Medium
+AR179,Sylhet,Sylhet,Savar Bazar,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Medium,Medium,,2-3 times weekly,Medium,Medium
+AR180,Gazipur,Gazipur,Savar Bazar,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Medium,Low,Medium,Medium,Low,Medium,,2-3 times weekly,Low,High
+AR181,Rajshahi,Rajshahi,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Low,Medium,,Daily,Medium,High
+AR182,Bogura,Bogura,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,2-3 times weekly,High,Medium
+AR183,Bogura,Bogura,Savar Bazar,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,2-3 times weekly,High,Medium
+AR184,Narayanganj,Narayanganj,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Medium,Low,Medium,Medium,Low,Medium,,Daily,Low,Medium
+AR185,Cumilla,Cumilla,Savar Bazar,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,High,Low,Medium,,Weekly,Medium,High
+AR186,Chattogram,Chattogram,Ishwardi,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Medium,Medium,,Daily,Low,High
+AR187,Chattogram,Chattogram,Ishwardi,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Medium,Medium,Medium,,2-3 times weekly,High,High
+AR188,Bogura,Bogura,Ishwardi,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Low,Medium,,Daily,Low,High
+AR189,Rangpur,Rangpur,Feni Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Very High,Low,Medium,,Daily,High,High
+AR190,Bogura,Bogura,Jashore Town,Semi-urban / small-town markets,Medium,Medium,Semi-urban; small-town markets,Low,Low,Low,Medium,Medium,Low,Medium,,Weekly,High,High
+AR191,Gazipur,Gazipur,Kaliganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Medium,Low,Medium,Medium,Low,Medium,,2-3 times weekly,High,High
+AR192,Dhaka,Dhaka,Boalmari,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Medium,Low,Medium,,2-3 times weekly,High,Medium
+AR193,Sylhet,Sylhet,Boalmari,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Medium,Medium,Medium,,2-3 times weekly,Low,High
+AR194,Sylhet,Sylhet,Rupganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Very High,Medium,Medium,,Weekly,Low,Medium
+AR195,Sylhet,Sylhet,Keraniganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Very High,Medium,Medium,,Daily,Low,High
+AR196,Rajshahi,Rajshahi,Boalmari,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Very High,Low,Medium,,Weekly,High,Medium
+AR197,Mymensingh,Mymensingh,Kaliganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,High,Low,Medium,,2-3 times weekly,Low,High
+AR198,Barishal,Barishal,Boalmari,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,High,Low,Medium,,Weekly,Low,Medium
+AR199,Gazipur,Gazipur,Kaliganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Medium,Low,Medium,Medium,Low,Medium,,Daily,Low,High
+AR200,Sylhet,Sylhet,Kaliganj,Rural-market or peri-urban areas,Low to Medium,Low,Rural-market or peri-urban areas,Low,Low,Low,Medium,Medium,Medium,Medium,,2-3 times weekly,High,Medium

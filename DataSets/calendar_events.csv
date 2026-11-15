@@ -1,0 +1,11 @@
+event_id,event_name,event_type,start_date,end_date,affected_product_categories,expected_demand_effect,effect_description
+EV01,Winter season,Seasonal,2025-12-01,2026-02-28,Vegetables;Fruits;Beverages,Mixed,Synthetic seasonal window
+EV02,Ramadan,Religious,2026-02-18,2026-03-19,Rice and grains;Lentils and pulses;Cooking oil;Beverages,Increase,Illustrative lunar window; confirm actual moon-sighting dates
+EV03,Eid-ul-Fitr,Religious,2026-03-19,2026-03-23,Dairy products;Beverages;Biscuits and snacks;Meat and poultry,Increase,Bangladesh 2026 holiday calendar; moon-sighting dependent
+EV04,Pohela Boishakh,Cultural,2026-04-14,2026-04-14,Fruits;Beverages;Snacks,Increase,Bangla New Year
+EV05,Eid-ul-Adha,Religious,2026-05-26,2026-05-31,Meat and poultry;Rice and grains;Spices and condiments,Increase,Bangladesh 2026 holiday calendar; moon-sighting dependent
+EV06,Summer season,Seasonal,2026-04-01,2026-06-30,Beverages and bottled water;Fruits,Increase,Synthetic seasonal window
+EV07,Monsoon season,Seasonal,2026-06-01,2026-09-30,Rice and grains;Household cleaning products,Mixed,Synthetic seasonal window
+EV08,University semester break,Education,2026-07-01,2026-08-15,Instant noodles and packaged food;Biscuits and snacks,Decrease,Illustrative period; varies by institution
+EV09,Payday cycle,Economic,2025-11-25,2026-11-15,Rice and grains;Lentils and pulses;Cooking oil;Laundry products,Increase,Synthetic month-end payday proxy
+EV10,Durga Puja,Cultural,2026-10-20,2026-10-21,Snacks;Beverages;Fruits,Increase,2026 Bangladesh holiday calendar

@@ -1,0 +1,13 @@
+PASS | Exactly 200 unique outlets
+PASS | 260 unique products
+PASS | Sales foreign keys
+PASS | Batch quantities valid
+PASS | Expiry after manufacture
+PASS | Sales arithmetic
+PASS | Wastage arithmetic
+PASS | Sales + wastage within initial batch stock
+PASS | Daily metrics reconcile to sales
+PASS | 73,000 outlet-day rows
+PASS | Nine outlet environments
+
+RESULT: 11/11 checks passed

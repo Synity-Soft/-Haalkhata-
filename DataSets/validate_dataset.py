@@ -1,0 +1,23 @@
+import os, pandas as pd
+B=os.path.dirname(__file__)
+def r(n): return pd.read_csv(os.path.join(B,n))
+o,p,s,b,w,m=(r("outlets.csv"),r("products.csv"),r("sales.csv"),r("inventory_batches.csv"),r("wastage_records.csv"),r("daily_outlet_metrics.csv"))
+checks=[]
+def ck(n,x): checks.append((n,bool(x)))
+ck("Exactly 200 unique outlets",len(o)==200 and o.outlet_id.is_unique)
+ck("260 products",len(p)==260 and p.product_id.is_unique)
+ck("Sales outlet/product/batch FKs",set(s.outlet_id)<=set(o.outlet_id) and set(s.product_id)<=set(p.product_id) and set(s.batch_id)<=set(b.batch_id))
+ck("Batch quantities nonnegative",(b.remaining_quantity>=0).all() and (b.initial_quantity>=b.remaining_quantity).all())
+ck("Expiry after manufacture",(pd.to_datetime(b.expiry_date)>pd.to_datetime(b.manufacturing_date)).all())
+ck("Sales arithmetic",((s.quantity_sold*s.unit_selling_price_bdt-s.total_sales_bdt).abs()<.011).all())
+ck("Wastage arithmetic",((w.wasted_quantity*w.unit_cost_bdt-w.total_wastage_value_bdt).abs()<.011).all())
+sold=s.groupby("batch_id").quantity_sold.sum(); wasted=w.groupby("batch_id").wasted_quantity.sum()
+mv=pd.concat([sold.rename("s"),wasted.rename("w")],axis=1).fillna(0); init=b.set_index("batch_id").initial_quantity
+ck("Sales+wastage within initial stock",((mv.s+mv.w)<=init.reindex(mv.index)).all())
+agg=s.groupby(["outlet_id","sale_date"]).agg(u=("quantity_sold","sum"),rev=("total_sales_bdt","sum"),cost=("total_cost_bdt","sum")).reset_index()
+x=m.merge(agg,left_on=["outlet_id","date"],right_on=["outlet_id","sale_date"],how="left").fillna({"u":0,"rev":0,"cost":0})
+ck("Daily metrics reconcile",((x.total_units_sold-x.u)==0).all() and ((x.total_revenue_bdt-x.rev).abs()<.02).all() and ((x.estimated_gross_profit_bdt-(x.rev-x.cost)).abs()<.02).all())
+ck("73,000 outlet-day metrics",len(m)==73000)
+for n,v in checks: print(("PASS" if v else "FAIL")+" | "+n)
+print(f"RESULT {sum(v for _,v in checks)}/{len(checks)}")
+if not all(v for _,v in checks): raise SystemExit(1)

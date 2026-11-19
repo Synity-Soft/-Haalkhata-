@@ -72,6 +72,10 @@ export interface Batch {
   purchasePrice?: number
   purchaseDate?: string
   supplierName?: string
+  batchCode?: string
+  barcode?: string
+  receivedDate?: string
+  batchNumber?: number
   addedAt?: string
   updatedAt: string
   deleted: boolean | number
@@ -103,9 +107,89 @@ export interface Credit {
   dueDate?: string
   isPaid: boolean | number
   paidAt?: string
+  lastSmsSentAt?: string
+  smsCount?: number
   createdAt: string
   updatedAt: string
   deleted: boolean | number
+}
+
+// ─── Distributor & Wholesale ────────────────────────────────────────────────
+export interface Distributor {
+  id: string
+  name: string
+  nameBn: string
+  categories: string[]
+  phone: string
+  whatsapp: string
+  contactPerson: string
+  territory: string
+  rating: number
+  deliveryTimeHours: number
+  minOrderQuantity: number
+  reliability: string
+}
+
+export interface DistributorPriceComparison {
+  id: string
+  productId: string
+  productName: string
+  productNameBn: string
+  category: string
+  marketMrp: number
+  demandIndex: number
+  rating: number
+  reviewCount: number
+  distributorOffers: Array<{
+    distributorId: string
+    distributorName: string
+    wholesalePrice: number
+    marginPercent: number
+    stockStatus: 'in_stock' | 'limited' | 'high_demand'
+    moq: number
+    deliveryTime: string
+  }>
+}
+
+// ─── Peer Shop Network ──────────────────────────────────────────────────────
+export interface PeerShopExchange {
+  id: string
+  type: 'overstock' | 'emergency'
+  shopId: string
+  shopName: string
+  distanceMeters: number
+  productId?: string
+  productName: string
+  quantity: number
+  unit: string
+  offeredPrice: number
+  regularPrice?: number
+  urgency: 'high' | 'medium' | 'standard'
+  status: 'open' | 'accepted' | 'completed'
+  note?: string
+  createdAt: string
+}
+
+// ─── Batch Clearance Strategy ───────────────────────────────────────────────
+export interface BatchStrategySuggestion {
+  batchId: string
+  batchCode: string
+  barcode?: string
+  productId: string
+  productName: string
+  fifoOrder: number
+  receiveDate: string
+  expiryDate: string
+  daysUntilExpiry: number
+  quantity: number
+  unit: string
+  purchaseCost: number
+  retailPrice: number
+  discountPercent: number
+  strategyType: 'standard' | 'early_clearance' | 'bundle_bogo' | 'flash_clearout'
+  bundleOffer?: string
+  projectedProfitOrLoss: number
+  advice: string
 }
 
 // ─── Sync / offline ──────────────────────────────────────────────────────────

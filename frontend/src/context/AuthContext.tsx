@@ -1,4 +1,4 @@
-// Authentication context and provider for Hat-Bazar ERP
+// Authentication context and provider for Haalkhata ERP
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import type { AuthUser, Shop } from '@/types'
 import { db } from '@/db/schema'
@@ -54,7 +54,7 @@ const INITIAL_DEFAULT_USERS: StoredUser[] = [
     username: 'owner',
     password: 'password123',
     fullName: 'Shop Owner',
-    shopName: 'Hat-Bazar Grocery',
+    shopName: 'হালখাতা জেনারেল স্টোর',
     role: 'Shop Owner',
     createdAt: new Date().toISOString(),
   },
@@ -63,7 +63,7 @@ const INITIAL_DEFAULT_USERS: StoredUser[] = [
     username: 'admin',
     password: 'password123',
     fullName: 'Shop Owner',
-    shopName: 'Hat-Bazar Grocery',
+    shopName: 'হালখাতা জেনারেল স্টোর',
     role: 'Shop Owner',
     createdAt: new Date().toISOString(),
   },
@@ -72,7 +72,7 @@ const INITIAL_DEFAULT_USERS: StoredUser[] = [
     username: 'admin',
     password: 'admin123',
     fullName: 'Shop Owner',
-    shopName: 'Hat-Bazar Grocery',
+    shopName: 'হালখাতা জেনারেল স্টোর',
     role: 'Shop Owner',
     createdAt: new Date().toISOString(),
   },

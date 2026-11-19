@@ -1,4 +1,4 @@
-// Customer credit (বাকি) tracking page — simple and shopkeeper-friendly
+// Customer credit (বাকি) tracking page — simple and shopkeeper-friendly with SMS Reminders
 import { useState, useMemo } from 'react'
 import {
   CreditCard,
@@ -10,6 +10,11 @@ import {
   Calendar,
   Check,
   Search,
+  MessageSquare,
+  Send,
+  Copy,
+  Phone,
+  Sparkles,
 } from 'lucide-react'
 import { isBefore, parseISO } from 'date-fns'
 import { useLang } from '@/i18n'
@@ -19,6 +24,7 @@ import { addCredit, markCreditPaid, updateCredit } from '@/db/mutations'
 import { calcCreditStats } from '@/engines/credit'
 import { Card, Button, Badge, Modal, DemoBadge, EmptyState } from '@/components/ui'
 import { AnimatedNumber, SwipeRow, CheckDraw, Stagger, showSaveToast } from '@/components/motion'
+import { formatCustomerSmsReminder } from '@/mock/haalkhataFeatures'
 import type { Credit } from '@/types'
 
 export default function CreditPage() {
@@ -33,11 +39,19 @@ export default function CreditPage() {
   const [filterPaid, setFilterPaid] = useState<'all' | 'unpaid' | 'paid'>('unpaid')
   const [isModalOpen, setIsModalOpen] = useState(false)
 
-  // Form states
+  // Form states for Add Credit
   const [customerName, setCustomerName] = useState('')
+  const [customerPhone, setCustomerPhone] = useState('')
   const [amount, setAmount] = useState<number>(500)
   const [description, setDescription] = useState('')
   const [dueDate, setDueDate] = useState('')
+
+  // SMS Modal State
+  const [isSmsModalOpen, setIsSmsModalOpen] = useState(false)
+  const [selectedCreditForSms, setSelectedCreditForSms] = useState<Credit | null>(null)
+  const [smsPhone, setSmsPhone] = useState('')
+  const [smsTone, setSmsTone] = useState<'friendly' | 'urgent'>('friendly')
+  const [smsCustomText, setSmsCustomText] = useState('')
 
   const stats = useMemo(() => calcCreditStats(credits), [credits])
 
@@ -50,7 +64,8 @@ export default function CreditPage() {
         if (searchQuery.trim()) {
           const match =
             c.customerName?.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            c.description?.toLowerCase().includes(searchQuery.toLowerCase())
+            c.description?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            c.customerPhone?.includes(searchQuery)
           if (!match) return false
         }
         return true
@@ -60,6 +75,7 @@ export default function CreditPage() {
 
   const handleOpenAddModal = () => {
     setCustomerName('')
+    setCustomerPhone('')
     setAmount(500)
     setDescription('')
     setDueDate('')
@@ -73,6 +89,7 @@ export default function CreditPage() {
     await addCredit({
       shopId,
       customerName: customerName.trim(),
+      customerPhone: customerPhone.trim() || undefined,
       amount: Number(amount),
       description: description.trim(),
       dueDate: dueDate ? dueDate : undefined,
@@ -89,38 +106,125 @@ export default function CreditPage() {
     showSaveToast(lang === 'bn' ? 'বাকি পরিশোধ সম্পন্ন হয়েছে ✓' : 'Payment recorded ✓')
   }
 
-  const handleRemindCustomer = (c: Credit) => {
+  // Open SMS modal with pre-generated text
+  const handleOpenSmsModal = (c: Credit) => {
+    setSelectedCreditForSms(c)
+    const phone = c.customerPhone || '01712-345678'
+    setSmsPhone(phone)
+
+    const isOverdue = !c.isPaid && c.dueDate && isBefore(parseISO(c.dueDate), new Date())
+    const initialTone: 'friendly' | 'urgent' = isOverdue ? 'urgent' : 'friendly'
+    setSmsTone(initialTone)
+
+    const generated = formatCustomerSmsReminder({
+      customerName: c.customerName,
+      dueAmount: c.amount,
+      shopName: currentShop?.name || 'হালখাতা স্টোর',
+      dueDate: c.dueDate,
+      tone: initialTone,
+    })
+    setSmsCustomText(generated)
+    setIsSmsModalOpen(true)
+  }
+
+  const handleToneChange = (newTone: 'friendly' | 'urgent') => {
+    if (!selectedCreditForSms) return
+    setSmsTone(newTone)
+    const generated = formatCustomerSmsReminder({
+      customerName: selectedCreditForSms.customerName,
+      dueAmount: selectedCreditForSms.amount,
+      shopName: currentShop?.name || 'হালখাতা স্টোর',
+      dueDate: selectedCreditForSms.dueDate,
+      tone: newTone,
+    })
+    setSmsCustomText(generated)
+  }
+
+  const handleSendSms = async () => {
+    if (!selectedCreditForSms) return
+    const phone = smsPhone.trim()
+    const cleanPhone = phone.replace(/[^0-9+]/g, '')
+
+    await updateCredit(selectedCreditForSms.id, {
+      customerPhone: phone,
+      lastSmsSentAt: new Date().toISOString(),
+      smsCount: (selectedCreditForSms.smsCount || 0) + 1,
+    })
+
+    if (cleanPhone) {
+      window.open(`sms:${cleanPhone}?body=${encodeURIComponent(smsCustomText)}`, '_blank')
+    }
+
     showSaveToast(
       lang === 'bn'
-        ? `${c.customerName}-কে তাগাদার এসএমএস ড্রাফট প্রস্তুত`
-        : `Reminder drafted for ${c.customerName}`
+        ? `${selectedCreditForSms.customerName}-কে এসএমএস পাঠানো হয়েছে ✓`
+        : `SMS sent to ${selectedCreditForSms.customerName} ✓`
+    )
+    setIsSmsModalOpen(false)
+  }
+
+  const handleCopySms = () => {
+    navigator.clipboard?.writeText(smsCustomText)
+    showSaveToast(lang === 'bn' ? 'মেসেজ কপি হয়েছে ✓' : 'SMS copied to clipboard ✓')
+  }
+
+  const handleBulkSmsRemindAll = async () => {
+    const unpaid = credits.filter((c) => !c.deleted && !c.isPaid)
+    if (unpaid.length === 0) {
+      showSaveToast(lang === 'bn' ? 'কোনো বকেয়া বাকি নেই' : 'No pending unpaid credits')
+      return
+    }
+
+    const now = new Date().toISOString()
+    for (const c of unpaid) {
+      await updateCredit(c.id, {
+        lastSmsSentAt: now,
+        smsCount: (c.smsCount || 0) + 1,
+      })
+    }
+
+    showSaveToast(
+      lang === 'bn'
+        ? `${unpaid.length} জন বকেয়া গ্রাহকের জন্য এসএমএস তাগাদা কিউ হয়েছে ✓`
+        : `Queued SMS reminders to ${unpaid.length} customers ✓`
     )
   }
 
   return (
     <div className="space-y-6">
-      {/* Title & Add Button */}
+      {/* Title & Action Buttons */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <div className="flex items-center gap-2">
             <h1 className="text-xl sm:text-2xl font-bold text-brand-brown dark:text-brand-cream">
-              {t.credit.creditTitle || (lang === 'bn' ? 'বাকি খাতা' : 'Customer Credit')}
+              {t.credit.creditTitle || (lang === 'bn' ? 'হালখাতা বাকি খাতা ও এসএমএস তাগাদা' : 'Customer Credit & SMS Reminders')}
             </h1>
           </div>
           <p className="text-sm text-brand-brown/70 dark:text-brand-cream/70 mt-1">
             {lang === 'bn'
-              ? 'গ্রাহকদের বাকির হিসাব ও পরিশোধের সহজ ট্র্যাকিং (সোয়াইপ করে দ্রুত পরিশোধ বা তাগাদা)'
-              : 'Simple customer credit ledger with swipe actions to pay or remind'}
+              ? 'গ্রাহকদের বাকির হিসাব রাখা ও সময়মতো স্বয়ংক্রিয় এসএমএস তাগাদা পাঠানো'
+              : 'Track dues and send friendly automated SMS payment reminders'}
           </p>
         </div>
 
-        <Button
-          onClick={handleOpenAddModal}
-          className="bg-brand-yellow hover:bg-brand-orange text-brand-brown font-bold flex items-center gap-2 px-5 py-2.5 rounded-xl shadow-sm"
-        >
-          <Plus className="w-5 h-5" />
-          <span>{t.credit.addCredit}</span>
-        </Button>
+        <div className="flex items-center gap-2 flex-wrap">
+          <Button
+            onClick={handleBulkSmsRemindAll}
+            className="bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 dark:bg-amber-950/60 dark:text-amber-200 dark:border-amber-700 font-bold flex items-center gap-2 px-4 py-2.5 rounded-xl shadow-sm transition-all"
+            title={lang === 'bn' ? 'সকল অনাদায়ী বাকিদারকে এক ক্লিকে এসএমএস পাঠান' : 'Send SMS to all unpaid credits'}
+          >
+            <MessageSquare className="w-4 h-4 text-brand-orange" />
+            <span>{lang === 'bn' ? 'সকলকে এসএমএস তাগাদা' : 'Bulk SMS Reminder'}</span>
+          </Button>
+
+          <Button
+            onClick={handleOpenAddModal}
+            className="bg-brand-yellow hover:bg-brand-orange text-brand-brown font-bold flex items-center gap-2 px-5 py-2.5 rounded-xl shadow-sm"
+          >
+            <Plus className="w-5 h-5" />
+            <span>{t.credit.addCredit}</span>
+          </Button>
+        </div>
       </div>
 
       {/* KPI Cards */}
@@ -168,11 +272,11 @@ export default function CreditPage() {
       {/* Search & Tabs */}
       <Card className="p-4 space-y-3">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-          <div className="relative w-full sm:w-72">
+          <div className="relative w-full sm:w-80">
             <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-brand-brown/50" />
             <input
               type="text"
-              placeholder={lang === 'bn' ? 'গ্রাহকের নাম খুঁজুন...' : 'Search customer name...'}
+              placeholder={lang === 'bn' ? 'গ্রাহকের নাম বা ফোন নম্বর খুঁজুন...' : 'Search customer name or phone...'}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full pl-9 pr-3 py-2 text-sm rounded-xl border border-[#F0D080] dark:border-[#4D2A00] bg-white dark:bg-[#1a0f07] focus:ring-2 focus:ring-brand-yellow"
@@ -221,8 +325,8 @@ export default function CreditPage() {
           title={lang === 'bn' ? 'কোনো বাকির তথ্য নেই' : 'No credit records found'}
           description={
             lang === 'bn'
-              ? 'গ্রাহকদের বাকির হিসাব রাখতে নতুন এন্ট্রি যোগ করুন।'
-              : 'Add customer credit entries to manage dues.'
+              ? 'গ্রাহকদের বাকির হিসাব রাখতে ও এসএমএস পাঠাতে নতুন এন্ট্রি যোগ করুন।'
+              : 'Add customer credit entries to manage dues and reminders.'
           }
           action={{
             label: t.credit.addCredit,
@@ -251,6 +355,14 @@ export default function CreditPage() {
                       <h3 className="font-bold text-base text-brand-brown dark:text-brand-cream">
                         {c.customerName}
                       </h3>
+
+                      {c.customerPhone && (
+                        <span className="text-xs text-brand-brown/70 dark:text-brand-cream/70 flex items-center gap-1">
+                          <Phone className="w-3 h-3 text-brand-orange" />
+                          <span>{c.customerPhone}</span>
+                        </span>
+                      )}
+
                       {c.isPaid ? (
                         <div className="flex items-center gap-1.5">
                           <CheckDraw />
@@ -267,6 +379,17 @@ export default function CreditPage() {
                           {lang === 'bn' ? 'বাকি' : 'Pending'}
                         </Badge>
                       )}
+
+                      {c.smsCount && c.smsCount > 0 ? (
+                        <span className="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-blue-100 text-blue-800 dark:bg-blue-950/70 dark:text-blue-300 flex items-center gap-1">
+                          <MessageSquare className="w-3 h-3" />
+                          <span>
+                            {lang === 'bn'
+                              ? `এসএমএস পাঠানো হয়েছে (${formatNum(c.smsCount)} বার)`
+                              : `SMS sent (${c.smsCount}x)`}
+                          </span>
+                        </span>
+                      ) : null}
                     </div>
 
                     {c.description && (
@@ -292,8 +415,8 @@ export default function CreditPage() {
                   </div>
                 </div>
 
-                {/* Amount & Mark Paid */}
-                <div className="flex items-center justify-between md:justify-end gap-4 border-t md:border-t-0 pt-3 md:pt-0">
+                {/* Amount & Actions */}
+                <div className="flex items-center justify-between md:justify-end gap-3 border-t md:border-t-0 pt-3 md:pt-0">
                   <div className="text-left md:text-right">
                     <span className="text-xs text-brand-brown/60 dark:text-brand-cream/60 block">
                       {t.credit.amount}
@@ -308,14 +431,26 @@ export default function CreditPage() {
                   </div>
 
                   {!c.isPaid && (
-                    <Button
-                      size="sm"
-                      onClick={() => handleMarkPaid(c.id)}
-                      className="bg-brand-yellow hover:bg-brand-orange text-brand-brown font-bold text-xs flex items-center gap-1.5 px-3.5 py-2 shadow-sm whitespace-nowrap"
-                    >
-                      <Check className="w-4 h-4" />
-                      <span>{t.credit.markPaid}</span>
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        size="sm"
+                        onClick={() => handleOpenSmsModal(c)}
+                        className="bg-amber-100 hover:bg-amber-200 text-amber-900 border border-amber-300 dark:bg-amber-950/50 dark:text-amber-200 font-bold text-xs flex items-center gap-1.5 px-3 py-2 rounded-xl shadow-sm whitespace-nowrap"
+                        title={lang === 'bn' ? 'এসএমএস তাগাদা ড্রাফট করুন' : 'Send SMS reminder'}
+                      >
+                        <MessageSquare className="w-3.5 h-3.5 text-brand-orange" />
+                        <span>{lang === 'bn' ? 'এসএমএস পাঠান' : 'SMS'}</span>
+                      </Button>
+
+                      <Button
+                        size="sm"
+                        onClick={() => handleMarkPaid(c.id)}
+                        className="bg-brand-yellow hover:bg-brand-orange text-brand-brown font-bold text-xs flex items-center gap-1.5 px-3.5 py-2 shadow-sm whitespace-nowrap"
+                      >
+                        <Check className="w-4 h-4" />
+                        <span>{t.credit.markPaid}</span>
+                      </Button>
+                    </div>
                   )}
                 </div>
               </Card>
@@ -326,9 +461,9 @@ export default function CreditPage() {
                 {!c.isPaid ? (
                   <SwipeRow
                     onSwipeRight={() => handleMarkPaid(c.id)}
-                    onSwipeLeft={() => handleRemindCustomer(c)}
+                    onSwipeLeft={() => handleOpenSmsModal(c)}
                     rightLabel={lang === 'bn' ? 'পরিশোধিত করুন' : 'Mark Paid'}
-                    leftLabel={lang === 'bn' ? 'মনে করান' : 'Remind'}
+                    leftLabel={lang === 'bn' ? 'এসএমএস পাঠান' : 'Send SMS'}
                   >
                     {content}
                   </SwipeRow>
@@ -340,6 +475,108 @@ export default function CreditPage() {
           })}
         </Stagger>
       )}
+
+      {/* SMS Reminder Modal */}
+      <Modal
+        isOpen={isSmsModalOpen}
+        onClose={() => setIsSmsModalOpen(false)}
+        title={lang === 'bn' ? '📱 বকেয়া পরিশোধের এসএমএস তাগাদা' : '📱 SMS Payment Reminder'}
+      >
+        {selectedCreditForSms && (
+          <div className="space-y-4">
+            <div className="p-3 bg-amber-50 dark:bg-amber-950/40 rounded-xl border border-amber-200 dark:border-amber-800 text-xs text-brand-brown dark:text-brand-cream">
+              <div className="flex justify-between items-center font-bold text-sm">
+                <span>{selectedCreditForSms.customerName}</span>
+                <span className="text-brand-orange">{formatCurrency(selectedCreditForSms.amount)}</span>
+              </div>
+              {selectedCreditForSms.dueDate && (
+                <div className="text-xs text-brand-brown/70 mt-1">
+                  পরিশোধের নির্ধারিত তারিখ: {selectedCreditForSms.dueDate}
+                </div>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-brand-brown dark:text-brand-cream mb-1">
+                {lang === 'bn' ? 'গ্রাহকের মোবাইল নম্বর' : 'Customer Phone Number'}
+              </label>
+              <input
+                type="text"
+                value={smsPhone}
+                onChange={(e) => setSmsPhone(e.target.value)}
+                placeholder="e.g. 01712345678"
+                className="w-full px-3 py-2 rounded-xl border border-[#F0D080] dark:border-[#4D2A00] bg-white dark:bg-[#1a0f07] text-sm focus:ring-2 focus:ring-brand-yellow font-mono"
+              />
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-brand-brown dark:text-brand-cream mb-1">
+                {lang === 'bn' ? 'মেসেজের ধরন' : 'Message Tone'}
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleToneChange('friendly')}
+                  className={`p-2 rounded-xl text-xs font-semibold text-center transition-all ${
+                    smsTone === 'friendly'
+                      ? 'bg-brand-yellow text-brand-brown border-2 border-brand-orange font-bold'
+                      : 'bg-surface-light dark:bg-surface-dark border border-border text-text'
+                  }`}
+                >
+                  🤝 বিনীত ও প্রীতিমূলক
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleToneChange('urgent')}
+                  className={`p-2 rounded-xl text-xs font-semibold text-center transition-all ${
+                    smsTone === 'urgent'
+                      ? 'bg-red-500 text-white font-bold'
+                      : 'bg-surface-light dark:bg-surface-dark border border-border text-text'
+                  }`}
+                >
+                  ⚠️ জরুরি তাগাদা
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex justify-between items-center mb-1">
+                <label className="text-xs font-bold text-brand-brown dark:text-brand-cream">
+                  {lang === 'bn' ? 'এসএমএস বার্তা প্রিভিউ' : 'SMS Text Preview'}
+                </label>
+                <button
+                  type="button"
+                  onClick={handleCopySms}
+                  className="text-xs text-brand-orange hover:underline flex items-center gap-1 font-semibold"
+                >
+                  <Copy className="w-3.5 h-3.5" />
+                  <span>{lang === 'bn' ? 'কপি করুন' : 'Copy'}</span>
+                </button>
+              </div>
+              <textarea
+                rows={4}
+                value={smsCustomText}
+                onChange={(e) => setSmsCustomText(e.target.value)}
+                className="w-full p-3 rounded-xl border border-[#F0D080] dark:border-[#4D2A00] bg-white dark:bg-[#1a0f07] text-xs leading-relaxed focus:ring-2 focus:ring-brand-yellow"
+              />
+            </div>
+
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-border">
+              <Button type="button" variant="outline" onClick={() => setIsSmsModalOpen(false)}>
+                {t.common.cancel}
+              </Button>
+              <Button
+                type="button"
+                onClick={handleSendSms}
+                className="bg-brand-yellow hover:bg-brand-orange text-brand-brown font-bold flex items-center gap-2"
+              >
+                <Send className="w-4 h-4" />
+                <span>{lang === 'bn' ? 'এসএমএস পাঠান ও রেকর্ড করুন' : 'Send & Record SMS'}</span>
+              </Button>
+            </div>
+          </div>
+        )}
+      </Modal>
 
       {/* Add Credit Modal */}
       <Modal
@@ -359,6 +596,19 @@ export default function CreditPage() {
               onChange={(e) => setCustomerName(e.target.value)}
               placeholder="e.g. করিম সাহেব (Karim)"
               className="w-full px-3 py-2 rounded-xl border border-[#F0D080] dark:border-[#4D2A00] bg-white dark:bg-[#1a0f07] text-sm focus:ring-2 focus:ring-brand-yellow"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-bold text-brand-brown dark:text-brand-cream mb-1">
+              {lang === 'bn' ? 'মোবাইল নম্বর (এসএমএস তাগাদার জন্য)' : 'Mobile Phone (For SMS Reminders)'}
+            </label>
+            <input
+              type="text"
+              value={customerPhone}
+              onChange={(e) => setCustomerPhone(e.target.value)}
+              placeholder="e.g. 01712-345678"
+              className="w-full px-3 py-2 rounded-xl border border-[#F0D080] dark:border-[#4D2A00] bg-white dark:bg-[#1a0f07] text-sm focus:ring-2 focus:ring-brand-yellow font-mono"
             />
           </div>
 
@@ -414,4 +664,3 @@ export default function CreditPage() {
     </div>
   )
 }
-

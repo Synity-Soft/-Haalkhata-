@@ -432,20 +432,25 @@ export default function Settings() {
         </div>
       </Card>
 
-      {/* 5. About Hat-Bazar ERP */}
-      <Card className="p-5 space-y-2.5 text-xs text-brand-brown/75 dark:text-brand-cream/75">
-        <h4 className="font-bold text-sm text-brand-brown dark:text-brand-cream">
-          {lang === 'bn' ? 'হাট-বাজার ইআরপি পরিচিতি' : 'About Hat-Bazar ERP'}
-        </h4>
-        <p className="text-sm font-semibold text-brand-orange dark:text-amber-400">
-          {lang === 'bn'
-            ? 'হাট-বাজার (Hat-Bazar ERP) — স্মার্ট মুদিখানা এন্টারপ্রাইজ রিসোর্স প্ল্যানিং'
-            : 'Hat-Bazar ERP — Smart Grocery Enterprise Resource Planning'}
-        </p>
+      {/* 5. About Haalkhata */}
+      <Card className="p-5 space-y-3 text-xs text-brand-brown/75 dark:text-brand-cream/75">
+        <div className="flex items-center gap-3">
+          <img src="/logo.png" alt="হালখাতা" className="w-12 h-12 object-contain" />
+          <div>
+            <h4 className="font-bold text-base text-brand-brown dark:text-brand-cream">
+              {lang === 'bn' ? 'হালখাতা (Haalkhata) পরিচিতি' : 'About Haalkhata'}
+            </h4>
+            <p className="text-sm font-semibold text-brand-orange dark:text-amber-400">
+              {lang === 'bn'
+                ? 'হালখাতা (Haalkhata) — স্মার্ট মুদিখানা ও ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম'
+                : 'Haalkhata — Smart Grocery Inventory & Supply-Chain Management System'}
+            </p>
+          </div>
+        </div>
         <p className="leading-relaxed">
           {lang === 'bn'
-            ? 'হাট-বাজার ইআরপি হলো আধুনিক মুদি দোকান ও রিটেইল চেইনের জন্য ডিজাইন করা একটি অফলাইন-ফার্স্ট বিজনেস ম্যানেজমেন্ট সিস্টেম। এটি ইনভেন্টরি ট্র্যাকিং, পণ্যের মেয়াদোত্তীর্ণ ক্ষতি রোধ, ডায়নামিক ডিসকাউন্ট সুপারিশ, মাল্টি-ব্রাঞ্চ স্টক পরিচালনা এবং চাহিদানির্ভর ক্রয়ের পরিকল্পনার মাধ্যমে দোকানের মুনাফা বাড়াতে সহায়তা করে।'
-            : 'Hat-Bazar ERP is an intelligent offline-first Enterprise Resource Planning system crafted for smart grocery retail. It streamlines daily store operations with automated stock control, batch expiry risk mitigation, multi-branch management, dynamic discount clearance, and predictive purchase planning to maximize grocery business profitability.'}
+            ? 'হালখাতা হলো আধুনিক মুদি দোকান ও রিটেইল চেইনের জন্য ডিজাইন করা একটি অফলাইন-ফার্স্ট বিজনেস ম্যানেজমেন্ট ও বাকির হিসাব সিস্টেম। এটি এসএমএস রিমাইন্ডার, ডিস্ট্রিবিউটর কানেকশন, এলাকার দোকান নেটওয়ার্ক, ব্যাচ কোড ও বারকোড ট্র্যাকিং, স্মার্ট এক্সপায়ারি ক্লিয়ারেন্স এবং ডায়নামিক ডিসকাউন্ট অ্যালগরিদমের মাধ্যমে অপচয় রোধ ও মুনাফা বৃদ্ধিতে সহায়তা করে।'
+            : 'Haalkhata is an intelligent offline-first grocery ERP and ledger management platform. It streamlines daily store operations with automated customer SMS reminders, distributor ordering connector, peer shop network for overstock/emergency exchanges, barcode batch expiry risk mitigation, and dynamic clearance discounts.'}
         </p>
       </Card>
     </div>

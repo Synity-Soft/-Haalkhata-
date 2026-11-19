@@ -20,6 +20,7 @@ import Reports   from '@/pages/Reports'
 import Festivals from '@/pages/Festivals'
 import Settings  from '@/pages/Settings'
 import Credit    from '@/pages/Credit'
+import ShopNetwork from '@/pages/ShopNetwork'
 
 function LoginGate() {
   const { isAuthenticated, isLoading } = useAuth()
@@ -137,6 +138,14 @@ export default function App() {
                       element={
                         <ErrorBoundary fallbackTitle="বাকির খাতা লোড হতে সমস্যা হয়েছে">
                           <Credit />
+                        </ErrorBoundary>
+                      }
+                    />
+                    <Route
+                      path="network"
+                      element={
+                        <ErrorBoundary fallbackTitle="দোকান নেটওয়ার্ক পাতা লোড হতে সমস্যা হয়েছে">
+                          <ShopNetwork />
                         </ErrorBoundary>
                       }
                     />

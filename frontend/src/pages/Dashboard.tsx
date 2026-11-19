@@ -17,6 +17,7 @@ import {
   Sparkles,
   Server,
   Layers,
+  Store,
 } from 'lucide-react'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 import { format, subDays, startOfWeek, startOfMonth } from 'date-fns'
@@ -433,8 +434,8 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 4. 3 Big Primary Action Buttons (বিক্রি লিখুন / মাল কিনুন / বাকি লিখুন) with SoftIcon */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+      {/* 4. 4 Primary Action Buttons (বিক্রি লিখুন / মাল কিনুন / বাকি লিখুন / দোকান নেটওয়ার্ক) */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         {/* বিক্রি লিখুন */}
         <button
           onClick={() => setQuickSaleOpen(true)}
@@ -446,7 +447,7 @@ export default function Dashboard() {
               বিক্রি লিখুন
             </div>
             <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              পণ্যে ট্যাপ করে নগদ বিক্রি ও রসিদ
+              পণ্যে ট্যাপ করে দ্রুত বিক্রি ও রসিদ
             </div>
           </div>
         </button>
@@ -459,10 +460,10 @@ export default function Dashboard() {
           <SoftIcon icon={ShoppingCart} tone="blue" size={62} delayIndex={1} />
           <div className="min-w-0">
             <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#2563EB] transition-colors leading-tight">
-              মাল কিনুন
+              মাল ও ডিস্ট্রিবিউটর
             </div>
             <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              চাহিদা অনুযায়ী রিকমেন্ডেড অর্ডার
+              চাহিদা পূর্বাভাস ও ডিস্ট্রিবিউটর কানেক্ট
             </div>
           </div>
         </Link>
@@ -472,13 +473,29 @@ export default function Dashboard() {
           to="/credit"
           className="card p-4 flex items-center gap-3.5 hover:border-[#16A34A] transition-all group text-left"
         >
-          <SoftIcon icon={Tag} tone="green" size={62} delayIndex={2} />
+          <SoftIcon icon={CreditCard} tone="green" size={62} delayIndex={2} />
           <div className="min-w-0">
             <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#16A34A] transition-colors leading-tight">
-              বাকি লিখুন
+              বাকি খাতা ও এসএমএস
             </div>
             <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              কাস্টমার খাতা ও পাওনা টাকা আদায়
+              কাস্টমার খাতা ও স্বয়ংক্রিয় তাগাদা
+            </div>
+          </div>
+        </Link>
+
+        {/* দোকান নেটওয়ার্ক */}
+        <Link
+          to="/network"
+          className="card p-4 flex items-center gap-3.5 hover:border-amber-600 transition-all group text-left"
+        >
+          <SoftIcon icon={Store} tone="purple" size={62} delayIndex={3} />
+          <div className="min-w-0">
+            <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-amber-600 transition-colors leading-tight">
+              দোকান নেটওয়ার্ক
+            </div>
+            <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              অতিরিক্ত স্টক বিক্রি ও জরুরি ধার
             </div>
           </div>
         </Link>

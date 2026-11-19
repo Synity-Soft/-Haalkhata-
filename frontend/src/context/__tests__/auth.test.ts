@@ -8,7 +8,7 @@ describe('Authentication & Registration logic', () => {
     expect(isValid).toBe(false)
   })
 
-  it('verifies demo credentials for Hat-Bazar ERP', () => {
+  it('verifies demo credentials for Haalkhata ERP', () => {
     const demoAccounts = [
       { username: 'owner', password: 'password123' },
       { username: 'admin', password: 'password123' },

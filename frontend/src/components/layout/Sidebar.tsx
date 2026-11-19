@@ -19,6 +19,7 @@ import {
   LogOut,
   Plus,
   MapPin,
+  Store,
 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { useLang } from '@/i18n'
@@ -43,10 +44,11 @@ export function Sidebar({ isOpen = true }: SidebarProps) {
     { to: '/purchase', icon: ShoppingCart, label: t.navigation.purchase },
     { to: '/expiry', icon: Clock, label: t.navigation.expiry },
     { to: '/discounts', icon: Tag, label: t.navigation.discounts },
+    { to: '/network', icon: Store, label: (t.navigation as any).network || (lang === 'bn' ? 'দোকান নেটওয়ার্ক' : 'Shop Network') },
+    { to: '/credit', icon: CreditCard, label: t.navigation.credit },
     { to: '/assistant', icon: Bot, label: t.navigation.assistant },
     { to: '/reports', icon: BarChart2, label: t.navigation.reports },
     { to: '/festivals', icon: Calendar, label: t.navigation.festivals },
-    { to: '/credit', icon: CreditCard, label: t.navigation.credit },
     { to: '/settings', icon: Settings, label: t.navigation.settings },
   ]
 
@@ -65,10 +67,10 @@ export function Sidebar({ isOpen = true }: SidebarProps) {
           <div className="h-16 flex items-center justify-between px-2.5 w-full border-b border-border">
             <Link
               to="/"
-              className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center text-[#493522] shadow-sm hover:scale-105 active:scale-95 transition-all"
-              title={lang === 'bn' ? 'হাট-বাজার হোম' : 'Haat-Bazar Home'}
+              className="w-10 h-10 rounded-xl bg-accent/20 p-1 flex items-center justify-center shadow-sm hover:scale-105 active:scale-95 transition-all"
+              title={lang === 'bn' ? 'হালখাতা হোম' : 'Haalkhata Home'}
             >
-              <ShoppingBag className="w-5 h-5" />
+              <img src="/logo.png" alt="হালখাতা" className="w-8 h-8 object-contain" />
             </Link>
             <button
               onClick={() => setCollapsed(false)}
@@ -82,18 +84,18 @@ export function Sidebar({ isOpen = true }: SidebarProps) {
           <div className="h-16 flex items-center justify-between px-4 border-b border-border">
             <Link
               to="/"
-              className="flex items-center gap-3 overflow-hidden group hover:opacity-90 transition-opacity"
+              className="flex items-center gap-2.5 overflow-hidden group hover:opacity-90 transition-opacity"
               title={lang === 'bn' ? 'হোমপেজে যান' : 'Go to Home'}
             >
-              <div className="w-10 h-10 rounded-xl bg-accent flex items-center justify-center flex-shrink-0 shadow-sm text-[#493522] group-hover:scale-105 transition-transform">
-                <ShoppingBag className="w-6 h-6" />
+              <div className="w-11 h-11 rounded-xl bg-amber-50 dark:bg-amber-950/40 p-1 flex items-center justify-center flex-shrink-0 shadow-sm border border-amber-200/50 group-hover:scale-105 transition-transform">
+                <img src="/logo.png" alt="হালখাতা" className="w-9 h-9 object-contain" />
               </div>
               <div className="flex flex-col">
-                <span className="font-bold text-lg text-text leading-tight">
-                  {lang === 'bn' ? 'হাট-বাজার' : 'Haat-Bazar'}
+                <span className="font-extrabold text-lg text-text leading-tight tracking-tight">
+                  {lang === 'bn' ? 'হালখাতা' : 'Haalkhata'}
                 </span>
-                <span className="text-xs text-accent font-medium">
-                  {lang === 'bn' ? 'ব্যবসার সহকারী' : 'Grocery Assistant'}
+                <span className="text-[11px] text-accent font-semibold">
+                  {lang === 'bn' ? 'স্মার্ট মুদিখানা' : 'Smart Grocery'}
                 </span>
               </div>
             </Link>
@@ -220,7 +222,7 @@ export function Sidebar({ isOpen = true }: SidebarProps) {
           {!collapsed && (
             <div className="px-1 text-[11px] text-text-secondary flex flex-col gap-0.5">
               <div className="flex items-center justify-between">
-                <span>{lang === 'bn' ? 'হাট-বাজার ইআরপি' : 'Hat-Bazar ERP'}</span>
+                <span>{lang === 'bn' ? 'হালখাতা (Haalkhata)' : 'Haalkhata ERP'}</span>
                 <span className="px-1.5 py-0.5 rounded bg-background-secondary border border-border text-[9px] font-bold text-accent">
                   {lang === 'bn' ? 'স্মার্ট গ্রোসারি' : 'Smart Grocery'}
                 </span>

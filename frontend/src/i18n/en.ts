@@ -12,6 +12,7 @@ export const en = {
     festivals:  'Festivals',
     settings:   'Settings',
     credit:     'Credit',
+    network:    'Shop Network',
   },
   navigation: {
     dashboard:  'Dashboard',
@@ -24,6 +25,7 @@ export const en = {
     festivals:  'Festivals',
     settings:   'Settings',
     credit:     'Credit',
+    network:    'Shop Network',
   },
 
   // ── Common actions / states ───────────────────────────────────────────────
@@ -247,14 +249,14 @@ export const en = {
 
   // ── Authentication ────────────────────────────────────────────────────────
   auth: {
-    systemTitle: 'Hat-Bazar ERP',
-    systemSubtitle: 'An Enterprise Resource Planning system for smart Grocery',
+    systemTitle: 'Haalkhata (হালখাতা)',
+    systemSubtitle: 'Smart Grocery Inventory & Management System',
     loginTab: 'Sign In',
     registerTab: 'Register',
-    loginHeading: 'Welcome to Hat-Bazar ERP',
-    loginSubheading: 'Sign in with your username and password to access the ERP dashboard',
+    loginHeading: 'Welcome to Haalkhata',
+    loginSubheading: 'Sign in with your username and password to access Haalkhata',
     registerHeading: 'Create Shop Account',
-    registerSubheading: 'Register your grocery shop to get started with smart ERP management',
+    registerSubheading: 'Register your grocery shop to get started with smart Haalkhata ERP',
     username: 'Username',
     usernamePlaceholder: 'Enter your username',
     password: 'Password',
@@ -265,8 +267,8 @@ export const en = {
     fullNamePlaceholder: 'e.g. Rahim Ahmed',
     shopName: 'Shop Name',
     shopNamePlaceholder: 'e.g. Bhai Bhai General Store',
-    loginButton: 'Sign In to ERP',
-    registerButton: 'Register & Access ERP',
+    loginButton: 'Sign In to Haalkhata',
+    registerButton: 'Register & Access Haalkhata',
     dontHaveAccount: "Don't have an account?",
     alreadyHaveAccount: 'Already have an account?',
     registerNow: 'Register now',

@@ -12,6 +12,7 @@ export const bn = {
     festivals:  'উৎসব',
     settings:   'সেটিংস',
     credit:     'বাকি',
+    network:    'দোকান নেটওয়ার্ক',
   },
   navigation: {
     dashboard:  'ড্যাশবোর্ড',
@@ -24,6 +25,7 @@ export const bn = {
     festivals:  'উৎসব',
     settings:   'সেটিংস',
     credit:     'বাকি',
+    network:    'দোকান নেটওয়ার্ক',
   },
 
   // ── Common actions / states ───────────────────────────────────────────────
@@ -247,14 +249,14 @@ export const bn = {
 
   // ── Authentication ────────────────────────────────────────────────────────
   auth: {
-    systemTitle: 'Hat-Bazar ERP',
-    systemSubtitle: 'An Enterprise Resource Planning system for smart Grocery',
+    systemTitle: 'হালখাতা (Haalkhata)',
+    systemSubtitle: 'স্মার্ট মুদিখানা ও ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম',
     loginTab: 'সাইন ইন',
     registerTab: 'নিবন্ধন',
-    loginHeading: 'হাট-বাজার ইআরপিতে স্বাগতম',
-    loginSubheading: 'ইআরপি ড্যাশবোর্ডে প্রবেশ করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন',
+    loginHeading: 'হালখাতায় স্বাগতম',
+    loginSubheading: 'হালখাতা ড্যাশবোর্ডে প্রবেশ করতে আপনার ইউজারনেম ও পাসওয়ার্ড দিন',
     registerHeading: 'দোকানের অ্যাকাউন্ট তৈরি করুন',
-    registerSubheading: 'স্মার্ট ইআরপি ব্যবস্থাপনায় যুক্ত হতে আপনার মুদির দোকান নিবন্ধন করুন',
+    registerSubheading: 'স্মার্ট হালখাতা ব্যবস্থাপনায় যুক্ত হতে আপনার মুদির দোকান নিবন্ধন করুন',
     username: 'ইউজারনেম',
     usernamePlaceholder: 'আপনার ইউজারনেম লিখুন',
     password: 'পাসওয়ার্ড',
@@ -265,8 +267,8 @@ export const bn = {
     fullNamePlaceholder: 'উদাঃ রহিম আহমেদ',
     shopName: 'দোকানের নাম',
     shopNamePlaceholder: 'উদাঃ ভাই ভাই জেনারেল স্টোর',
-    loginButton: 'ইআরপিতে সাইন ইন করুন',
-    registerButton: 'নিবন্ধন ও ইআরপিতে প্রবেশ',
+    loginButton: 'হালখাতায় সাইন ইন করুন',
+    registerButton: 'নিবন্ধন ও হালখাতায় প্রবেশ',
     dontHaveAccount: 'অ্যাকাউন্ট নেই?',
     alreadyHaveAccount: 'ইতিমধ্যে অ্যাকাউন্ট আছে?',
     registerNow: 'নতুন নিবন্ধন করুন',

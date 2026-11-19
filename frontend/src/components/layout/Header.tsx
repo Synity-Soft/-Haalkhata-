@@ -221,9 +221,9 @@ export function Header({ onMenuClick }: HeaderProps) {
             className="flex items-center gap-1.5 shrink-0 hover:opacity-90 active:scale-95 transition-all group lg:hidden"
             title={lang === 'bn' ? 'হোমপেজে যান' : 'Go to Home'}
           >
-            <ShoppingBasket className="w-7 h-7 text-brand-orange group-hover:scale-105 transition-transform" strokeWidth={1.75} />
-            <span className="text-lg font-bold text-brand-brown hidden xs:block leading-none">
-              {lang === 'bn' ? 'হাট-বাজার' : 'Haat-Bazaar'}
+            <img src="/logo.png" alt="হালখাতা" className="w-8 h-8 object-contain group-hover:scale-105 transition-transform" />
+            <span className="text-lg font-extrabold text-brand-brown dark:text-brand-cream hidden xs:block leading-none">
+              {lang === 'bn' ? 'হালখাতা' : 'Haalkhata'}
             </span>
           </Link>
 

@@ -181,12 +181,10 @@ export default function AuthPage() {
       {/* Top Header Bar */}
       <header className="w-full max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div className="flex items-center gap-2.5">
-          <div className="w-10 h-10 rounded-2xl bg-accent flex items-center justify-center text-[#493522] shadow-sm">
-            <ShoppingBag className="w-5 h-5" />
-          </div>
+          <img src="/logo.png" alt="হালখাতা" className="w-10 h-10 object-contain drop-shadow-sm" />
           <div>
             <span className="font-extrabold text-lg tracking-tight text-text block leading-tight">
-              Hat-Bazar ERP
+              {lang === 'bn' ? 'হালখাতা' : 'Haalkhata'}
             </span>
             <span className="text-xs font-semibold text-accent block">
               Smart Grocery
@@ -236,14 +234,17 @@ export default function AuthPage() {
               <span>Smart Grocery Management System</span>
             </div>
 
-            {/* Title track */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-text">
-              Hat-Bazar ERP
-            </h1>
+            {/* Title track with Haalkhata Logo */}
+            <div className="flex flex-col items-center justify-center">
+              <img src="/logo.png" alt="হালখাতা" className="w-44 sm:w-56 object-contain mb-2 drop-shadow-md hover:scale-105 transition-transform" />
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-text">
+                {lang === 'bn' ? 'হালখাতা' : 'Haalkhata'}
+              </h1>
+            </div>
 
             {/* Secondary title line */}
             <p className="mt-2 text-sm sm:text-base md:text-lg font-semibold text-accent max-w-md mx-auto leading-relaxed">
-              An Enterprise Resource Planning system for smart Grocery
+              {lang === 'bn' ? 'স্মার্ট মুদিখানা ও ইনভেন্টরি ম্যানেজমেন্ট সিস্টেম' : 'Smart Grocery Inventory & Management System'}
             </p>
 
             {/* Smart Grocery Flow Crate Animation */}
@@ -675,7 +676,7 @@ export default function AuthPage() {
       {/* Footer */}
       <footer className="w-full text-center py-3 px-4 text-xs text-brand-brown/60 dark:text-brand-cream/50">
         <p>
-          © {new Date().getFullYear()} Hat-Bazar ERP — {t.auth.systemSubtitle}
+          © {new Date().getFullYear()} হালখাতা (Haalkhata) — {t.auth.systemSubtitle}
         </p>
       </footer>
     </div>

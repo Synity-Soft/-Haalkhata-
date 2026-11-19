@@ -1,0 +1,147 @@
+{
+  "canonical_calendar": {
+    "start_date": "2025-11-16",
+    "end_date": "2026-11-15",
+    "total_days": 365,
+    "is_consecutive": true,
+    "matches_sales_dates": true,
+    "matches_metrics_dates": true,
+    "verification_status": "VERIFIED"
+  },
+  "batch_reconciliation": {
+    "total_batches_checked": 80216,
+    "exact_accounting_matches": 80216,
+    "accounting_match_pct": 100.0,
+    "negative_stock_occurrences": 0,
+    "sales_outside_lifecycle_dates": 0,
+    "wastage_outside_lifecycle_dates": 0,
+    "batches_exhausted_before_expiry": 236,
+    "verification_status": "VERIFIED"
+  },
+  "availability_cross_tabulation": {
+    "total_catalog_cells": 4838440,
+    "physical_stock_available_days": 4110165,
+    "physical_stock_available_pct": 84.9481,
+    "physical_stock_unavailable_days": 728275,
+    "physical_stock_unavailable_pct": 15.0519,
+    "zero_tx_outlet_days": 27,
+    "outlets_with_zero_tx": 19,
+    "affected_outlet_product_days": 902,
+    "stock_on_closed_shelves_days": 727,
+    "stockout_on_closed_days": 175,
+    "customer_accessible_available_days": 4109438,
+    "customer_accessible_available_pct": 84.9331
+  },
+  "target_censoring_and_thresholds": {
+    "horizon_7d": {
+      "total_windows": 4745648,
+      "eligible_origins_count": 358,
+      "latest_eligible_origin": "2026-11-08",
+      "fully_censored_0_days": 523209,
+      "fully_censored_pct": 11.03,
+      "thresholds": {
+        "4_of_7": {
+          "physical_eligible_windows": 4018526,
+          "physical_eligible_pct": 84.68,
+          "accessible_eligible_windows": 4018517,
+          "accessible_eligible_pct": 84.68
+        },
+        "5_of_7": {
+          "physical_eligible_windows": 3957113,
+          "physical_eligible_pct": 83.38,
+          "accessible_eligible_windows": 3957102,
+          "accessible_eligible_pct": 83.38
+        },
+        "6_of_7": {
+          "physical_eligible_windows": 3905675,
+          "physical_eligible_pct": 82.3,
+          "accessible_eligible_windows": 3905518,
+          "accessible_eligible_pct": 82.3
+        },
+        "7_of_7": {
+          "physical_eligible_windows": 3854524,
+          "physical_eligible_pct": 81.22,
+          "accessible_eligible_windows": 3849632,
+          "accessible_eligible_pct": 81.12
+        }
+      }
+    },
+    "horizon_30d": {
+      "total_windows": 4440760,
+      "eligible_origins_count": 335,
+      "latest_eligible_origin": "2026-10-16",
+      "fully_censored_0_days": 973,
+      "fully_censored_pct": 0.02,
+      "thresholds": {
+        "15_of_30": {
+          "physical_eligible_windows": 3752033,
+          "physical_eligible_pct": 84.49,
+          "accessible_eligible_windows": 3752028,
+          "accessible_eligible_pct": 84.49
+        },
+        "20_of_30": {
+          "physical_eligible_windows": 3687823,
+          "physical_eligible_pct": 83.04,
+          "accessible_eligible_windows": 3687593,
+          "accessible_eligible_pct": 83.04
+        },
+        "25_of_30": {
+          "physical_eligible_windows": 3507146,
+          "physical_eligible_pct": 78.98,
+          "accessible_eligible_windows": 3507139,
+          "accessible_eligible_pct": 78.98
+        },
+        "30_of_30": {
+          "physical_eligible_windows": 3403911,
+          "physical_eligible_pct": 76.65,
+          "accessible_eligible_windows": 3385335,
+          "accessible_eligible_pct": 76.23
+        }
+      }
+    }
+  },
+  "perishable_investigation": {
+    "identified_early_exit_products": 56,
+    "perishable_status_verification": {
+      "Perishable": 56
+    },
+    "total_store_sku_assignments": 2762,
+    "all_pairs_last_batch_by_oct17": true,
+    "all_pairs_last_expiry_by_nov07": true,
+    "sales_after_batch_expiry": 0,
+    "conservative_conclusion": "Observed restocking ceased in the available dataset after 2026-10-17, followed by batch expiry by 2026-11-07.",
+    "verification_status": "VERIFIED"
+  },
+  "environment_diagnostics": {
+    "python_version": "3.13.5 (v3.13.5:6cb20a219a8, Jun 11 2025, 12:23:45) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "pandas_version": "2.2.2",
+    "numpy_version": "2.4.4",
+    "tests": {
+      "Import pandas": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Read small CSV": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Read sales.csv chunk": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Parse date Series pd.to_datetime": {
+        "exit_code": -11,
+        "status": "CRASH / SIGSEGV"
+      },
+      "Basic groupby operation": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Stdlib datetime operations": {
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    },
+    "engineering_workaround": "Maintain date columns as ISO strings (YYYY-MM-DD); perform date arithmetic using standard library datetime."
+  }
+}

@@ -1,0 +1,1755 @@
+{
+  "experiment_id": "EXP2_HGB_NO_INVENTORY_7D",
+  "horizon": "7d",
+  "target_col": "target_7d",
+  "status": "COMPLETED",
+  "timestamp": "2026-11-17 10:57:24",
+  "training_partition": {
+    "start_date": "2025-12-13",
+    "end_date": "2026-07-01",
+    "rows": 2664456
+  },
+  "validation_partition": {
+    "start_date": "2026-08-01",
+    "end_date": "2026-11-08",
+    "rows": 1325600
+  },
+  "features": {
+    "total_safe": 52,
+    "numerical_count": 40,
+    "categorical_count": 12,
+    "excluded_inventory_features_count": 15,
+    "excluded_inventory_features": [
+      "current_stock_quantity",
+      "stock_received_7d",
+      "stock_received_28d",
+      "stock_wastage_7d",
+      "stock_wastage_28d",
+      "days_since_last_restock",
+      "stock_to_recent_sales_ratio",
+      "reorder_point",
+      "minimum_stock_level",
+      "maximum_stock_level",
+      "stock_expiring_next_7d",
+      "stock_expiring_next_30d",
+      "nearest_expiry_days",
+      "expiring_batch_count",
+      "inventory_capacity_sku"
+    ]
+  },
+  "timing": {
+    "preprocessing_seconds": 4.21,
+    "fitting_seconds": 69.0,
+    "prediction_seconds": 8.14,
+    "prediction_throughput_rows_per_sec": 162927.6
+  },
+  "memory": {
+    "baseline_process_rss_mb": 158.66,
+    "post_prep_process_rss_mb": 3956.7,
+    "post_fit_process_rss_mb": 2243.34,
+    "final_process_rss_mb": 1811.06,
+    "system_ram_available_start_gb": 4.89,
+    "true_peak_rss_during_fit": "UNMONITORED_AND_UNAVAILABLE",
+    "host_available_ram_during_training": "UNKNOWN",
+    "swap_activity": "NOT VERIFIED"
+  },
+  "prediction_statistics": {
+    "raw_min": -3.8632016863153655,
+    "raw_max": 97.94580766149787,
+    "raw_mean": 9.570357634976297,
+    "clipped_min": 0.0,
+    "clipped_max": 97.94580766149787,
+    "clipped_mean": 9.57207896530996,
+    "negative_raw_count": 23554,
+    "negative_raw_pct": 1.78,
+    "non_finite_count": 0
+  },
+  "benchmark_comparison_all_valid": {
+    "hgb_exp2_clipped": {
+      "count": 1325600,
+      "mae": 6.133970596837275,
+      "rmse": 11.047238402661174,
+      "wape": 0.6420629217247699,
+      "bias": 0.018543962292457812,
+      "mae_rounded_4dec": 6.134,
+      "rmse_rounded_4dec": 11.0472,
+      "wape_rounded_6dec": 0.642063,
+      "bias_rounded_4dec": 0.0185
+    },
+    "hgb_exp2_raw": {
+      "count": 1325600,
+      "mae": 6.135691927170938,
+      "rmse": 11.047260967591955,
+      "wape": 0.6422430990448005,
+      "bias": 0.016822631958794475,
+      "mae_rounded_4dec": 6.1357,
+      "rmse_rounded_4dec": 11.0473,
+      "wape_rounded_6dec": 0.642243,
+      "bias_rounded_4dec": 0.0168
+    },
+    "hgb_exp1_clipped": {
+      "count": 1325600,
+      "mae": 6.05981103553108,
+      "rmse": 10.952806654928732,
+      "wape": 0.6343003959913349,
+      "bias": 0.8004956477821364,
+      "mae_rounded_4dec": 6.0598,
+      "rmse_rounded_4dec": 10.9528,
+      "wape_rounded_6dec": 0.6343,
+      "bias_rounded_4dec": 0.8005
+    },
+    "ridge_clipped": {
+      "count": 1325600,
+      "mae": 7.390664953304164,
+      "rmse": 13.055423731859895,
+      "wape": 0.7736052624468125,
+      "bias": 3.1920505670639705,
+      "mae_rounded_4dec": 7.3907,
+      "rmse_rounded_4dec": 13.0554,
+      "wape_rounded_6dec": 0.773605,
+      "bias_rounded_4dec": 3.1921
+    },
+    "baseline_rolling": {
+      "count": 1325600,
+      "mae": 7.065843014484007,
+      "rmse": 12.654427039824688,
+      "wape": 0.7396050794027811,
+      "bias": 0.04430257996378998,
+      "mae_rounded_4dec": 7.0658,
+      "rmse_rounded_4dec": 12.6544,
+      "wape_rounded_6dec": 0.739605,
+      "bias_rounded_4dec": 0.0443
+    },
+    "wape_diff_pp_vs_baseline": 9.75,
+    "relative_wape_reduction_pct_vs_baseline": 13.19,
+    "relative_mae_reduction_pct_vs_baseline": 13.19,
+    "wape_diff_pp_vs_ridge": 13.15,
+    "relative_wape_reduction_pct_vs_ridge": 17.0,
+    "relative_mae_reduction_pct_vs_ridge": 17.0,
+    "wape_diff_pp_vs_exp1": -0.78,
+    "relative_wape_change_pct_vs_exp1": 1.22,
+    "relative_mae_change_pct_vs_exp1": 1.22
+  },
+  "benchmark_comparison_eligible": {
+    "hgb_exp2_clipped": {
+      "count": 1102601,
+      "mae": 6.990226928154939,
+      "rmse": 11.94487593969519,
+      "wape": 0.6217936360203016,
+      "bias": -0.07890066385064169,
+      "mae_rounded_4dec": 6.9902,
+      "rmse_rounded_4dec": 11.9449,
+      "wape_rounded_6dec": 0.621794,
+      "bias_rounded_4dec": -0.0789
+    },
+    "hgb_exp2_raw": {
+      "count": 1102601,
+      "mae": 6.990226928154939,
+      "rmse": 11.94487593969519,
+      "wape": 0.6217936360203016,
+      "bias": -0.07890066385064169,
+      "mae_rounded_4dec": 6.9902,
+      "rmse_rounded_4dec": 11.9449,
+      "wape_rounded_6dec": 0.621794,
+      "bias_rounded_4dec": -0.0789
+    },
+    "hgb_exp1_clipped": {
+      "count": 1102601,
+      "mae": 6.987032807697435,
+      "rmse": 11.872435095750028,
+      "wape": 0.6215095130878745,
+      "bias": 0.9364008761102157,
+      "mae_rounded_4dec": 6.987,
+      "rmse_rounded_4dec": 11.8724,
+      "wape_rounded_6dec": 0.62151,
+      "bias_rounded_4dec": 0.9364
+    },
+    "ridge_clipped": {
+      "count": 1102601,
+      "mae": 8.31856634439838,
+      "rmse": 14.092800505867325,
+      "wape": 0.7399518881034144,
+      "bias": 3.5547871842126026,
+      "mae_rounded_4dec": 8.3186,
+      "rmse_rounded_4dec": 14.0928,
+      "wape_rounded_6dec": 0.739952,
+      "bias_rounded_4dec": 3.5548
+    },
+    "baseline_rolling": {
+      "count": 1102601,
+      "mae": 7.903207733350505,
+      "rmse": 13.590613557721216,
+      "wape": 0.7030049701177389,
+      "bias": -0.21343418879540288,
+      "mae_rounded_4dec": 7.9032,
+      "rmse_rounded_4dec": 13.5906,
+      "wape_rounded_6dec": 0.703005,
+      "bias_rounded_4dec": -0.2134
+    },
+    "wape_diff_pp_vs_baseline": 8.12,
+    "wape_diff_pp_vs_ridge": 11.82,
+    "wape_diff_pp_vs_exp1": -0.03
+  },
+  "stratified_breakdowns": {
+    "by_demand_tier": {
+      "Zero / Intermittent (<2/wk)": {
+        "samples": 267139,
+        "hgb_exp2_clipped": {
+          "count": 267139,
+          "mae": 1.4575691930133632,
+          "rmse": 3.2324694002823997,
+          "wape": 0.8711441907527985,
+          "bias": 0.07506252896335397,
+          "mae_rounded_4dec": 1.4576,
+          "rmse_rounded_4dec": 3.2325,
+          "wape_rounded_6dec": 0.871144,
+          "bias_rounded_4dec": 0.0751
+        },
+        "hgb_exp2_raw": {
+          "count": 267139,
+          "mae": 1.4633605767695317,
+          "rmse": 3.232593726003471,
+          "wape": 0.8746055223587279,
+          "bias": 0.06927114520718534,
+          "mae_rounded_4dec": 1.4634,
+          "rmse_rounded_4dec": 3.2326,
+          "wape_rounded_6dec": 0.874606,
+          "bias_rounded_4dec": 0.0693
+        },
+        "hgb_exp1": {
+          "count": 267139,
+          "mae": 1.3132100651720642,
+          "rmse": 2.9519599150866966,
+          "wape": 0.78486518855936,
+          "bias": 0.14509987384844594,
+          "mae_rounded_4dec": 1.3132,
+          "rmse_rounded_4dec": 2.952,
+          "wape_rounded_6dec": 0.784865,
+          "bias_rounded_4dec": 0.1451
+        },
+        "ridge": {
+          "count": 267139,
+          "mae": 1.8747432344210317,
+          "rmse": 3.6355898755210467,
+          "wape": 1.1204762598217322,
+          "bias": 0.5617909466607272,
+          "mae_rounded_4dec": 1.8747,
+          "rmse_rounded_4dec": 3.6356,
+          "wape_rounded_6dec": 1.120476,
+          "bias_rounded_4dec": 0.5618
+        },
+        "baseline": {
+          "count": 267139,
+          "mae": 1.5836437210590741,
+          "rmse": 4.09303874309204,
+          "wape": 0.946495051099855,
+          "bias": -0.8730398781158872,
+          "mae_rounded_4dec": 1.5836,
+          "rmse_rounded_4dec": 4.093,
+          "wape_rounded_6dec": 0.946495,
+          "bias_rounded_4dec": -0.873
+        }
+      },
+      "Low (2 to <10/wk)": {
+        "samples": 642001,
+        "hgb_exp2_clipped": {
+          "count": 642001,
+          "mae": 3.9137404146767927,
+          "rmse": 5.860098852293795,
+          "wape": 0.6369093603297404,
+          "bias": -0.00035822305898076316,
+          "mae_rounded_4dec": 3.9137,
+          "rmse_rounded_4dec": 5.8601,
+          "wape_rounded_6dec": 0.636909,
+          "bias_rounded_4dec": -0.0004
+        },
+        "hgb_exp2_raw": {
+          "count": 642001,
+          "mae": 3.914747504931276,
+          "rmse": 5.860128180901524,
+          "wape": 0.6370732509156802,
+          "bias": -0.001365313313464601,
+          "mae_rounded_4dec": 3.9147,
+          "rmse_rounded_4dec": 5.8601,
+          "wape_rounded_6dec": 0.637073,
+          "bias_rounded_4dec": -0.0014
+        },
+        "hgb_exp1": {
+          "count": 642001,
+          "mae": 3.834142165822172,
+          "rmse": 5.652179979621368,
+          "wape": 0.6239558007192851,
+          "bias": 0.4708180099407945,
+          "mae_rounded_4dec": 3.8341,
+          "rmse_rounded_4dec": 5.6522,
+          "wape_rounded_6dec": 0.623956,
+          "bias_rounded_4dec": 0.4708
+        },
+        "ridge": {
+          "count": 642001,
+          "mae": 4.667979754704432,
+          "rmse": 6.620683960373318,
+          "wape": 0.7596518124839672,
+          "bias": 1.9677275504243763,
+          "mae_rounded_4dec": 4.668,
+          "rmse_rounded_4dec": 6.6207,
+          "wape_rounded_6dec": 0.759652,
+          "bias_rounded_4dec": 1.9677
+        },
+        "baseline": {
+          "count": 642001,
+          "mae": 4.521696227887496,
+          "rmse": 6.954626898194571,
+          "wape": 0.7358461080631113,
+          "bias": -0.8968412821786882,
+          "mae_rounded_4dec": 4.5217,
+          "rmse_rounded_4dec": 6.9546,
+          "wape_rounded_6dec": 0.735846,
+          "bias_rounded_4dec": -0.8968
+        }
+      },
+      "Medium (10 to 50/wk)": {
+        "samples": 396485,
+        "hgb_exp2_clipped": {
+          "count": 396485,
+          "mae": 11.816186399395546,
+          "rmse": 16.885994484001227,
+          "wape": 0.6286044635862121,
+          "bias": 0.03429596401661692,
+          "mae_rounded_4dec": 11.8162,
+          "rmse_rounded_4dec": 16.886,
+          "wape_rounded_6dec": 0.628604,
+          "bias_rounded_4dec": 0.0343
+        },
+        "hgb_exp2_raw": {
+          "count": 396485,
+          "mae": 11.816397027145191,
+          "rmse": 16.88601076045761,
+          "wape": 0.6286156686856501,
+          "bias": 0.03408533626697246,
+          "mae_rounded_4dec": 11.8164,
+          "rmse_rounded_4dec": 16.886,
+          "wape_rounded_6dec": 0.628616,
+          "bias_rounded_4dec": 0.0341
+        },
+        "hgb_exp1": {
+          "count": 396485,
+          "mae": 11.770658523525482,
+          "rmse": 16.799408319201103,
+          "wape": 0.6261824447535551,
+          "bias": 1.609247710506072,
+          "mae_rounded_4dec": 11.7707,
+          "rmse_rounded_4dec": 16.7994,
+          "wape_rounded_6dec": 0.626182,
+          "bias_rounded_4dec": 1.6092
+        },
+        "ridge": {
+          "count": 396485,
+          "mae": 14.16515688941574,
+          "rmse": 19.94567209979071,
+          "wape": 0.7535663831895217,
+          "bias": 6.185531994148581,
+          "mae_rounded_4dec": 14.1652,
+          "rmse_rounded_4dec": 19.9457,
+          "wape_rounded_6dec": 0.753566,
+          "bias_rounded_4dec": 6.1855
+        },
+        "baseline": {
+          "count": 396485,
+          "mae": 13.450706205783321,
+          "rmse": 18.850474205933576,
+          "wape": 0.7155586137143776,
+          "bias": 1.1319362649280553,
+          "mae_rounded_4dec": 13.4507,
+          "rmse_rounded_4dec": 18.8505,
+          "wape_rounded_6dec": 0.715559,
+          "bias_rounded_4dec": 1.1319
+        }
+      },
+      "High (>50/wk)": {
+        "samples": 19975,
+        "hgb_exp2_clipped": {
+          "count": 19975,
+          "mae": 27.24665441741359,
+          "rmse": 34.581433588146595,
+          "wape": 0.6643319072121552,
+          "bias": -0.4424584851513891,
+          "mae_rounded_4dec": 27.2467,
+          "rmse_rounded_4dec": 34.5814,
+          "wape_rounded_6dec": 0.664332,
+          "bias_rounded_4dec": -0.4425
+        },
+        "hgb_exp2_raw": {
+          "count": 19975,
+          "mae": 27.246886073547675,
+          "rmse": 34.58143905282011,
+          "wape": 0.6643375554858483,
+          "bias": -0.4426901412854733,
+          "mae_rounded_4dec": 27.2469,
+          "rmse_rounded_4dec": 34.5814,
+          "wape_rounded_6dec": 0.664338,
+          "bias_rounded_4dec": -0.4427
+        },
+        "hgb_exp1": {
+          "count": 19975,
+          "mae": 27.717809051314145,
+          "rmse": 34.87164886130894,
+          "wape": 0.6758196683051632,
+          "bias": 4.108484795994994,
+          "mae_rounded_4dec": 27.7178,
+          "rmse_rounded_4dec": 34.8716,
+          "wape_rounded_6dec": 0.67582,
+          "bias_rounded_4dec": 4.1085
+        },
+        "ridge": {
+          "count": 19975,
+          "mae": 34.199175439299125,
+          "rmse": 42.76728408714079,
+          "wape": 0.8338492901408244,
+          "bias": 18.300488220275348,
+          "mae_rounded_4dec": 34.1992,
+          "rmse_rounded_4dec": 42.7673,
+          "wape_rounded_6dec": 0.833849,
+          "bias_rounded_4dec": 18.3005
+        },
+        "baseline": {
+          "count": 19975,
+          "mae": 35.41886107634543,
+          "rmse": 42.370478592945396,
+          "wape": 0.8635878434708946,
+          "bias": 20.972603254067586,
+          "mae_rounded_4dec": 35.4189,
+          "rmse_rounded_4dec": 42.3705,
+          "wape_rounded_6dec": 0.863588,
+          "bias_rounded_4dec": 20.9726
+        }
+      }
+    },
+    "by_outlet_type": {
+      "Grocery shop": {
+        "samples": 562600,
+        "hgb_exp2_clipped": {
+          "count": 562600,
+          "mae": 3.4750556335601472,
+          "rmse": 5.4138229495880035,
+          "wape": 0.6446515354356522,
+          "bias": 0.024733909149703696,
+          "mae_rounded_4dec": 3.4751,
+          "rmse_rounded_4dec": 5.4138,
+          "wape_rounded_6dec": 0.644652,
+          "bias_rounded_4dec": 0.0247
+        },
+        "hgb_exp1": {
+          "count": 562600,
+          "mae": 3.4552500497689302,
+          "rmse": 5.328973330803712,
+          "wape": 0.6409774359829976,
+          "bias": 0.5254949904017063,
+          "mae_rounded_4dec": 3.4553,
+          "rmse_rounded_4dec": 5.329,
+          "wape_rounded_6dec": 0.640977,
+          "bias_rounded_4dec": 0.5255
+        },
+        "ridge": {
+          "count": 562600,
+          "mae": 4.170545026484182,
+          "rmse": 6.4036807080778235,
+          "wape": 0.7736705648571643,
+          "bias": 1.8925767961251336,
+          "mae_rounded_4dec": 4.1705,
+          "rmse_rounded_4dec": 6.4037,
+          "wape_rounded_6dec": 0.773671,
+          "bias_rounded_4dec": 1.8926
+        },
+        "baseline": {
+          "count": 562600,
+          "mae": 3.9762753288304302,
+          "rmse": 6.182529059419392,
+          "wape": 0.7376319306345497,
+          "bias": 0.024919125488801992,
+          "mae_rounded_4dec": 3.9763,
+          "rmse_rounded_4dec": 6.1825,
+          "wape_rounded_6dec": 0.737632,
+          "bias_rounded_4dec": 0.0249
+        }
+      },
+      "Grocery store": {
+        "samples": 404800,
+        "hgb_exp2_clipped": {
+          "count": 404800,
+          "mae": 4.02194834167506,
+          "rmse": 6.116987578087793,
+          "wape": 0.6452863997944006,
+          "bias": -0.00576075492640899,
+          "mae_rounded_4dec": 4.0219,
+          "rmse_rounded_4dec": 6.117,
+          "wape_rounded_6dec": 0.645286,
+          "bias_rounded_4dec": -0.0058
+        },
+        "hgb_exp1": {
+          "count": 404800,
+          "mae": 3.979959854249012,
+          "rmse": 6.003767905667768,
+          "wape": 0.6385497145905618,
+          "bias": 0.514765263833992,
+          "mae_rounded_4dec": 3.98,
+          "rmse_rounded_4dec": 6.0038,
+          "wape_rounded_6dec": 0.63855,
+          "bias_rounded_4dec": 0.5148
+        },
+        "ridge": {
+          "count": 404800,
+          "mae": 4.762087423171937,
+          "rmse": 7.1273148938847735,
+          "wape": 0.7640352356005171,
+          "bias": 2.0440494192193674,
+          "mae_rounded_4dec": 4.7621,
+          "rmse_rounded_4dec": 7.1273,
+          "wape_rounded_6dec": 0.764035,
+          "bias_rounded_4dec": 2.044
+        },
+        "baseline": {
+          "count": 404800,
+          "mae": 4.621610671936759,
+          "rmse": 6.968138222229157,
+          "wape": 0.7414969707202654,
+          "bias": 0.013740118577075099,
+          "mae_rounded_4dec": 4.6216,
+          "rmse_rounded_4dec": 6.9681,
+          "wape_rounded_6dec": 0.741497,
+          "bias_rounded_4dec": 0.0137
+        }
+      },
+      "Supermarket": {
+        "samples": 358200,
+        "hgb_exp2_clipped": {
+          "count": 358200,
+          "mae": 12.696930304345306,
+          "rmse": 19.06101528481764,
+          "wape": 0.63981436474813,
+          "bias": 0.03628847772604451,
+          "mae_rounded_4dec": 12.6969,
+          "rmse_rounded_4dec": 19.061,
+          "wape_rounded_6dec": 0.639814,
+          "bias_rounded_4dec": 0.0363
+        },
+        "hgb_exp1": {
+          "count": 358200,
+          "mae": 12.501044337520938,
+          "rmse": 18.93717346634811,
+          "wape": 0.6299434233140485,
+          "bias": 1.5553226418202122,
+          "mae_rounded_4dec": 12.501,
+          "rmse_rounded_4dec": 18.9372,
+          "wape_rounded_6dec": 0.629943,
+          "bias_rounded_4dec": 1.5553
+        },
+        "ridge": {
+          "count": 358200,
+          "mae": 15.418827027638189,
+          "rmse": 22.559976165242336,
+          "wape": 0.7769741806390349,
+          "bias": 6.530394531825795,
+          "mae_rounded_4dec": 15.4188,
+          "rmse_rounded_4dec": 22.56,
+          "wape_rounded_6dec": 0.776974,
+          "bias_rounded_4dec": 6.5304
+        },
+        "baseline": {
+          "count": 358200,
+          "mae": 14.680628140703517,
+          "rmse": 21.856509270408147,
+          "wape": 0.7397754057713612,
+          "bias": 0.10928531546621999,
+          "mae_rounded_4dec": 14.6806,
+          "rmse_rounded_4dec": 21.8565,
+          "wape_rounded_6dec": 0.739775,
+          "bias_rounded_4dec": 0.1093
+        }
+      }
+    },
+    "by_product_category": {
+      "Baby-care essentials": {
+        "samples": 30600,
+        "hgb_exp2_clipped": {
+          "count": 30600,
+          "mae": 5.980122271635599,
+          "rmse": 10.135951171959668,
+          "wape": 0.6302279996144392,
+          "bias": -0.03929766278344061,
+          "mae_rounded_4dec": 5.9801,
+          "rmse_rounded_4dec": 10.136,
+          "wape_rounded_6dec": 0.630228,
+          "bias_rounded_4dec": -0.0393
+        },
+        "hgb_exp1": {
+          "count": 30600,
+          "mae": 6.061128500000001,
+          "rmse": 10.121186643971908,
+          "wape": 0.6387650145682228,
+          "bias": 1.1550971601307187,
+          "mae_rounded_4dec": 6.0611,
+          "rmse_rounded_4dec": 10.1212,
+          "wape_rounded_6dec": 0.638765,
+          "bias_rounded_4dec": 1.1551
+        },
+        "ridge": {
+          "count": 30600,
+          "mae": 7.538249934640524,
+          "rmse": 12.384839504563608,
+          "wape": 0.7944346220872166,
+          "bias": 4.221062124183006,
+          "mae_rounded_4dec": 7.5382,
+          "rmse_rounded_4dec": 12.3848,
+          "wape_rounded_6dec": 0.794435,
+          "bias_rounded_4dec": 4.2211
+        },
+        "baseline": {
+          "count": 30600,
+          "mae": 6.7818627450980395,
+          "rmse": 11.602752448410032,
+          "wape": 0.7147211373545761,
+          "bias": -0.037026143790849675,
+          "mae_rounded_4dec": 6.7819,
+          "rmse_rounded_4dec": 11.6028,
+          "wape_rounded_6dec": 0.714721,
+          "bias_rounded_4dec": -0.037
+        }
+      },
+      "Basic health and hygiene products": {
+        "samples": 28200,
+        "hgb_exp2_clipped": {
+          "count": 28200,
+          "mae": 5.884912882539349,
+          "rmse": 9.8909604104694,
+          "wape": 0.6433718168121485,
+          "bias": 0.04441854056878259,
+          "mae_rounded_4dec": 5.8849,
+          "rmse_rounded_4dec": 9.891,
+          "wape_rounded_6dec": 0.643372,
+          "bias_rounded_4dec": 0.0444
+        },
+        "hgb_exp1": {
+          "count": 28200,
+          "mae": 6.004295968085106,
+          "rmse": 10.092490248818654,
+          "wape": 0.6564234480218651,
+          "bias": 1.2708762234042552,
+          "mae_rounded_4dec": 6.0043,
+          "rmse_rounded_4dec": 10.0925,
+          "wape_rounded_6dec": 0.656423,
+          "bias_rounded_4dec": 1.2709
+        },
+        "ridge": {
+          "count": 28200,
+          "mae": 7.355522407801419,
+          "rmse": 12.149095091944165,
+          "wape": 0.8041471317528931,
+          "bias": 4.087793542553191,
+          "mae_rounded_4dec": 7.3555,
+          "rmse_rounded_4dec": 12.1491,
+          "wape_rounded_6dec": 0.804147,
+          "bias_rounded_4dec": 4.0878
+        },
+        "baseline": {
+          "count": 28200,
+          "mae": 6.665602836879432,
+          "rmse": 11.333575690983954,
+          "wape": 0.7287212390238229,
+          "bias": 0.04707446808510638,
+          "mae_rounded_4dec": 6.6656,
+          "rmse_rounded_4dec": 11.3336,
+          "wape_rounded_6dec": 0.728721,
+          "bias_rounded_4dec": 0.0471
+        }
+      },
+      "Beverages and bottled water": {
+        "samples": 84300,
+        "hgb_exp2_clipped": {
+          "count": 84300,
+          "mae": 5.831141037671074,
+          "rmse": 9.547830261658024,
+          "wape": 0.6270300060407209,
+          "bias": 0.06430205067718527,
+          "mae_rounded_4dec": 5.8311,
+          "rmse_rounded_4dec": 9.5478,
+          "wape_rounded_6dec": 0.62703,
+          "bias_rounded_4dec": 0.0643
+        },
+        "hgb_exp1": {
+          "count": 84300,
+          "mae": 5.775332733096086,
+          "rmse": 9.365370210943556,
+          "wape": 0.6210288681281395,
+          "bias": 0.7204243321470937,
+          "mae_rounded_4dec": 5.7753,
+          "rmse_rounded_4dec": 9.3654,
+          "wape_rounded_6dec": 0.621029,
+          "bias_rounded_4dec": 0.7204
+        },
+        "ridge": {
+          "count": 84300,
+          "mae": 6.61541969039146,
+          "rmse": 10.651997790655043,
+          "wape": 0.7113644862352321,
+          "bias": 2.4756683428232504,
+          "mae_rounded_4dec": 6.6154,
+          "rmse_rounded_4dec": 10.652,
+          "wape_rounded_6dec": 0.711364,
+          "bias_rounded_4dec": 2.4757
+        },
+        "baseline": {
+          "count": 84300,
+          "mae": 6.5067289442467375,
+          "rmse": 10.704203222893831,
+          "wape": 0.699676832177234,
+          "bias": -0.061551008303677344,
+          "mae_rounded_4dec": 6.5067,
+          "rmse_rounded_4dec": 10.7042,
+          "wape_rounded_6dec": 0.699677,
+          "bias_rounded_4dec": -0.0616
+        }
+      },
+      "Biscuits and snacks": {
+        "samples": 83300,
+        "hgb_exp2_clipped": {
+          "count": 83300,
+          "mae": 5.249951695235086,
+          "rmse": 8.76065236542658,
+          "wape": 0.6144409546955237,
+          "bias": -0.08204174398026635,
+          "mae_rounded_4dec": 5.25,
+          "rmse_rounded_4dec": 8.7607,
+          "wape_rounded_6dec": 0.614441,
+          "bias_rounded_4dec": -0.082
+        },
+        "hgb_exp1": {
+          "count": 83300,
+          "mae": 5.126658651860745,
+          "rmse": 8.542350602644943,
+          "wape": 0.6000110513981268,
+          "bias": 0.0252950144057623,
+          "mae_rounded_4dec": 5.1267,
+          "rmse_rounded_4dec": 8.5424,
+          "wape_rounded_6dec": 0.600011,
+          "bias_rounded_4dec": 0.0253
+        },
+        "ridge": {
+          "count": 83300,
+          "mae": 5.401520418967587,
+          "rmse": 8.86304175224226,
+          "wape": 0.6321801714956908,
+          "bias": 0.48821518007202874,
+          "mae_rounded_4dec": 5.4015,
+          "rmse_rounded_4dec": 8.863,
+          "wape_rounded_6dec": 0.63218,
+          "bias_rounded_4dec": 0.4882
+        },
+        "baseline": {
+          "count": 83300,
+          "mae": 5.953613445378151,
+          "rmse": 10.005069093365883,
+          "wape": 0.6967957310133785,
+          "bias": -0.03985594237695078,
+          "mae_rounded_4dec": 5.9536,
+          "rmse_rounded_4dec": 10.0051,
+          "wape_rounded_6dec": 0.696796,
+          "bias_rounded_4dec": -0.0399
+        }
+      },
+      "Bread and bakery products": {
+        "samples": 39500,
+        "hgb_exp2_clipped": {
+          "count": 39500,
+          "mae": 1.6636399139111882,
+          "rmse": 4.223358666237793,
+          "wape": 1.194817662130074,
+          "bias": 0.008750940955167538,
+          "mae_rounded_4dec": 1.6636,
+          "rmse_rounded_4dec": 4.2234,
+          "wape_rounded_6dec": 1.194818,
+          "bias_rounded_4dec": 0.0088
+        },
+        "hgb_exp1": {
+          "count": 39500,
+          "mae": 1.3605631746835443,
+          "rmse": 3.8708549244483543,
+          "wape": 0.9771495009000164,
+          "bias": -0.14533281518987345,
+          "mae_rounded_4dec": 1.3606,
+          "rmse_rounded_4dec": 3.8709,
+          "wape_rounded_6dec": 0.97715,
+          "bias_rounded_4dec": -0.1453
+        },
+        "ridge": {
+          "count": 39500,
+          "mae": 2.5540231848101267,
+          "rmse": 5.232519122421807,
+          "wape": 1.8342863652066401,
+          "bias": 0.5995073316455696,
+          "mae_rounded_4dec": 2.554,
+          "rmse_rounded_4dec": 5.2325,
+          "wape_rounded_6dec": 1.834286,
+          "bias_rounded_4dec": 0.5995
+        },
+        "baseline": {
+          "count": 39500,
+          "mae": 2.534487341772152,
+          "rmse": 5.37401197866505,
+          "wape": 1.8202558228331425,
+          "bias": 0.18365189873417723,
+          "mae_rounded_4dec": 2.5345,
+          "rmse_rounded_4dec": 5.374,
+          "wape_rounded_6dec": 1.820256,
+          "bias_rounded_4dec": 0.1837
+        }
+      },
+      "Breakfast products": {
+        "samples": 35900,
+        "hgb_exp2_clipped": {
+          "count": 35900,
+          "mae": 5.6461269787949995,
+          "rmse": 9.287437723090799,
+          "wape": 0.6254638878855705,
+          "bias": 0.0008973065756771838,
+          "mae_rounded_4dec": 5.6461,
+          "rmse_rounded_4dec": 9.2874,
+          "wape_rounded_6dec": 0.625464,
+          "bias_rounded_4dec": 0.0009
+        },
+        "hgb_exp1": {
+          "count": 35900,
+          "mae": 5.597861233983287,
+          "rmse": 9.048188143542767,
+          "wape": 0.62011712885677,
+          "bias": 0.7740674233983287,
+          "mae_rounded_4dec": 5.5979,
+          "rmse_rounded_4dec": 9.0482,
+          "wape_rounded_6dec": 0.620117,
+          "bias_rounded_4dec": 0.7741
+        },
+        "ridge": {
+          "count": 35900,
+          "mae": 6.272284225626741,
+          "rmse": 10.0739773090252,
+          "wape": 0.6948280285614661,
+          "bias": 2.2921920919220056,
+          "mae_rounded_4dec": 6.2723,
+          "rmse_rounded_4dec": 10.074,
+          "wape_rounded_6dec": 0.694828,
+          "bias_rounded_4dec": 2.2922
+        },
+        "baseline": {
+          "count": 35900,
+          "mae": 6.386608635097493,
+          "rmse": 10.652924634717946,
+          "wape": 0.7074926019754808,
+          "bias": -0.04800139275766017,
+          "mae_rounded_4dec": 6.3866,
+          "rmse_rounded_4dec": 10.6529,
+          "wape_rounded_6dec": 0.707493,
+          "bias_rounded_4dec": -0.048
+        }
+      },
+      "Cooking oil": {
+        "samples": 75400,
+        "hgb_exp2_clipped": {
+          "count": 75400,
+          "mae": 9.190300282254414,
+          "rmse": 15.382986349899554,
+          "wape": 0.617655783604777,
+          "bias": -0.03859824841102945,
+          "mae_rounded_4dec": 9.1903,
+          "rmse_rounded_4dec": 15.383,
+          "wape_rounded_6dec": 0.617656,
+          "bias_rounded_4dec": -0.0386
+        },
+        "hgb_exp1": {
+          "count": 75400,
+          "mae": 9.29630273872679,
+          "rmse": 15.52566258333528,
+          "wape": 0.624779928442884,
+          "bias": 1.7957741233421751,
+          "mae_rounded_4dec": 9.2963,
+          "rmse_rounded_4dec": 15.5257,
+          "wape_rounded_6dec": 0.62478,
+          "bias_rounded_4dec": 1.7958
+        },
+        "ridge": {
+          "count": 75400,
+          "mae": 11.694133697612731,
+          "rmse": 19.347300817437187,
+          "wape": 0.7859318075302544,
+          "bias": 6.782116435013263,
+          "mae_rounded_4dec": 11.6941,
+          "rmse_rounded_4dec": 19.3473,
+          "wape_rounded_6dec": 0.785932,
+          "bias_rounded_4dec": 6.7821
+        },
+        "baseline": {
+          "count": 75400,
+          "mae": 10.316548408488064,
+          "rmse": 17.355058423543706,
+          "wape": 0.6933479424655117,
+          "bias": 0.028696949602122015,
+          "mae_rounded_4dec": 10.3165,
+          "rmse_rounded_4dec": 17.3551,
+          "wape_rounded_6dec": 0.693348,
+          "bias_rounded_4dec": 0.0287
+        }
+      },
+      "Dairy products": {
+        "samples": 74600,
+        "hgb_exp2_clipped": {
+          "count": 74600,
+          "mae": 4.132310966577091,
+          "rmse": 7.782717205660314,
+          "wape": 0.7289232703414681,
+          "bias": 0.11546404340898858,
+          "mae_rounded_4dec": 4.1323,
+          "rmse_rounded_4dec": 7.7827,
+          "wape_rounded_6dec": 0.728923,
+          "bias_rounded_4dec": 0.1155
+        },
+        "hgb_exp1": {
+          "count": 74600,
+          "mae": 3.8778062091152816,
+          "rmse": 7.612533937336309,
+          "wape": 0.6840296402088378,
+          "bias": 0.5343146997319035,
+          "mae_rounded_4dec": 3.8778,
+          "rmse_rounded_4dec": 7.6125,
+          "wape_rounded_6dec": 0.68403,
+          "bias_rounded_4dec": 0.5343
+        },
+        "ridge": {
+          "count": 74600,
+          "mae": 5.3264478418230565,
+          "rmse": 9.545667849102465,
+          "wape": 0.9395642805122579,
+          "bias": 2.3633441420911527,
+          "mae_rounded_4dec": 5.3264,
+          "rmse_rounded_4dec": 9.5457,
+          "wape_rounded_6dec": 0.939564,
+          "bias_rounded_4dec": 2.3633
+        },
+        "baseline": {
+          "count": 74600,
+          "mae": 5.05375,
+          "rmse": 9.20790531417428,
+          "wape": 0.8914614624319007,
+          "bias": 0.13178619302949063,
+          "mae_rounded_4dec": 5.0537,
+          "rmse_rounded_4dec": 9.2079,
+          "wape_rounded_6dec": 0.891461,
+          "bias_rounded_4dec": 0.1318
+        }
+      },
+      "Eggs": {
+        "samples": 38200,
+        "hgb_exp2_clipped": {
+          "count": 38200,
+          "mae": 7.998197250149014,
+          "rmse": 13.41190966133411,
+          "wape": 0.764818277058021,
+          "bias": 0.5849018745416978,
+          "mae_rounded_4dec": 7.9982,
+          "rmse_rounded_4dec": 13.4119,
+          "wape_rounded_6dec": 0.764818,
+          "bias_rounded_4dec": 0.5849
+        },
+        "hgb_exp1": {
+          "count": 38200,
+          "mae": 7.177685295811518,
+          "rmse": 12.633625359217877,
+          "wape": 0.6863577790739007,
+          "bias": 0.007647772251308907,
+          "mae_rounded_4dec": 7.1777,
+          "rmse_rounded_4dec": 12.6336,
+          "wape_rounded_6dec": 0.686358,
+          "bias_rounded_4dec": 0.0076
+        },
+        "ridge": {
+          "count": 38200,
+          "mae": 8.384212123036649,
+          "rmse": 13.763654697911893,
+          "wape": 0.8017304987458759,
+          "bias": 0.11279499214659697,
+          "mae_rounded_4dec": 8.3842,
+          "rmse_rounded_4dec": 13.7637,
+          "wape_rounded_6dec": 0.80173,
+          "bias_rounded_4dec": 0.1128
+        },
+        "baseline": {
+          "count": 38200,
+          "mae": 10.39964659685864,
+          "rmse": 16.795114772921384,
+          "wape": 0.9944540680180834,
+          "bias": 0.4863350785340314,
+          "mae_rounded_4dec": 10.3996,
+          "rmse_rounded_4dec": 16.7951,
+          "wape_rounded_6dec": 0.994454,
+          "bias_rounded_4dec": 0.4863
+        }
+      },
+      "Fish and frozen foods": {
+        "samples": 31500,
+        "hgb_exp2_clipped": {
+          "count": 31500,
+          "mae": 0.9894535153646037,
+          "rmse": 2.6648203239521844,
+          "wape": 1.7278000850371427,
+          "bias": 0.13992474968767468,
+          "mae_rounded_4dec": 0.9895,
+          "rmse_rounded_4dec": 2.6648,
+          "wape_rounded_6dec": 1.7278,
+          "bias_rounded_4dec": 0.1399
+        },
+        "hgb_exp1": {
+          "count": 31500,
+          "mae": 0.7956562634920634,
+          "rmse": 2.4882124131839825,
+          "wape": 1.3893881201840457,
+          "bias": 0.07299013650793652,
+          "mae_rounded_4dec": 0.7957,
+          "rmse_rounded_4dec": 2.4882,
+          "wape_rounded_6dec": 1.389388,
+          "bias_rounded_4dec": 0.073
+        },
+        "ridge": {
+          "count": 31500,
+          "mae": 1.7105052825396827,
+          "rmse": 3.7395072020813664,
+          "wape": 2.986912600476745,
+          "bias": 0.8357363047619047,
+          "mae_rounded_4dec": 1.7105,
+          "rmse_rounded_4dec": 3.7395,
+          "wape_rounded_6dec": 2.986913,
+          "bias_rounded_4dec": 0.8357
+        },
+        "baseline": {
+          "count": 31500,
+          "mae": 1.1318174603174602,
+          "rmse": 3.077528319212604,
+          "wape": 1.9763983591108154,
+          "bias": 0.060753968253968255,
+          "mae_rounded_4dec": 1.1318,
+          "rmse_rounded_4dec": 3.0775,
+          "wape_rounded_6dec": 1.976398,
+          "bias_rounded_4dec": 0.0608
+        }
+      },
+      "Flour and baking ingredients": {
+        "samples": 61700,
+        "hgb_exp2_clipped": {
+          "count": 61700,
+          "mae": 9.556952525300417,
+          "rmse": 15.915260179880825,
+          "wape": 0.6153910072605712,
+          "bias": -0.1026529153693541,
+          "mae_rounded_4dec": 9.557,
+          "rmse_rounded_4dec": 15.9153,
+          "wape_rounded_6dec": 0.615391,
+          "bias_rounded_4dec": -0.1027
+        },
+        "hgb_exp1": {
+          "count": 61700,
+          "mae": 9.302630564019449,
+          "rmse": 15.53141842952941,
+          "wape": 0.5990147149742119,
+          "bias": 0.15762157536466775,
+          "mae_rounded_4dec": 9.3026,
+          "rmse_rounded_4dec": 15.5314,
+          "wape_rounded_6dec": 0.599015,
+          "bias_rounded_4dec": 0.1576
+        },
+        "ridge": {
+          "count": 61700,
+          "mae": 9.90018664343598,
+          "rmse": 16.36429712425972,
+          "wape": 0.6374925285484986,
+          "bias": 1.5843403160453808,
+          "mae_rounded_4dec": 9.9002,
+          "rmse_rounded_4dec": 16.3643,
+          "wape_rounded_6dec": 0.637493,
+          "bias_rounded_4dec": 1.5843
+        },
+        "baseline": {
+          "count": 61700,
+          "mae": 10.871843598055106,
+          "rmse": 18.263088238789962,
+          "wape": 0.7000594347282492,
+          "bias": -0.07621150729335495,
+          "mae_rounded_4dec": 10.8718,
+          "rmse_rounded_4dec": 18.2631,
+          "wape_rounded_6dec": 0.700059,
+          "bias_rounded_4dec": -0.0762
+        }
+      },
+      "Fruits": {
+        "samples": 63800,
+        "hgb_exp2_clipped": {
+          "count": 63800,
+          "mae": 3.6856669307936465,
+          "rmse": 7.141034082913811,
+          "wape": 0.6785210764916338,
+          "bias": -0.10018613799497246,
+          "mae_rounded_4dec": 3.6857,
+          "rmse_rounded_4dec": 7.141,
+          "wape_rounded_6dec": 0.678521,
+          "bias_rounded_4dec": -0.1002
+        },
+        "hgb_exp1": {
+          "count": 63800,
+          "mae": 3.352811805642633,
+          "rmse": 6.731465085777539,
+          "wape": 0.617243369614146,
+          "bias": -0.41087868025078367,
+          "mae_rounded_4dec": 3.3528,
+          "rmse_rounded_4dec": 6.7315,
+          "wape_rounded_6dec": 0.617243,
+          "bias_rounded_4dec": -0.4109
+        },
+        "ridge": {
+          "count": 63800,
+          "mae": 4.149324937304075,
+          "rmse": 7.537154335311505,
+          "wape": 0.7638792316393309,
+          "bias": 0.11614993730407523,
+          "mae_rounded_4dec": 4.1493,
+          "rmse_rounded_4dec": 7.5372,
+          "wape_rounded_6dec": 0.763879,
+          "bias_rounded_4dec": 0.1161
+        },
+        "baseline": {
+          "count": 63800,
+          "mae": 4.594083072100314,
+          "rmse": 8.545501254624563,
+          "wape": 0.8457579727374508,
+          "bias": 0.08224921630094044,
+          "mae_rounded_4dec": 4.5941,
+          "rmse_rounded_4dec": 8.5455,
+          "wape_rounded_6dec": 0.845758,
+          "bias_rounded_4dec": 0.0822
+        }
+      },
+      "Household cleaning products": {
+        "samples": 27700,
+        "hgb_exp2_clipped": {
+          "count": 27700,
+          "mae": 5.806228663879176,
+          "rmse": 9.800820733917245,
+          "wape": 0.6170132853126572,
+          "bias": -0.013556025171466887,
+          "mae_rounded_4dec": 5.8062,
+          "rmse_rounded_4dec": 9.8008,
+          "wape_rounded_6dec": 0.617013,
+          "bias_rounded_4dec": -0.0136
+        },
+        "hgb_exp1": {
+          "count": 27700,
+          "mae": 5.967455772563177,
+          "rmse": 9.917500011940913,
+          "wape": 0.6341464837740685,
+          "bias": 1.3492741480144403,
+          "mae_rounded_4dec": 5.9675,
+          "rmse_rounded_4dec": 9.9175,
+          "wape_rounded_6dec": 0.634146,
+          "bias_rounded_4dec": 1.3493
+        },
+        "ridge": {
+          "count": 27700,
+          "mae": 7.325617212996389,
+          "rmse": 12.122197654600958,
+          "wape": 0.7784748767565783,
+          "bias": 4.046419718411553,
+          "mae_rounded_4dec": 7.3256,
+          "rmse_rounded_4dec": 12.1222,
+          "wape_rounded_6dec": 0.778475,
+          "bias_rounded_4dec": 4.0464
+        },
+        "baseline": {
+          "count": 27700,
+          "mae": 6.543826714801444,
+          "rmse": 11.17534515575159,
+          "wape": 0.6953959710430709,
+          "bias": 0.03211191335740072,
+          "mae_rounded_4dec": 6.5438,
+          "rmse_rounded_4dec": 11.1753,
+          "wape_rounded_6dec": 0.695396,
+          "bias_rounded_4dec": 0.0321
+        }
+      },
+      "Instant noodles and packaged food": {
+        "samples": 34700,
+        "hgb_exp2_clipped": {
+          "count": 34700,
+          "mae": 5.627401264265667,
+          "rmse": 9.460629768321457,
+          "wape": 0.6355375663378996,
+          "bias": 0.16164573340388072,
+          "mae_rounded_4dec": 5.6274,
+          "rmse_rounded_4dec": 9.4606,
+          "wape_rounded_6dec": 0.635538,
+          "bias_rounded_4dec": 0.1616
+        },
+        "hgb_exp1": {
+          "count": 34700,
+          "mae": 5.505644694524495,
+          "rmse": 9.186308948283894,
+          "wape": 0.6217868365809284,
+          "bias": 0.2625420893371758,
+          "mae_rounded_4dec": 5.5056,
+          "rmse_rounded_4dec": 9.1863,
+          "wape_rounded_6dec": 0.621787,
+          "bias_rounded_4dec": 0.2625
+        },
+        "ridge": {
+          "count": 34700,
+          "mae": 5.817933501440922,
+          "rmse": 9.642022515438669,
+          "wape": 0.6570555617032218,
+          "bias": 0.9715408213256482,
+          "mae_rounded_4dec": 5.8179,
+          "rmse_rounded_4dec": 9.642,
+          "wape_rounded_6dec": 0.657056,
+          "bias_rounded_4dec": 0.9715
+        },
+        "baseline": {
+          "count": 34700,
+          "mae": 6.349164265129683,
+          "rmse": 10.789312208156367,
+          "wape": 0.7170507692357764,
+          "bias": -0.005201729106628242,
+          "mae_rounded_4dec": 6.3492,
+          "rmse_rounded_4dec": 10.7893,
+          "wape_rounded_6dec": 0.717051,
+          "bias_rounded_4dec": -0.0052
+        }
+      },
+      "Laundry products": {
+        "samples": 31600,
+        "hgb_exp2_clipped": {
+          "count": 31600,
+          "mae": 5.4391240214628915,
+          "rmse": 8.970568839137483,
+          "wape": 0.624941166274806,
+          "bias": -0.026012474868158737,
+          "mae_rounded_4dec": 5.4391,
+          "rmse_rounded_4dec": 8.9706,
+          "wape_rounded_6dec": 0.624941,
+          "bias_rounded_4dec": -0.026
+        },
+        "hgb_exp1": {
+          "count": 31600,
+          "mae": 5.512439848101265,
+          "rmse": 8.92044420051494,
+          "wape": 0.6333649635673458,
+          "bias": 1.1082835189873417,
+          "mae_rounded_4dec": 5.5124,
+          "rmse_rounded_4dec": 8.9204,
+          "wape_rounded_6dec": 0.633365,
+          "bias_rounded_4dec": 1.1083
+        },
+        "ridge": {
+          "count": 31600,
+          "mae": 6.825068186708862,
+          "rmse": 11.100230127149363,
+          "wape": 0.7841825366871737,
+          "bias": 3.878351566455696,
+          "mae_rounded_4dec": 6.8251,
+          "rmse_rounded_4dec": 11.1002,
+          "wape_rounded_6dec": 0.784183,
+          "bias_rounded_4dec": 3.8784
+        },
+        "baseline": {
+          "count": 31600,
+          "mae": 6.066882911392405,
+          "rmse": 10.119791987655562,
+          "wape": 0.6970690256992015,
+          "bias": -0.024113924050632913,
+          "mae_rounded_4dec": 6.0669,
+          "rmse_rounded_4dec": 10.1198,
+          "wape_rounded_6dec": 0.697069,
+          "bias_rounded_4dec": -0.0241
+        }
+      },
+      "Lentils and pulses": {
+        "samples": 78500,
+        "hgb_exp2_clipped": {
+          "count": 78500,
+          "mae": 8.837268913858223,
+          "rmse": 14.578064412824986,
+          "wape": 0.6194083736580089,
+          "bias": 0.031348589659399635,
+          "mae_rounded_4dec": 8.8373,
+          "rmse_rounded_4dec": 14.5781,
+          "wape_rounded_6dec": 0.619408,
+          "bias_rounded_4dec": 0.0313
+        },
+        "hgb_exp1": {
+          "count": 78500,
+          "mae": 8.93119595923567,
+          "rmse": 14.596365938724043,
+          "wape": 0.6259917648602967,
+          "bias": 1.6676813146496816,
+          "mae_rounded_4dec": 8.9312,
+          "rmse_rounded_4dec": 14.5964,
+          "wape_rounded_6dec": 0.625992,
+          "bias_rounded_4dec": 1.6677
+        },
+        "ridge": {
+          "count": 78500,
+          "mae": 11.167146644585989,
+          "rmse": 18.13160900069204,
+          "wape": 0.7827106099121325,
+          "bias": 6.489080438216561,
+          "mae_rounded_4dec": 11.1671,
+          "rmse_rounded_4dec": 18.1316,
+          "wape_rounded_6dec": 0.782711,
+          "bias_rounded_4dec": 6.4891
+        },
+        "baseline": {
+          "count": 78500,
+          "mae": 9.938601910828025,
+          "rmse": 16.49711196014253,
+          "wape": 0.6966013262724993,
+          "bias": 0.037487261146496816,
+          "mae_rounded_4dec": 9.9386,
+          "rmse_rounded_4dec": 16.4971,
+          "wape_rounded_6dec": 0.696601,
+          "bias_rounded_4dec": 0.0375
+        }
+      },
+      "Meat and poultry": {
+        "samples": 31700,
+        "hgb_exp2_clipped": {
+          "count": 31700,
+          "mae": 1.3577628744129044,
+          "rmse": 3.7561575876996876,
+          "wape": 1.382046788006585,
+          "bias": -0.03551733137219475,
+          "mae_rounded_4dec": 1.3578,
+          "rmse_rounded_4dec": 3.7562,
+          "wape_rounded_6dec": 1.382047,
+          "bias_rounded_4dec": -0.0355
+        },
+        "hgb_exp1": {
+          "count": 31700,
+          "mae": 1.117636094637224,
+          "rmse": 3.467232411219462,
+          "wape": 1.1376252833702598,
+          "bias": -0.11132585488958992,
+          "mae_rounded_4dec": 1.1176,
+          "rmse_rounded_4dec": 3.4672,
+          "wape_rounded_6dec": 1.137625,
+          "bias_rounded_4dec": -0.1113
+        },
+        "ridge": {
+          "count": 31700,
+          "mae": 2.33165680126183,
+          "rmse": 4.835300074711926,
+          "wape": 2.37335904055486,
+          "bias": 0.8983814258675079,
+          "mae_rounded_4dec": 2.3317,
+          "rmse_rounded_4dec": 4.8353,
+          "wape_rounded_6dec": 2.373359,
+          "bias_rounded_4dec": 0.8984
+        },
+        "baseline": {
+          "count": 31700,
+          "mae": 1.860276025236593,
+          "rmse": 4.531382204641602,
+          "wape": 1.8935475066628136,
+          "bias": 0.07593848580441641,
+          "mae_rounded_4dec": 1.8603,
+          "rmse_rounded_4dec": 4.5314,
+          "wape_rounded_6dec": 1.893548,
+          "bias_rounded_4dec": 0.0759
+        }
+      },
+      "Other daily necessities": {
+        "samples": 30300,
+        "hgb_exp2_clipped": {
+          "count": 30300,
+          "mae": 5.634794945171214,
+          "rmse": 9.557150669012495,
+          "wape": 0.623347609296448,
+          "bias": -0.1788005469965551,
+          "mae_rounded_4dec": 5.6348,
+          "rmse_rounded_4dec": 9.5572,
+          "wape_rounded_6dec": 0.623348,
+          "bias_rounded_4dec": -0.1788
+        },
+        "hgb_exp1": {
+          "count": 30300,
+          "mae": 5.712832716171618,
+          "rmse": 9.510512313912997,
+          "wape": 0.6319805158105726,
+          "bias": 1.0189071980198021,
+          "mae_rounded_4dec": 5.7128,
+          "rmse_rounded_4dec": 9.5105,
+          "wape_rounded_6dec": 0.631981,
+          "bias_rounded_4dec": 1.0189
+        },
+        "ridge": {
+          "count": 30300,
+          "mae": 6.954529184818482,
+          "rmse": 11.374928337072415,
+          "wape": 0.7693428391487374,
+          "bias": 3.7707642673267325,
+          "mae_rounded_4dec": 6.9545,
+          "rmse_rounded_4dec": 11.3749,
+          "wape_rounded_6dec": 0.769343,
+          "bias_rounded_4dec": 3.7708
+        },
+        "baseline": {
+          "count": 30300,
+          "mae": 6.319224422442244,
+          "rmse": 10.69833119832448,
+          "wape": 0.6990624281213148,
+          "bias": 0.031237623762376238,
+          "mae_rounded_4dec": 6.3192,
+          "rmse_rounded_4dec": 10.6983,
+          "wape_rounded_6dec": 0.699062,
+          "bias_rounded_4dec": 0.0312
+        }
+      },
+      "Personal-care products": {
+        "samples": 31000,
+        "hgb_exp2_clipped": {
+          "count": 31000,
+          "mae": 5.896045856194783,
+          "rmse": 9.749824104940377,
+          "wape": 0.6304756800252438,
+          "bias": 0.024356595022494966,
+          "mae_rounded_4dec": 5.896,
+          "rmse_rounded_4dec": 9.7498,
+          "wape_rounded_6dec": 0.630476,
+          "bias_rounded_4dec": 0.0244
+        },
+        "hgb_exp1": {
+          "count": 31000,
+          "mae": 5.964666612903225,
+          "rmse": 9.787724943606857,
+          "wape": 0.6378134313427892,
+          "bias": 1.3692961741935483,
+          "mae_rounded_4dec": 5.9647,
+          "rmse_rounded_4dec": 9.7877,
+          "wape_rounded_6dec": 0.637813,
+          "bias_rounded_4dec": 1.3693
+        },
+        "ridge": {
+          "count": 31000,
+          "mae": 7.365962238709677,
+          "rmse": 11.911889870698857,
+          "wape": 0.7876567049781996,
+          "bias": 4.24607295483871,
+          "mae_rounded_4dec": 7.366,
+          "rmse_rounded_4dec": 11.9119,
+          "wape_rounded_6dec": 0.787657,
+          "bias_rounded_4dec": 4.2461
+        },
+        "baseline": {
+          "count": 31000,
+          "mae": 6.54075,
+          "rmse": 10.920530107214605,
+          "wape": 0.6994151512224737,
+          "bias": 0.036524193548387096,
+          "mae_rounded_4dec": 6.5408,
+          "rmse_rounded_4dec": 10.9205,
+          "wape_rounded_6dec": 0.699415,
+          "bias_rounded_4dec": 0.0365
+        }
+      },
+      "Rice and grains": {
+        "samples": 116100,
+        "hgb_exp2_clipped": {
+          "count": 116100,
+          "mae": 8.685258842078259,
+          "rmse": 14.47457450116026,
+          "wape": 0.6273457539907747,
+          "bias": 0.11184870002024302,
+          "mae_rounded_4dec": 8.6853,
+          "rmse_rounded_4dec": 14.4746,
+          "wape_rounded_6dec": 0.627346,
+          "bias_rounded_4dec": 0.1118
+        },
+        "hgb_exp1": {
+          "count": 116100,
+          "mae": 8.827888218776916,
+          "rmse": 14.620559028562925,
+          "wape": 0.6376480300073226,
+          "bias": 1.8639135503875968,
+          "mae_rounded_4dec": 8.8279,
+          "rmse_rounded_4dec": 14.6206,
+          "wape_rounded_6dec": 0.637648,
+          "bias_rounded_4dec": 1.8639
+        },
+        "ridge": {
+          "count": 116100,
+          "mae": 11.031926757967268,
+          "rmse": 18.005529149267158,
+          "wape": 0.7968481464729636,
+          "bias": 6.407125335055985,
+          "mae_rounded_4dec": 11.0319,
+          "rmse_rounded_4dec": 18.0055,
+          "wape_rounded_6dec": 0.796848,
+          "bias_rounded_4dec": 6.4071
+        },
+        "baseline": {
+          "count": 116100,
+          "mae": 9.749334625322998,
+          "rmse": 16.342644919310228,
+          "wape": 0.7042051126674427,
+          "bias": 0.006935831180017227,
+          "mae_rounded_4dec": 9.7493,
+          "rmse_rounded_4dec": 16.3426,
+          "wape_rounded_6dec": 0.704205,
+          "bias_rounded_4dec": 0.0069
+        }
+      },
+      "Spices and condiments": {
+        "samples": 64300,
+        "hgb_exp2_clipped": {
+          "count": 64300,
+          "mae": 5.6187769706690585,
+          "rmse": 9.520746978154554,
+          "wape": 0.6195062282256784,
+          "bias": -0.09589552313529631,
+          "mae_rounded_4dec": 5.6188,
+          "rmse_rounded_4dec": 9.5207,
+          "wape_rounded_6dec": 0.619506,
+          "bias_rounded_4dec": -0.0959
+        },
+        "hgb_exp1": {
+          "count": 64300,
+          "mae": 5.7008383110419905,
+          "rmse": 9.459754249692226,
+          "wape": 0.628554017757628,
+          "bias": 1.0562059222395024,
+          "mae_rounded_4dec": 5.7008,
+          "rmse_rounded_4dec": 9.4598,
+          "wape_rounded_6dec": 0.628554,
+          "bias_rounded_4dec": 1.0562
+        },
+        "ridge": {
+          "count": 64300,
+          "mae": 7.066522779160186,
+          "rmse": 11.593813632234484,
+          "wape": 0.7791294967643255,
+          "bias": 3.9737482503888026,
+          "mae_rounded_4dec": 7.0665,
+          "rmse_rounded_4dec": 11.5938,
+          "wape_rounded_6dec": 0.779129,
+          "bias_rounded_4dec": 3.9737
+        },
+        "baseline": {
+          "count": 64300,
+          "mae": 6.327958786936237,
+          "rmse": 10.708781652047474,
+          "wape": 0.6976980757425589,
+          "bias": 0.03231337480559875,
+          "mae_rounded_4dec": 6.328,
+          "rmse_rounded_4dec": 10.7088,
+          "wape_rounded_6dec": 0.697698,
+          "bias_rounded_4dec": 0.0323
+        }
+      },
+      "Sugar and salt": {
+        "samples": 71500,
+        "hgb_exp2_clipped": {
+          "count": 71500,
+          "mae": 9.35486282274676,
+          "rmse": 15.33452880570386,
+          "wape": 0.6193890789222184,
+          "bias": -0.02238377318023119,
+          "mae_rounded_4dec": 9.3549,
+          "rmse_rounded_4dec": 15.3345,
+          "wape_rounded_6dec": 0.619389,
+          "bias_rounded_4dec": -0.0224
+        },
+        "hgb_exp1": {
+          "count": 71500,
+          "mae": 9.478360174825173,
+          "rmse": 15.403765328604347,
+          "wape": 0.6275658862792634,
+          "bias": 1.7674362083916084,
+          "mae_rounded_4dec": 9.4784,
+          "rmse_rounded_4dec": 15.4038,
+          "wape_rounded_6dec": 0.627566,
+          "bias_rounded_4dec": 1.7674
+        },
+        "ridge": {
+          "count": 71500,
+          "mae": 11.866290689510489,
+          "rmse": 19.019033963831,
+          "wape": 0.7856716875129064,
+          "bias": 6.838358723076923,
+          "mae_rounded_4dec": 11.8663,
+          "rmse_rounded_4dec": 19.019,
+          "wape_rounded_6dec": 0.785672,
+          "bias_rounded_4dec": 6.8384
+        },
+        "baseline": {
+          "count": 71500,
+          "mae": 10.485444055944056,
+          "rmse": 17.220686225900206,
+          "wape": 0.6942452988310858,
+          "bias": 0.0007937062937062937,
+          "mae_rounded_4dec": 10.4854,
+          "rmse_rounded_4dec": 17.2207,
+          "wape_rounded_6dec": 0.694245,
+          "bias_rounded_4dec": 0.0008
+        }
+      },
+      "Tea and coffee": {
+        "samples": 36600,
+        "hgb_exp2_clipped": {
+          "count": 36600,
+          "mae": 5.676334054399653,
+          "rmse": 9.451506779728186,
+          "wape": 0.6165350814346301,
+          "bias": -0.1916000879236699,
+          "mae_rounded_4dec": 5.6763,
+          "rmse_rounded_4dec": 9.4515,
+          "wape_rounded_6dec": 0.616535,
+          "bias_rounded_4dec": -0.1916
+        },
+        "hgb_exp1": {
+          "count": 36600,
+          "mae": 5.7844451584699454,
+          "rmse": 9.412511335794681,
+          "wape": 0.6282775701100988,
+          "bias": 1.1208850546448088,
+          "mae_rounded_4dec": 5.7844,
+          "rmse_rounded_4dec": 9.4125,
+          "wape_rounded_6dec": 0.628278,
+          "bias_rounded_4dec": 1.1209
+        },
+        "ridge": {
+          "count": 36600,
+          "mae": 7.2010066994535515,
+          "rmse": 11.707148098059019,
+          "wape": 0.7821374163872155,
+          "bias": 4.007804535519126,
+          "mae_rounded_4dec": 7.201,
+          "rmse_rounded_4dec": 11.7071,
+          "wape_rounded_6dec": 0.782137,
+          "bias_rounded_4dec": 4.0078
+        },
+        "baseline": {
+          "count": 36600,
+          "mae": 6.478128415300547,
+          "rmse": 10.87251793168737,
+          "wape": 0.7036219841528919,
+          "bias": 0.03605191256830601,
+          "mae_rounded_4dec": 6.4781,
+          "rmse_rounded_4dec": 10.8725,
+          "wape_rounded_6dec": 0.703622,
+          "bias_rounded_4dec": 0.0361
+        }
+      },
+      "Toiletries": {
+        "samples": 27800,
+        "hgb_exp2_clipped": {
+          "count": 27800,
+          "mae": 5.798933180865464,
+          "rmse": 9.789409915547425,
+          "wape": 0.6372302911151602,
+          "bias": -0.0064383517844920244,
+          "mae_rounded_4dec": 5.7989,
+          "rmse_rounded_4dec": 9.7894,
+          "wape_rounded_6dec": 0.63723,
+          "bias_rounded_4dec": -0.0064
+        },
+        "hgb_exp1": {
+          "count": 27800,
+          "mae": 5.870814863309352,
+          "rmse": 9.798515892565588,
+          "wape": 0.645129189757536,
+          "bias": 1.1734362877697841,
+          "mae_rounded_4dec": 5.8708,
+          "rmse_rounded_4dec": 9.7985,
+          "wape_rounded_6dec": 0.645129,
+          "bias_rounded_4dec": 1.1734
+        },
+        "ridge": {
+          "count": 27800,
+          "mae": 7.241577712230216,
+          "rmse": 11.944312908199082,
+          "wape": 0.795758897330287,
+          "bias": 4.067444561151079,
+          "mae_rounded_4dec": 7.2416,
+          "rmse_rounded_4dec": 11.9443,
+          "wape_rounded_6dec": 0.795759,
+          "bias_rounded_4dec": 4.0674
+        },
+        "baseline": {
+          "count": 27800,
+          "mae": 6.514910071942446,
+          "rmse": 11.06142187771692,
+          "wape": 0.7159072043512289,
+          "bias": 0.04870503597122302,
+          "mae_rounded_4dec": 6.5149,
+          "rmse_rounded_4dec": 11.0614,
+          "wape_rounded_6dec": 0.715907,
+          "bias_rounded_4dec": 0.0487
+        }
+      },
+      "Vegetables": {
+        "samples": 96800,
+        "hgb_exp2_clipped": {
+          "count": 96800,
+          "mae": 4.095877137054676,
+          "rmse": 7.60938926631071,
+          "wape": 0.7133953981835747,
+          "bias": 0.06949539437022641,
+          "mae_rounded_4dec": 4.0959,
+          "rmse_rounded_4dec": 7.6094,
+          "wape_rounded_6dec": 0.713395,
+          "bias_rounded_4dec": 0.0695
+        },
+        "hgb_exp1": {
+          "count": 96800,
+          "mae": 3.7494459690082644,
+          "rmse": 7.199230741378103,
+          "wape": 0.6530560879938679,
+          "bias": -0.23597670041322316,
+          "mae_rounded_4dec": 3.7494,
+          "rmse_rounded_4dec": 7.1992,
+          "wape_rounded_6dec": 0.653056,
+          "bias_rounded_4dec": -0.236
+        },
+        "ridge": {
+          "count": 96800,
+          "mae": 4.523704902892562,
+          "rmse": 8.016224110854592,
+          "wape": 0.7879118812593789,
+          "bias": 0.08200650000000002,
+          "mae_rounded_4dec": 4.5237,
+          "rmse_rounded_4dec": 8.0162,
+          "wape_rounded_6dec": 0.787912,
+          "bias_rounded_4dec": 0.082
+        },
+        "baseline": {
+          "count": 96800,
+          "mae": 5.289888946280992,
+          "rmse": 9.504348687965841,
+          "wape": 0.9213612383629082,
+          "bias": 0.1600180785123967,
+          "mae_rounded_4dec": 5.2899,
+          "rmse_rounded_4dec": 9.5043,
+          "wape_rounded_6dec": 0.921361,
+          "bias_rounded_4dec": 0.16
+        }
+      }
+    }
+  },
+  "artifacts": {
+    "model_path": "ml/models/7d/hgb_exp2_no_inventory_model.joblib",
+    "model_size_mb": 0.17,
+    "predictions_path": "ml/predictions/hgb_exp2_validation_predictions_7d.csv",
+    "predictions_size_mb": 81.73
+  }
+}

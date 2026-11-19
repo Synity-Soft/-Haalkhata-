@@ -1,0 +1,353 @@
+{
+  "canonical_calendar": {
+    "start_date": "2025-11-16",
+    "end_date": "2026-11-15",
+    "total_days": 365,
+    "is_consecutive_verified": true,
+    "reversible_index_mapping_verified": true,
+    "matches_sales_dates": true,
+    "matches_metrics_dates": true,
+    "status": "PASS"
+  },
+  "task_a_batch_reconciliation": {
+    "total_batches_audited": 80216,
+    "date_consistency": {
+      "expiry_strictly_before_receipt": 0,
+      "same_day_expiry_batches": 1290,
+      "received_before_calendar_start": 0,
+      "received_after_calendar_end": 0
+    },
+    "foreign_key_and_ownership": {
+      "unknown_batch_in_sales": 0,
+      "unknown_batch_in_wastage": 0,
+      "sales_outlet_mismatches": 0,
+      "sales_product_mismatches": 0,
+      "wastage_outlet_mismatches": 0,
+      "wastage_product_mismatches": 0
+    },
+    "lifecycle_violations": {
+      "sales_before_receipt": 0,
+      "sales_after_expiry": 0,
+      "wastage_before_receipt": 0,
+      "wastage_after_expiry": 0,
+      "sales_exceeding_available_stock": 0,
+      "wastage_exceeding_available_stock": 0,
+      "negative_stock_batch_days": 0,
+      "total_negative_quantity": 0,
+      "batches_exhausted_before_expiry": 236
+    },
+    "business_rules_on_expiry_date": {
+      "sales_transactions_on_expiry_date": 7580,
+      "sales_units_on_expiry_date": 58064,
+      "wastage_records_on_expiry_date": 1581,
+      "wastage_units_on_expiry_date": 3341,
+      "business_rule_description": "Transactions execute during the expiry day; post-expiry closing balance is set to 0 at day close."
+    },
+    "snapshot_reconciliation": {
+      "post_expiry_closing_stock_matches": 80216,
+      "post_expiry_closing_stock_match_pct": 100.0,
+      "expired_quantity_exact_matches": 49406,
+      "expired_quantity_match_pct": 100.0,
+      "csv_remaining_quantity_semantic": "For expired batches, remaining_quantity records quantity expired; post-expiry shelf balance is 0."
+    },
+    "status": "PASS"
+  },
+  "task_b_pair_aggregation_consistency": {
+    "description": "Batch-to-pair aggregation consistency check across all 6 daily flow and stock quantities.",
+    "total_catalog_pairs": 13256,
+    "calendar_days": 365,
+    "total_evaluated_cells": 4838440,
+    "diff_daily_receipts": 0,
+    "diff_daily_sales": 0,
+    "diff_daily_wastage": 0,
+    "diff_daily_expired": 0,
+    "diff_opening_stock": 0,
+    "diff_closing_stock": 0,
+    "methodology_qualification": "Confirms algebraic consistency between constituent batches and pair-level ledger; internal aggregation check, not external source-of-truth.",
+    "status": "PASS"
+  },
+  "task_c_forecasting_targets": {
+    "horizon_7d": {
+      "total_targets": 4745648,
+      "origin_count": 358,
+      "earliest_origin": "2025-11-16",
+      "latest_origin": "2026-11-08",
+      "zero_target_count": 1460750,
+      "zero_target_pct": 30.78,
+      "positive_target_count": 3284898,
+      "positive_target_pct": 69.22,
+      "min_target": 0,
+      "max_target": 280,
+      "mean_target": 9.5795
+    },
+    "horizon_30d": {
+      "total_targets": 4440760,
+      "origin_count": 335,
+      "earliest_origin": "2025-11-16",
+      "latest_origin": "2026-10-16",
+      "zero_target_count": 266768,
+      "zero_target_pct": 6.01,
+      "positive_target_count": 4173992,
+      "positive_target_pct": 93.99,
+      "min_target": 0,
+      "max_target": 569,
+      "mean_target": 41.0801
+    },
+    "independent_spot_checks": [
+      {
+        "outlet_id": "OUT001",
+        "product_id": "PRD047",
+        "origin_t": 0,
+        "origin_date": "2025-11-16",
+        "window_7d": "2025-11-17 to 2025-11-23",
+        "ref_7d_direct": 5,
+        "vec_7d": 5,
+        "match_7d": true,
+        "window_30d": "2025-11-17 to 2025-12-16",
+        "ref_30d_direct": 31,
+        "vec_30d": 31,
+        "match_30d": true
+      },
+      {
+        "outlet_id": "OUT002",
+        "product_id": "PRD240",
+        "origin_t": 100,
+        "origin_date": "2026-02-24",
+        "window_7d": "2026-02-25 to 2026-03-03",
+        "ref_7d_direct": 0,
+        "vec_7d": 0,
+        "match_7d": true,
+        "window_30d": "2026-02-25 to 2026-03-26",
+        "ref_30d_direct": 37,
+        "vec_30d": 37,
+        "match_30d": true
+      },
+      {
+        "outlet_id": "OUT005",
+        "product_id": "PRD238",
+        "origin_t": 200,
+        "origin_date": "2026-06-04",
+        "window_7d": "2026-06-05 to 2026-06-11",
+        "ref_7d_direct": 33,
+        "vec_7d": 33,
+        "match_7d": true,
+        "window_30d": "2026-06-05 to 2026-07-04",
+        "ref_30d_direct": 234,
+        "vec_30d": 234,
+        "match_30d": true
+      },
+      {
+        "outlet_id": "OUT001",
+        "product_id": "PRD047",
+        "origin_t": 334,
+        "origin_date": "2026-10-16",
+        "window_7d": "2026-10-17 to 2026-10-23",
+        "ref_7d_direct": 3,
+        "vec_7d": 3,
+        "match_7d": true,
+        "window_30d": "2026-10-17 to 2026-11-15",
+        "ref_30d_direct": 12,
+        "vec_30d": 12,
+        "match_30d": true
+      },
+      {
+        "outlet_id": "OUT001",
+        "product_id": "PRD047",
+        "origin_t": 357,
+        "origin_date": "2026-11-08",
+        "window_7d": "2026-11-09 to 2026-11-15",
+        "ref_7d_direct": 6,
+        "vec_7d": 6,
+        "match_7d": true,
+        "window_30d": "N/A",
+        "ref_30d_direct": null,
+        "vec_30d": null,
+        "match_30d": true
+      },
+      {
+        "outlet_id": "OUT200",
+        "product_id": "PRD155",
+        "origin_t": 357,
+        "origin_date": "2026-11-08",
+        "window_7d": "2026-11-09 to 2026-11-15",
+        "ref_7d_direct": 1,
+        "vec_7d": 1,
+        "match_7d": true,
+        "window_30d": "N/A",
+        "ref_30d_direct": null,
+        "vec_30d": null,
+        "match_30d": true
+      }
+    ],
+    "status": "PASS"
+  },
+  "task_e_availability_and_censoring": {
+    "total_catalog_cells": 4838440,
+    "observation_categories": {
+      "observed_zero_sales_stock_available": 3274619,
+      "observed_zero_sales_stock_available_pct": 67.68,
+      "observed_zero_sales_no_stock": 728100,
+      "observed_zero_sales_no_stock_pct": 15.05,
+      "positive_sales_stock_available": 834819,
+      "positive_sales_stock_available_pct": 17.25,
+      "possible_closure_zero_tx_days": 902,
+      "possible_closure_zero_tx_days_pct": 0.02
+    },
+    "store_operational_status": {
+      "total_outlets": 200,
+      "total_expected_outlet_days": 73000,
+      "operating_with_transactions_outlet_days": 72973,
+      "zero_transaction_outlet_days": 27,
+      "outlets_affected_by_zero_tx": 19,
+      "stock_on_closed_shelves_product_days": 727,
+      "stockout_on_closed_days_product_days": 175,
+      "confirmed_closed_days": 0
+    },
+    "censoring_analysis": {
+      "horizon_7d": {
+        "total_windows": 4745648,
+        "fully_censored_0_days_physical": 523209,
+        "fully_censored_0_days_physical_pct": 11.03,
+        "fully_censored_0_days_accessible": 523214,
+        "fully_censored_0_days_accessible_pct": 11.03,
+        "thresholds": {
+          "4_of_7": {
+            "physical_eligible_windows": 4018526,
+            "physical_eligible_pct": 84.68,
+            "accessible_eligible_windows": 4018517,
+            "accessible_eligible_pct": 84.68
+          },
+          "5_of_7": {
+            "physical_eligible_windows": 3957113,
+            "physical_eligible_pct": 83.38,
+            "accessible_eligible_windows": 3957102,
+            "accessible_eligible_pct": 83.38
+          },
+          "6_of_7": {
+            "physical_eligible_windows": 3905675,
+            "physical_eligible_pct": 82.3,
+            "accessible_eligible_windows": 3905518,
+            "accessible_eligible_pct": 82.3
+          },
+          "7_of_7": {
+            "physical_eligible_windows": 3854524,
+            "physical_eligible_pct": 81.22,
+            "accessible_eligible_windows": 3849632,
+            "accessible_eligible_pct": 81.12
+          }
+        }
+      },
+      "horizon_30d": {
+        "total_windows": 4440760,
+        "fully_censored_0_days_physical": 973,
+        "fully_censored_0_days_physical_pct": 0.02,
+        "fully_censored_0_days_accessible": 973,
+        "fully_censored_0_days_accessible_pct": 0.02,
+        "thresholds": {
+          "15_of_30": {
+            "physical_eligible_windows": 3752033,
+            "physical_eligible_pct": 84.49,
+            "accessible_eligible_windows": 3752028,
+            "accessible_eligible_pct": 84.49
+          },
+          "20_of_30": {
+            "physical_eligible_windows": 3687823,
+            "physical_eligible_pct": 83.04,
+            "accessible_eligible_windows": 3687593,
+            "accessible_eligible_pct": 83.04
+          },
+          "25_of_30": {
+            "physical_eligible_windows": 3507146,
+            "physical_eligible_pct": 78.98,
+            "accessible_eligible_windows": 3507139,
+            "accessible_eligible_pct": 78.98
+          },
+          "30_of_30": {
+            "physical_eligible_windows": 3403911,
+            "physical_eligible_pct": 76.65,
+            "accessible_eligible_windows": 3385335,
+            "accessible_eligible_pct": 76.23
+          }
+        }
+      }
+    },
+    "policy_governance": "Partially available windows are treated as censored demand observations; no threshold is claimed scientifically optimal.",
+    "status": "PASS"
+  },
+  "task_f_leakage_validator": {
+    "validator_function": "validate_feature_timestamps",
+    "unit_tests_executed": 8,
+    "unit_tests_passed": true,
+    "test_results_breakdown": {
+      "test1_clean": true,
+      "test2_missing_metadata_none": true,
+      "test3_untracked_column": true,
+      "test4_unknown_column_in_metadata": true,
+      "test5_malformed_date_format": true,
+      "test6_future_source_date": true,
+      "test7_positive_lead_days": true,
+      "test8_suspicious_naming_warning": true
+    },
+    "status": "PASS"
+  },
+  "task_g_environment_diagnostics": {
+    "python_version": "3.13.5 (v3.13.5:6cb20a219a8, Jun 11 2025, 12:23:45) [Clang 16.0.0 (clang-1600.0.26.6)]",
+    "pandas_version": "2.2.2",
+    "numpy_version": "2.4.4",
+    "tests": {
+      "Import pandas": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Read small CSV": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Read sales.csv chunk": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Parse date Series pd.to_datetime": {
+        "exit_code": -11,
+        "status": "CRASH / SIGSEGV (Code -11)"
+      },
+      "Basic groupby operation": {
+        "exit_code": 0,
+        "status": "PASS"
+      },
+      "Stdlib datetime operations": {
+        "exit_code": 0,
+        "status": "PASS"
+      }
+    },
+    "pd_to_datetime_status": "UNRESOLVED_ENVIRONMENT_ISSUE (SIGSEGV Exit Code -11)",
+    "production_workaround": "Maintain date columns as ISO strings (YYYY-MM-DD); integer day-index mapping [0..364] with reversible stdlib datetime arithmetic.",
+    "status": "PASS"
+  },
+  "task_h_temporal_validation": {
+    "warmup_window": "2025-11-16 to 2025-12-12 (27 days)",
+    "training_origins": "2025-12-13 to 2026-07-01 (201 origin dates)",
+    "purge_window": "2026-07-02 to 2026-07-31 (30 days)",
+    "validation_origins": "2026-08-01 onward",
+    "last_train_7d_target_end_date": "2026-07-08",
+    "last_train_30d_target_end_date": "2026-07-31",
+    "max_validation_origin_30d": "2026-10-16",
+    "max_validation_target_end_30d": "2026-11-15",
+    "max_validation_origin_7d": "2026-11-08",
+    "max_validation_target_end_7d": "2026-11-15",
+    "zero_train_val_overlap_verified": true,
+    "all_validation_targets_within_calendar": true,
+    "status": "PASS"
+  },
+  "overall_audit_status": "ALL_MODULES_PASSED",
+  "module_statuses": {
+    "canonical_calendar": "PASS",
+    "task_a_batch_reconciliation": "PASS",
+    "task_b_pair_aggregation_consistency": "PASS",
+    "task_c_forecasting_targets": "PASS",
+    "task_e_availability_and_censoring": "PASS",
+    "task_f_leakage_validator": "PASS",
+    "task_g_environment_diagnostics": "PASS",
+    "task_h_temporal_validation": "PASS"
+  }
+}

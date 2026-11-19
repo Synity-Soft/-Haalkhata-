@@ -1,0 +1,1668 @@
+{
+  "7d": {
+    "horizon": "7d",
+    "target_col": "target_7d",
+    "training_rows": 2664456,
+    "validation_rows": 1325600,
+    "selected_alpha": 0.01,
+    "solver": "auto",
+    "alpha_grid_results": {
+      "0.01": {
+        "count": 1325600,
+        "mae": 7.3907,
+        "rmse": 13.0554,
+        "wape": 0.773605,
+        "bias": 3.1921,
+        "fit_time_seconds": 90.25,
+        "negative_raw_count": 120738,
+        "negative_raw_pct": 9.11
+      },
+      "0.1": {
+        "count": 1325600,
+        "mae": 7.3927,
+        "rmse": 13.0592,
+        "wape": 0.773821,
+        "bias": 3.1939,
+        "fit_time_seconds": 80.18,
+        "negative_raw_count": 120716,
+        "negative_raw_pct": 9.11
+      },
+      "1.0": {
+        "count": 1325600,
+        "mae": 7.3981,
+        "rmse": 13.0652,
+        "wape": 0.774381,
+        "bias": 3.2029,
+        "fit_time_seconds": 70.57,
+        "negative_raw_count": 120190,
+        "negative_raw_pct": 9.07
+      },
+      "10.0": {
+        "count": 1325600,
+        "mae": 7.4304,
+        "rmse": 13.0978,
+        "wape": 0.777768,
+        "bias": 3.2529,
+        "fit_time_seconds": 56.96,
+        "negative_raw_count": 116385,
+        "negative_raw_pct": 8.78
+      },
+      "100.0": {
+        "count": 1325600,
+        "mae": 7.4994,
+        "rmse": 13.1661,
+        "wape": 0.784991,
+        "bias": 3.3504,
+        "fit_time_seconds": 51.73,
+        "negative_raw_count": 109076,
+        "negative_raw_pct": 8.23
+      },
+      "1000.0": {
+        "count": 1325600,
+        "mae": 7.5274,
+        "rmse": 13.1906,
+        "wape": 0.787923,
+        "bias": 3.3866,
+        "fit_time_seconds": 39.45,
+        "negative_raw_count": 106499,
+        "negative_raw_pct": 8.03
+      }
+    },
+    "prediction_statistics": {
+      "raw_min": -5.92647967897074,
+      "raw_max": 159.0826366563876,
+      "raw_mean": 12.617666080933805,
+      "clipped_min": 0.0,
+      "clipped_max": 159.0826366563876,
+      "clipped_mean": 12.745585581820725,
+      "negative_raw_count": 120738,
+      "negative_raw_pct": 9.11
+    },
+    "overall_evaluation": {
+      "ridge": {
+        "count": 1325600,
+        "mae": 7.3907,
+        "rmse": 13.0554,
+        "wape": 0.773605,
+        "bias": 3.1921
+      },
+      "baseline": {
+        "count": 1325600,
+        "mae": 7.0658,
+        "rmse": 12.6544,
+        "wape": 0.739605,
+        "bias": 0.0443
+      },
+      "delta_wape": 0.034,
+      "delta_mae": 0.3249,
+      "delta_rmse": 0.401
+    },
+    "availability_eligible_evaluation": {
+      "ridge": {
+        "count": 1102601,
+        "mae": 8.3186,
+        "rmse": 14.0928,
+        "wape": 0.739952,
+        "bias": 3.5548
+      },
+      "baseline": {
+        "count": 1102601,
+        "mae": 7.9032,
+        "rmse": 13.5906,
+        "wape": 0.703005,
+        "bias": -0.2134
+      },
+      "delta_wape": 0.036947,
+      "delta_mae": 0.4154,
+      "delta_rmse": 0.5022
+    },
+    "sliced_evaluation": {
+      "by_product_category": {
+        "Baby-care essentials": {
+          "samples": 30600,
+          "ridge": {
+            "count": 30600,
+            "mae": 7.5383,
+            "rmse": 12.3848,
+            "wape": 0.794435,
+            "bias": 4.2211
+          },
+          "baseline": {
+            "count": 30600,
+            "mae": 6.7819,
+            "rmse": 11.6028,
+            "wape": 0.714721,
+            "bias": -0.037
+          }
+        },
+        "Basic health and hygiene products": {
+          "samples": 28200,
+          "ridge": {
+            "count": 28200,
+            "mae": 7.3555,
+            "rmse": 12.1491,
+            "wape": 0.804147,
+            "bias": 4.0878
+          },
+          "baseline": {
+            "count": 28200,
+            "mae": 6.6656,
+            "rmse": 11.3336,
+            "wape": 0.728721,
+            "bias": 0.0471
+          }
+        },
+        "Beverages and bottled water": {
+          "samples": 84300,
+          "ridge": {
+            "count": 84300,
+            "mae": 6.6154,
+            "rmse": 10.652,
+            "wape": 0.711364,
+            "bias": 2.4757
+          },
+          "baseline": {
+            "count": 84300,
+            "mae": 6.5067,
+            "rmse": 10.7042,
+            "wape": 0.699677,
+            "bias": -0.0616
+          }
+        },
+        "Biscuits and snacks": {
+          "samples": 83300,
+          "ridge": {
+            "count": 83300,
+            "mae": 5.4015,
+            "rmse": 8.863,
+            "wape": 0.63218,
+            "bias": 0.4882
+          },
+          "baseline": {
+            "count": 83300,
+            "mae": 5.9536,
+            "rmse": 10.0051,
+            "wape": 0.696796,
+            "bias": -0.0399
+          }
+        },
+        "Bread and bakery products": {
+          "samples": 39500,
+          "ridge": {
+            "count": 39500,
+            "mae": 2.554,
+            "rmse": 5.2325,
+            "wape": 1.834286,
+            "bias": 0.5995
+          },
+          "baseline": {
+            "count": 39500,
+            "mae": 2.5345,
+            "rmse": 5.374,
+            "wape": 1.820256,
+            "bias": 0.1837
+          }
+        },
+        "Breakfast products": {
+          "samples": 35900,
+          "ridge": {
+            "count": 35900,
+            "mae": 6.2723,
+            "rmse": 10.074,
+            "wape": 0.694828,
+            "bias": 2.2922
+          },
+          "baseline": {
+            "count": 35900,
+            "mae": 6.3866,
+            "rmse": 10.6529,
+            "wape": 0.707493,
+            "bias": -0.048
+          }
+        },
+        "Cooking oil": {
+          "samples": 75400,
+          "ridge": {
+            "count": 75400,
+            "mae": 11.6941,
+            "rmse": 19.3473,
+            "wape": 0.785932,
+            "bias": 6.7821
+          },
+          "baseline": {
+            "count": 75400,
+            "mae": 10.3165,
+            "rmse": 17.3551,
+            "wape": 0.693348,
+            "bias": 0.0287
+          }
+        },
+        "Dairy products": {
+          "samples": 74600,
+          "ridge": {
+            "count": 74600,
+            "mae": 5.3264,
+            "rmse": 9.5457,
+            "wape": 0.939564,
+            "bias": 2.3633
+          },
+          "baseline": {
+            "count": 74600,
+            "mae": 5.0537,
+            "rmse": 9.2079,
+            "wape": 0.891461,
+            "bias": 0.1318
+          }
+        },
+        "Eggs": {
+          "samples": 38200,
+          "ridge": {
+            "count": 38200,
+            "mae": 8.3842,
+            "rmse": 13.7637,
+            "wape": 0.80173,
+            "bias": 0.1128
+          },
+          "baseline": {
+            "count": 38200,
+            "mae": 10.3996,
+            "rmse": 16.7951,
+            "wape": 0.994454,
+            "bias": 0.4863
+          }
+        },
+        "Fish and frozen foods": {
+          "samples": 31500,
+          "ridge": {
+            "count": 31500,
+            "mae": 1.7105,
+            "rmse": 3.7395,
+            "wape": 2.986913,
+            "bias": 0.8357
+          },
+          "baseline": {
+            "count": 31500,
+            "mae": 1.1318,
+            "rmse": 3.0775,
+            "wape": 1.976398,
+            "bias": 0.0608
+          }
+        },
+        "Flour and baking ingredients": {
+          "samples": 61700,
+          "ridge": {
+            "count": 61700,
+            "mae": 9.9002,
+            "rmse": 16.3643,
+            "wape": 0.637493,
+            "bias": 1.5843
+          },
+          "baseline": {
+            "count": 61700,
+            "mae": 10.8718,
+            "rmse": 18.2631,
+            "wape": 0.700059,
+            "bias": -0.0762
+          }
+        },
+        "Fruits": {
+          "samples": 63800,
+          "ridge": {
+            "count": 63800,
+            "mae": 4.1493,
+            "rmse": 7.5372,
+            "wape": 0.763879,
+            "bias": 0.1161
+          },
+          "baseline": {
+            "count": 63800,
+            "mae": 4.5941,
+            "rmse": 8.5455,
+            "wape": 0.845758,
+            "bias": 0.0822
+          }
+        },
+        "Household cleaning products": {
+          "samples": 27700,
+          "ridge": {
+            "count": 27700,
+            "mae": 7.3256,
+            "rmse": 12.1222,
+            "wape": 0.778475,
+            "bias": 4.0464
+          },
+          "baseline": {
+            "count": 27700,
+            "mae": 6.5438,
+            "rmse": 11.1753,
+            "wape": 0.695396,
+            "bias": 0.0321
+          }
+        },
+        "Instant noodles and packaged food": {
+          "samples": 34700,
+          "ridge": {
+            "count": 34700,
+            "mae": 5.8179,
+            "rmse": 9.642,
+            "wape": 0.657056,
+            "bias": 0.9715
+          },
+          "baseline": {
+            "count": 34700,
+            "mae": 6.3492,
+            "rmse": 10.7893,
+            "wape": 0.717051,
+            "bias": -0.0052
+          }
+        },
+        "Laundry products": {
+          "samples": 31600,
+          "ridge": {
+            "count": 31600,
+            "mae": 6.8251,
+            "rmse": 11.1002,
+            "wape": 0.784183,
+            "bias": 3.8784
+          },
+          "baseline": {
+            "count": 31600,
+            "mae": 6.0669,
+            "rmse": 10.1198,
+            "wape": 0.697069,
+            "bias": -0.0241
+          }
+        },
+        "Lentils and pulses": {
+          "samples": 78500,
+          "ridge": {
+            "count": 78500,
+            "mae": 11.1671,
+            "rmse": 18.1316,
+            "wape": 0.782711,
+            "bias": 6.4891
+          },
+          "baseline": {
+            "count": 78500,
+            "mae": 9.9386,
+            "rmse": 16.4971,
+            "wape": 0.696601,
+            "bias": 0.0375
+          }
+        },
+        "Meat and poultry": {
+          "samples": 31700,
+          "ridge": {
+            "count": 31700,
+            "mae": 2.3317,
+            "rmse": 4.8353,
+            "wape": 2.373359,
+            "bias": 0.8984
+          },
+          "baseline": {
+            "count": 31700,
+            "mae": 1.8603,
+            "rmse": 4.5314,
+            "wape": 1.893548,
+            "bias": 0.0759
+          }
+        },
+        "Other daily necessities": {
+          "samples": 30300,
+          "ridge": {
+            "count": 30300,
+            "mae": 6.9545,
+            "rmse": 11.3749,
+            "wape": 0.769343,
+            "bias": 3.7708
+          },
+          "baseline": {
+            "count": 30300,
+            "mae": 6.3192,
+            "rmse": 10.6983,
+            "wape": 0.699062,
+            "bias": 0.0312
+          }
+        },
+        "Personal-care products": {
+          "samples": 31000,
+          "ridge": {
+            "count": 31000,
+            "mae": 7.366,
+            "rmse": 11.9119,
+            "wape": 0.787657,
+            "bias": 4.2461
+          },
+          "baseline": {
+            "count": 31000,
+            "mae": 6.5408,
+            "rmse": 10.9205,
+            "wape": 0.699415,
+            "bias": 0.0365
+          }
+        },
+        "Rice and grains": {
+          "samples": 116100,
+          "ridge": {
+            "count": 116100,
+            "mae": 11.0319,
+            "rmse": 18.0055,
+            "wape": 0.796848,
+            "bias": 6.4071
+          },
+          "baseline": {
+            "count": 116100,
+            "mae": 9.7493,
+            "rmse": 16.3426,
+            "wape": 0.704205,
+            "bias": 0.0069
+          }
+        },
+        "Spices and condiments": {
+          "samples": 64300,
+          "ridge": {
+            "count": 64300,
+            "mae": 7.0665,
+            "rmse": 11.5938,
+            "wape": 0.77913,
+            "bias": 3.9737
+          },
+          "baseline": {
+            "count": 64300,
+            "mae": 6.328,
+            "rmse": 10.7088,
+            "wape": 0.697698,
+            "bias": 0.0323
+          }
+        },
+        "Sugar and salt": {
+          "samples": 71500,
+          "ridge": {
+            "count": 71500,
+            "mae": 11.8663,
+            "rmse": 19.019,
+            "wape": 0.785672,
+            "bias": 6.8384
+          },
+          "baseline": {
+            "count": 71500,
+            "mae": 10.4854,
+            "rmse": 17.2207,
+            "wape": 0.694245,
+            "bias": 0.0008
+          }
+        },
+        "Tea and coffee": {
+          "samples": 36600,
+          "ridge": {
+            "count": 36600,
+            "mae": 7.201,
+            "rmse": 11.7071,
+            "wape": 0.782137,
+            "bias": 4.0078
+          },
+          "baseline": {
+            "count": 36600,
+            "mae": 6.4781,
+            "rmse": 10.8725,
+            "wape": 0.703622,
+            "bias": 0.0361
+          }
+        },
+        "Toiletries": {
+          "samples": 27800,
+          "ridge": {
+            "count": 27800,
+            "mae": 7.2416,
+            "rmse": 11.9443,
+            "wape": 0.795759,
+            "bias": 4.0674
+          },
+          "baseline": {
+            "count": 27800,
+            "mae": 6.5149,
+            "rmse": 11.0614,
+            "wape": 0.715907,
+            "bias": 0.0487
+          }
+        },
+        "Vegetables": {
+          "samples": 96800,
+          "ridge": {
+            "count": 96800,
+            "mae": 4.5237,
+            "rmse": 8.0162,
+            "wape": 0.787912,
+            "bias": 0.082
+          },
+          "baseline": {
+            "count": 96800,
+            "mae": 5.2899,
+            "rmse": 9.5043,
+            "wape": 0.921361,
+            "bias": 0.16
+          }
+        }
+      },
+      "by_outlet_type": {
+        "Grocery shop": {
+          "samples": 562600,
+          "ridge": {
+            "count": 562600,
+            "mae": 4.1705,
+            "rmse": 6.4037,
+            "wape": 0.773671,
+            "bias": 1.8926
+          },
+          "baseline": {
+            "count": 562600,
+            "mae": 3.9763,
+            "rmse": 6.1825,
+            "wape": 0.737632,
+            "bias": 0.0249
+          }
+        },
+        "Grocery store": {
+          "samples": 404800,
+          "ridge": {
+            "count": 404800,
+            "mae": 4.7621,
+            "rmse": 7.1273,
+            "wape": 0.764035,
+            "bias": 2.044
+          },
+          "baseline": {
+            "count": 404800,
+            "mae": 4.6216,
+            "rmse": 6.9681,
+            "wape": 0.741497,
+            "bias": 0.0137
+          }
+        },
+        "Supermarket": {
+          "samples": 358200,
+          "ridge": {
+            "count": 358200,
+            "mae": 15.4188,
+            "rmse": 22.56,
+            "wape": 0.776974,
+            "bias": 6.5304
+          },
+          "baseline": {
+            "count": 358200,
+            "mae": 14.6806,
+            "rmse": 21.8565,
+            "wape": 0.739775,
+            "bias": 0.1093
+          }
+        }
+      },
+      "by_area_type": {
+        "Commercial / office areas": {
+          "samples": 157500,
+          "ridge": {
+            "count": 157500,
+            "mae": 7.7302,
+            "rmse": 13.5073,
+            "wape": 0.767463,
+            "bias": 3.2718
+          },
+          "baseline": {
+            "count": 157500,
+            "mae": 7.4022,
+            "rmse": 13.0872,
+            "wape": 0.734905,
+            "bias": 0.0621
+          }
+        },
+        "Garment / industrial worker areas": {
+          "samples": 125800,
+          "ridge": {
+            "count": 125800,
+            "mae": 5.7964,
+            "rmse": 9.9493,
+            "wape": 0.767218,
+            "bias": 2.5622
+          },
+          "baseline": {
+            "count": 125800,
+            "mae": 5.5065,
+            "rmse": 9.5108,
+            "wape": 0.728854,
+            "bias": 0.0646
+          }
+        },
+        "Lower-income / dense urban residential": {
+          "samples": 158300,
+          "ridge": {
+            "count": 158300,
+            "mae": 5.84,
+            "rmse": 10.1937,
+            "wape": 0.78647,
+            "bias": 2.8256
+          },
+          "baseline": {
+            "count": 158300,
+            "mae": 5.4691,
+            "rmse": 9.7807,
+            "wape": 0.736521,
+            "bias": -0.0052
+          }
+        },
+        "Middle-income residential": {
+          "samples": 254800,
+          "ridge": {
+            "count": 254800,
+            "mae": 8.1929,
+            "rmse": 14.3012,
+            "wape": 0.780301,
+            "bias": 3.6032
+          },
+          "baseline": {
+            "count": 254800,
+            "mae": 7.8102,
+            "rmse": 13.8123,
+            "wape": 0.743854,
+            "bias": 0.0967
+          }
+        },
+        "Mixed-income urban neighbourhoods": {
+          "samples": 141500,
+          "ridge": {
+            "count": 141500,
+            "mae": 7.6947,
+            "rmse": 13.8949,
+            "wape": 0.774901,
+            "bias": 3.2305
+          },
+          "baseline": {
+            "count": 141500,
+            "mae": 7.3517,
+            "rmse": 13.3191,
+            "wape": 0.74036,
+            "bias": 0.0645
+          }
+        },
+        "Premium / affluent residential": {
+          "samples": 187700,
+          "ridge": {
+            "count": 187700,
+            "mae": 10.1072,
+            "rmse": 16.5994,
+            "wape": 0.769023,
+            "bias": 4.2269
+          },
+          "baseline": {
+            "count": 187700,
+            "mae": 9.7032,
+            "rmse": 16.1205,
+            "wape": 0.738289,
+            "bias": 0.0117
+          }
+        },
+        "Rural-market or peri-urban areas": {
+          "samples": 53400,
+          "ridge": {
+            "count": 53400,
+            "mae": 4.5022,
+            "rmse": 6.92,
+            "wape": 0.772691,
+            "bias": 2.0728
+          },
+          "baseline": {
+            "count": 53400,
+            "mae": 4.2635,
+            "rmse": 6.6294,
+            "wape": 0.731734,
+            "bias": 0.0673
+          }
+        },
+        "Semi-urban / small-town markets": {
+          "samples": 130000,
+          "ridge": {
+            "count": 130000,
+            "mae": 8.6663,
+            "rmse": 15.1871,
+            "wape": 0.775458,
+            "bias": 3.6456
+          },
+          "baseline": {
+            "count": 130000,
+            "mae": 8.3673,
+            "rmse": 15.0417,
+            "wape": 0.748706,
+            "bias": -0.0093
+          }
+        },
+        "University / student areas": {
+          "samples": 116600,
+          "ridge": {
+            "count": 116600,
+            "mae": 4.1631,
+            "rmse": 6.2886,
+            "wape": 0.757769,
+            "bias": 1.6573
+          },
+          "baseline": {
+            "count": 116600,
+            "mae": 4.0749,
+            "rmse": 6.2303,
+            "wape": 0.741704,
+            "bias": 0.0284
+          }
+        }
+      },
+      "by_demand_tier": {
+        "Zero / Intermittent (<2/wk)": {
+          "samples": 267139,
+          "ridge": {
+            "count": 267139,
+            "mae": 1.8747,
+            "rmse": 3.6356,
+            "wape": 1.120476,
+            "bias": 0.5618
+          },
+          "baseline": {
+            "count": 267139,
+            "mae": 1.5836,
+            "rmse": 4.093,
+            "wape": 0.946495,
+            "bias": -0.873
+          }
+        },
+        "Low (2 to <10/wk)": {
+          "samples": 642001,
+          "ridge": {
+            "count": 642001,
+            "mae": 4.668,
+            "rmse": 6.6207,
+            "wape": 0.759652,
+            "bias": 1.9677
+          },
+          "baseline": {
+            "count": 642001,
+            "mae": 4.5217,
+            "rmse": 6.9546,
+            "wape": 0.735846,
+            "bias": -0.8968
+          }
+        },
+        "Medium (10 to 50/wk)": {
+          "samples": 396485,
+          "ridge": {
+            "count": 396485,
+            "mae": 14.1652,
+            "rmse": 19.9457,
+            "wape": 0.753566,
+            "bias": 6.1855
+          },
+          "baseline": {
+            "count": 396485,
+            "mae": 13.4507,
+            "rmse": 18.8505,
+            "wape": 0.715559,
+            "bias": 1.1319
+          }
+        },
+        "High (>50/wk)": {
+          "samples": 19975,
+          "ridge": {
+            "count": 19975,
+            "mae": 34.1992,
+            "rmse": 42.7673,
+            "wape": 0.833849,
+            "bias": 18.3005
+          },
+          "baseline": {
+            "count": 19975,
+            "mae": 35.4189,
+            "rmse": 42.3705,
+            "wape": 0.863588,
+            "bias": 20.9726
+          }
+        }
+      }
+    },
+    "model_artifact": {
+      "path": "ml/models/7d/ridge_model.joblib",
+      "size_mb": 0.02
+    },
+    "prediction_artifact": {
+      "path": "ml/predictions/ridge_validation_predictions_7d.csv",
+      "size_mb": 63.9
+    }
+  },
+  "30d": {
+    "horizon": "30d",
+    "target_col": "target_30d",
+    "training_rows": 2664456,
+    "validation_rows": 1020712,
+    "selected_alpha": 0.01,
+    "solver": "auto",
+    "alpha_grid_results": {
+      "0.01": {
+        "count": 1020712,
+        "mae": 13.2412,
+        "rmse": 22.2746,
+        "wape": 0.322068,
+        "bias": 5.093,
+        "fit_time_seconds": 73.54,
+        "negative_raw_count": 87248,
+        "negative_raw_pct": 8.55
+      },
+      "0.1": {
+        "count": 1020712,
+        "mae": 13.2422,
+        "rmse": 22.2764,
+        "wape": 0.322092,
+        "bias": 5.0922,
+        "fit_time_seconds": 80.51,
+        "negative_raw_count": 87241,
+        "negative_raw_pct": 8.55
+      },
+      "1.0": {
+        "count": 1020712,
+        "mae": 13.2513,
+        "rmse": 22.2888,
+        "wape": 0.322315,
+        "bias": 5.1082,
+        "fit_time_seconds": 57.09,
+        "negative_raw_count": 86902,
+        "negative_raw_pct": 8.51
+      },
+      "10.0": {
+        "count": 1020712,
+        "mae": 13.3419,
+        "rmse": 22.3913,
+        "wape": 0.324517,
+        "bias": 5.2386,
+        "fit_time_seconds": 55.19,
+        "negative_raw_count": 85183,
+        "negative_raw_pct": 8.35
+      },
+      "100.0": {
+        "count": 1020712,
+        "mae": 13.5869,
+        "rmse": 22.6245,
+        "wape": 0.330477,
+        "bias": 5.489,
+        "fit_time_seconds": 50.35,
+        "negative_raw_count": 75864,
+        "negative_raw_pct": 7.43
+      },
+      "1000.0": {
+        "count": 1020712,
+        "mae": 13.7014,
+        "rmse": 22.7195,
+        "wape": 0.333262,
+        "bias": 5.5986,
+        "fit_time_seconds": 3903.88,
+        "negative_raw_count": 74113,
+        "negative_raw_pct": 7.26
+      }
+    },
+    "prediction_statistics": {
+      "raw_min": -18.119526606197894,
+      "raw_max": 370.1620896566297,
+      "raw_mean": 45.68063320576678,
+      "clipped_min": 0.0,
+      "clipped_max": 370.1620896566297,
+      "clipped_mean": 46.20597620324903,
+      "negative_raw_count": 87248,
+      "negative_raw_pct": 8.55
+    },
+    "overall_evaluation": {
+      "ridge": {
+        "count": 1020712,
+        "mae": 13.2412,
+        "rmse": 22.2746,
+        "wape": 0.322068,
+        "bias": 5.093
+      },
+      "baseline": {
+        "count": 1020712,
+        "mae": 17.755,
+        "rmse": 32.0077,
+        "wape": 0.43186,
+        "bias": 0.0623
+      },
+      "delta_wape": -0.109792,
+      "delta_mae": -4.5138,
+      "delta_rmse": -9.7331
+    },
+    "availability_eligible_evaluation": {
+      "ridge": {
+        "count": 853740,
+        "mae": 14.3533,
+        "rmse": 23.5934,
+        "wape": 0.301066,
+        "bias": 5.6541
+      },
+      "baseline": {
+        "count": 853740,
+        "mae": 19.8771,
+        "rmse": 34.5539,
+        "wape": 0.416929,
+        "bias": 0.0771
+      },
+      "delta_wape": -0.115863,
+      "delta_mae": -5.5238,
+      "delta_rmse": -10.9605
+    },
+    "sliced_evaluation": {
+      "by_product_category": {
+        "Baby-care essentials": {
+          "samples": 23562,
+          "ridge": {
+            "count": 23562,
+            "mae": 12.8158,
+            "rmse": 20.3723,
+            "wape": 0.316858,
+            "bias": 7.2062
+          },
+          "baseline": {
+            "count": 23562,
+            "mae": 17.0332,
+            "rmse": 29.0532,
+            "wape": 0.421128,
+            "bias": -0.0014
+          }
+        },
+        "Basic health and hygiene products": {
+          "samples": 21714,
+          "ridge": {
+            "count": 21714,
+            "mae": 12.7989,
+            "rmse": 20.6775,
+            "wape": 0.325885,
+            "bias": 6.7583
+          },
+          "baseline": {
+            "count": 21714,
+            "mae": 17.1653,
+            "rmse": 29.8227,
+            "wape": 0.437063,
+            "bias": 0.2241
+          }
+        },
+        "Beverages and bottled water": {
+          "samples": 64911,
+          "ridge": {
+            "count": 64911,
+            "mae": 12.0622,
+            "rmse": 18.7565,
+            "wape": 0.303115,
+            "bias": 3.4332
+          },
+          "baseline": {
+            "count": 64911,
+            "mae": 16.8175,
+            "rmse": 27.7261,
+            "wape": 0.422612,
+            "bias": -0.388
+          }
+        },
+        "Biscuits and snacks": {
+          "samples": 64141,
+          "ridge": {
+            "count": 64141,
+            "mae": 10.3054,
+            "rmse": 16.0738,
+            "wape": 0.281485,
+            "bias": -0.8206
+          },
+          "baseline": {
+            "count": 64141,
+            "mae": 15.4181,
+            "rmse": 25.9282,
+            "wape": 0.421134,
+            "bias": -0.1441
+          }
+        },
+        "Bread and bakery products": {
+          "samples": 30415,
+          "ridge": {
+            "count": 30415,
+            "mae": 7.2233,
+            "rmse": 13.3157,
+            "wape": 1.08673,
+            "bias": 1.9632
+          },
+          "baseline": {
+            "count": 30415,
+            "mae": 6.9583,
+            "rmse": 12.0918,
+            "wape": 1.046853,
+            "bias": 0.0806
+          }
+        },
+        "Breakfast products": {
+          "samples": 27643,
+          "ridge": {
+            "count": 27643,
+            "mae": 10.9435,
+            "rmse": 16.6197,
+            "wape": 0.285795,
+            "bias": 3.7687
+          },
+          "baseline": {
+            "count": 27643,
+            "mae": 15.7697,
+            "rmse": 25.9878,
+            "wape": 0.411832,
+            "bias": 0.233
+          }
+        },
+        "Cooking oil": {
+          "samples": 58058,
+          "ridge": {
+            "count": 58058,
+            "mae": 19.8145,
+            "rmse": 32.4271,
+            "wape": 0.311139,
+            "bias": 11.4639
+          },
+          "baseline": {
+            "count": 58058,
+            "mae": 26.9762,
+            "rmse": 45.9271,
+            "wape": 0.423597,
+            "bias": 0.5491
+          }
+        },
+        "Dairy products": {
+          "samples": 57442,
+          "ridge": {
+            "count": 57442,
+            "mae": 10.5446,
+            "rmse": 17.1994,
+            "wape": 0.424838,
+            "bias": 4.1855
+          },
+          "baseline": {
+            "count": 57442,
+            "mae": 12.5139,
+            "rmse": 22.1878,
+            "wape": 0.504181,
+            "bias": 0.0541
+          }
+        },
+        "Eggs": {
+          "samples": 29414,
+          "ridge": {
+            "count": 29414,
+            "mae": 13.1647,
+            "rmse": 21.4374,
+            "wape": 0.280424,
+            "bias": -1.9339
+          },
+          "baseline": {
+            "count": 29414,
+            "mae": 18.9267,
+            "rmse": 31.9434,
+            "wape": 0.40316,
+            "bias": 0.1184
+          }
+        },
+        "Fish and frozen foods": {
+          "samples": 24255,
+          "ridge": {
+            "count": 24255,
+            "mae": 5.9851,
+            "rmse": 12.3794,
+            "wape": 2.21112,
+            "bias": 3.4359
+          },
+          "baseline": {
+            "count": 24255,
+            "mae": 3.8798,
+            "rmse": 7.2585,
+            "wape": 1.433349,
+            "bias": -0.1582
+          }
+        },
+        "Flour and baking ingredients": {
+          "samples": 47509,
+          "ridge": {
+            "count": 47509,
+            "mae": 17.4522,
+            "rmse": 28.3855,
+            "wape": 0.263435,
+            "bias": 0.2172
+          },
+          "baseline": {
+            "count": 47509,
+            "mae": 28.1812,
+            "rmse": 47.989,
+            "wape": 0.425385,
+            "bias": 0.1719
+          }
+        },
+        "Fruits": {
+          "samples": 49126,
+          "ridge": {
+            "count": 49126,
+            "mae": 9.3142,
+            "rmse": 15.2159,
+            "wape": 0.395007,
+            "bias": 0.183
+          },
+          "baseline": {
+            "count": 49126,
+            "mae": 10.3052,
+            "rmse": 17.5522,
+            "wape": 0.437036,
+            "bias": 0.0709
+          }
+        },
+        "Household cleaning products": {
+          "samples": 21329,
+          "ridge": {
+            "count": 21329,
+            "mae": 12.1961,
+            "rmse": 19.4195,
+            "wape": 0.300682,
+            "bias": 6.1651
+          },
+          "baseline": {
+            "count": 21329,
+            "mae": 16.3839,
+            "rmse": 28.0624,
+            "wape": 0.403928,
+            "bias": 0.1038
+          }
+        },
+        "Instant noodles and packaged food": {
+          "samples": 26719,
+          "ridge": {
+            "count": 26719,
+            "mae": 10.8122,
+            "rmse": 17.1468,
+            "wape": 0.285277,
+            "bias": 0.3323
+          },
+          "baseline": {
+            "count": 26719,
+            "mae": 16.2649,
+            "rmse": 27.9178,
+            "wape": 0.429143,
+            "bias": -0.3205
+          }
+        },
+        "Laundry products": {
+          "samples": 24332,
+          "ridge": {
+            "count": 24332,
+            "mae": 11.6643,
+            "rmse": 17.7296,
+            "wape": 0.311968,
+            "bias": 6.2284
+          },
+          "baseline": {
+            "count": 24332,
+            "mae": 15.5981,
+            "rmse": 26.1538,
+            "wape": 0.417179,
+            "bias": -0.1174
+          }
+        },
+        "Lentils and pulses": {
+          "samples": 60445,
+          "ridge": {
+            "count": 60445,
+            "mae": 18.8063,
+            "rmse": 29.7682,
+            "wape": 0.307239,
+            "bias": 10.9947
+          },
+          "baseline": {
+            "count": 60445,
+            "mae": 25.6534,
+            "rmse": 43.3416,
+            "wape": 0.419098,
+            "bias": 0.0261
+          }
+        },
+        "Meat and poultry": {
+          "samples": 24409,
+          "ridge": {
+            "count": 24409,
+            "mae": 7.3497,
+            "rmse": 13.792,
+            "wape": 1.550897,
+            "bias": 3.3591
+          },
+          "baseline": {
+            "count": 24409,
+            "mae": 5.6563,
+            "rmse": 9.9785,
+            "wape": 1.193576,
+            "bias": -0.3686
+          }
+        },
+        "Other daily necessities": {
+          "samples": 23331,
+          "ridge": {
+            "count": 23331,
+            "mae": 12.0069,
+            "rmse": 19.2155,
+            "wape": 0.312374,
+            "bias": 6.0759
+          },
+          "baseline": {
+            "count": 23331,
+            "mae": 16.1606,
+            "rmse": 27.5454,
+            "wape": 0.420437,
+            "bias": 0.5615
+          }
+        },
+        "Personal-care products": {
+          "samples": 23870,
+          "ridge": {
+            "count": 23870,
+            "mae": 12.9709,
+            "rmse": 20.5871,
+            "wape": 0.324688,
+            "bias": 7.3909
+          },
+          "baseline": {
+            "count": 23870,
+            "mae": 17.3555,
+            "rmse": 28.8728,
+            "wape": 0.434443,
+            "bias": 0.232
+          }
+        },
+        "Rice and grains": {
+          "samples": 89397,
+          "ridge": {
+            "count": 89397,
+            "mae": 18.5605,
+            "rmse": 29.9563,
+            "wape": 0.312241,
+            "bias": 11.0072
+          },
+          "baseline": {
+            "count": 89397,
+            "mae": 25.0066,
+            "rmse": 41.9939,
+            "wape": 0.420682,
+            "bias": 0.0678
+          }
+        },
+        "Spices and condiments": {
+          "samples": 49511,
+          "ridge": {
+            "count": 49511,
+            "mae": 12.1453,
+            "rmse": 19.7609,
+            "wape": 0.312635,
+            "bias": 6.4878
+          },
+          "baseline": {
+            "count": 49511,
+            "mae": 16.5497,
+            "rmse": 28.7647,
+            "wape": 0.42601,
+            "bias": 0.2506
+          }
+        },
+        "Sugar and salt": {
+          "samples": 55055,
+          "ridge": {
+            "count": 55055,
+            "mae": 20.2107,
+            "rmse": 31.7311,
+            "wape": 0.312646,
+            "bias": 11.791
+          },
+          "baseline": {
+            "count": 55055,
+            "mae": 27.002,
+            "rmse": 44.3939,
+            "wape": 0.417703,
+            "bias": 0.0106
+          }
+        },
+        "Tea and coffee": {
+          "samples": 28182,
+          "ridge": {
+            "count": 28182,
+            "mae": 11.973,
+            "rmse": 18.4662,
+            "wape": 0.30269,
+            "bias": 6.3314
+          },
+          "baseline": {
+            "count": 28182,
+            "mae": 16.9474,
+            "rmse": 27.7424,
+            "wape": 0.42845,
+            "bias": 0.0478
+          }
+        },
+        "Toiletries": {
+          "samples": 21406,
+          "ridge": {
+            "count": 21406,
+            "mae": 12.5883,
+            "rmse": 20.0343,
+            "wape": 0.322211,
+            "bias": 6.7539
+          },
+          "baseline": {
+            "count": 21406,
+            "mae": 16.9117,
+            "rmse": 29.5184,
+            "wape": 0.43287,
+            "bias": 0.3226
+          }
+        },
+        "Vegetables": {
+          "samples": 74536,
+          "ridge": {
+            "count": 74536,
+            "mae": 9.0595,
+            "rmse": 14.8006,
+            "wape": 0.357207,
+            "bias": -0.51
+          },
+          "baseline": {
+            "count": 74536,
+            "mae": 10.9338,
+            "rmse": 19.5512,
+            "wape": 0.431108,
+            "bias": 0.1162
+          }
+        }
+      },
+      "by_outlet_type": {
+        "Grocery shop": {
+          "samples": 433202,
+          "ridge": {
+            "count": 433202,
+            "mae": 7.9529,
+            "rmse": 11.3942,
+            "wape": 0.343054,
+            "bias": 3.1836
+          },
+          "baseline": {
+            "count": 433202,
+            "mae": 10.0039,
+            "rmse": 15.6694,
+            "wape": 0.431523,
+            "bias": 0.0098
+          }
+        },
+        "Grocery store": {
+          "samples": 311696,
+          "ridge": {
+            "count": 311696,
+            "mae": 8.8234,
+            "rmse": 12.4613,
+            "wape": 0.329332,
+            "bias": 3.3238
+          },
+          "baseline": {
+            "count": 311696,
+            "mae": 11.6566,
+            "rmse": 17.5957,
+            "wape": 0.435079,
+            "bias": -0.0654
+          }
+        },
+        "Supermarket": {
+          "samples": 275814,
+          "ridge": {
+            "count": 275814,
+            "mae": 26.5395,
+            "rmse": 38.1673,
+            "wape": 0.310552,
+            "bias": 10.0912
+          },
+          "baseline": {
+            "count": 275814,
+            "mae": 36.8211,
+            "rmse": 55.2796,
+            "wape": 0.430863,
+            "bias": 0.289
+          }
+        }
+      },
+      "by_area_type": {
+        "Commercial / office areas": {
+          "samples": 121275,
+          "ridge": {
+            "count": 121275,
+            "mae": 13.5532,
+            "rmse": 22.2622,
+            "wape": 0.312301,
+            "bias": 5.1215
+          },
+          "baseline": {
+            "count": 121275,
+            "mae": 18.5425,
+            "rmse": 33.0588,
+            "wape": 0.427269,
+            "bias": -0.0649
+          }
+        },
+        "Garment / industrial worker areas": {
+          "samples": 96866,
+          "ridge": {
+            "count": 96866,
+            "mae": 10.4218,
+            "rmse": 16.79,
+            "wape": 0.320725,
+            "bias": 3.9669
+          },
+          "baseline": {
+            "count": 96866,
+            "mae": 13.6355,
+            "rmse": 23.886,
+            "wape": 0.419621,
+            "bias": 0.2652
+          }
+        },
+        "Lower-income / dense urban residential": {
+          "samples": 121891,
+          "ridge": {
+            "count": 121891,
+            "mae": 10.7743,
+            "rmse": 18.0915,
+            "wape": 0.338759,
+            "bias": 4.9201
+          },
+          "baseline": {
+            "count": 121891,
+            "mae": 13.8141,
+            "rmse": 25.0621,
+            "wape": 0.434336,
+            "bias": -0.1471
+          }
+        },
+        "Middle-income residential": {
+          "samples": 196196,
+          "ridge": {
+            "count": 196196,
+            "mae": 14.7517,
+            "rmse": 24.8138,
+            "wape": 0.32612,
+            "bias": 5.942
+          },
+          "baseline": {
+            "count": 196196,
+            "mae": 19.629,
+            "rmse": 35.0965,
+            "wape": 0.433944,
+            "bias": 0.405
+          }
+        },
+        "Mixed-income urban neighbourhoods": {
+          "samples": 108955,
+          "ridge": {
+            "count": 108955,
+            "mae": 13.6863,
+            "rmse": 23.2754,
+            "wape": 0.320523,
+            "bias": 5.0517
+          },
+          "baseline": {
+            "count": 108955,
+            "mae": 18.3664,
+            "rmse": 33.1841,
+            "wape": 0.430129,
+            "bias": 0.4242
+          }
+        },
+        "Premium / affluent residential": {
+          "samples": 144529,
+          "ridge": {
+            "count": 144529,
+            "mae": 17.6632,
+            "rmse": 27.8618,
+            "wape": 0.312408,
+            "bias": 6.4052
+          },
+          "baseline": {
+            "count": 144529,
+            "mae": 24.4282,
+            "rmse": 40.4041,
+            "wape": 0.43206,
+            "bias": -0.1348
+          }
+        },
+        "Rural-market or peri-urban areas": {
+          "samples": 41118,
+          "ridge": {
+            "count": 41118,
+            "mae": 8.0798,
+            "rmse": 11.5354,
+            "wape": 0.319855,
+            "bias": 3.1621
+          },
+          "baseline": {
+            "count": 41118,
+            "mae": 10.5951,
+            "rmse": 16.4922,
+            "wape": 0.419428,
+            "bias": 0.0636
+          }
+        },
+        "Semi-urban / small-town markets": {
+          "samples": 100100,
+          "ridge": {
+            "count": 100100,
+            "mae": 15.5724,
+            "rmse": 26.4182,
+            "wape": 0.323603,
+            "bias": 5.7914
+          },
+          "baseline": {
+            "count": 100100,
+            "mae": 21.2678,
+            "rmse": 38.7013,
+            "wape": 0.441957,
+            "bias": -0.4145
+          }
+        },
+        "University / student areas": {
+          "samples": 89782,
+          "ridge": {
+            "count": 89782,
+            "mae": 8.0156,
+            "rmse": 11.4496,
+            "wape": 0.339016,
+            "bias": 2.692
+          },
+          "baseline": {
+            "count": 89782,
+            "mae": 10.2696,
+            "rmse": 15.8797,
+            "wape": 0.434345,
+            "bias": -0.0406
+          }
+        }
+      },
+      "by_demand_tier": {
+        "Zero / Intermittent (<2/wk)": {
+          "samples": 206476,
+          "ridge": {
+            "count": 206476,
+            "mae": 5.4702,
+            "rmse": 8.5942,
+            "wape": 0.786086,
+            "bias": 1.8474
+          },
+          "baseline": {
+            "count": 206476,
+            "mae": 4.9182,
+            "rmse": 10.3896,
+            "wape": 0.706763,
+            "bias": -3.5445
+          }
+        },
+        "Low (2 to <10/wk)": {
+          "samples": 493702,
+          "ridge": {
+            "count": 493702,
+            "mae": 8.7033,
+            "rmse": 12.2948,
+            "wape": 0.330577,
+            "bias": 3.3764
+          },
+          "baseline": {
+            "count": 493702,
+            "mae": 11.3524,
+            "rmse": 18.2397,
+            "wape": 0.431198,
+            "bias": -3.849
+          }
+        },
+        "Medium (10 to 50/wk)": {
+          "samples": 304943,
+          "ridge": {
+            "count": 304943,
+            "mae": 23.4269,
+            "rmse": 32.7192,
+            "wape": 0.28899,
+            "bias": 8.5896
+          },
+          "baseline": {
+            "count": 304943,
+            "mae": 32.5784,
+            "rmse": 45.4184,
+            "wape": 0.401882,
+            "bias": 4.4322
+          }
+        },
+        "High (>50/wk)": {
+          "samples": 15591,
+          "ridge": {
+            "count": 15591,
+            "mae": 60.6287,
+            "rmse": 76.0189,
+            "wape": 0.336441,
+            "bias": 34.0433
+          },
+          "baseline": {
+            "count": 15591,
+            "mae": 100.5722,
+            "rmse": 121.4916,
+            "wape": 0.558095,
+            "bias": 86.2129
+          }
+        }
+      }
+    },
+    "model_artifact": {
+      "path": "ml/models/30d/ridge_model.joblib",
+      "size_mb": 0.02
+    },
+    "prediction_artifact": {
+      "path": "ml/predictions/ridge_validation_predictions_30d.csv",
+      "size_mb": 53.2
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "calendar_integrity": {
+    "start_date": "2025-11-16",
+    "end_date": "2026-11-15",
+    "total_days": 365,
+    "is_consecutive": true,
+    "matches_sales_dates": true,
+    "matches_metrics_dates": true,
+    "status": "VERIFIED"
+  },
+  "outlet_operating_status": {
+    "confirmed_closures": 0,
+    "possible_closures_zero_tx_outlet_days": 27,
+    "outlets_affected_by_zero_tx": 19,
+    "affected_outlet_product_days": 902,
+    "normal_operating_outlet_days": 72973,
+    "normal_operating_pct": 99.963,
+    "notes": "No explicit is_open column exists in dataset; 27 zero-transaction days classified as possible closures."
+  },
+  "inventory_availability_reconstruction": {
+    "total_catalog_grid_cells": 4838440,
+    "recorded_sales_days": 834819,
+    "recorded_sales_pct": 17.25,
+    "known_available_product_days": 4110165,
+    "known_available_pct": 84.95,
+    "known_unavailable_stockout_product_days": 728100,
+    "known_unavailable_pct": 15.05,
+    "possible_closure_product_days": 175,
+    "possible_closure_pct": 0.0036,
+    "batches_exhausted_before_expiry": 390,
+    "definition": "Known Available: opening/daily stock > 0 or sale occurred. Known Unavailable: zero stock and no unexpired batch."
+  },
+  "target_feasibility_and_censoring": {
+    "horizon_7d": {
+      "eligible_origins_count": 358,
+      "latest_eligible_origin": "2026-11-08",
+      "total_windows": 4745648,
+      "complete_availability_7_of_7": 3854524,
+      "complete_availability_pct": 81.22,
+      "mildly_censored_4_to_6": 164002,
+      "mildly_censored_pct": 3.46,
+      "heavily_censored_1_to_3": 203913,
+      "heavily_censored_pct": 4.3,
+      "fully_censored_0_days": 523209,
+      "fully_censored_pct": 11.03
+    },
+    "horizon_30d": {
+      "eligible_origins_count": 335,
+      "latest_eligible_origin": "2026-10-16",
+      "total_windows": 4440760,
+      "complete_availability_30_of_30": 3403911,
+      "complete_availability_pct": 76.65,
+      "mildly_censored_20_to_29": 283912,
+      "mildly_censored_pct": 6.39,
+      "heavily_censored_1_to_19": 751964,
+      "heavily_censored_pct": 16.93,
+      "fully_censored_0_days": 973,
+      "fully_censored_pct": 0.02
+    }
+  },
+  "perishable_investigation_outlet_level": {
+    "affected_products_count": 56,
+    "affected_outlet_product_pairs": 2762,
+    "latest_batch_received_all_pairs": "2026-10-17",
+    "latest_batch_expiry_all_pairs": "2026-11-07",
+    "all_pairs_received_last_batch_by_oct17": true,
+    "all_pairs_expired_by_nov07": true,
+    "conclusion": "Verified Supply Interruption & Expiry Truncation. Zero batches received after 2026-10-17 across all stores."
+  }
+}

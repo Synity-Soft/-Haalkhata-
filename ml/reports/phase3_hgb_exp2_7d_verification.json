@@ -1,0 +1,294 @@
+{
+  "stage": "Phase 3, Stage 3.6.1",
+  "experiment_id": "EXP2_HGB_NO_INVENTORY_7D",
+  "all_passed": true,
+  "total_checks": 20,
+  "passed_checks": 20,
+  "overall_verdict": "PASSED",
+  "checks": {
+    "check_1_exact_52_feature_membership_and_order": {
+      "passed": true,
+      "count": 52,
+      "exact_order_match": true
+    },
+    "check_2_exact_num_cat_partition": {
+      "passed": true,
+      "num_count": 40,
+      "cat_count": 12,
+      "disjoint": true,
+      "num_order_match": true,
+      "cat_order_match": true
+    },
+    "check_3_estimator_n_features_in": {
+      "passed": true,
+      "n_features_in": 52
+    },
+    "check_4_categorical_indices": {
+      "passed": true,
+      "actual_indices": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "expected_indices": [
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ]
+    },
+    "check_5_encoder_fitted_state_and_unknown_config": {
+      "passed": true,
+      "category_features_count": 12,
+      "handle_unknown": "use_encoded_value",
+      "unknown_value": -1
+    },
+    "check_6_encoder_training_provenance": {
+      "passed": true,
+      "all_12_features_match_training_partition_exactly": true,
+      "per_feature_vocabularies": {
+        "outlet_type": {
+          "expected_count": 3,
+          "actual_count": 3,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "business_size": {
+          "expected_count": 5,
+          "actual_count": 5,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "division": {
+          "expected_count": 12,
+          "actual_count": 12,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "district": {
+          "expected_count": 12,
+          "actual_count": 12,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "area_type": {
+          "expected_count": 9,
+          "actual_count": 9,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "category": {
+          "expected_count": 25,
+          "actual_count": 25,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "subcategory": {
+          "expected_count": 29,
+          "actual_count": 29,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "brand": {
+          "expected_count": 10,
+          "actual_count": 10,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "unit": {
+          "expected_count": 7,
+          "actual_count": 7,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "package_size": {
+          "expected_count": 49,
+          "actual_count": 49,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "perishable_status": {
+          "expected_count": 2,
+          "actual_count": 2,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        },
+        "storage_type": {
+          "expected_count": 2,
+          "actual_count": 2,
+          "missing_categories": [],
+          "unexpected_categories": [],
+          "exact_order_match": true,
+          "passed": true
+        }
+      }
+    },
+    "check_7_inventory_15_excluded": {
+      "passed": true,
+      "excluded_features_found_in_model": []
+    },
+    "check_8_no_conditional_or_forbidden": {
+      "passed": true,
+      "conditional_features_found": [],
+      "forbidden_columns_found": []
+    },
+    "check_9_full_date_sequences_from_source": {
+      "passed": true,
+      "training_unique_dates": 201,
+      "validation_unique_dates": 100,
+      "training_sequence_consecutive": true,
+      "validation_sequence_consecutive": true
+    },
+    "check_10_exact_source_partition_row_counts": {
+      "passed": true,
+      "training_rows_scanned": 2664456,
+      "expected_training_rows": 2664456,
+      "purge_rows_scanned": 0,
+      "expected_purge_rows": 0,
+      "validation_rows_scanned": 1325600,
+      "expected_validation_rows": 1325600,
+      "total_source_rows_scanned": 3990056,
+      "expected_total_rows": 3990056
+    },
+    "check_11_forecast_key_uniqueness": {
+      "passed": true,
+      "dup_pred_keys": 0,
+      "dup_source_val_keys": 0
+    },
+    "check_12_100pct_validation_key_coverage": {
+      "passed": true,
+      "pred_count": 1325600,
+      "source_count": 1325600,
+      "keys_identically_aligned": true
+    },
+    "check_13_targets_match_exactly_after_alignment": {
+      "passed": true,
+      "max_diff_vs_baseline": 0.0,
+      "max_diff_vs_ridge": 0.0,
+      "max_diff_vs_exp1": 0.0,
+      "targets_nonnegative": true
+    },
+    "check_14_embedded_benchmark_predictions_aligned": {
+      "passed": true,
+      "max_diff_baseline_prediction": 0.0,
+      "mismatches_baseline": 0,
+      "max_diff_ridge_prediction": 0.0,
+      "mismatches_ridge": 0,
+      "max_diff_exp1_prediction": 0.0,
+      "mismatches_exp1": 0
+    },
+    "check_15_all_prediction_columns_finite": {
+      "passed": true,
+      "non_finite_counts": {
+        "actual_target": 0,
+        "predicted_7d_raw": 0,
+        "predicted_7d_clipped": 0,
+        "baseline_prediction": 0,
+        "ridge_prediction": 0,
+        "hgb_exp1_prediction": 0
+      }
+    },
+    "check_16_clipping_consistency": {
+      "passed": true,
+      "max_clip_diff": 0.0,
+      "clipped_min": 0.0
+    },
+    "check_17_reproducibility_on_keyed_sample": {
+      "passed": true,
+      "key_alignment_1000": true,
+      "max_diff_raw_vs_csv": 4.993087564386656e-05,
+      "max_diff_clipped_vs_csv": 4.993087564386656e-05,
+      "max_diff_raw_rounded": 0.0,
+      "max_diff_clipped_rounded": 0.0
+    },
+    "check_18_eligibility_data_validation": {
+      "passed": true,
+      "column_present": true,
+      "null_count": 0,
+      "unique_values": [
+        0,
+        1
+      ],
+      "is_binary_0_1": true,
+      "eligible_rows_count": 1102601,
+      "expected_eligible_rows": 1102601,
+      "all_valid_rows_count": 1325600,
+      "expected_all_valid_rows": 1325600
+    },
+    "check_19_independent_metric_recalculation_and_guard": {
+      "passed": true,
+      "empty_population_guard_verified": true,
+      "all_valid_recalculated": {
+        "count": 1325600,
+        "mae": 6.133970579586602,
+        "rmse": 11.047238433701732,
+        "wape": 0.642062919919085,
+        "bias": 0.018544015464695227
+      },
+      "eligible_recalculated": {
+        "count": 1102601,
+        "mae": 6.990226977846021,
+        "rmse": 11.94487597932606,
+        "wape": 0.6217936404404153,
+        "bias": -0.07890056040217631
+      },
+      "discrepancies_all_valid": {
+        "mae_diff": 1.7250672890156693e-08,
+        "rmse_diff": 3.104055856795185e-08,
+        "wape_diff": 1.805684823885656e-09,
+        "bias_diff": 5.317223741516108e-08
+      },
+      "discrepancies_eligible": {
+        "mae_diff": 4.969108147179213e-08,
+        "rmse_diff": 3.963086925296011e-08,
+        "wape_diff": 4.420113719483254e-09,
+        "bias_diff": 1.0344846537724273e-07
+      }
+    },
+    "check_20_honest_memory_reporting": {
+      "passed": true,
+      "true_peak_rss_during_fit": "UNMONITORED_AND_UNAVAILABLE",
+      "host_available_ram_during_training": "UNKNOWN",
+      "swap_activity": "NOT VERIFIED"
+    }
+  }
+}

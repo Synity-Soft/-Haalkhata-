@@ -1,0 +1,1314 @@
+{
+  "audit_metadata": {
+    "stage": "Phase 3, Stage 3.1: Feature Safety Audit",
+    "total_features_audited": 72,
+    "safe_count": 67,
+    "conditional_count": 5,
+    "unsafe_count": 0,
+    "needs_investigation_count": 0
+  },
+  "excluded_and_audit_columns": {
+    "target_columns": [
+      "target_7d",
+      "target_30d"
+    ],
+    "availability_audit_columns": [
+      "physical_avail_days_7d",
+      "accessible_avail_days_7d",
+      "physical_avail_days_30d",
+      "accessible_avail_days_30d"
+    ],
+    "eligibility_flags_7d": [
+      "is_eligible_phys_4of7",
+      "is_eligible_phys_5of7",
+      "is_eligible_phys_6of7",
+      "is_eligible_phys_7of7",
+      "is_eligible_acc_4of7",
+      "is_eligible_acc_5of7",
+      "is_eligible_acc_6of7",
+      "is_eligible_acc_7of7"
+    ],
+    "eligibility_flags_30d": [
+      "is_eligible_phys_15of30",
+      "is_eligible_phys_20of30",
+      "is_eligible_phys_25of30",
+      "is_eligible_phys_30of30",
+      "is_eligible_acc_15of30",
+      "is_eligible_acc_20of30",
+      "is_eligible_acc_25of30",
+      "is_eligible_acc_30of30"
+    ],
+    "entity_keys": [
+      "outlet_id",
+      "product_id",
+      "forecast_origin_date",
+      "split_set"
+    ],
+    "governance_rule": "All target, availability, and eligibility columns must remain strictly outside the feature matrix X during model training."
+  },
+  "feature_audit_details": {
+    "sales_lag_1d": {
+      "feature_name": "sales_lag_1d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_1d",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_lag_2d": {
+      "feature_name": "sales_lag_2d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_2d",
+      "relative_date_rule": "t - 1",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_lag_3d": {
+      "feature_name": "sales_lag_3d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_3d",
+      "relative_date_rule": "t - 2",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_lag_7d": {
+      "feature_name": "sales_lag_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_7d",
+      "relative_date_rule": "t - 6",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_lag_14d": {
+      "feature_name": "sales_lag_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_14d",
+      "relative_date_rule": "t - 13",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_lag_28d": {
+      "feature_name": "sales_lag_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_28d",
+      "relative_date_rule": "t - 27",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_sum_7d": {
+      "feature_name": "sales_sum_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_mean_7d": {
+      "feature_name": "sales_mean_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_std_7d": {
+      "feature_name": "sales_std_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_sum_14d": {
+      "feature_name": "sales_sum_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_14d",
+      "relative_date_rule": "[t-13, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_mean_14d": {
+      "feature_name": "sales_mean_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_14d",
+      "relative_date_rule": "[t-13, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_std_14d": {
+      "feature_name": "sales_std_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_14d",
+      "relative_date_rule": "[t-13, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_sum_28d": {
+      "feature_name": "sales_sum_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_mean_28d": {
+      "feature_name": "sales_mean_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_std_28d": {
+      "feature_name": "sales_std_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_max_7d": {
+      "feature_name": "sales_max_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_max_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_nonzero_days_7d": {
+      "feature_name": "sales_nonzero_days_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_nonzero_days_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_max_28d": {
+      "feature_name": "sales_max_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_max_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "sales_nonzero_days_28d": {
+      "feature_name": "sales_nonzero_days_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_nonzero_days_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "current_stock_quantity": {
+      "feature_name": "current_stock_quantity",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "reconstructed_closing_stock",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_received_7d": {
+      "feature_name": "stock_received_7d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_received_28d": {
+      "feature_name": "stock_received_28d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_wastage_7d": {
+      "feature_name": "stock_wastage_7d",
+      "feature_group": "inventory",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_wastage_28d": {
+      "feature_name": "stock_wastage_28d",
+      "feature_group": "inventory",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "days_since_last_restock": {
+      "feature_name": "days_since_last_restock",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "batch_received_date"
+      ],
+      "transformation": "days_since_event",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_to_recent_sales_ratio": {
+      "feature_name": "stock_to_recent_sales_ratio",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity"
+      ],
+      "transformation": "ratio_stock_to_sales_7d",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "reorder_point": {
+      "feature_name": "reorder_point",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "reorder_point"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "minimum_stock_level": {
+      "feature_name": "minimum_stock_level",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "minimum_stock_level"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "maximum_stock_level": {
+      "feature_name": "maximum_stock_level",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "maximum_stock_level"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_expiring_next_7d": {
+      "feature_name": "stock_expiring_next_7d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation": "forward_known_batch_expiry",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+7]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "stock_expiring_next_30d": {
+      "feature_name": "stock_expiring_next_30d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation": "forward_known_batch_expiry",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+30]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "nearest_expiry_days": {
+      "feature_name": "nearest_expiry_days",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation": "min_days_to_expiry",
+      "relative_date_rule": "known_at_t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "expiring_batch_count": {
+      "feature_name": "expiring_batch_count",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation": "count_batches_expiring_30d",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+30]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "outlet_type": {
+      "feature_name": "outlet_type",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "outlet_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "business_size": {
+      "feature_name": "business_size",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "business_size"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "division": {
+      "feature_name": "division",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "division"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "district": {
+      "feature_name": "district",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "district"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "area_type": {
+      "feature_name": "area_type",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "area_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "inventory_capacity_sku": {
+      "feature_name": "inventory_capacity_sku",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "inventory_capacity_sku"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "average_restock_frequency_days": {
+      "feature_name": "average_restock_frequency_days",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "average_restock_frequency_days"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "CONDITIONAL",
+      "risk_level": "LOW",
+      "documented_assumption": "Contractual store operational delivery schedule (fixed discrete values: 3, 5, 8, 12 days).",
+      "leakage_risk_evaluation": "Despite the column name beginning with \"average\", values are discrete operational schedule categories set by store management, not empirical transaction averages.",
+      "recommended_action": "Safe to retain as an outlet operational attribute."
+    },
+    "has_refrigeration": {
+      "feature_name": "has_refrigeration",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_refrigeration"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "has_pos_system": {
+      "feature_name": "has_pos_system",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_pos_system"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "category": {
+      "feature_name": "category",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "category"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "subcategory": {
+      "feature_name": "subcategory",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "subcategory"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "brand": {
+      "feature_name": "brand",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "brand"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "unit": {
+      "feature_name": "unit",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "unit"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "package_size": {
+      "feature_name": "package_size",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "package_size"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "perishable_status": {
+      "feature_name": "perishable_status",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "perishable_status"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "typical_shelf_life_days": {
+      "feature_name": "typical_shelf_life_days",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "typical_shelf_life_days"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "storage_type": {
+      "feature_name": "storage_type",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "storage_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "average_cost_price_bdt": {
+      "feature_name": "average_cost_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "average_cost_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "CONDITIONAL",
+      "risk_level": "LOW",
+      "documented_assumption": "Catalog master wholesale list price published in master vendor agreement.",
+      "leakage_risk_evaluation": "Safe under master vendor agreement assumption; if interpreted as empirical weighted average cost across future batches, it would carry mild leakage.",
+      "recommended_action": "Safe to retain as catalog reference attribute."
+    },
+    "average_selling_price_bdt": {
+      "feature_name": "average_selling_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "average_selling_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "CONDITIONAL",
+      "risk_level": "LOW",
+      "documented_assumption": "Catalog manufacturer suggested retail price (MSRP) / national reference price published in master product catalog.",
+      "leakage_risk_evaluation": "Highly correlated (0.99996) with empirical transaction selling prices. Safe under the documented assumption that master catalog reference prices are fixed in advance.",
+      "recommended_action": "Safe to retain in feature matrix alongside outlet-specific shelf price."
+    },
+    "is_essential_item": {
+      "feature_name": "is_essential_item",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "is_essential_item"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "outlet_selling_price_bdt": {
+      "feature_name": "outlet_selling_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "selling_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "outlet_purchase_cost_bdt": {
+      "feature_name": "outlet_purchase_cost_bdt",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "purchase_cost_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "outlet_average_daily_demand": {
+      "feature_name": "outlet_average_daily_demand",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "average_daily_demand"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "CONDITIONAL",
+      "risk_level": "HIGH",
+      "documented_assumption": "Pre-season retail planning prior / corporate merchandise demand estimate.",
+      "leakage_risk_evaluation": "In synthetic generation, this parameter is the latent demand mean (corr=0.919 with annual sales). If treated as an empirical post-hoc average, it would constitute full-history leakage. If central planning estimates are available in advance, it is safe as a static baseline prior.",
+      "recommended_action": "Include as benchmark baseline feature and in linear models. In tree ensembles, perform ablation tests (with vs without) to ensure model does not shortcut learning temporal and local features."
+    },
+    "day_of_week": {
+      "feature_name": "day_of_week",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_day_of_week",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "day_of_month": {
+      "feature_name": "day_of_month",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_day_of_month",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "month": {
+      "feature_name": "month",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_month",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "week_of_year": {
+      "feature_name": "week_of_year",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_iso_week",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_weekend": {
+      "feature_name": "is_weekend",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "bangladesh_weekend",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_month_start": {
+      "feature_name": "is_month_start",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "month_boundary_start",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_month_end": {
+      "feature_name": "is_month_end",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "month_boundary_end",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_ramadan": {
+      "feature_name": "is_ramadan",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_eid_fitr": {
+      "feature_name": "is_eid_fitr",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_eid_adha": {
+      "feature_name": "is_eid_adha",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_pohela_boishakh": {
+      "feature_name": "is_pohela_boishakh",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "is_durga_puja": {
+      "feature_name": "is_durga_puja",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "days_until_next_festival": {
+      "feature_name": "days_until_next_festival",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "days_to_upcoming_festival",
+      "relative_date_rule": "known_calendar_dates",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "CONDITIONAL",
+      "risk_level": "LOW",
+      "documented_assumption": "Public national holiday calendar gazetted by Bangladesh government at start of year.",
+      "leakage_risk_evaluation": "Safe assuming official government gazette calendar is published in advance; religious lunar sighting adjustments (+/- 1 day) are negligible for 7d/30d horizons.",
+      "recommended_action": "Safe to retain as forward-looking seasonal anticipation signal."
+    },
+    "promotion_active_at_origin": {
+      "feature_name": "promotion_active_at_origin",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "promotion_on_day",
+      "relative_date_rule": "t",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "promotion_days_last_7d": {
+      "feature_name": "promotion_days_last_7d",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "rolling_count_7d",
+      "relative_date_rule": "[t-6, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    },
+    "promotion_days_last_28d": {
+      "feature_name": "promotion_days_last_28d",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "rolling_count_28d",
+      "relative_date_rule": "[t-27, t]",
+      "available_at_forecast_origin": true,
+      "contains_future_information": false,
+      "safety_classification": "SAFE",
+      "risk_level": "NONE",
+      "documented_assumption": "Feature strictly derived from observations recorded on or before forecast origin date t.",
+      "leakage_risk_evaluation": "Zero temporal leakage; maximum source timestamp <= forecast origin date.",
+      "recommended_action": "Approved for model training without restriction."
+    }
+  }
+}

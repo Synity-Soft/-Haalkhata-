@@ -1,0 +1,442 @@
+{
+  "audit_timestamp": "2026-11-17 11:49:09",
+  "auditor": "Senior Machine Learning Engineer & Independent ML Auditor",
+  "scope": "Phase 3.9 Final Verification of Selected 7-Day and 30-Day Models",
+  "verdict": "PASSED",
+  "checks_passed": 25,
+  "total_checks": 25,
+  "tasks": {
+    "task_1_artifact_integrity": {
+      "verdict": "PASSED",
+      "details": {
+        "check_1_existence_and_loadability": {
+          "passed": true,
+          "7d_model_path": "ml/models/7d/hgb_exp3_absolute_error_model.joblib",
+          "7d_model_size_kb": 140.37,
+          "30d_model_path": "ml/models/30d/hgb_absolute_error_model.joblib",
+          "30d_model_size_kb": 168.6
+        },
+        "check_2_feature_counts": {
+          "passed": true,
+          "7d_safe_count": 67,
+          "7d_num_count": 55,
+          "7d_cat_count": 12,
+          "30d_safe_count": 67,
+          "30d_num_count": 55,
+          "30d_cat_count": 12
+        },
+        "check_3_encoder_and_categorical_indices": {
+          "passed": true,
+          "expected_categorical_indices": [
+            55,
+            56,
+            57,
+            58,
+            59,
+            60,
+            61,
+            62,
+            63,
+            64,
+            65,
+            66
+          ],
+          "7d_encoder_categories_count": 12,
+          "30d_encoder_categories_count": 12
+        },
+        "check_4_model_parameters_and_finiteness": {
+          "passed": true,
+          "loss": "absolute_error",
+          "learning_rate": 0.08,
+          "n_iter_7d": 100,
+          "n_iter_30d": 100,
+          "trees_finite": true
+        },
+        "check_5_horizon_and_target_schema": {
+          "passed": true,
+          "7d_horizon": "7d",
+          "7d_target_col": "target_7d",
+          "30d_horizon": "30d",
+          "30d_target_col": "target_30d"
+        }
+      }
+    },
+    "task_2_feature_safety": {
+      "verdict": "PASSED",
+      "details": {
+        "check_6_safe_registry_matching": {
+          "passed": true,
+          "safe_features_count": 67,
+          "7d_matches_registry_exactly": true,
+          "30d_matches_registry_exactly": true
+        },
+        "check_7_forbidden_and_conditional_exclusion": {
+          "passed": true,
+          "conditional_features_excluded": [
+            "outlet_average_daily_demand",
+            "average_selling_price_bdt",
+            "average_cost_price_bdt",
+            "average_restock_frequency_days",
+            "days_until_next_festival"
+          ],
+          "forbidden_columns_excluded": [
+            "outlet_id",
+            "product_id",
+            "forecast_origin_date",
+            "target_7d",
+            "target_30d",
+            "is_eligible_acc_5of7",
+            "is_eligible_acc_20of30"
+          ]
+        },
+        "check_8_encoder_training_provenance_7d": {
+          "passed": true,
+          "categories_verified": {
+            "outlet_type": {
+              "reconstructed_count": 3,
+              "saved_count": 3,
+              "exact_match": true
+            },
+            "business_size": {
+              "reconstructed_count": 5,
+              "saved_count": 5,
+              "exact_match": true
+            },
+            "division": {
+              "reconstructed_count": 12,
+              "saved_count": 12,
+              "exact_match": true
+            },
+            "district": {
+              "reconstructed_count": 12,
+              "saved_count": 12,
+              "exact_match": true
+            },
+            "area_type": {
+              "reconstructed_count": 9,
+              "saved_count": 9,
+              "exact_match": true
+            },
+            "category": {
+              "reconstructed_count": 25,
+              "saved_count": 25,
+              "exact_match": true
+            },
+            "subcategory": {
+              "reconstructed_count": 29,
+              "saved_count": 29,
+              "exact_match": true
+            },
+            "brand": {
+              "reconstructed_count": 10,
+              "saved_count": 10,
+              "exact_match": true
+            },
+            "unit": {
+              "reconstructed_count": 7,
+              "saved_count": 7,
+              "exact_match": true
+            },
+            "package_size": {
+              "reconstructed_count": 49,
+              "saved_count": 49,
+              "exact_match": true
+            },
+            "perishable_status": {
+              "reconstructed_count": 2,
+              "saved_count": 2,
+              "exact_match": true
+            },
+            "storage_type": {
+              "reconstructed_count": 2,
+              "saved_count": 2,
+              "exact_match": true
+            }
+          }
+        },
+        "check_9_encoder_training_provenance_30d": {
+          "passed": true,
+          "categories_verified": {
+            "outlet_type": {
+              "reconstructed_count": 3,
+              "saved_count": 3,
+              "exact_match": true
+            },
+            "business_size": {
+              "reconstructed_count": 5,
+              "saved_count": 5,
+              "exact_match": true
+            },
+            "division": {
+              "reconstructed_count": 12,
+              "saved_count": 12,
+              "exact_match": true
+            },
+            "district": {
+              "reconstructed_count": 12,
+              "saved_count": 12,
+              "exact_match": true
+            },
+            "area_type": {
+              "reconstructed_count": 9,
+              "saved_count": 9,
+              "exact_match": true
+            },
+            "category": {
+              "reconstructed_count": 25,
+              "saved_count": 25,
+              "exact_match": true
+            },
+            "subcategory": {
+              "reconstructed_count": 29,
+              "saved_count": 29,
+              "exact_match": true
+            },
+            "brand": {
+              "reconstructed_count": 10,
+              "saved_count": 10,
+              "exact_match": true
+            },
+            "unit": {
+              "reconstructed_count": 7,
+              "saved_count": 7,
+              "exact_match": true
+            },
+            "package_size": {
+              "reconstructed_count": 49,
+              "saved_count": 49,
+              "exact_match": true
+            },
+            "perishable_status": {
+              "reconstructed_count": 2,
+              "saved_count": 2,
+              "exact_match": true
+            },
+            "storage_type": {
+              "reconstructed_count": 2,
+              "saved_count": 2,
+              "exact_match": true
+            }
+          }
+        }
+      }
+    },
+    "task_3_inference_reproducibility": {
+      "verdict": "PASSED",
+      "details": {
+        "check_10_7d_inference_reproducibility": {
+          "passed": true,
+          "sample_size": 1000,
+          "max_quantized_difference": 0.0,
+          "max_raw_difference": 4.9928825674783184e-05,
+          "csv_rounding_precision": 4,
+          "status": "VERIFIED EXACT (Quantized Delta = 0.0, Raw Delta < 5e-5)"
+        },
+        "check_11_30d_inference_reproducibility": {
+          "passed": true,
+          "sample_size": 1000,
+          "max_quantized_difference": 0.0,
+          "max_raw_difference": 4.9990575947234106e-05,
+          "csv_rounding_precision": 4,
+          "status": "VERIFIED EXACT (Quantized Delta = 0.0, Raw Delta < 5e-5)"
+        }
+      }
+    },
+    "task_4_prediction_integrity": {
+      "verdict": "PASSED",
+      "details": {
+        "check_12_7d_row_count": {
+          "passed": true,
+          "rows": 1325600,
+          "expected": 1325600
+        },
+        "check_13_7d_key_uniqueness_and_dates": {
+          "passed": true,
+          "duplicate_keys": 0,
+          "unique_dates": 100,
+          "min_date": "2026-08-01",
+          "max_date": "2026-11-08"
+        },
+        "check_14_7d_finiteness_and_clipping": {
+          "passed": true,
+          "non_finite_count": 0,
+          "clipping_consistency_max_diff": 0.0,
+          "raw_negative_count": 5811,
+          "raw_negative_pct": 0.44
+        },
+        "check_15_7d_target_alignment": {
+          "passed": true,
+          "target_discrepancy_vs_baseline_and_ridge": 0.0
+        },
+        "check_16_30d_row_count": {
+          "passed": true,
+          "rows": 1020712,
+          "expected": 1020712
+        },
+        "check_17_30d_key_uniqueness_and_dates": {
+          "passed": true,
+          "duplicate_keys": 0,
+          "unique_dates": 77,
+          "min_date": "2026-08-01",
+          "max_date": "2026-10-16"
+        },
+        "check_18_30d_finiteness_and_clipping": {
+          "passed": true,
+          "non_finite_count": 0,
+          "clipping_consistency_max_diff": 0.0,
+          "raw_negative_count": 4292,
+          "raw_negative_pct": 0.42
+        },
+        "check_19_30d_target_alignment": {
+          "passed": true,
+          "target_discrepancy_vs_baseline_and_ridge": 0.0
+        },
+        "check_20_cross_horizon_isolation": {
+          "passed": true,
+          "7d_target_mean": 9.5535,
+          "30d_target_mean": 41.113
+        }
+      }
+    },
+    "task_5_benchmark_summary": {
+      "verdict": "PASSED",
+      "details": {
+        "check_21_empty_population_guard": {
+          "passed": true,
+          "result": {
+            "count": 0,
+            "mae": "UNDEFINED",
+            "rmse": "UNDEFINED",
+            "wape": "UNDEFINED",
+            "bias": "UNDEFINED"
+          }
+        },
+        "check_22_7d_metrics_recalculation": {
+          "passed": true,
+          "primary_all_valid": {
+            "selected_hgb_exp3_clipped": {
+              "count": 1325600,
+              "mae": 5.8486,
+              "rmse": 10.8431,
+              "wape": 0.612193,
+              "bias": -0.4567
+            },
+            "selected_hgb_exp3_raw": {
+              "count": 1325600,
+              "mae": 5.8494,
+              "rmse": 10.8432,
+              "wape": 0.612278,
+              "bias": -0.4575
+            },
+            "baseline_rolling": {
+              "count": 1325600,
+              "mae": 7.0658,
+              "rmse": 12.6544,
+              "wape": 0.739605,
+              "bias": 0.0443
+            },
+            "ridge_clipped": {
+              "count": 1325600,
+              "mae": 7.3907,
+              "rmse": 13.0554,
+              "wape": 0.773605,
+              "bias": 3.1921
+            }
+          },
+          "secondary_eligible": {
+            "selected_hgb_exp3_clipped": {
+              "count": 1102601,
+              "mae": 6.795,
+              "rmse": 11.7336,
+              "wape": 0.604429,
+              "bias": -0.4318
+            },
+            "baseline_rolling": {
+              "count": 1102601,
+              "mae": 7.9032,
+              "rmse": 13.5906,
+              "wape": 0.703005,
+              "bias": -0.2134
+            },
+            "ridge_clipped": {
+              "count": 1102601,
+              "mae": 8.3186,
+              "rmse": 14.0928,
+              "wape": 0.739952,
+              "bias": 3.5548
+            }
+          }
+        },
+        "check_23_30d_metrics_recalculation": {
+          "passed": true,
+          "primary_all_valid": {
+            "selected_hgb_30d_clipped": {
+              "count": 1020712,
+              "mae": 10.9066,
+              "rmse": 19.1755,
+              "wape": 0.265283,
+              "bias": 0.6293
+            },
+            "selected_hgb_30d_raw": {
+              "count": 1020712,
+              "mae": 10.9069,
+              "rmse": 19.1755,
+              "wape": 0.265292,
+              "bias": 0.629
+            },
+            "baseline_rolling": {
+              "count": 1020712,
+              "mae": 17.755,
+              "rmse": 32.0077,
+              "wape": 0.43186,
+              "bias": 0.0623
+            },
+            "ridge_clipped": {
+              "count": 1020712,
+              "mae": 13.2412,
+              "rmse": 22.2746,
+              "wape": 0.322068,
+              "bias": 5.093
+            }
+          },
+          "secondary_eligible": {
+            "selected_hgb_30d_clipped": {
+              "count": 853740,
+              "mae": 12.0624,
+              "rmse": 20.5955,
+              "wape": 0.253013,
+              "bias": 0.9752
+            },
+            "baseline_rolling": {
+              "count": 853740,
+              "mae": 19.8771,
+              "rmse": 34.5539,
+              "wape": 0.416929,
+              "bias": 0.0771
+            },
+            "ridge_clipped": {
+              "count": 853740,
+              "mae": 14.3533,
+              "rmse": 23.5934,
+              "wape": 0.301066,
+              "bias": 5.6541
+            }
+          }
+        },
+        "check_24_horizon_separation": {
+          "passed": true,
+          "7d_sample_count": 1325600,
+          "30d_sample_count": 1020712,
+          "statement": "7-day and 30-day forecasting tasks are strictly decoupled. WAPE percentages cannot be directly compared across different horizons."
+        }
+      }
+    },
+    "task_6_documentation": {
+      "verdict": "PASSED",
+      "prior_artifacts_preserved": true,
+      "total_checks_passed": 25,
+      "total_checks_count": 25
+    }
+  },
+  "total_runtime_seconds": 37.38
+}

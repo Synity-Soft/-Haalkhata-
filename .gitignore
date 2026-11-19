@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+venv/
+ENV/
+
+# Build artifacts
+dist/
+build/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# SQLite databases & runtime locks (exceeds GitHub limits / runtime state)
+*.db
+*.db-shm
+*.db-wal
+
+# Large datasets & generated predictions (exceeds GitHub 100MB hard limit)
+DataSets/sales.csv
+ml/data/*.csv
+ml/predictions/*.csv
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs & temp
+*.log
+.npm/

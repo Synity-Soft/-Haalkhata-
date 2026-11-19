@@ -1,0 +1,226 @@
+/* Haat-Bazaar global styles */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Centralized Theme Tokens (Light) */
+    --color-background: #FAF6E9;
+    --color-background-secondary: #F3EBD9;
+    --color-card: #FFFFFF;
+    --color-elevated: #FFFFFF;
+    --color-input: #FFFFFF;
+    --color-accent: #D5AA36;
+    --color-accent-secondary: #A6B879;
+    --color-text: #493522;
+    --color-text-secondary: #746650;
+    --color-border: #E8DEC9;
+
+    /* Semantic Tokens */
+    --color-success: #15803D;
+    --color-warning: #B45309;
+    --color-danger: #B91C1C;
+    --color-info: #1D4ED8;
+
+    /* Legacy Brand Token Aliases */
+    --color-brand-cream: #FAF6E9;
+    --color-brand-yellow: #D5AA36;
+    --color-brand-brown: #493522;
+    --color-hero-dark: #2E1B07;
+    --color-wood-shelf: #B98A3E;
+
+    /* Action colors */
+    --color-sale: #D5AA36;
+    --color-purchase: #2563EB;
+    --color-credit: #15803D;
+    --color-expiry: #B91C1C;
+    --color-assistant: #8B5CF6;
+  }
+
+  .dark {
+    /* Centralized Theme Tokens (Dark) */
+    --color-background: #251C16;
+    --color-background-secondary: #30241B;
+    --color-card: #392B20;
+    --color-elevated: #453526;
+    --color-input: #2D2118;
+    --color-accent: #D5AA36;
+    --color-accent-secondary: #B9A77D;
+    --color-text: #F4EBD8;
+    --color-text-secondary: #C6BBA6;
+    --color-border: #574632;
+
+    /* Semantic Tokens */
+    --color-success: #4ADE80;
+    --color-warning: #FBBF24;
+    --color-danger: #F87171;
+    --color-info: #60A5FA;
+
+    /* Legacy Brand Token Aliases */
+    --color-brand-cream: #F4EBD8;
+    --color-brand-yellow: #D5AA36;
+    --color-brand-brown: #F4EBD8;
+    --color-hero-dark: #1E1208;
+    --color-wood-shelf: #6E5327;
+
+    /* Action colors */
+    --color-sale: #D5AA36;
+    --color-purchase: #60A5FA;
+    --color-credit: #4ADE80;
+    --color-expiry: #F87171;
+    --color-assistant: #A78BFA;
+  }
+
+  * {
+    @apply box-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: background-color 150ms ease, color 150ms ease;
+    @apply font-sans antialiased;
+    min-height: 100dvh;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  ::selection {
+    background-color: rgba(213, 170, 54, 0.3);
+  }
+
+  .dark body {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+
+  /* Interactive touch target utility for mobile */
+  .touch-target {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Focus visible accessibility outline */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-yellow;
+  }
+
+  /* Recharts Tooltip styling - crystal clear high-contrast in light & dark mode */
+  .recharts-default-tooltip {
+    background-color: var(--color-card) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+    padding: 8px 12px !important;
+  }
+
+  .recharts-tooltip-label {
+    color: var(--color-text) !important;
+    font-weight: 700 !important;
+    margin-bottom: 4px !important;
+  }
+
+  .recharts-tooltip-item,
+  .recharts-tooltip-item-name,
+  .recharts-tooltip-item-value,
+  .recharts-tooltip-item-separator {
+    color: var(--color-text) !important;
+    font-weight: 600 !important;
+  }
+
+  .dark .recharts-default-tooltip {
+    background-color: var(--color-elevated) !important;
+    border: 1px solid var(--color-border) !important;
+    color: var(--color-text) !important;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background-color: var(--color-background); }
+  ::-webkit-scrollbar-thumb { background-color: var(--color-accent); border-radius: 9999px; }
+
+  /* Reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+}
+
+@layer components {
+  /* Semi-transparent front cards to subtly reveal the shelf background behind */
+  .card {
+    background-color: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(240, 208, 128, 0.6);
+    border-radius: 1rem;
+    box-shadow: 0 4px 16px -2px rgba(74, 46, 15, 0.06);
+    color: #4A2E0F;
+  }
+
+  .dark .card {
+    background-color: rgba(28, 17, 9, 0.92);
+    border: 1px solid rgba(185, 138, 62, 0.35);
+    box-shadow: 0 4px 16px -2px rgba(0, 0, 0, 0.45);
+    color: #FBF4E4;
+  }
+
+  /* Primary button */
+  .btn-primary {
+    @apply bg-brand-yellow hover:brightness-105 active:scale-95 text-brand-brown font-bold rounded-2xl px-5 py-3 
+           min-h-[48px] transition-transform duration-150 shadow-md shadow-amber-500/15 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2;
+  }
+
+  /* Secondary button */
+  .btn-secondary {
+    @apply bg-[#4A2E0F] hover:bg-[#2E1B07] text-[#FBF4E4] font-bold rounded-2xl px-5 py-3
+           min-h-[48px] transition-transform duration-150 active:scale-95 disabled:opacity-50 flex items-center justify-center gap-2;
+  }
+
+  /* Input fields */
+  .input {
+    @apply w-full bg-white/95 border border-[#F0D080]
+           rounded-2xl px-4 py-3 text-brand-brown
+           focus:outline-none focus:ring-2 focus:ring-brand-yellow focus:border-transparent
+           placeholder:text-[#A0785A] min-h-[48px];
+  }
+
+  .dark .input {
+    background-color: rgba(26, 16, 8, 0.95);
+    border-color: rgba(185, 138, 62, 0.45);
+    color: #FBF4E4;
+  }
+
+  /* Hero gradient banner */
+  .hero-gradient {
+    background: linear-gradient(135deg, #4A2E0F 0%, #2E1B07 100%);
+    color: #FBF4E4;
+  }
+
+  /* Performance contained block */
+  .perf-contain {
+    contain: layout paint;
+  }
+}
+
+@layer utilities {
+  /* Safe area insets for mobile & iOS notch */
+  .pb-safe {
+    padding-bottom: calc(0.75rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mb-nav {
+    margin-bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+  }
+}

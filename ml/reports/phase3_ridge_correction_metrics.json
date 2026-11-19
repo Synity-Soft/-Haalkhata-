@@ -1,0 +1,395 @@
+{
+  "audit_metadata": {
+    "stage": "Phase 3, Stage 3.3: Final Integrity Correction & Verification",
+    "auditor": "Senior Machine Learning Engineer",
+    "date": "2026-11-17",
+    "python_version": "3.13.5",
+    "sklearn_version": "1.5.1"
+  },
+  "partition_verification": {
+    "training_window": {
+      "start": "2025-12-13",
+      "end": "2026-07-01",
+      "rows": 2664456,
+      "dates_count": 201
+    },
+    "purge_window": {
+      "start": "2026-07-02",
+      "end": "2026-07-31",
+      "duration_days": 30,
+      "rows_present_in_dataset": 0
+    },
+    "validation_window_7d": {
+      "start": "2026-08-01",
+      "end": "2026-11-08",
+      "rows": 1325600,
+      "dates_count": 100
+    },
+    "validation_window_30d": {
+      "start": "2026-08-01",
+      "end": "2026-10-16",
+      "rows": 1020712,
+      "dates_count": 77
+    }
+  },
+  "feature_integrity": {
+    "safe_features_count": 67,
+    "numerical_features_count": 55,
+    "categorical_features_count": 12,
+    "conditional_features_excluded": [
+      "outlet_average_daily_demand",
+      "average_selling_price_bdt",
+      "average_cost_price_bdt",
+      "average_restock_frequency_days",
+      "days_until_next_festival"
+    ],
+    "forbidden_columns_excluded": [
+      "outlet_id",
+      "product_id",
+      "forecast_origin_date",
+      "split_set",
+      "target_7d",
+      "target_30d",
+      "physical_avail_days_7d",
+      "accessible_avail_days_7d",
+      "is_eligible_acc_5of7",
+      "is_eligible_phys_5of7",
+      "physical_avail_days_30d",
+      "accessible_avail_days_30d",
+      "is_eligible_acc_20of30",
+      "is_eligible_phys_20of30"
+    ]
+  },
+  "categorical_vocabularies": {
+    "outlet_type": [
+      "Grocery shop",
+      "Grocery store",
+      "Supermarket"
+    ],
+    "business_size": [
+      "Large supermarket",
+      "Medium",
+      "Micro",
+      "Premium supermarket",
+      "Small"
+    ],
+    "division": [
+      "Barishal",
+      "Bogura",
+      "Chattogram",
+      "Cumilla",
+      "Dhaka",
+      "Gazipur",
+      "Khulna",
+      "Mymensingh",
+      "Narayanganj",
+      "Rajshahi",
+      "Rangpur",
+      "Sylhet"
+    ],
+    "district": [
+      "Barishal",
+      "Bogura",
+      "Chattogram",
+      "Cumilla",
+      "Dhaka",
+      "Gazipur",
+      "Khulna",
+      "Mymensingh",
+      "Narayanganj",
+      "Rajshahi",
+      "Rangpur",
+      "Sylhet"
+    ],
+    "area_type": [
+      "Commercial / office areas",
+      "Garment / industrial worker areas",
+      "Lower-income / dense urban residential",
+      "Middle-income residential",
+      "Mixed-income urban neighbourhoods",
+      "Premium / affluent residential",
+      "Rural-market or peri-urban areas",
+      "Semi-urban / small-town markets",
+      "University / student areas"
+    ],
+    "category": [
+      "Baby-care essentials",
+      "Basic health and hygiene products",
+      "Beverages and bottled water",
+      "Biscuits and snacks",
+      "Bread and bakery products",
+      "Breakfast products",
+      "Cooking oil",
+      "Dairy products",
+      "Eggs",
+      "Fish and frozen foods",
+      "Flour and baking ingredients",
+      "Fruits",
+      "Household cleaning products",
+      "Instant noodles and packaged food",
+      "Laundry products",
+      "Lentils and pulses",
+      "Meat and poultry",
+      "Other daily necessities",
+      "Personal-care products",
+      "Rice and grains",
+      "Spices and condiments",
+      "Sugar and salt",
+      "Tea and coffee",
+      "Toiletries",
+      "Vegetables"
+    ],
+    "subcategory": [
+      "Baby care",
+      "Biscuits",
+      "Bread",
+      "Cereal",
+      "Cleaning",
+      "Edible oil",
+      "Eggs",
+      "Fish",
+      "Flour",
+      "Fruit",
+      "Household",
+      "Hygiene",
+      "Laundry",
+      "Lentils",
+      "Milk",
+      "Milk powder",
+      "Noodles",
+      "Personal care",
+      "Poultry",
+      "Rice",
+      "Salt",
+      "Snacks",
+      "Soft drink",
+      "Spice",
+      "Sugar",
+      "Tea",
+      "Toiletries",
+      "Vegetable",
+      "Water"
+    ],
+    "brand": [
+      "ACI",
+      "Bashundhara",
+      "Danish",
+      "Fresh",
+      "Local brand",
+      "Nestl\u00e9",
+      "Pran",
+      "Rupchanda",
+      "Teer",
+      "Unbranded"
+    ],
+    "unit": [
+      "bottle",
+      "box",
+      "dozen",
+      "kg",
+      "litre",
+      "packet",
+      "piece"
+    ],
+    "package_size": [
+      "1 bottle",
+      "1 box",
+      "1 dozen",
+      "1 kg",
+      "1 litre",
+      "1 packet",
+      "1 piece",
+      "2 bottle",
+      "2 box",
+      "2 dozen",
+      "2 kg",
+      "2 litre",
+      "2 packet",
+      "2 piece",
+      "3 bottle",
+      "3 box",
+      "3 dozen",
+      "3 kg",
+      "3 litre",
+      "3 packet",
+      "3 piece",
+      "4 bottle",
+      "4 box",
+      "4 dozen",
+      "4 kg",
+      "4 litre",
+      "4 packet",
+      "4 piece",
+      "5 bottle",
+      "5 box",
+      "5 dozen",
+      "5 kg",
+      "5 litre",
+      "5 packet",
+      "5 piece",
+      "6 bottle",
+      "6 box",
+      "6 dozen",
+      "6 kg",
+      "6 litre",
+      "6 packet",
+      "6 piece",
+      "7 bottle",
+      "7 box",
+      "7 dozen",
+      "7 kg",
+      "7 litre",
+      "7 packet",
+      "7 piece"
+    ],
+    "perishable_status": [
+      "Non-perishable",
+      "Perishable"
+    ],
+    "storage_type": [
+      "Ambient",
+      "Chilled"
+    ]
+  },
+  "categorical_vocabulary_counts": {
+    "outlet_type": 3,
+    "business_size": 5,
+    "division": 12,
+    "district": 12,
+    "area_type": 9,
+    "category": 25,
+    "subcategory": 29,
+    "brand": 10,
+    "unit": 7,
+    "package_size": 49,
+    "perishable_status": 2,
+    "storage_type": 2
+  },
+  "total_one_hot_columns": 165,
+  "7d": {
+    "baseline_alignment_verified": true,
+    "row_count": 1325600,
+    "eligible_count": 1102601,
+    "overall_metrics": {
+      "ridge_clipped": {
+        "count": 1325600,
+        "mae": 7.390664953304164,
+        "rmse": 13.055423731859895,
+        "wape": 0.7736052624468125,
+        "bias": 3.1920505670639705
+      },
+      "ridge_raw": {
+        "count": 1325600,
+        "mae": 7.518584449532287,
+        "rmse": 13.06695593196827,
+        "wape": 0.7869950177769306,
+        "bias": 3.0641310708358485
+      },
+      "baseline": {
+        "count": 1325600,
+        "mae": 7.065843014484007,
+        "rmse": 12.654427039824688,
+        "wape": 0.7396050794027811,
+        "bias": 0.04430257996378998
+      },
+      "delta_wape_clipped_vs_base": 0.03400018304403141,
+      "delta_mae_clipped_vs_base": 0.32482193882015675
+    },
+    "eligible_metrics": {
+      "ridge_clipped": {
+        "count": 1102601,
+        "mae": 8.31856634439838,
+        "rmse": 14.092800505867325,
+        "wape": 0.7399518881034144,
+        "bias": 3.5547871842126026
+      },
+      "ridge_raw": {
+        "count": 1102601,
+        "mae": 8.327970656656397,
+        "rmse": 14.094439186175688,
+        "wape": 0.7407884191020905,
+        "bias": 3.5453828719545872
+      },
+      "baseline": {
+        "count": 1102601,
+        "mae": 7.903207733350505,
+        "rmse": 13.590613557721216,
+        "wape": 0.7030049701177389,
+        "bias": -0.21343418879540288
+      }
+    },
+    "prediction_distribution": {
+      "raw_min": -5.9265,
+      "raw_max": 159.0826,
+      "raw_mean": 12.61766607385335,
+      "clipped_min": 0.0,
+      "clipped_max": 159.0826,
+      "clipped_mean": 12.745585570081476,
+      "negative_raw_count": 120735,
+      "negative_raw_pct": 9.107951116475558
+    }
+  },
+  "30d": {
+    "baseline_alignment_verified": true,
+    "row_count": 1020712,
+    "eligible_count": 853740,
+    "overall_metrics": {
+      "ridge_clipped": {
+        "count": 1020712,
+        "mae": 13.241171271720134,
+        "rmse": 22.274587216071364,
+        "wape": 0.32206768116682133,
+        "bias": 5.09296783745072
+      },
+      "ridge_raw": {
+        "count": 1020712,
+        "mae": 13.766514257106804,
+        "rmse": 22.417862772544677,
+        "wape": 0.3348457046247688,
+        "bias": 4.567624852064049
+      },
+      "baseline": {
+        "count": 1020712,
+        "mae": 17.755045794602196,
+        "rmse": 32.0076503481738,
+        "wape": 0.43185956217416976,
+        "bias": 0.062266231904788125
+      },
+      "delta_wape_clipped_vs_base": -0.10979188100734844,
+      "delta_mae_clipped_vs_base": -4.5138745228820625
+    },
+    "eligible_metrics": {
+      "ridge_clipped": {
+        "count": 853740,
+        "mae": 14.35333948602619,
+        "rmse": 23.59337379673704,
+        "wape": 0.3010662097858053,
+        "bias": 5.654075837842903
+      },
+      "ridge_raw": {
+        "count": 853740,
+        "mae": 14.355175715791692,
+        "rmse": 23.593912690673065,
+        "wape": 0.30110472533379556,
+        "bias": 5.6522396080774
+      },
+      "baseline": {
+        "count": 853740,
+        "mae": 19.87710460245508,
+        "rmse": 34.553893467789166,
+        "wape": 0.4169290742411008,
+        "bias": 0.07713066847049464
+      }
+    },
+    "prediction_distribution": {
+      "raw_min": -18.1195,
+      "raw_max": 370.1621,
+      "raw_mean": 45.680633222691604,
+      "clipped_min": 0.0,
+      "clipped_max": 370.1621,
+      "clipped_mean": 46.20597620807828,
+      "negative_raw_count": 87247,
+      "negative_raw_pct": 8.54766084850575
+    }
+  }
+}

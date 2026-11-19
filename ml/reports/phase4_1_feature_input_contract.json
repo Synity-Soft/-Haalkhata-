@@ -1,0 +1,1339 @@
+{
+  "contract_version": "1.0.0",
+  "status": "APPROVED",
+  "date": "2026-11-17",
+  "description": "BazarBondhu AI Phase 4.1 Feature Input Contract for 7-day and 30-day HGB Demand Forecasting Models",
+  "total_feature_count": 67,
+  "numerical_feature_count": 55,
+  "categorical_feature_count": 12,
+  "forbidden_conditional_features": [
+    "outlet_average_daily_demand",
+    "average_selling_price_bdt",
+    "average_cost_price_bdt",
+    "average_restock_frequency_days",
+    "days_until_next_festival"
+  ],
+  "forbidden_metadata_columns": [
+    "outlet_id",
+    "product_id",
+    "forecast_origin_date",
+    "target_7d",
+    "target_30d",
+    "is_eligible_acc_5of7",
+    "is_eligible_acc_20of30"
+  ],
+  "features": [
+    {
+      "feature_name": "sales_lag_1d",
+      "feature_index_in_safe_list": 0,
+      "feature_index_in_transformed_matrix": 0,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_1d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_lag_2d",
+      "feature_index_in_safe_list": 1,
+      "feature_index_in_transformed_matrix": 1,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t - 1",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_2d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_lag_3d",
+      "feature_index_in_safe_list": 2,
+      "feature_index_in_transformed_matrix": 2,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t - 2",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_3d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_lag_7d",
+      "feature_index_in_safe_list": 3,
+      "feature_index_in_transformed_matrix": 3,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t - 6",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_lag_14d",
+      "feature_index_in_safe_list": 4,
+      "feature_index_in_transformed_matrix": 4,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t - 13",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_14d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_lag_28d",
+      "feature_index_in_safe_list": 5,
+      "feature_index_in_transformed_matrix": 5,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sales quantity on day t - 27",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "lag_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_sum_7d",
+      "feature_index_in_safe_list": 6,
+      "feature_index_in_transformed_matrix": 6,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sum of sales over window [t-6, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_sum_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_mean_7d",
+      "feature_index_in_safe_list": 7,
+      "feature_index_in_transformed_matrix": 7,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Mean of sales over window [t-6, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_mean_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_std_7d",
+      "feature_index_in_safe_list": 8,
+      "feature_index_in_transformed_matrix": 8,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Standard deviation of sales over window [t-6, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_std_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_sum_14d",
+      "feature_index_in_safe_list": 9,
+      "feature_index_in_transformed_matrix": 9,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sum of sales over window [t-13, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_sum_14d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_mean_14d",
+      "feature_index_in_safe_list": 10,
+      "feature_index_in_transformed_matrix": 10,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Mean of sales over window [t-13, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_mean_14d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_std_14d",
+      "feature_index_in_safe_list": 11,
+      "feature_index_in_transformed_matrix": 11,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Standard deviation of sales over window [t-13, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_std_14d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_sum_28d",
+      "feature_index_in_safe_list": 12,
+      "feature_index_in_transformed_matrix": 12,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Sum of sales over window [t-27, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_sum_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_mean_28d",
+      "feature_index_in_safe_list": 13,
+      "feature_index_in_transformed_matrix": 13,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Mean of sales over window [t-27, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_mean_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_std_28d",
+      "feature_index_in_safe_list": 14,
+      "feature_index_in_transformed_matrix": 14,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Standard deviation of sales over window [t-27, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_std_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_max_7d",
+      "feature_index_in_safe_list": 15,
+      "feature_index_in_transformed_matrix": 15,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Maximum sales over window [t-6, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_max_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_nonzero_days_7d",
+      "feature_index_in_safe_list": 16,
+      "feature_index_in_transformed_matrix": 16,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "historical_sales",
+      "description": "Count of nonzero sales days over window [t-6, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_nonzero_days_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_max_28d",
+      "feature_index_in_safe_list": 17,
+      "feature_index_in_transformed_matrix": 17,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "historical_sales",
+      "description": "Maximum sales over window [t-27, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_max_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "sales_nonzero_days_28d",
+      "feature_index_in_safe_list": 18,
+      "feature_index_in_transformed_matrix": 18,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "historical_sales",
+      "description": "Count of nonzero sales days over window [t-27, t]",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation_logic": "rolling_nonzero_days_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "current_stock_quantity",
+      "feature_index_in_safe_list": 19,
+      "feature_index_in_transformed_matrix": 19,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Reconstructed pair closing inventory at day t",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation_logic": "reconstructed_closing_stock",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_received_7d",
+      "feature_index_in_safe_list": 20,
+      "feature_index_in_transformed_matrix": 20,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Total stock received in window [t-6, t]",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation_logic": "rolling_sum_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_received_28d",
+      "feature_index_in_safe_list": 21,
+      "feature_index_in_transformed_matrix": 21,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Total stock received in window [t-27, t]",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation_logic": "rolling_sum_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_wastage_7d",
+      "feature_index_in_safe_list": 22,
+      "feature_index_in_transformed_matrix": 22,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Total stock wasted in window [t-6, t]",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation_logic": "rolling_sum_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_wastage_28d",
+      "feature_index_in_safe_list": 23,
+      "feature_index_in_transformed_matrix": 23,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Total stock wasted in window [t-27, t]",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation_logic": "rolling_sum_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "days_since_last_restock",
+      "feature_index_in_safe_list": 24,
+      "feature_index_in_transformed_matrix": 24,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Days elapsed since most recent batch restock on or before t",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "batch_received_date"
+      ],
+      "transformation_logic": "days_since_event",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_to_recent_sales_ratio",
+      "feature_index_in_safe_list": 25,
+      "feature_index_in_transformed_matrix": 25,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "inventory",
+      "description": "Ratio of current stock quantity to (sales_sum_7d + 1.0)",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity"
+      ],
+      "transformation_logic": "ratio_stock_to_sales_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "reorder_point",
+      "feature_index_in_safe_list": 26,
+      "feature_index_in_transformed_matrix": 26,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Reorder point inventory threshold",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "reorder_point"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "minimum_stock_level",
+      "feature_index_in_safe_list": 27,
+      "feature_index_in_transformed_matrix": 27,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Minimum safety stock level",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "minimum_stock_level"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "maximum_stock_level",
+      "feature_index_in_safe_list": 28,
+      "feature_index_in_transformed_matrix": 28,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Maximum stock level (shelf capacity)",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "maximum_stock_level"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_expiring_next_7d",
+      "feature_index_in_safe_list": 29,
+      "feature_index_in_transformed_matrix": 29,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Stock in active batches at t scheduled to expire in [t+1, t+7]",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation_logic": "forward_known_batch_expiry",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "stock_expiring_next_30d",
+      "feature_index_in_safe_list": 30,
+      "feature_index_in_transformed_matrix": 30,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "inventory",
+      "description": "Stock in active batches at t scheduled to expire in [t+1, t+30]",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation_logic": "forward_known_batch_expiry",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "nearest_expiry_days",
+      "feature_index_in_safe_list": 31,
+      "feature_index_in_transformed_matrix": 31,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Days until nearest expiry among active batches at day t (999 if no stock)",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation_logic": "min_days_to_expiry",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "expiring_batch_count",
+      "feature_index_in_safe_list": 32,
+      "feature_index_in_transformed_matrix": 32,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "inventory",
+      "description": "Count of active batches at day t scheduled to expire in [t+1, t+30]",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation_logic": "count_batches_expiring_30d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "outlet_type",
+      "feature_index_in_safe_list": 33,
+      "feature_index_in_transformed_matrix": 55,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "outlet",
+      "description": "Retail outlet format",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "outlet_type"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 3,
+      "known_categories": [
+        "Grocery shop",
+        "Grocery store",
+        "Supermarket"
+      ]
+    },
+    {
+      "feature_name": "business_size",
+      "feature_index_in_safe_list": 34,
+      "feature_index_in_transformed_matrix": 56,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "outlet",
+      "description": "Outlet business scale",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "business_size"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 5,
+      "known_categories": [
+        "Large supermarket",
+        "Medium",
+        "Micro",
+        "Premium supermarket",
+        "Small"
+      ]
+    },
+    {
+      "feature_name": "division",
+      "feature_index_in_safe_list": 35,
+      "feature_index_in_transformed_matrix": 57,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "outlet",
+      "description": "Administrative division of Bangladesh",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "division"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 12,
+      "known_categories": [
+        "Barishal",
+        "Bogura",
+        "Chattogram",
+        "Cumilla",
+        "Dhaka",
+        "Gazipur",
+        "Khulna",
+        "Mymensingh",
+        "Narayanganj",
+        "Rajshahi",
+        "Rangpur",
+        "Sylhet"
+      ]
+    },
+    {
+      "feature_name": "district",
+      "feature_index_in_safe_list": 36,
+      "feature_index_in_transformed_matrix": 58,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "outlet",
+      "description": "Administrative district",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "district"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 12,
+      "known_categories": [
+        "Barishal",
+        "Bogura",
+        "Chattogram",
+        "Cumilla",
+        "Dhaka",
+        "Gazipur",
+        "Khulna",
+        "Mymensingh",
+        "Narayanganj",
+        "Rajshahi",
+        "Rangpur",
+        "Sylhet"
+      ]
+    },
+    {
+      "feature_name": "area_type",
+      "feature_index_in_safe_list": 37,
+      "feature_index_in_transformed_matrix": 59,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "outlet",
+      "description": "Neighborhood residential / commercial area type",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "area_type"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 9,
+      "known_categories": [
+        "Commercial / office areas",
+        "Garment / industrial worker areas",
+        "Lower-income / dense urban residential",
+        "Middle-income residential",
+        "Mixed-income urban neighbourhoods",
+        "Premium / affluent residential",
+        "Rural-market or peri-urban areas",
+        "Semi-urban / small-town markets",
+        "University / student areas"
+      ]
+    },
+    {
+      "feature_name": "inventory_capacity_sku",
+      "feature_index_in_safe_list": 38,
+      "feature_index_in_transformed_matrix": 33,
+      "feature_classification": "numerical",
+      "data_type": "int32",
+      "feature_group": "outlet",
+      "description": "Total SKU carrying capacity of outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "inventory_capacity_sku"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "has_refrigeration",
+      "feature_index_in_safe_list": 39,
+      "feature_index_in_transformed_matrix": 34,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "outlet",
+      "description": "Flag indicating cold storage availability at outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_refrigeration"
+      ],
+      "transformation_logic": "boolean_to_int",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "has_pos_system",
+      "feature_index_in_safe_list": 40,
+      "feature_index_in_transformed_matrix": 35,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "outlet",
+      "description": "Flag indicating digital POS terminal",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_pos_system"
+      ],
+      "transformation_logic": "boolean_to_int",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "category",
+      "feature_index_in_safe_list": 41,
+      "feature_index_in_transformed_matrix": 60,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Broad product category",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "category"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 25,
+      "known_categories": [
+        "Baby-care essentials",
+        "Basic health and hygiene products",
+        "Beverages and bottled water",
+        "Biscuits and snacks",
+        "Bread and bakery products",
+        "Breakfast products",
+        "Cooking oil",
+        "Dairy products",
+        "Eggs",
+        "Fish and frozen foods",
+        "Flour and baking ingredients",
+        "Fruits",
+        "Household cleaning products",
+        "Instant noodles and packaged food",
+        "Laundry products",
+        "Lentils and pulses",
+        "Meat and poultry",
+        "Other daily necessities",
+        "Personal-care products",
+        "Rice and grains",
+        "Spices and condiments",
+        "Sugar and salt",
+        "Tea and coffee",
+        "Toiletries",
+        "Vegetables"
+      ]
+    },
+    {
+      "feature_name": "subcategory",
+      "feature_index_in_safe_list": 42,
+      "feature_index_in_transformed_matrix": 61,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Specific product subcategory",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "subcategory"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 29,
+      "known_categories": [
+        "Baby care",
+        "Biscuits",
+        "Bread",
+        "Cereal",
+        "Cleaning",
+        "Edible oil",
+        "Eggs",
+        "Fish",
+        "Flour",
+        "Fruit",
+        "Household",
+        "Hygiene",
+        "Laundry",
+        "Lentils",
+        "Milk",
+        "Milk powder",
+        "Noodles",
+        "Personal care",
+        "Poultry",
+        "Rice",
+        "Salt",
+        "Snacks",
+        "Soft drink",
+        "Spice",
+        "Sugar",
+        "Tea",
+        "Toiletries",
+        "Vegetable",
+        "Water"
+      ]
+    },
+    {
+      "feature_name": "brand",
+      "feature_index_in_safe_list": 43,
+      "feature_index_in_transformed_matrix": 62,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Product manufacturer brand",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "brand"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 10,
+      "known_categories": [
+        "ACI",
+        "Bashundhara",
+        "Danish",
+        "Fresh",
+        "Local brand",
+        "Nestl\u00e9",
+        "Pran",
+        "Rupchanda",
+        "Teer",
+        "Unbranded"
+      ]
+    },
+    {
+      "feature_name": "unit",
+      "feature_index_in_safe_list": 44,
+      "feature_index_in_transformed_matrix": 63,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Unit of measurement",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "unit"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 7,
+      "known_categories": [
+        "bottle",
+        "box",
+        "dozen",
+        "kg",
+        "litre",
+        "packet",
+        "piece"
+      ]
+    },
+    {
+      "feature_name": "package_size",
+      "feature_index_in_safe_list": 45,
+      "feature_index_in_transformed_matrix": 64,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Standard packaging size",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "package_size"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 49,
+      "known_categories": [
+        "1 bottle",
+        "1 box",
+        "1 dozen",
+        "1 kg",
+        "1 litre",
+        "1 packet",
+        "1 piece",
+        "2 bottle",
+        "2 box",
+        "2 dozen",
+        "2 kg",
+        "2 litre",
+        "2 packet",
+        "2 piece",
+        "3 bottle",
+        "3 box",
+        "3 dozen",
+        "3 kg",
+        "3 litre",
+        "3 packet",
+        "3 piece",
+        "4 bottle",
+        "4 box",
+        "4 dozen",
+        "4 kg",
+        "4 litre",
+        "4 packet",
+        "4 piece",
+        "5 bottle",
+        "5 box",
+        "5 dozen",
+        "5 kg",
+        "5 litre",
+        "5 packet",
+        "5 piece",
+        "6 bottle",
+        "6 box",
+        "6 dozen",
+        "6 kg",
+        "6 litre",
+        "6 packet",
+        "6 piece",
+        "7 bottle",
+        "7 box",
+        "7 dozen",
+        "7 kg",
+        "7 litre",
+        "7 packet",
+        "7 piece"
+      ]
+    },
+    {
+      "feature_name": "perishable_status",
+      "feature_index_in_safe_list": 46,
+      "feature_index_in_transformed_matrix": 65,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Perishable vs non-perishable status",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "perishable_status"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 2,
+      "known_categories": [
+        "Non-perishable",
+        "Perishable"
+      ]
+    },
+    {
+      "feature_name": "typical_shelf_life_days",
+      "feature_index_in_safe_list": 47,
+      "feature_index_in_transformed_matrix": 36,
+      "feature_classification": "numerical",
+      "data_type": "int16",
+      "feature_group": "product",
+      "description": "Catalog shelf life duration in days",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "typical_shelf_life_days"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "storage_type",
+      "feature_index_in_safe_list": 48,
+      "feature_index_in_transformed_matrix": 66,
+      "feature_classification": "categorical",
+      "data_type": "string",
+      "feature_group": "product",
+      "description": "Required storage condition (Ambient, Chilled)",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "storage_type"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Cast to string (NaN -> \"missing\"); apply fitted OrdinalEncoder; unseen categories encoded as -1 (native HGB missing/unknown bin).",
+      "known_category_count": 2,
+      "known_categories": [
+        "Ambient",
+        "Chilled"
+      ]
+    },
+    {
+      "feature_name": "is_essential_item",
+      "feature_index_in_safe_list": 49,
+      "feature_index_in_transformed_matrix": 37,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "product",
+      "description": "Flag indicating government essential grocery item",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "is_essential_item"
+      ],
+      "transformation_logic": "boolean_to_int",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "outlet_selling_price_bdt",
+      "feature_index_in_safe_list": 50,
+      "feature_index_in_transformed_matrix": 38,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "product",
+      "description": "Outlet-specific shelf selling price in BDT",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "selling_price_bdt"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "outlet_purchase_cost_bdt",
+      "feature_index_in_safe_list": 51,
+      "feature_index_in_transformed_matrix": 39,
+      "feature_classification": "numerical",
+      "data_type": "float32",
+      "feature_group": "product",
+      "description": "Outlet-specific acquisition cost in BDT",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "purchase_cost_bdt"
+      ],
+      "transformation_logic": "identity",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "day_of_week",
+      "feature_index_in_safe_list": 52,
+      "feature_index_in_transformed_matrix": 40,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Day of week (0=Monday, 6=Sunday)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "gregorian_day_of_week",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "day_of_month",
+      "feature_index_in_safe_list": 53,
+      "feature_index_in_transformed_matrix": 41,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Day of month (1..31)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "gregorian_day_of_month",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "month",
+      "feature_index_in_safe_list": 54,
+      "feature_index_in_transformed_matrix": 42,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Month of year (1..12)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "gregorian_month",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "week_of_year",
+      "feature_index_in_safe_list": 55,
+      "feature_index_in_transformed_matrix": 43,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "ISO calendar week number (1..52)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "gregorian_iso_week",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_weekend",
+      "feature_index_in_safe_list": 56,
+      "feature_index_in_transformed_matrix": 44,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Bangladesh weekend indicator (1 for Friday and Saturday, 0 otherwise)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "bangladesh_weekend",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_month_start",
+      "feature_index_in_safe_list": 57,
+      "feature_index_in_transformed_matrix": 45,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Month start indicator (day_of_month <= 3)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "month_boundary_start",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_month_end",
+      "feature_index_in_safe_list": 58,
+      "feature_index_in_transformed_matrix": 46,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Month end indicator (day_of_month >= 28)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "month_boundary_end",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_ramadan",
+      "feature_index_in_safe_list": 59,
+      "feature_index_in_transformed_matrix": 47,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Indicator for holy month of Ramadan (2026-02-18 to 2026-03-19)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "calendar_window",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_eid_fitr",
+      "feature_index_in_safe_list": 60,
+      "feature_index_in_transformed_matrix": 48,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Indicator for Eid-ul-Fitr holiday (2026-03-19 to 2026-03-23)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "calendar_window",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_eid_adha",
+      "feature_index_in_safe_list": 61,
+      "feature_index_in_transformed_matrix": 49,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Indicator for Eid-ul-Adha holiday (2026-05-26 to 2026-05-31)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "calendar_window",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_pohela_boishakh",
+      "feature_index_in_safe_list": 62,
+      "feature_index_in_transformed_matrix": 50,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Indicator for Bangla New Year (2026-04-14)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "calendar_window",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "is_durga_puja",
+      "feature_index_in_safe_list": 63,
+      "feature_index_in_transformed_matrix": 51,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "calendar",
+      "description": "Indicator for Durga Puja holiday (2026-10-20 to 2026-10-21)",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "calendar_window",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "promotion_active_at_origin",
+      "feature_index_in_safe_list": 64,
+      "feature_index_in_transformed_matrix": 52,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "promotions",
+      "description": "Indicator if pair has an active promotion on origin date t",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date",
+        "end_date"
+      ],
+      "transformation_logic": "promotion_on_day",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "promotion_days_last_7d",
+      "feature_index_in_safe_list": 65,
+      "feature_index_in_transformed_matrix": 53,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "promotions",
+      "description": "Count of promotion days for pair in window [t-6, t]",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "rolling_count_7d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    },
+    {
+      "feature_name": "promotion_days_last_28d",
+      "feature_index_in_safe_list": 66,
+      "feature_index_in_transformed_matrix": 54,
+      "feature_classification": "numerical",
+      "data_type": "int8",
+      "feature_group": "promotions",
+      "description": "Count of promotion days for pair in window [t-27, t]",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation_logic": "rolling_count_28d",
+      "available_at_forecast_origin": true,
+      "preprocessing_and_encoding_requirement": "Convert to float32; must be finite (no NaN, Inf, or -Inf permitted)."
+    }
+  ]
+}

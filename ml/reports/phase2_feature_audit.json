@@ -1,0 +1,269 @@
+{
+  "audit_version": "2.0.0",
+  "audit_timestamp": "2026-11-16T19:47:41Z",
+  "environment": {
+    "python_version": "3.13.5",
+    "pandas_version": "2.2.2",
+    "numpy_version": "2.4.4"
+  },
+  "metadata_governance": {
+    "feature_count": 72,
+    "provenance_violations_count": 0,
+    "violations": [],
+    "status": "PASS"
+  },
+  "datasets": {
+    "7d": {
+      "file": "model_dataset_7d.csv",
+      "format": "csv",
+      "size_mb": 1565.77,
+      "total_rows": 3990056,
+      "total_columns": 87,
+      "feature_columns_count": 72,
+      "duplicate_rows": 0,
+      "total_null_values": 0,
+      "train_rows": 2664456,
+      "train_origins_count": 201,
+      "train_origin_range": [
+        "2025-12-13",
+        "2026-07-01"
+      ],
+      "val_rows": 1325600,
+      "val_origins_count": 100,
+      "val_origin_range": [
+        "2026-08-01",
+        "2026-11-08"
+      ],
+      "target_statistics": {
+        "min": 0,
+        "max": 280,
+        "mean": 9.5851,
+        "zero_count": 1226107,
+        "zero_pct": 30.73,
+        "negative_count": 0
+      },
+      "leakage_checks": {
+        "leaked_cols_in_features": [],
+        "status": "PASS"
+      },
+      "eligibility_analysis": {
+        "4_of_7": {
+          "physical_stock": {
+            "total_eligible": 3384100,
+            "total_pct": 84.81,
+            "train_eligible": 2264502,
+            "train_pct": 84.99,
+            "val_eligible": 1119598,
+            "val_pct": 84.46
+          },
+          "accessible_stock": {
+            "total_eligible": 3384092,
+            "total_pct": 84.81,
+            "train_eligible": 2264496,
+            "train_pct": 84.99,
+            "val_eligible": 1119596,
+            "val_pct": 84.46
+          }
+        },
+        "5_of_7": {
+          "physical_stock": {
+            "total_eligible": 3329867,
+            "total_pct": 83.45,
+            "train_eligible": 2227264,
+            "train_pct": 83.59,
+            "val_eligible": 1102603,
+            "val_pct": 83.18
+          },
+          "accessible_stock": {
+            "total_eligible": 3329857,
+            "total_pct": 83.45,
+            "train_eligible": 2227256,
+            "train_pct": 83.59,
+            "val_eligible": 1102601,
+            "val_pct": 83.18
+          }
+        },
+        "6_of_7": {
+          "physical_stock": {
+            "total_eligible": 3284673,
+            "total_pct": 82.32,
+            "train_eligible": 2194756,
+            "train_pct": 82.37,
+            "val_eligible": 1089917,
+            "val_pct": 82.22
+          },
+          "accessible_stock": {
+            "total_eligible": 3284518,
+            "total_pct": 82.32,
+            "train_eligible": 2194733,
+            "train_pct": 82.37,
+            "val_eligible": 1089785,
+            "val_pct": 82.21
+          }
+        },
+        "7_of_7": {
+          "physical_stock": {
+            "total_eligible": 3239916,
+            "total_pct": 81.2,
+            "train_eligible": 2163593,
+            "train_pct": 81.2,
+            "val_eligible": 1076323,
+            "val_pct": 81.2
+          },
+          "accessible_stock": {
+            "total_eligible": 3236404,
+            "total_pct": 81.11,
+            "train_eligible": 2160655,
+            "train_pct": 81.09,
+            "val_eligible": 1075749,
+            "val_pct": 81.15
+          }
+        }
+      },
+      "status": "PASS"
+    },
+    "30d": {
+      "file": "model_dataset_30d.csv",
+      "format": "csv",
+      "size_mb": 1453.62,
+      "total_rows": 3685168,
+      "total_columns": 87,
+      "feature_columns_count": 72,
+      "duplicate_rows": 0,
+      "total_null_values": 0,
+      "train_rows": 2664456,
+      "train_origins_count": 201,
+      "train_origin_range": [
+        "2025-12-13",
+        "2026-07-01"
+      ],
+      "val_rows": 1020712,
+      "val_origins_count": 77,
+      "val_origin_range": [
+        "2026-08-01",
+        "2026-10-16"
+      ],
+      "target_statistics": {
+        "min": 0,
+        "max": 569,
+        "mean": 41.0686,
+        "zero_count": 221587,
+        "zero_pct": 6.01,
+        "negative_count": 0
+      },
+      "leakage_checks": {
+        "leaked_cols_in_features": [],
+        "status": "PASS"
+      },
+      "eligibility_analysis": {
+        "15_of_30": {
+          "physical_stock": {
+            "total_eligible": 3113691,
+            "total_pct": 84.49,
+            "train_eligible": 2250871,
+            "train_pct": 84.48,
+            "val_eligible": 862820,
+            "val_pct": 84.53
+          },
+          "accessible_stock": {
+            "total_eligible": 3113686,
+            "total_pct": 84.49,
+            "train_eligible": 2250866,
+            "train_pct": 84.48,
+            "val_eligible": 862820,
+            "val_pct": 84.53
+          }
+        },
+        "20_of_30": {
+          "physical_stock": {
+            "total_eligible": 3061159,
+            "total_pct": 83.07,
+            "train_eligible": 2207389,
+            "train_pct": 82.85,
+            "val_eligible": 853770,
+            "val_pct": 83.64
+          },
+          "accessible_stock": {
+            "total_eligible": 3060977,
+            "total_pct": 83.06,
+            "train_eligible": 2207237,
+            "train_pct": 82.84,
+            "val_eligible": 853740,
+            "val_pct": 83.64
+          }
+        },
+        "25_of_30": {
+          "physical_stock": {
+            "total_eligible": 2910312,
+            "total_pct": 78.97,
+            "train_eligible": 2103683,
+            "train_pct": 78.95,
+            "val_eligible": 806629,
+            "val_pct": 79.03
+          },
+          "accessible_stock": {
+            "total_eligible": 2910305,
+            "total_pct": 78.97,
+            "train_eligible": 2103676,
+            "train_pct": 78.95,
+            "val_eligible": 806629,
+            "val_pct": 79.03
+          }
+        },
+        "30_of_30": {
+          "physical_stock": {
+            "total_eligible": 2824476,
+            "total_pct": 76.64,
+            "train_eligible": 2033749,
+            "train_pct": 76.33,
+            "val_eligible": 790727,
+            "val_pct": 77.47
+          },
+          "accessible_stock": {
+            "total_eligible": 2810317,
+            "total_pct": 76.26,
+            "train_eligible": 2021277,
+            "train_pct": 75.86,
+            "val_eligible": 789040,
+            "val_pct": 77.3
+          }
+        }
+      },
+      "status": "PASS"
+    }
+  },
+  "temporal_split_audit": {
+    "training_origins_span": "2025-12-13 to 2026-07-01 (201 origins)",
+    "purge_window_span": "2026-07-02 to 2026-07-31 (30 days)",
+    "validation_origins_span_7d": "2026-08-01 to 2026-11-08 (100 origins)",
+    "validation_origins_span_30d": "2026-08-01 to 2026-10-16 (77 origins)",
+    "last_train_7d_target_end": "2026-07-08",
+    "last_train_30d_target_end": "2026-07-31",
+    "first_val_target_start": "2026-08-02",
+    "zero_target_overlap_verified": true,
+    "status": "PASS"
+  },
+  "value_level_reconciliation": {
+    "fixture_tests": {
+      "2025-12-13": {
+        "evaluated_pairs": 5,
+        "mismatches": 0,
+        "status": "PASS"
+      },
+      "2026-03-15": {
+        "evaluated_pairs": 5,
+        "mismatches": 0,
+        "status": "PASS"
+      },
+      "2026-08-01": {
+        "evaluated_pairs": 5,
+        "mismatches": 0,
+        "status": "PASS"
+      }
+    },
+    "total_mismatches": 0,
+    "status": "PASS"
+  },
+  "overall_status": "ALL_CHECKS_PASSED",
+  "total_execution_seconds": 64.76
+}

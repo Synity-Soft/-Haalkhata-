@@ -1,0 +1,4800 @@
+{
+  "7d": {
+    "dataset_summary": {
+      "horizon": "7d",
+      "total_rows": 1325600,
+      "eligible_rows": 1102601,
+      "eligible_pct": 83.18,
+      "target_statistics": {
+        "min": 0.0,
+        "max": 280.0,
+        "mean": 9.5535,
+        "zero_target_count": 410576,
+        "zero_target_pct": 30.97
+      },
+      "validation_origins": {
+        "count": 100,
+        "start": "2026-08-01",
+        "end": "2026-11-08"
+      }
+    },
+    "overall_evaluation": {
+      "recent_period_persistence": {
+        "count": 1325600,
+        "mae": 8.8011,
+        "rmse": 16.2009,
+        "wape": 0.921244,
+        "bias": 0.0339
+      },
+      "rolling_average_forecast": {
+        "count": 1325600,
+        "mae": 7.0658,
+        "rmse": 12.6544,
+        "wape": 0.739605,
+        "bias": 0.0443
+      },
+      "planning_prior_benchmark": {
+        "count": 1325600,
+        "mae": 7.6029,
+        "rmse": 12.1994,
+        "wape": 0.795822,
+        "bias": 2.797
+      }
+    },
+    "availability_comparison": {
+      "recent_period_persistence": {
+        "all_observations": {
+          "count": 1325600,
+          "mae": 8.8011,
+          "rmse": 16.2009,
+          "wape": 0.921244,
+          "bias": 0.0339
+        },
+        "eligible_observations": {
+          "count": 1102601,
+          "mae": 9.9463,
+          "rmse": 17.3143,
+          "wape": 0.884744,
+          "bias": -0.2141
+        }
+      },
+      "rolling_average_forecast": {
+        "all_observations": {
+          "count": 1325600,
+          "mae": 7.0658,
+          "rmse": 12.6544,
+          "wape": 0.739605,
+          "bias": 0.0443
+        },
+        "eligible_observations": {
+          "count": 1102601,
+          "mae": 7.9032,
+          "rmse": 13.5906,
+          "wape": 0.703005,
+          "bias": -0.2134
+        }
+      },
+      "planning_prior_benchmark": {
+        "all_observations": {
+          "count": 1325600,
+          "mae": 7.6029,
+          "rmse": 12.1994,
+          "wape": 0.795822,
+          "bias": 2.797
+        },
+        "eligible_observations": {
+          "count": 1102601,
+          "mae": 7.1025,
+          "rmse": 11.8687,
+          "wape": 0.631777,
+          "bias": 1.3689
+        }
+      }
+    },
+    "sliced_evaluation": {
+      "by_product_category": {
+        "Baby-care essentials": {
+          "sample_counts": {
+            "all": 30600,
+            "eligible": 30587
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 30600,
+                "mae": 8.3248,
+                "rmse": 14.5916,
+                "wape": 0.877331,
+                "bias": -0.0695
+              },
+              "eligible_observations": {
+                "count": 30587,
+                "mae": 8.3282,
+                "rmse": 14.5947,
+                "wape": 0.877329,
+                "bias": -0.0694
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 30600,
+                "mae": 6.7819,
+                "rmse": 11.6028,
+                "wape": 0.714721,
+                "bias": -0.037
+              },
+              "eligible_observations": {
+                "count": 30587,
+                "mae": 6.7846,
+                "rmse": 11.6052,
+                "wape": 0.714713,
+                "bias": -0.037
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 30600,
+                "mae": 6.0836,
+                "rmse": 10.1034,
+                "wape": 0.641138,
+                "bias": 1.1723
+              },
+              "eligible_observations": {
+                "count": 30587,
+                "mae": 6.086,
+                "rmse": 10.1056,
+                "wape": 0.641118,
+                "bias": 1.1726
+              }
+            }
+          }
+        },
+        "Basic health and hygiene products": {
+          "sample_counts": {
+            "all": 28200,
+            "eligible": 28160
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 28200,
+                "mae": 8.2595,
+                "rmse": 14.2361,
+                "wape": 0.902972,
+                "bias": 0.0921
+              },
+              "eligible_observations": {
+                "count": 28160,
+                "mae": 8.2705,
+                "rmse": 14.2462,
+                "wape": 0.902929,
+                "bias": 0.092
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 28200,
+                "mae": 6.6656,
+                "rmse": 11.3336,
+                "wape": 0.728721,
+                "bias": 0.0471
+              },
+              "eligible_observations": {
+                "count": 28160,
+                "mae": 6.6742,
+                "rmse": 11.3416,
+                "wape": 0.728657,
+                "bias": 0.0468
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 28200,
+                "mae": 5.9842,
+                "rmse": 9.8949,
+                "wape": 0.654223,
+                "bias": 1.2244
+              },
+              "eligible_observations": {
+                "count": 28160,
+                "mae": 5.9916,
+                "rmse": 9.9019,
+                "wape": 0.654129,
+                "bias": 1.2253
+              }
+            }
+          }
+        },
+        "Beverages and bottled water": {
+          "sample_counts": {
+            "all": 84300,
+            "eligible": 84131
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 84300,
+                "mae": 8.1853,
+                "rmse": 13.7085,
+                "wape": 0.880179,
+                "bias": -0.0276
+              },
+              "eligible_observations": {
+                "count": 84131,
+                "mae": 8.2006,
+                "rmse": 13.7222,
+                "wape": 0.880108,
+                "bias": -0.0284
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 84300,
+                "mae": 6.5067,
+                "rmse": 10.7042,
+                "wape": 0.699677,
+                "bias": -0.0616
+              },
+              "eligible_observations": {
+                "count": 84131,
+                "mae": 6.5179,
+                "rmse": 10.7148,
+                "wape": 0.699513,
+                "bias": -0.0634
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 84300,
+                "mae": 5.8894,
+                "rmse": 9.4228,
+                "wape": 0.633292,
+                "bias": 1.1491
+              },
+              "eligible_observations": {
+                "count": 84131,
+                "mae": 5.8995,
+                "rmse": 9.4321,
+                "wape": 0.633147,
+                "bias": 1.1499
+              }
+            }
+          }
+        },
+        "Biscuits and snacks": {
+          "sample_counts": {
+            "all": 83300,
+            "eligible": 83112
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 83300,
+                "mae": 7.444,
+                "rmse": 12.7474,
+                "wape": 0.871229,
+                "bias": -0.0288
+              },
+              "eligible_observations": {
+                "count": 83112,
+                "mae": 7.4595,
+                "rmse": 12.7617,
+                "wape": 0.871126,
+                "bias": -0.0299
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 83300,
+                "mae": 5.9536,
+                "rmse": 10.0051,
+                "wape": 0.696796,
+                "bias": -0.0399
+              },
+              "eligible_observations": {
+                "count": 83112,
+                "mae": 5.965,
+                "rmse": 10.0162,
+                "wape": 0.696604,
+                "bias": -0.0417
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 83300,
+                "mae": 5.3629,
+                "rmse": 8.747,
+                "wape": 0.627666,
+                "bias": 1.1239
+              },
+              "eligible_observations": {
+                "count": 83112,
+                "mae": 5.3731,
+                "rmse": 8.7568,
+                "wape": 0.627477,
+                "bias": 1.1248
+              }
+            }
+          }
+        },
+        "Bread and bakery products": {
+          "sample_counts": {
+            "all": 39500,
+            "eligible": 2784
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 39500,
+                "mae": 2.5833,
+                "rmse": 7.1142,
+                "wape": 1.855343,
+                "bias": 0.0
+              },
+              "eligible_observations": {
+                "count": 2784,
+                "mae": 6.5312,
+                "rmse": 11.8704,
+                "wape": 1.001818,
+                "bias": -6.3337
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 39500,
+                "mae": 2.5345,
+                "rmse": 5.374,
+                "wape": 1.820256,
+                "bias": 0.1837
+              },
+              "eligible_observations": {
+                "count": 2784,
+                "mae": 6.0253,
+                "rmse": 10.8539,
+                "wape": 0.924215,
+                "bias": -5.2874
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 39500,
+                "mae": 9.1658,
+                "rmse": 12.4566,
+                "wape": 6.582846,
+                "bias": 8.802
+              },
+              "eligible_observations": {
+                "count": 2784,
+                "mae": 5.6981,
+                "rmse": 8.7433,
+                "wape": 0.874016,
+                "bias": 3.2616
+              }
+            }
+          }
+        },
+        "Breakfast products": {
+          "sample_counts": {
+            "all": 35900,
+            "eligible": 35865
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 35900,
+                "mae": 8.0102,
+                "rmse": 13.5274,
+                "wape": 0.887346,
+                "bias": -0.0383
+              },
+              "eligible_observations": {
+                "count": 35865,
+                "mae": 8.0166,
+                "rmse": 13.5338,
+                "wape": 0.88726,
+                "bias": -0.0393
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 35900,
+                "mae": 6.3866,
+                "rmse": 10.6529,
+                "wape": 0.707493,
+                "bias": -0.048
+              },
+              "eligible_observations": {
+                "count": 35865,
+                "mae": 6.3916,
+                "rmse": 10.658,
+                "wape": 0.707411,
+                "bias": -0.0489
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 35900,
+                "mae": 5.784,
+                "rmse": 9.3054,
+                "wape": 0.64074,
+                "bias": 1.2165
+              },
+              "eligible_observations": {
+                "count": 35865,
+                "mae": 5.7888,
+                "rmse": 9.3099,
+                "wape": 0.640699,
+                "bias": 1.2176
+              }
+            }
+          }
+        },
+        "Cooking oil": {
+          "sample_counts": {
+            "all": 75400,
+            "eligible": 75400
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 75400,
+                "mae": 12.9247,
+                "rmse": 21.9817,
+                "wape": 0.868637,
+                "bias": 0.0297
+              },
+              "eligible_observations": {
+                "count": 75400,
+                "mae": 12.9247,
+                "rmse": 21.9817,
+                "wape": 0.868637,
+                "bias": 0.0297
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 75400,
+                "mae": 10.3165,
+                "rmse": 17.3551,
+                "wape": 0.693348,
+                "bias": 0.0287
+              },
+              "eligible_observations": {
+                "count": 75400,
+                "mae": 10.3165,
+                "rmse": 17.3551,
+                "wape": 0.693348,
+                "bias": 0.0287
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 75400,
+                "mae": 9.226,
+                "rmse": 15.1796,
+                "wape": 0.620058,
+                "bias": 1.5119
+              },
+              "eligible_observations": {
+                "count": 75400,
+                "mae": 9.226,
+                "rmse": 15.1796,
+                "wape": 0.620058,
+                "bias": 1.5119
+              }
+            }
+          }
+        },
+        "Dairy products": {
+          "sample_counts": {
+            "all": 74600,
+            "eligible": 41978
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 74600,
+                "mae": 5.8967,
+                "rmse": 11.693,
+                "wape": 1.040162,
+                "bias": -0.0005
+              },
+              "eligible_observations": {
+                "count": 41978,
+                "mae": 8.2901,
+                "rmse": 14.0412,
+                "wape": 0.889268,
+                "bias": -0.9861
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 74600,
+                "mae": 5.0538,
+                "rmse": 9.2079,
+                "wape": 0.891461,
+                "bias": 0.1318
+              },
+              "eligible_observations": {
+                "count": 41978,
+                "mae": 6.765,
+                "rmse": 11.4234,
+                "wape": 0.725681,
+                "bias": -0.8252
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 74600,
+                "mae": 7.688,
+                "rmse": 11.3636,
+                "wape": 1.356141,
+                "bias": 5.0685
+              },
+              "eligible_observations": {
+                "count": 41978,
+                "mae": 6.021,
+                "rmse": 9.7165,
+                "wape": 0.645864,
+                "bias": 1.4966
+              }
+            }
+          }
+        },
+        "Eggs": {
+          "sample_counts": {
+            "all": 38200,
+            "eligible": 22951
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 38200,
+                "mae": 13.3826,
+                "rmse": 22.9129,
+                "wape": 1.2797,
+                "bias": 0.8189
+              },
+              "eligible_observations": {
+                "count": 22951,
+                "mae": 14.2877,
+                "rmse": 23.9493,
+                "wape": 0.963456,
+                "bias": -3.8517
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 38200,
+                "mae": 10.3996,
+                "rmse": 16.7951,
+                "wape": 0.994454,
+                "bias": 0.4863
+              },
+              "eligible_observations": {
+                "count": 22951,
+                "mae": 10.6391,
+                "rmse": 17.9463,
+                "wape": 0.717422,
+                "bias": -4.1818
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 38200,
+                "mae": 11.3498,
+                "rmse": 17.1199,
+                "wape": 1.085307,
+                "bias": 6.7071
+              },
+              "eligible_observations": {
+                "count": 22951,
+                "mae": 9.5362,
+                "rmse": 15.2763,
+                "wape": 0.643052,
+                "bias": 2.3254
+              }
+            }
+          }
+        },
+        "Fish and frozen foods": {
+          "sample_counts": {
+            "all": 31500,
+            "eligible": 0
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 31500,
+                "mae": 1.1299,
+                "rmse": 4.0244,
+                "wape": 1.973058,
+                "bias": 0.0
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 31500,
+                "mae": 1.1318,
+                "rmse": 3.0775,
+                "wape": 1.976398,
+                "bias": 0.0608
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 31500,
+                "mae": 9.7903,
+                "rmse": 12.9397,
+                "wape": 17.096029,
+                "bias": 9.7344
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            }
+          }
+        },
+        "Flour and baking ingredients": {
+          "sample_counts": {
+            "all": 61700,
+            "eligible": 61700
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 61700,
+                "mae": 13.5183,
+                "rmse": 22.8976,
+                "wape": 0.870468,
+                "bias": -0.0727
+              },
+              "eligible_observations": {
+                "count": 61700,
+                "mae": 13.5183,
+                "rmse": 22.8976,
+                "wape": 0.870468,
+                "bias": -0.0727
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 61700,
+                "mae": 10.8718,
+                "rmse": 18.2631,
+                "wape": 0.700059,
+                "bias": -0.0762
+              },
+              "eligible_observations": {
+                "count": 61700,
+                "mae": 10.8718,
+                "rmse": 18.2631,
+                "wape": 0.700059,
+                "bias": -0.0762
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 61700,
+                "mae": 9.6514,
+                "rmse": 15.8343,
+                "wape": 0.621473,
+                "bias": 1.527
+              },
+              "eligible_observations": {
+                "count": 61700,
+                "mae": 9.6514,
+                "rmse": 15.8343,
+                "wape": 0.621473,
+                "bias": 1.527
+              }
+            }
+          }
+        },
+        "Fruits": {
+          "sample_counts": {
+            "all": 63800,
+            "eligible": 33691
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 63800,
+                "mae": 5.6606,
+                "rmse": 11.4442,
+                "wape": 1.042097,
+                "bias": -0.024
+              },
+              "eligible_observations": {
+                "count": 33691,
+                "mae": 8.6322,
+                "rmse": 14.3474,
+                "wape": 0.920167,
+                "bias": -0.5299
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 63800,
+                "mae": 4.5941,
+                "rmse": 8.5455,
+                "wape": 0.845758,
+                "bias": 0.0822
+              },
+              "eligible_observations": {
+                "count": 33691,
+                "mae": 6.5751,
+                "rmse": 10.799,
+                "wape": 0.700886,
+                "bias": -0.4545
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 63800,
+                "mae": 7.9323,
+                "rmse": 11.5689,
+                "wape": 1.460324,
+                "bias": 5.469
+              },
+              "eligible_observations": {
+                "count": 33691,
+                "mae": 5.9044,
+                "rmse": 9.3569,
+                "wape": 0.62939,
+                "bias": 1.427
+              }
+            }
+          }
+        },
+        "Household cleaning products": {
+          "sample_counts": {
+            "all": 27700,
+            "eligible": 27631
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 27700,
+                "mae": 8.2823,
+                "rmse": 14.3223,
+                "wape": 0.88014,
+                "bias": 0.0065
+              },
+              "eligible_observations": {
+                "count": 27631,
+                "mae": 8.3023,
+                "rmse": 14.3401,
+                "wape": 0.880095,
+                "bias": 0.0061
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 27700,
+                "mae": 6.5438,
+                "rmse": 11.1753,
+                "wape": 0.695396,
+                "bias": 0.0321
+              },
+              "eligible_observations": {
+                "count": 27631,
+                "mae": 6.5583,
+                "rmse": 11.1892,
+                "wape": 0.695214,
+                "bias": 0.0304
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 27700,
+                "mae": 5.9294,
+                "rmse": 9.7894,
+                "wape": 0.630102,
+                "bias": 1.1676
+              },
+              "eligible_observations": {
+                "count": 27631,
+                "mae": 5.9421,
+                "rmse": 9.8015,
+                "wape": 0.629898,
+                "bias": 1.1686
+              }
+            }
+          }
+        },
+        "Instant noodles and packaged food": {
+          "sample_counts": {
+            "all": 34700,
+            "eligible": 34665
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 34700,
+                "mae": 7.9812,
+                "rmse": 13.7268,
+                "wape": 0.901371,
+                "bias": -0.0131
+              },
+              "eligible_observations": {
+                "count": 34665,
+                "mae": 7.9888,
+                "rmse": 13.7337,
+                "wape": 0.901357,
+                "bias": -0.0136
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 34700,
+                "mae": 6.3492,
+                "rmse": 10.7893,
+                "wape": 0.717051,
+                "bias": -0.0052
+              },
+              "eligible_observations": {
+                "count": 34665,
+                "mae": 6.3548,
+                "rmse": 10.7947,
+                "wape": 0.716995,
+                "bias": -0.006
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 34700,
+                "mae": 5.7408,
+                "rmse": 9.4207,
+                "wape": 0.648343,
+                "bias": 1.242
+              },
+              "eligible_observations": {
+                "count": 34665,
+                "mae": 5.746,
+                "rmse": 9.4254,
+                "wape": 0.648303,
+                "bias": 1.2427
+              }
+            }
+          }
+        },
+        "Laundry products": {
+          "sample_counts": {
+            "all": 31600,
+            "eligible": 31562
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 31600,
+                "mae": 7.7186,
+                "rmse": 13.0692,
+                "wape": 0.886844,
+                "bias": 0.0084
+              },
+              "eligible_observations": {
+                "count": 31562,
+                "mae": 7.7275,
+                "rmse": 13.0771,
+                "wape": 0.88682,
+                "bias": 0.0084
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 31600,
+                "mae": 6.0669,
+                "rmse": 10.1198,
+                "wape": 0.697069,
+                "bias": -0.0241
+              },
+              "eligible_observations": {
+                "count": 31562,
+                "mae": 6.0733,
+                "rmse": 10.1258,
+                "wape": 0.696987,
+                "bias": -0.0249
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 31600,
+                "mae": 5.5067,
+                "rmse": 8.881,
+                "wape": 0.632707,
+                "bias": 1.1365
+              },
+              "eligible_observations": {
+                "count": 31562,
+                "mae": 5.5124,
+                "rmse": 8.8863,
+                "wape": 0.632618,
+                "bias": 1.137
+              }
+            }
+          }
+        },
+        "Lentils and pulses": {
+          "sample_counts": {
+            "all": 78500,
+            "eligible": 78500
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 78500,
+                "mae": 12.483,
+                "rmse": 20.967,
+                "wape": 0.874941,
+                "bias": 0.0478
+              },
+              "eligible_observations": {
+                "count": 78500,
+                "mae": 12.483,
+                "rmse": 20.967,
+                "wape": 0.874941,
+                "bias": 0.0478
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 78500,
+                "mae": 9.9386,
+                "rmse": 16.4971,
+                "wape": 0.696601,
+                "bias": 0.0375
+              },
+              "eligible_observations": {
+                "count": 78500,
+                "mae": 9.9386,
+                "rmse": 16.4971,
+                "wape": 0.696601,
+                "bias": 0.0375
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 78500,
+                "mae": 8.9328,
+                "rmse": 14.4526,
+                "wape": 0.626104,
+                "bias": 1.5557
+              },
+              "eligible_observations": {
+                "count": 78500,
+                "mae": 8.9328,
+                "rmse": 14.4526,
+                "wape": 0.626104,
+                "bias": 1.5557
+              }
+            }
+          }
+        },
+        "Meat and poultry": {
+          "sample_counts": {
+            "all": 31700,
+            "eligible": 0
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 31700,
+                "mae": 1.9069,
+                "rmse": 6.0208,
+                "wape": 1.940982,
+                "bias": 0.0
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 31700,
+                "mae": 1.8603,
+                "rmse": 4.5314,
+                "wape": 1.893548,
+                "bias": 0.0759
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 31700,
+                "mae": 10.4556,
+                "rmse": 14.0282,
+                "wape": 10.642631,
+                "bias": 10.282
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            }
+          }
+        },
+        "Other daily necessities": {
+          "sample_counts": {
+            "all": 30300,
+            "eligible": 30269
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 30300,
+                "mae": 8.0463,
+                "rmse": 13.8736,
+                "wape": 0.890116,
+                "bias": 0.0341
+              },
+              "eligible_observations": {
+                "count": 30269,
+                "mae": 8.0535,
+                "rmse": 13.8806,
+                "wape": 0.890062,
+                "bias": 0.0335
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 30300,
+                "mae": 6.3192,
+                "rmse": 10.6983,
+                "wape": 0.699062,
+                "bias": 0.0312
+              },
+              "eligible_observations": {
+                "count": 30269,
+                "mae": 6.3245,
+                "rmse": 10.7037,
+                "wape": 0.698973,
+                "bias": 0.0302
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 30300,
+                "mae": 5.7266,
+                "rmse": 9.4357,
+                "wape": 0.633507,
+                "bias": 1.0828
+              },
+              "eligible_observations": {
+                "count": 30269,
+                "mae": 5.7318,
+                "rmse": 9.4405,
+                "wape": 0.633466,
+                "bias": 1.0835
+              }
+            }
+          }
+        },
+        "Personal-care products": {
+          "sample_counts": {
+            "all": 31000,
+            "eligible": 30906
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 31000,
+                "mae": 8.1745,
+                "rmse": 13.8308,
+                "wape": 0.87411,
+                "bias": -0.0248
+              },
+              "eligible_observations": {
+                "count": 30906,
+                "mae": 8.1977,
+                "rmse": 13.8517,
+                "wape": 0.874007,
+                "bias": -0.0263
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 31000,
+                "mae": 6.5407,
+                "rmse": 10.9205,
+                "wape": 0.699415,
+                "bias": 0.0365
+              },
+              "eligible_observations": {
+                "count": 30906,
+                "mae": 6.5576,
+                "rmse": 10.9369,
+                "wape": 0.69915,
+                "bias": 0.0339
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 31000,
+                "mae": 5.9402,
+                "rmse": 9.6548,
+                "wape": 0.635197,
+                "bias": 1.2736
+              },
+              "eligible_observations": {
+                "count": 30906,
+                "mae": 5.9558,
+                "rmse": 9.6694,
+                "wape": 0.634989,
+                "bias": 1.2755
+              }
+            }
+          }
+        },
+        "Rice and grains": {
+          "sample_counts": {
+            "all": 116100,
+            "eligible": 116100
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 116100,
+                "mae": 12.2306,
+                "rmse": 20.7666,
+                "wape": 0.883426,
+                "bias": -0.0388
+              },
+              "eligible_observations": {
+                "count": 116100,
+                "mae": 12.2306,
+                "rmse": 20.7666,
+                "wape": 0.883426,
+                "bias": -0.0388
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 116100,
+                "mae": 9.7493,
+                "rmse": 16.3426,
+                "wape": 0.704205,
+                "bias": 0.0069
+              },
+              "eligible_observations": {
+                "count": 116100,
+                "mae": 9.7493,
+                "rmse": 16.3426,
+                "wape": 0.704205,
+                "bias": 0.0069
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 116100,
+                "mae": 8.7512,
+                "rmse": 14.3313,
+                "wape": 0.632112,
+                "bias": 1.5345
+              },
+              "eligible_observations": {
+                "count": 116100,
+                "mae": 8.7512,
+                "rmse": 14.3313,
+                "wape": 0.632112,
+                "bias": 1.5345
+              }
+            }
+          }
+        },
+        "Spices and condiments": {
+          "sample_counts": {
+            "all": 64300,
+            "eligible": 64139
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 64300,
+                "mae": 7.9724,
+                "rmse": 13.6237,
+                "wape": 0.879013,
+                "bias": 0.0095
+              },
+              "eligible_observations": {
+                "count": 64139,
+                "mae": 7.991,
+                "rmse": 13.6407,
+                "wape": 0.878918,
+                "bias": 0.0085
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 64300,
+                "mae": 6.328,
+                "rmse": 10.7088,
+                "wape": 0.697698,
+                "bias": 0.0323
+              },
+              "eligible_observations": {
+                "count": 64139,
+                "mae": 6.3415,
+                "rmse": 10.7221,
+                "wape": 0.697492,
+                "bias": 0.0303
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 64300,
+                "mae": 5.7257,
+                "rmse": 9.4269,
+                "wape": 0.631294,
+                "bias": 1.1367
+              },
+              "eligible_observations": {
+                "count": 64139,
+                "mae": 5.7382,
+                "rmse": 9.4386,
+                "wape": 0.631131,
+                "bias": 1.138
+              }
+            }
+          }
+        },
+        "Sugar and salt": {
+          "sample_counts": {
+            "all": 71500,
+            "eligible": 71500
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 71500,
+                "mae": 13.1693,
+                "rmse": 22.0321,
+                "wape": 0.871945,
+                "bias": 0.0213
+              },
+              "eligible_observations": {
+                "count": 71500,
+                "mae": 13.1693,
+                "rmse": 22.0321,
+                "wape": 0.871945,
+                "bias": 0.0213
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 71500,
+                "mae": 10.4854,
+                "rmse": 17.2207,
+                "wape": 0.694245,
+                "bias": 0.0008
+              },
+              "eligible_observations": {
+                "count": 71500,
+                "mae": 10.4854,
+                "rmse": 17.2207,
+                "wape": 0.694245,
+                "bias": 0.0008
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 71500,
+                "mae": 9.4259,
+                "rmse": 15.159,
+                "wape": 0.624093,
+                "bias": 1.515
+              },
+              "eligible_observations": {
+                "count": 71500,
+                "mae": 9.4259,
+                "rmse": 15.159,
+                "wape": 0.624093,
+                "bias": 1.515
+              }
+            }
+          }
+        },
+        "Tea and coffee": {
+          "sample_counts": {
+            "all": 36600,
+            "eligible": 36536
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 36600,
+                "mae": 8.0478,
+                "rmse": 13.7942,
+                "wape": 0.874116,
+                "bias": -0.006
+              },
+              "eligible_observations": {
+                "count": 36536,
+                "mae": 8.0611,
+                "rmse": 13.8062,
+                "wape": 0.874067,
+                "bias": -0.0063
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 36600,
+                "mae": 6.4781,
+                "rmse": 10.8725,
+                "wape": 0.703622,
+                "bias": 0.0361
+              },
+              "eligible_observations": {
+                "count": 36536,
+                "mae": 6.488,
+                "rmse": 10.882,
+                "wape": 0.703487,
+                "bias": 0.0349
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 36600,
+                "mae": 5.8275,
+                "rmse": 9.488,
+                "wape": 0.632956,
+                "bias": 1.1828
+              },
+              "eligible_observations": {
+                "count": 36536,
+                "mae": 5.8363,
+                "rmse": 9.4963,
+                "wape": 0.632833,
+                "bias": 1.1838
+              }
+            }
+          }
+        },
+        "Toiletries": {
+          "sample_counts": {
+            "all": 27800,
+            "eligible": 27774
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 27800,
+                "mae": 8.0157,
+                "rmse": 13.8001,
+                "wape": 0.880827,
+                "bias": 0.0374
+              },
+              "eligible_observations": {
+                "count": 27774,
+                "mae": 8.0223,
+                "rmse": 13.8065,
+                "wape": 0.880766,
+                "bias": 0.037
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 27800,
+                "mae": 6.5149,
+                "rmse": 11.0614,
+                "wape": 0.715907,
+                "bias": 0.0487
+              },
+              "eligible_observations": {
+                "count": 27774,
+                "mae": 6.5196,
+                "rmse": 11.0665,
+                "wape": 0.715794,
+                "bias": 0.0479
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 27800,
+                "mae": 5.913,
+                "rmse": 9.7492,
+                "wape": 0.649759,
+                "bias": 1.268
+              },
+              "eligible_observations": {
+                "count": 27774,
+                "mae": 5.9177,
+                "rmse": 9.7537,
+                "wape": 0.649701,
+                "bias": 1.2687
+              }
+            }
+          }
+        },
+        "Vegetables": {
+          "sample_counts": {
+            "all": 96800,
+            "eligible": 52660
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 96800,
+                "mae": 6.6479,
+                "rmse": 12.7927,
+                "wape": 1.157887,
+                "bias": 0.2128
+              },
+              "eligible_observations": {
+                "count": 52660,
+                "mae": 8.9165,
+                "rmse": 15.0686,
+                "wape": 0.94936,
+                "bias": -1.2352
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 96800,
+                "mae": 5.2899,
+                "rmse": 9.5043,
+                "wape": 0.921361,
+                "bias": 0.16
+              },
+              "eligible_observations": {
+                "count": 52660,
+                "mae": 6.7643,
+                "rmse": 11.4047,
+                "wape": 0.720209,
+                "bias": -1.3661
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 96800,
+                "mae": 7.5858,
+                "rmse": 11.336,
+                "wape": 1.321256,
+                "bias": 5.0374
+              },
+              "eligible_observations": {
+                "count": 52660,
+                "mae": 6.0103,
+                "rmse": 9.7503,
+                "wape": 0.639929,
+                "bias": 1.5183
+              }
+            }
+          }
+        }
+      },
+      "by_outlet_type": {
+        "Grocery shop": {
+          "sample_counts": {
+            "all": 562600,
+            "eligible": 472804
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 562600,
+                "mae": 4.9536,
+                "rmse": 7.9235,
+                "wape": 0.918939,
+                "bias": 0.0211
+              },
+              "eligible_observations": {
+                "count": 472804,
+                "mae": 5.5835,
+                "rmse": 8.4637,
+                "wape": 0.887024,
+                "bias": -0.1036
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 562600,
+                "mae": 3.9763,
+                "rmse": 6.1825,
+                "wape": 0.737632,
+                "bias": 0.0249
+              },
+              "eligible_observations": {
+                "count": 472804,
+                "mae": 4.4404,
+                "rmse": 6.6306,
+                "wape": 0.705432,
+                "bias": -0.1051
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 562600,
+                "mae": 4.2917,
+                "rmse": 5.9656,
+                "wape": 0.796155,
+                "bias": 1.7435
+              },
+              "eligible_observations": {
+                "count": 472804,
+                "mae": 4.0642,
+                "rmse": 5.8553,
+                "wape": 0.645656,
+                "bias": 1.0501
+              }
+            }
+          }
+        },
+        "Grocery store": {
+          "sample_counts": {
+            "all": 404800,
+            "eligible": 334625
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 404800,
+                "mae": 5.7672,
+                "rmse": 8.9578,
+                "wape": 0.925304,
+                "bias": 0.0129
+              },
+              "eligible_observations": {
+                "count": 334625,
+                "mae": 6.5616,
+                "rmse": 9.6179,
+                "wape": 0.889167,
+                "bias": -0.148
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 404800,
+                "mae": 4.6216,
+                "rmse": 6.9681,
+                "wape": 0.741497,
+                "bias": 0.0137
+              },
+              "eligible_observations": {
+                "count": 334625,
+                "mae": 5.2067,
+                "rmse": 7.5192,
+                "wape": 0.705566,
+                "bias": -0.1503
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 404800,
+                "mae": 5.0777,
+                "rmse": 6.8148,
+                "wape": 0.81467,
+                "bias": 2.0732
+              },
+              "eligible_observations": {
+                "count": 334625,
+                "mae": 4.7427,
+                "rmse": 6.6398,
+                "wape": 0.642686,
+                "bias": 1.1342
+              }
+            }
+          }
+        },
+        "Supermarket": {
+          "sample_counts": {
+            "all": 358200,
+            "eligible": 295172
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 358200,
+                "mae": 18.2727,
+                "rmse": 27.9649,
+                "wape": 0.920786,
+                "bias": 0.0776
+              },
+              "eligible_observations": {
+                "count": 295172,
+                "mae": 20.7718,
+                "rmse": 30.0036,
+                "wape": 0.882197,
+                "bias": -0.4662
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 358200,
+                "mae": 14.6806,
+                "rmse": 21.8565,
+                "wape": 0.739775,
+                "bias": 0.1093
+              },
+              "eligible_observations": {
+                "count": 295172,
+                "mae": 16.5067,
+                "rmse": 23.5677,
+                "wape": 0.701056,
+                "bias": -0.4585
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 358200,
+                "mae": 15.6573,
+                "rmse": 21.0328,
+                "wape": 0.78899,
+                "bias": 5.2699
+              },
+              "eligible_observations": {
+                "count": 295172,
+                "mae": 14.6443,
+                "rmse": 20.5257,
+                "wape": 0.621958,
+                "bias": 2.1456
+              }
+            }
+          }
+        }
+      },
+      "by_area_type": {
+        "Commercial / office areas": {
+          "sample_counts": {
+            "all": 157500,
+            "eligible": 130927
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 157500,
+                "mae": 9.254,
+                "rmse": 16.7951,
+                "wape": 0.918757,
+                "bias": 0.0608
+              },
+              "eligible_observations": {
+                "count": 130927,
+                "mae": 10.5022,
+                "rmse": 17.9816,
+                "wape": 0.884681,
+                "bias": -0.1684
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 157500,
+                "mae": 7.4022,
+                "rmse": 13.0872,
+                "wape": 0.734905,
+                "bias": 0.0621
+              },
+              "eligible_observations": {
+                "count": 130927,
+                "mae": 8.3171,
+                "rmse": 14.0789,
+                "wape": 0.700612,
+                "bias": -0.1648
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 157500,
+                "mae": 7.9962,
+                "rmse": 12.6166,
+                "wape": 0.793873,
+                "bias": 2.9054
+              },
+              "eligible_observations": {
+                "count": 130927,
+                "mae": 7.4681,
+                "rmse": 12.2948,
+                "wape": 0.629102,
+                "bias": 1.3921
+              }
+            }
+          }
+        },
+        "Garment / industrial worker areas": {
+          "sample_counts": {
+            "all": 125800,
+            "eligible": 108060
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 125800,
+                "mae": 6.9589,
+                "rmse": 12.495,
+                "wape": 0.921092,
+                "bias": 0.0497
+              },
+              "eligible_observations": {
+                "count": 108060,
+                "mae": 7.6542,
+                "rmse": 13.1012,
+                "wape": 0.888038,
+                "bias": -0.1271
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 125800,
+                "mae": 5.5065,
+                "rmse": 9.5108,
+                "wape": 0.728854,
+                "bias": 0.0646
+              },
+              "eligible_observations": {
+                "count": 108060,
+                "mae": 6.0068,
+                "rmse": 10.0216,
+                "wape": 0.69691,
+                "bias": -0.1028
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 125800,
+                "mae": 5.746,
+                "rmse": 9.0775,
+                "wape": 0.760547,
+                "bias": 2.0218
+              },
+              "eligible_observations": {
+                "count": 108060,
+                "mae": 5.4501,
+                "rmse": 8.838,
+                "wape": 0.632323,
+                "bias": 1.1576
+              }
+            }
+          }
+        },
+        "Lower-income / dense urban residential": {
+          "sample_counts": {
+            "all": 158300,
+            "eligible": 136785
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 158300,
+                "mae": 6.7644,
+                "rmse": 12.3082,
+                "wape": 0.910963,
+                "bias": -0.0097
+              },
+              "eligible_observations": {
+                "count": 136785,
+                "mae": 7.4836,
+                "rmse": 13.0084,
+                "wape": 0.884771,
+                "bias": -0.1406
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 158300,
+                "mae": 5.4691,
+                "rmse": 9.7807,
+                "wape": 0.736521,
+                "bias": -0.0052
+              },
+              "eligible_observations": {
+                "count": 136785,
+                "mae": 6.0014,
+                "rmse": 10.3704,
+                "wape": 0.709538,
+                "bias": -0.1499
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 158300,
+                "mae": 5.75,
+                "rmse": 9.3383,
+                "wape": 0.774345,
+                "bias": 2.0821
+              },
+              "eligible_observations": {
+                "count": 136785,
+                "mae": 5.4483,
+                "rmse": 9.1109,
+                "wape": 0.644135,
+                "bias": 1.2254
+              }
+            }
+          }
+        },
+        "Middle-income residential": {
+          "sample_counts": {
+            "all": 254800,
+            "eligible": 207942
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 254800,
+                "mae": 9.7002,
+                "rmse": 17.581,
+                "wape": 0.923861,
+                "bias": 0.0658
+              },
+              "eligible_observations": {
+                "count": 207942,
+                "mae": 11.1594,
+                "rmse": 18.9855,
+                "wape": 0.886552,
+                "bias": -0.203
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 254800,
+                "mae": 7.8102,
+                "rmse": 13.8123,
+                "wape": 0.743854,
+                "bias": 0.0967
+              },
+              "eligible_observations": {
+                "count": 207942,
+                "mae": 8.8846,
+                "rmse": 14.9827,
+                "wape": 0.705836,
+                "bias": -0.1924
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 254800,
+                "mae": 8.4769,
+                "rmse": 13.2892,
+                "wape": 0.807348,
+                "bias": 3.2195
+              },
+              "eligible_observations": {
+                "count": 207942,
+                "mae": 7.9581,
+                "rmse": 13.0641,
+                "wape": 0.632232,
+                "bias": 1.566
+              }
+            }
+          }
+        },
+        "Mixed-income urban neighbourhoods": {
+          "sample_counts": {
+            "all": 141500,
+            "eligible": 115945
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 141500,
+                "mae": 9.225,
+                "rmse": 17.2728,
+                "wape": 0.929019,
+                "bias": 0.0704
+              },
+              "eligible_observations": {
+                "count": 115945,
+                "mae": 10.5098,
+                "rmse": 18.5297,
+                "wape": 0.8879,
+                "bias": -0.2291
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 141500,
+                "mae": 7.3517,
+                "rmse": 13.3191,
+                "wape": 0.74036,
+                "bias": 0.0645
+              },
+              "eligible_observations": {
+                "count": 115945,
+                "mae": 8.2866,
+                "rmse": 14.3717,
+                "wape": 0.700075,
+                "bias": -0.2474
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 141500,
+                "mae": 7.9442,
+                "rmse": 12.8234,
+                "wape": 0.80003,
+                "bias": 2.9142
+              },
+              "eligible_observations": {
+                "count": 115945,
+                "mae": 7.4429,
+                "rmse": 12.5382,
+                "wape": 0.628802,
+                "bias": 1.3524
+              }
+            }
+          }
+        },
+        "Premium / affluent residential": {
+          "sample_counts": {
+            "all": 187700,
+            "eligible": 155590
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 187700,
+                "mae": 12.059,
+                "rmse": 20.6634,
+                "wape": 0.917532,
+                "bias": -0.0079
+              },
+              "eligible_observations": {
+                "count": 155590,
+                "mae": 13.6634,
+                "rmse": 22.1424,
+                "wape": 0.880467,
+                "bias": -0.3643
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 187700,
+                "mae": 9.7032,
+                "rmse": 16.1205,
+                "wape": 0.738289,
+                "bias": 0.0117
+              },
+              "eligible_observations": {
+                "count": 155590,
+                "mae": 10.8679,
+                "rmse": 17.3538,
+                "wape": 0.700326,
+                "bias": -0.3638
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 187700,
+                "mae": 10.408,
+                "rmse": 15.5624,
+                "wape": 0.791911,
+                "bias": 3.618
+              },
+              "eligible_observations": {
+                "count": 155590,
+                "mae": 9.6886,
+                "rmse": 15.1106,
+                "wape": 0.62433,
+                "bias": 1.5587
+              }
+            }
+          }
+        },
+        "Rural-market or peri-urban areas": {
+          "sample_counts": {
+            "all": 53400,
+            "eligible": 45002
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 53400,
+                "mae": 5.3425,
+                "rmse": 8.5385,
+                "wape": 0.916916,
+                "bias": 0.032
+              },
+              "eligible_observations": {
+                "count": 45002,
+                "mae": 6.0358,
+                "rmse": 9.1413,
+                "wape": 0.888906,
+                "bias": -0.0718
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 53400,
+                "mae": 4.2635,
+                "rmse": 6.6294,
+                "wape": 0.731734,
+                "bias": 0.0673
+              },
+              "eligible_observations": {
+                "count": 45002,
+                "mae": 4.7646,
+                "rmse": 7.1087,
+                "wape": 0.701698,
+                "bias": -0.047
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 53400,
+                "mae": 4.5482,
+                "rmse": 6.3296,
+                "wape": 0.780589,
+                "bias": 1.7634
+              },
+              "eligible_observations": {
+                "count": 45002,
+                "mae": 4.3363,
+                "rmse": 6.2722,
+                "wape": 0.63862,
+                "bias": 1.0543
+              }
+            }
+          }
+        },
+        "Semi-urban / small-town markets": {
+          "sample_counts": {
+            "all": 130000,
+            "eligible": 106490
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 130000,
+                "mae": 10.334,
+                "rmse": 19.0906,
+                "wape": 0.924684,
+                "bias": 0.0084
+              },
+              "eligible_observations": {
+                "count": 106490,
+                "mae": 11.7624,
+                "rmse": 20.4866,
+                "wape": 0.883699,
+                "bias": -0.3379
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 130000,
+                "mae": 8.3673,
+                "rmse": 15.0417,
+                "wape": 0.748706,
+                "bias": -0.0093
+              },
+              "eligible_observations": {
+                "count": 106490,
+                "mae": 9.4326,
+                "rmse": 16.239,
+                "wape": 0.708663,
+                "bias": -0.3633
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 130000,
+                "mae": 9.1361,
+                "rmse": 14.6374,
+                "wape": 0.817497,
+                "bias": 3.4092
+              },
+              "eligible_observations": {
+                "count": 106490,
+                "mae": 8.4377,
+                "rmse": 14.1595,
+                "wape": 0.633915,
+                "bias": 1.5008
+              }
+            }
+          }
+        },
+        "University / student areas": {
+          "sample_counts": {
+            "all": 116600,
+            "eligible": 95860
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 116600,
+                "mae": 5.0934,
+                "rmse": 8.0158,
+                "wape": 0.927095,
+                "bias": 0.0222
+              },
+              "eligible_observations": {
+                "count": 95860,
+                "mae": 5.7575,
+                "rmse": 8.5535,
+                "wape": 0.882304,
+                "bias": -0.1714
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 116600,
+                "mae": 4.0749,
+                "rmse": 6.2303,
+                "wape": 0.741704,
+                "bias": 0.0284
+              },
+              "eligible_observations": {
+                "count": 95860,
+                "mae": 4.5593,
+                "rmse": 6.6979,
+                "wape": 0.698683,
+                "bias": -0.1675
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 116600,
+                "mae": 4.4409,
+                "rmse": 6.089,
+                "wape": 0.808334,
+                "bias": 1.8618
+              },
+              "eligible_observations": {
+                "count": 95860,
+                "mae": 4.1759,
+                "rmse": 5.9293,
+                "wape": 0.639933,
+                "bias": 1.0655
+              }
+            }
+          }
+        }
+      },
+      "by_demand_level": {
+        "High (>50/wk)": {
+          "sample_counts": {
+            "all": 19975,
+            "eligible": 19848
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 19975,
+                "mae": 44.4093,
+                "rmse": 55.8046,
+                "wape": 1.082793,
+                "bias": 21.1076
+              },
+              "eligible_observations": {
+                "count": 19848,
+                "mae": 44.357,
+                "rmse": 55.7198,
+                "wape": 1.076646,
+                "bias": 20.9817
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 19975,
+                "mae": 35.4189,
+                "rmse": 42.3705,
+                "wape": 0.863588,
+                "bias": 20.9726
+              },
+              "eligible_observations": {
+                "count": 19848,
+                "mae": 35.355,
+                "rmse": 42.3206,
+                "wape": 0.858147,
+                "bias": 20.8274
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 19975,
+                "mae": 28.8024,
+                "rmse": 35.3594,
+                "wape": 0.702265,
+                "bias": 8.5924
+              },
+              "eligible_observations": {
+                "count": 19848,
+                "mae": 28.7071,
+                "rmse": 35.2693,
+                "wape": 0.696787,
+                "bias": 8.381
+              }
+            }
+          }
+        },
+        "Low (2 to <10/wk)": {
+          "sample_counts": {
+            "all": 642001,
+            "eligible": 581457
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 642001,
+                "mae": 5.5218,
+                "rmse": 8.447,
+                "wape": 0.898599,
+                "bias": -0.9168
+              },
+              "eligible_observations": {
+                "count": 581457,
+                "mae": 5.586,
+                "rmse": 8.38,
+                "wape": 0.843524,
+                "bias": -1.2867
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 642001,
+                "mae": 4.5217,
+                "rmse": 6.9546,
+                "wape": 0.735846,
+                "bias": -0.8968
+              },
+              "eligible_observations": {
+                "count": 581457,
+                "mae": 4.514,
+                "rmse": 7.0544,
+                "wape": 0.681649,
+                "bias": -1.276
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 642001,
+                "mae": 5.0012,
+                "rmse": 7.4712,
+                "wape": 0.813885,
+                "bias": 1.9817
+              },
+              "eligible_observations": {
+                "count": 581457,
+                "mae": 4.1358,
+                "rmse": 5.8702,
+                "wape": 0.624544,
+                "bias": 0.8313
+              }
+            }
+          }
+        },
+        "Medium (10 to 50/wk)": {
+          "sample_counts": {
+            "all": 396485,
+            "eligible": 383939
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 396485,
+                "mae": 17.1114,
+                "rmse": 24.3472,
+                "wape": 0.910305,
+                "bias": 1.1351
+              },
+              "eligible_observations": {
+                "count": 383939,
+                "mae": 17.0661,
+                "rmse": 24.2103,
+                "wape": 0.88642,
+                "bias": 0.7492
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 396485,
+                "mae": 13.4507,
+                "rmse": 18.8505,
+                "wape": 0.715559,
+                "bias": 1.1319
+              },
+              "eligible_observations": {
+                "count": 383939,
+                "mae": 13.359,
+                "rmse": 18.8436,
+                "wape": 0.69387,
+                "bias": 0.737
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 396485,
+                "mae": 12.5138,
+                "rmse": 17.3492,
+                "wape": 0.665718,
+                "bias": 2.7993
+              },
+              "eligible_observations": {
+                "count": 383939,
+                "mae": 12.1018,
+                "rmse": 16.8774,
+                "wape": 0.628572,
+                "bias": 2.1024
+              }
+            }
+          }
+        },
+        "Zero / Intermittent (<2/wk)": {
+          "sample_counts": {
+            "all": 267139,
+            "eligible": 117357
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 267139,
+                "mae": 1.6855,
+                "rmse": 4.2763,
+                "wape": 1.007397,
+                "bias": -0.8916
+              },
+              "eligible_observations": {
+                "count": 117357,
+                "mae": 2.4379,
+                "rmse": 5.094,
+                "wape": 0.853172,
+                "bias": -1.6365
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 267139,
+                "mae": 1.5836,
+                "rmse": 4.093,
+                "wape": 0.946495,
+                "bias": -0.873
+              },
+              "eligible_observations": {
+                "count": 117357,
+                "mae": 2.2038,
+                "rmse": 4.9208,
+                "wape": 0.771273,
+                "bias": -1.617
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 267139,
+                "mae": 4.9815,
+                "rmse": 8.0081,
+                "wape": 2.97728,
+                "bias": 4.3198
+              },
+              "eligible_observations": {
+                "count": 117357,
+                "mae": 1.7915,
+                "rmse": 3.2383,
+                "wape": 0.626956,
+                "bias": 0.4468
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "30d": {
+    "dataset_summary": {
+      "horizon": "30d",
+      "total_rows": 1020712,
+      "eligible_rows": 853740,
+      "eligible_pct": 83.64,
+      "target_statistics": {
+        "min": 0.0,
+        "max": 507.0,
+        "mean": 41.113,
+        "zero_target_count": 59281,
+        "zero_target_pct": 5.81
+      },
+      "validation_origins": {
+        "count": 77,
+        "start": "2026-08-01",
+        "end": "2026-10-16"
+      }
+    },
+    "overall_evaluation": {
+      "recent_period_persistence": {
+        "count": 1020712,
+        "mae": 17.755,
+        "rmse": 32.0077,
+        "wape": 0.43186,
+        "bias": 0.0623
+      },
+      "rolling_average_forecast": {
+        "count": 1020712,
+        "mae": 17.755,
+        "rmse": 32.0077,
+        "wape": 0.43186,
+        "bias": 0.0623
+      },
+      "planning_prior_benchmark": {
+        "count": 1020712,
+        "mae": 17.9741,
+        "rmse": 29.408,
+        "wape": 0.437188,
+        "bias": 11.818
+      }
+    },
+    "availability_comparison": {
+      "recent_period_persistence": {
+        "all_observations": {
+          "count": 1020712,
+          "mae": 17.755,
+          "rmse": 32.0077,
+          "wape": 0.43186,
+          "bias": 0.0623
+        },
+        "eligible_observations": {
+          "count": 853740,
+          "mae": 19.8771,
+          "rmse": 34.5539,
+          "wape": 0.416929,
+          "bias": 0.0771
+        }
+      },
+      "rolling_average_forecast": {
+        "all_observations": {
+          "count": 1020712,
+          "mae": 17.755,
+          "rmse": 32.0077,
+          "wape": 0.43186,
+          "bias": 0.0623
+        },
+        "eligible_observations": {
+          "count": 853740,
+          "mae": 19.8771,
+          "rmse": 34.5539,
+          "wape": 0.416929,
+          "bias": 0.0771
+        }
+      },
+      "planning_prior_benchmark": {
+        "all_observations": {
+          "count": 1020712,
+          "mae": 17.9741,
+          "rmse": 29.408,
+          "wape": 0.437188,
+          "bias": 11.818
+        },
+        "eligible_observations": {
+          "count": 853740,
+          "mae": 14.0417,
+          "rmse": 23.0648,
+          "wape": 0.294529,
+          "bias": 6.687
+        }
+      }
+    },
+    "sliced_evaluation": {
+      "by_product_category": {
+        "Baby-care essentials": {
+          "sample_counts": {
+            "all": 23562,
+            "eligible": 23557
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 23562,
+                "mae": 17.0332,
+                "rmse": 29.0532,
+                "wape": 0.421128,
+                "bias": -0.0014
+              },
+              "eligible_observations": {
+                "count": 23557,
+                "mae": 17.0366,
+                "rmse": 29.0562,
+                "wape": 0.421128,
+                "bias": -0.0012
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 23562,
+                "mae": 17.0332,
+                "rmse": 29.0532,
+                "wape": 0.421128,
+                "bias": -0.0014
+              },
+              "eligible_observations": {
+                "count": 23557,
+                "mae": 17.0366,
+                "rmse": 29.0562,
+                "wape": 0.421128,
+                "bias": -0.0012
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 23562,
+                "mae": 11.5266,
+                "rmse": 18.5949,
+                "wape": 0.284982,
+                "bias": 5.244
+              },
+              "eligible_observations": {
+                "count": 23557,
+                "mae": 11.5286,
+                "rmse": 18.5969,
+                "wape": 0.284976,
+                "bias": 5.2447
+              }
+            }
+          }
+        },
+        "Basic health and hygiene products": {
+          "sample_counts": {
+            "all": 21714,
+            "eligible": 21690
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 21714,
+                "mae": 17.1653,
+                "rmse": 29.8227,
+                "wape": 0.437063,
+                "bias": 0.2241
+              },
+              "eligible_observations": {
+                "count": 21690,
+                "mae": 17.181,
+                "rmse": 29.839,
+                "wape": 0.437009,
+                "bias": 0.2221
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 21714,
+                "mae": 17.1653,
+                "rmse": 29.8227,
+                "wape": 0.437063,
+                "bias": 0.2241
+              },
+              "eligible_observations": {
+                "count": 21690,
+                "mae": 17.181,
+                "rmse": 29.839,
+                "wape": 0.437009,
+                "bias": 0.2221
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 21714,
+                "mae": 11.6817,
+                "rmse": 19.2286,
+                "wape": 0.297439,
+                "bias": 5.1745
+              },
+              "eligible_observations": {
+                "count": 21690,
+                "mae": 11.693,
+                "rmse": 19.2391,
+                "wape": 0.297418,
+                "bias": 5.1791
+              }
+            }
+          }
+        },
+        "Beverages and bottled water": {
+          "sample_counts": {
+            "all": 64911,
+            "eligible": 64830
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 64911,
+                "mae": 16.8175,
+                "rmse": 27.7261,
+                "wape": 0.422612,
+                "bias": -0.388
+              },
+              "eligible_observations": {
+                "count": 64830,
+                "mae": 16.8349,
+                "rmse": 27.7431,
+                "wape": 0.422564,
+                "bias": -0.3909
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 64911,
+                "mae": 16.8175,
+                "rmse": 27.7261,
+                "wape": 0.422612,
+                "bias": -0.388
+              },
+              "eligible_observations": {
+                "count": 64830,
+                "mae": 16.8349,
+                "rmse": 27.7431,
+                "wape": 0.422564,
+                "bias": -0.3909
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 64911,
+                "mae": 11.4855,
+                "rmse": 18.1817,
+                "wape": 0.288623,
+                "bias": 4.9859
+              },
+              "eligible_observations": {
+                "count": 64830,
+                "mae": 11.4976,
+                "rmse": 18.1929,
+                "wape": 0.288595,
+                "bias": 4.9911
+              }
+            }
+          }
+        },
+        "Biscuits and snacks": {
+          "sample_counts": {
+            "all": 64141,
+            "eligible": 64045
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 64141,
+                "mae": 15.4181,
+                "rmse": 25.9282,
+                "wape": 0.421134,
+                "bias": -0.1441
+              },
+              "eligible_observations": {
+                "count": 64045,
+                "mae": 15.436,
+                "rmse": 25.9471,
+                "wape": 0.421042,
+                "bias": -0.1486
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 64141,
+                "mae": 15.4181,
+                "rmse": 25.9282,
+                "wape": 0.421134,
+                "bias": -0.1441
+              },
+              "eligible_observations": {
+                "count": 64045,
+                "mae": 15.436,
+                "rmse": 25.9471,
+                "wape": 0.421042,
+                "bias": -0.1486
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 64141,
+                "mae": 10.4937,
+                "rmse": 16.5198,
+                "wape": 0.286628,
+                "bias": 4.8242
+              },
+              "eligible_observations": {
+                "count": 64045,
+                "mae": 10.5069,
+                "rmse": 16.5319,
+                "wape": 0.286593,
+                "bias": 4.8296
+              }
+            }
+          }
+        },
+        "Bread and bakery products": {
+          "sample_counts": {
+            "all": 30415,
+            "eligible": 0
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 30415,
+                "mae": 6.9583,
+                "rmse": 12.0918,
+                "wape": 1.046853,
+                "bias": 0.0806
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 30415,
+                "mae": 6.9583,
+                "rmse": 12.0918,
+                "wape": 1.046853,
+                "bias": 0.0806
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 30415,
+                "mae": 37.0432,
+                "rmse": 48.9122,
+                "wape": 5.57304,
+                "bias": 37.0432
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            }
+          }
+        },
+        "Breakfast products": {
+          "sample_counts": {
+            "all": 27643,
+            "eligible": 27628
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 27643,
+                "mae": 15.7697,
+                "rmse": 25.9878,
+                "wape": 0.411832,
+                "bias": 0.233
+              },
+              "eligible_observations": {
+                "count": 27628,
+                "mae": 15.7773,
+                "rmse": 25.9948,
+                "wape": 0.411835,
+                "bias": 0.2325
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 27643,
+                "mae": 15.7697,
+                "rmse": 25.9878,
+                "wape": 0.411832,
+                "bias": 0.233
+              },
+              "eligible_observations": {
+                "count": 27628,
+                "mae": 15.7773,
+                "rmse": 25.9948,
+                "wape": 0.411835,
+                "bias": 0.2325
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 27643,
+                "mae": 11.0085,
+                "rmse": 16.9756,
+                "wape": 0.287491,
+                "bias": 5.6096
+              },
+              "eligible_observations": {
+                "count": 27628,
+                "mae": 11.0136,
+                "rmse": 16.9802,
+                "wape": 0.287489,
+                "bias": 5.6134
+              }
+            }
+          }
+        },
+        "Cooking oil": {
+          "sample_counts": {
+            "all": 58058,
+            "eligible": 58058
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 58058,
+                "mae": 26.9762,
+                "rmse": 45.9271,
+                "wape": 0.423597,
+                "bias": 0.5491
+              },
+              "eligible_observations": {
+                "count": 58058,
+                "mae": 26.9762,
+                "rmse": 45.9271,
+                "wape": 0.423597,
+                "bias": 0.5491
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 58058,
+                "mae": 26.9762,
+                "rmse": 45.9271,
+                "wape": 0.423597,
+                "bias": 0.5491
+              },
+              "eligible_observations": {
+                "count": 58058,
+                "mae": 26.9762,
+                "rmse": 45.9271,
+                "wape": 0.423597,
+                "bias": 0.5491
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 58058,
+                "mae": 17.6131,
+                "rmse": 28.8487,
+                "wape": 0.27657,
+                "bias": 6.5644
+              },
+              "eligible_observations": {
+                "count": 58058,
+                "mae": 17.6131,
+                "rmse": 28.8487,
+                "wape": 0.27657,
+                "bias": 6.5644
+              }
+            }
+          }
+        },
+        "Dairy products": {
+          "sample_counts": {
+            "all": 57442,
+            "eligible": 27869
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 57442,
+                "mae": 12.5139,
+                "rmse": 22.1878,
+                "wape": 0.504181,
+                "bias": 0.0541
+              },
+              "eligible_observations": {
+                "count": 27869,
+                "mae": 16.8579,
+                "rmse": 28.0946,
+                "wape": 0.411993,
+                "bias": 0.2051
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 57442,
+                "mae": 12.5139,
+                "rmse": 22.1878,
+                "wape": 0.504181,
+                "bias": 0.0541
+              },
+              "eligible_observations": {
+                "count": 27869,
+                "mae": 16.8579,
+                "rmse": 28.0946,
+                "wape": 0.411993,
+                "bias": 0.2051
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 57442,
+                "mae": 24.0862,
+                "rmse": 36.4337,
+                "wape": 0.970423,
+                "bias": 21.1977
+              },
+              "eligible_observations": {
+                "count": 27869,
+                "mae": 11.4699,
+                "rmse": 17.977,
+                "wape": 0.280315,
+                "bias": 5.5164
+              }
+            }
+          }
+        },
+        "Eggs": {
+          "sample_counts": {
+            "all": 29414,
+            "eligible": 29351
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 29414,
+                "mae": 18.9267,
+                "rmse": 31.9434,
+                "wape": 0.40316,
+                "bias": 0.1184
+              },
+              "eligible_observations": {
+                "count": 29351,
+                "mae": 18.8201,
+                "rmse": 31.7612,
+                "wape": 0.403239,
+                "bias": 0.1713
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 29414,
+                "mae": 18.9267,
+                "rmse": 31.9434,
+                "wape": 0.40316,
+                "bias": 0.1184
+              },
+              "eligible_observations": {
+                "count": 29351,
+                "mae": 18.8201,
+                "rmse": 31.7612,
+                "wape": 0.403239,
+                "bias": 0.1713
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 29414,
+                "mae": 27.4844,
+                "rmse": 39.264,
+                "wape": 0.58545,
+                "bias": 26.6175
+              },
+              "eligible_observations": {
+                "count": 29351,
+                "mae": 27.4732,
+                "rmse": 39.242,
+                "wape": 0.588638,
+                "bias": 26.647
+              }
+            }
+          }
+        },
+        "Fish and frozen foods": {
+          "sample_counts": {
+            "all": 24255,
+            "eligible": 0
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 24255,
+                "mae": 3.8798,
+                "rmse": 7.2585,
+                "wape": 1.433349,
+                "bias": -0.1582
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 24255,
+                "mae": 3.8798,
+                "rmse": 7.2585,
+                "wape": 1.433349,
+                "bias": -0.1582
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 24255,
+                "mae": 41.4664,
+                "rmse": 54.0688,
+                "wape": 15.319217,
+                "bias": 41.4664
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            }
+          }
+        },
+        "Flour and baking ingredients": {
+          "sample_counts": {
+            "all": 47509,
+            "eligible": 47509
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 47509,
+                "mae": 28.1812,
+                "rmse": 47.989,
+                "wape": 0.425385,
+                "bias": 0.1719
+              },
+              "eligible_observations": {
+                "count": 47509,
+                "mae": 28.1812,
+                "rmse": 47.989,
+                "wape": 0.425385,
+                "bias": 0.1719
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 47509,
+                "mae": 28.1812,
+                "rmse": 47.989,
+                "wape": 0.425385,
+                "bias": 0.1719
+              },
+              "eligible_observations": {
+                "count": 47509,
+                "mae": 28.1812,
+                "rmse": 47.989,
+                "wape": 0.425385,
+                "bias": 0.1719
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 47509,
+                "mae": 18.0819,
+                "rmse": 29.4244,
+                "wape": 0.272939,
+                "bias": 6.8523
+              },
+              "eligible_observations": {
+                "count": 47509,
+                "mae": 18.0819,
+                "rmse": 29.4244,
+                "wape": 0.272939,
+                "bias": 6.8523
+              }
+            }
+          }
+        },
+        "Fruits": {
+          "sample_counts": {
+            "all": 49126,
+            "eligible": 24236
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 49126,
+                "mae": 10.3052,
+                "rmse": 17.5522,
+                "wape": 0.437036,
+                "bias": 0.0709
+              },
+              "eligible_observations": {
+                "count": 24236,
+                "mae": 13.0944,
+                "rmse": 21.039,
+                "wape": 0.32154,
+                "bias": -0.0512
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 49126,
+                "mae": 10.3052,
+                "rmse": 17.5522,
+                "wape": 0.437036,
+                "bias": 0.0709
+              },
+              "eligible_observations": {
+                "count": 24236,
+                "mae": 13.0944,
+                "rmse": 21.039,
+                "wape": 0.32154,
+                "bias": -0.0512
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 49126,
+                "mae": 24.9872,
+                "rmse": 38.872,
+                "wape": 1.059689,
+                "bias": 23.1384
+              },
+              "eligible_observations": {
+                "count": 24236,
+                "mae": 9.3307,
+                "rmse": 14.1068,
+                "wape": 0.229122,
+                "bias": 5.5875
+              }
+            }
+          }
+        },
+        "Household cleaning products": {
+          "sample_counts": {
+            "all": 21329,
+            "eligible": 21284
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 21329,
+                "mae": 16.3839,
+                "rmse": 28.0624,
+                "wape": 0.403928,
+                "bias": 0.1038
+              },
+              "eligible_observations": {
+                "count": 21284,
+                "mae": 16.4075,
+                "rmse": 28.0907,
+                "wape": 0.403701,
+                "bias": 0.0941
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 21329,
+                "mae": 16.3839,
+                "rmse": 28.0624,
+                "wape": 0.403928,
+                "bias": 0.1038
+              },
+              "eligible_observations": {
+                "count": 21284,
+                "mae": 16.4075,
+                "rmse": 28.0907,
+                "wape": 0.403701,
+                "bias": 0.0941
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 21329,
+                "mae": 11.0322,
+                "rmse": 17.675,
+                "wape": 0.271987,
+                "bias": 4.7723
+              },
+              "eligible_observations": {
+                "count": 21284,
+                "mae": 11.0508,
+                "rmse": 17.6932,
+                "wape": 0.271901,
+                "bias": 4.7787
+              }
+            }
+          }
+        },
+        "Instant noodles and packaged food": {
+          "sample_counts": {
+            "all": 26719,
+            "eligible": 26707
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 26719,
+                "mae": 16.2649,
+                "rmse": 27.9178,
+                "wape": 0.429143,
+                "bias": -0.3205
+              },
+              "eligible_observations": {
+                "count": 26707,
+                "mae": 16.2711,
+                "rmse": 27.924,
+                "wape": 0.429131,
+                "bias": -0.3216
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 26719,
+                "mae": 16.2649,
+                "rmse": 27.9178,
+                "wape": 0.429143,
+                "bias": -0.3205
+              },
+              "eligible_observations": {
+                "count": 26707,
+                "mae": 16.2711,
+                "rmse": 27.924,
+                "wape": 0.429131,
+                "bias": -0.3216
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 26719,
+                "mae": 11.1585,
+                "rmse": 18.0279,
+                "wape": 0.294413,
+                "bias": 5.3703
+              },
+              "eligible_observations": {
+                "count": 26707,
+                "mae": 11.1629,
+                "rmse": 18.0319,
+                "wape": 0.294409,
+                "bias": 5.3725
+              }
+            }
+          }
+        },
+        "Laundry products": {
+          "sample_counts": {
+            "all": 24332,
+            "eligible": 24310
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 24332,
+                "mae": 15.5981,
+                "rmse": 26.1538,
+                "wape": 0.417179,
+                "bias": -0.1174
+              },
+              "eligible_observations": {
+                "count": 24310,
+                "mae": 15.6096,
+                "rmse": 26.1654,
+                "wape": 0.417135,
+                "bias": -0.1197
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 24332,
+                "mae": 15.5981,
+                "rmse": 26.1538,
+                "wape": 0.417179,
+                "bias": -0.1174
+              },
+              "eligible_observations": {
+                "count": 24310,
+                "mae": 15.6096,
+                "rmse": 26.1654,
+                "wape": 0.417135,
+                "bias": -0.1197
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 24332,
+                "mae": 10.5138,
+                "rmse": 16.1668,
+                "wape": 0.281199,
+                "bias": 4.7816
+              },
+              "eligible_observations": {
+                "count": 24310,
+                "mae": 10.522,
+                "rmse": 16.1741,
+                "wape": 0.28118,
+                "bias": 4.7849
+              }
+            }
+          }
+        },
+        "Lentils and pulses": {
+          "sample_counts": {
+            "all": 60445,
+            "eligible": 60445
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 60445,
+                "mae": 25.6534,
+                "rmse": 43.3416,
+                "wape": 0.419098,
+                "bias": 0.0261
+              },
+              "eligible_observations": {
+                "count": 60445,
+                "mae": 25.6534,
+                "rmse": 43.3416,
+                "wape": 0.419098,
+                "bias": 0.0261
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 60445,
+                "mae": 25.6534,
+                "rmse": 43.3416,
+                "wape": 0.419098,
+                "bias": 0.0261
+              },
+              "eligible_observations": {
+                "count": 60445,
+                "mae": 25.6534,
+                "rmse": 43.3416,
+                "wape": 0.419098,
+                "bias": 0.0261
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 60445,
+                "mae": 16.9562,
+                "rmse": 27.2041,
+                "wape": 0.277013,
+                "bias": 6.6019
+              },
+              "eligible_observations": {
+                "count": 60445,
+                "mae": 16.9562,
+                "rmse": 27.2041,
+                "wape": 0.277013,
+                "bias": 6.6019
+              }
+            }
+          }
+        },
+        "Meat and poultry": {
+          "sample_counts": {
+            "all": 24409,
+            "eligible": 0
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 24409,
+                "mae": 5.6563,
+                "rmse": 9.9785,
+                "wape": 1.193576,
+                "bias": -0.3686
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 24409,
+                "mae": 5.6563,
+                "rmse": 9.9785,
+                "wape": 1.193576,
+                "bias": -0.3686
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 24409,
+                "mae": 43.5372,
+                "rmse": 57.2477,
+                "wape": 9.187013,
+                "bias": 43.5372
+              },
+              "eligible_observations": {
+                "count": 0,
+                "mae": null,
+                "rmse": null,
+                "wape": null,
+                "bias": null
+              }
+            }
+          }
+        },
+        "Other daily necessities": {
+          "sample_counts": {
+            "all": 23331,
+            "eligible": 23321
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 23331,
+                "mae": 16.1606,
+                "rmse": 27.5454,
+                "wape": 0.420437,
+                "bias": 0.5615
+              },
+              "eligible_observations": {
+                "count": 23321,
+                "mae": 16.1668,
+                "rmse": 27.5513,
+                "wape": 0.420439,
+                "bias": 0.5611
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 23331,
+                "mae": 16.1606,
+                "rmse": 27.5454,
+                "wape": 0.420437,
+                "bias": 0.5615
+              },
+              "eligible_observations": {
+                "count": 23321,
+                "mae": 16.1668,
+                "rmse": 27.5513,
+                "wape": 0.420439,
+                "bias": 0.5611
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 23331,
+                "mae": 11.1425,
+                "rmse": 17.7777,
+                "wape": 0.289885,
+                "bias": 4.9438
+              },
+              "eligible_observations": {
+                "count": 23321,
+                "mae": 11.1469,
+                "rmse": 17.7815,
+                "wape": 0.28989,
+                "bias": 4.946
+              }
+            }
+          }
+        },
+        "Personal-care products": {
+          "sample_counts": {
+            "all": 23870,
+            "eligible": 23817
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 23870,
+                "mae": 17.3555,
+                "rmse": 28.8728,
+                "wape": 0.434443,
+                "bias": 0.232
+              },
+              "eligible_observations": {
+                "count": 23817,
+                "mae": 17.3865,
+                "rmse": 28.9042,
+                "wape": 0.434342,
+                "bias": 0.2283
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 23870,
+                "mae": 17.3555,
+                "rmse": 28.8728,
+                "wape": 0.434443,
+                "bias": 0.232
+              },
+              "eligible_observations": {
+                "count": 23817,
+                "mae": 17.3865,
+                "rmse": 28.9042,
+                "wape": 0.434342,
+                "bias": 0.2283
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 23870,
+                "mae": 11.7779,
+                "rmse": 18.8421,
+                "wape": 0.294825,
+                "bias": 5.5885
+              },
+              "eligible_observations": {
+                "count": 23817,
+                "mae": 11.8003,
+                "rmse": 18.8628,
+                "wape": 0.294791,
+                "bias": 5.6007
+              }
+            }
+          }
+        },
+        "Rice and grains": {
+          "sample_counts": {
+            "all": 89397,
+            "eligible": 89397
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 89397,
+                "mae": 25.0066,
+                "rmse": 41.9939,
+                "wape": 0.420682,
+                "bias": 0.0678
+              },
+              "eligible_observations": {
+                "count": 89397,
+                "mae": 25.0066,
+                "rmse": 41.9939,
+                "wape": 0.420682,
+                "bias": 0.0678
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 89397,
+                "mae": 25.0066,
+                "rmse": 41.9939,
+                "wape": 0.420682,
+                "bias": 0.0678
+              },
+              "eligible_observations": {
+                "count": 89397,
+                "mae": 25.0066,
+                "rmse": 41.9939,
+                "wape": 0.420682,
+                "bias": 0.0678
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 89397,
+                "mae": 16.5394,
+                "rmse": 26.7138,
+                "wape": 0.278238,
+                "bias": 6.4667
+              },
+              "eligible_observations": {
+                "count": 89397,
+                "mae": 16.5394,
+                "rmse": 26.7138,
+                "wape": 0.278238,
+                "bias": 6.4667
+              }
+            }
+          }
+        },
+        "Spices and condiments": {
+          "sample_counts": {
+            "all": 49511,
+            "eligible": 49421
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 49511,
+                "mae": 16.5497,
+                "rmse": 28.7647,
+                "wape": 0.42601,
+                "bias": 0.2506
+              },
+              "eligible_observations": {
+                "count": 49421,
+                "mae": 16.571,
+                "rmse": 28.79,
+                "wape": 0.425845,
+                "bias": 0.2452
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 49511,
+                "mae": 16.5497,
+                "rmse": 28.7647,
+                "wape": 0.42601,
+                "bias": 0.2506
+              },
+              "eligible_observations": {
+                "count": 49421,
+                "mae": 16.571,
+                "rmse": 28.79,
+                "wape": 0.425845,
+                "bias": 0.2452
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 49511,
+                "mae": 11.1502,
+                "rmse": 18.2082,
+                "wape": 0.287021,
+                "bias": 4.894
+              },
+              "eligible_observations": {
+                "count": 49421,
+                "mae": 11.1665,
+                "rmse": 18.2244,
+                "wape": 0.286957,
+                "bias": 4.9015
+              }
+            }
+          }
+        },
+        "Sugar and salt": {
+          "sample_counts": {
+            "all": 55055,
+            "eligible": 55055
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 55055,
+                "mae": 27.002,
+                "rmse": 44.3939,
+                "wape": 0.417703,
+                "bias": 0.0106
+              },
+              "eligible_observations": {
+                "count": 55055,
+                "mae": 27.002,
+                "rmse": 44.3939,
+                "wape": 0.417703,
+                "bias": 0.0106
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 55055,
+                "mae": 27.002,
+                "rmse": 44.3939,
+                "wape": 0.417703,
+                "bias": 0.0106
+              },
+              "eligible_observations": {
+                "count": 55055,
+                "mae": 27.002,
+                "rmse": 44.3939,
+                "wape": 0.417703,
+                "bias": 0.0106
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 55055,
+                "mae": 17.9298,
+                "rmse": 28.7006,
+                "wape": 0.277362,
+                "bias": 6.5775
+              },
+              "eligible_observations": {
+                "count": 55055,
+                "mae": 17.9298,
+                "rmse": 28.7006,
+                "wape": 0.277362,
+                "bias": 6.5775
+              }
+            }
+          }
+        },
+        "Tea and coffee": {
+          "sample_counts": {
+            "all": 28182,
+            "eligible": 28150
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 28182,
+                "mae": 16.9474,
+                "rmse": 27.7424,
+                "wape": 0.42845,
+                "bias": 0.0478
+              },
+              "eligible_observations": {
+                "count": 28150,
+                "mae": 16.9628,
+                "rmse": 27.7579,
+                "wape": 0.428387,
+                "bias": 0.0451
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 28182,
+                "mae": 16.9474,
+                "rmse": 27.7424,
+                "wape": 0.42845,
+                "bias": 0.0478
+              },
+              "eligible_observations": {
+                "count": 28150,
+                "mae": 16.9628,
+                "rmse": 27.7579,
+                "wape": 0.428387,
+                "bias": 0.0451
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 28182,
+                "mae": 11.3055,
+                "rmse": 17.3824,
+                "wape": 0.285815,
+                "bias": 4.9718
+              },
+              "eligible_observations": {
+                "count": 28150,
+                "mae": 11.317,
+                "rmse": 17.3922,
+                "wape": 0.285805,
+                "bias": 4.9767
+              }
+            }
+          }
+        },
+        "Toiletries": {
+          "sample_counts": {
+            "all": 21406,
+            "eligible": 21396
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 21406,
+                "mae": 16.9117,
+                "rmse": 29.5184,
+                "wape": 0.43287,
+                "bias": 0.3226
+              },
+              "eligible_observations": {
+                "count": 21396,
+                "mae": 16.9192,
+                "rmse": 29.5253,
+                "wape": 0.432887,
+                "bias": 0.323
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 21406,
+                "mae": 16.9117,
+                "rmse": 29.5184,
+                "wape": 0.43287,
+                "bias": 0.3226
+              },
+              "eligible_observations": {
+                "count": 21396,
+                "mae": 16.9192,
+                "rmse": 29.5253,
+                "wape": 0.432887,
+                "bias": 0.323
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 21406,
+                "mae": 11.7612,
+                "rmse": 19.0625,
+                "wape": 0.301038,
+                "bias": 5.3664
+              },
+              "eligible_observations": {
+                "count": 21396,
+                "mae": 11.7657,
+                "rmse": 19.0669,
+                "wape": 0.301032,
+                "bias": 5.3693
+              }
+            }
+          }
+        },
+        "Vegetables": {
+          "sample_counts": {
+            "all": 74536,
+            "eligible": 41664
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 74536,
+                "mae": 10.9338,
+                "rmse": 19.5512,
+                "wape": 0.431108,
+                "bias": 0.1162
+              },
+              "eligible_observations": {
+                "count": 41664,
+                "mae": 13.1969,
+                "rmse": 22.6537,
+                "wape": 0.371333,
+                "bias": 0.0576
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 74536,
+                "mae": 10.9338,
+                "rmse": 19.5512,
+                "wape": 0.431108,
+                "bias": 0.1162
+              },
+              "eligible_observations": {
+                "count": 41664,
+                "mae": 13.1969,
+                "rmse": 22.6537,
+                "wape": 0.371333,
+                "bias": 0.0576
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 74536,
+                "mae": 22.2517,
+                "rmse": 34.076,
+                "wape": 0.877362,
+                "bias": 20.8326
+              },
+              "eligible_observations": {
+                "count": 41664,
+                "mae": 13.524,
+                "rmse": 21.0458,
+                "wape": 0.380538,
+                "bias": 11.0517
+              }
+            }
+          }
+        }
+      },
+      "by_outlet_type": {
+        "Grocery shop": {
+          "sample_counts": {
+            "all": 433202,
+            "eligible": 366524
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 433202,
+                "mae": 10.0039,
+                "rmse": 15.6694,
+                "wape": 0.431523,
+                "bias": 0.0098
+              },
+              "eligible_observations": {
+                "count": 366524,
+                "mae": 11.1755,
+                "rmse": 16.877,
+                "wape": 0.418407,
+                "bias": 0.0001
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 433202,
+                "mae": 10.0039,
+                "rmse": 15.6694,
+                "wape": 0.431523,
+                "bias": 0.0098
+              },
+              "eligible_observations": {
+                "count": 366524,
+                "mae": 11.1755,
+                "rmse": 16.877,
+                "wape": 0.418407,
+                "bias": 0.0001
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 433202,
+                "mae": 10.3228,
+                "rmse": 14.4429,
+                "wape": 0.445281,
+                "bias": 7.3918
+              },
+              "eligible_observations": {
+                "count": 366524,
+                "mae": 8.3937,
+                "rmse": 11.8121,
+                "wape": 0.314255,
+                "bias": 4.9323
+              }
+            }
+          }
+        },
+        "Grocery store": {
+          "sample_counts": {
+            "all": 311696,
+            "eligible": 258753
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 311696,
+                "mae": 11.6566,
+                "rmse": 17.5957,
+                "wape": 0.435079,
+                "bias": -0.0654
+              },
+              "eligible_observations": {
+                "count": 258753,
+                "mae": 13.1226,
+                "rmse": 19.0719,
+                "wape": 0.418986,
+                "bias": -0.0858
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 311696,
+                "mae": 11.6566,
+                "rmse": 17.5957,
+                "wape": 0.435079,
+                "bias": -0.0654
+              },
+              "eligible_observations": {
+                "count": 258753,
+                "mae": 13.1226,
+                "rmse": 19.0719,
+                "wape": 0.418986,
+                "bias": -0.0858
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 311696,
+                "mae": 12.3665,
+                "rmse": 16.8451,
+                "wape": 0.461576,
+                "bias": 8.8051
+              },
+              "eligible_observations": {
+                "count": 258753,
+                "mae": 9.6785,
+                "rmse": 13.3078,
+                "wape": 0.30902,
+                "bias": 5.3888
+              }
+            }
+          }
+        },
+        "Supermarket": {
+          "sample_counts": {
+            "all": 275814,
+            "eligible": 228463
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 275814,
+                "mae": 36.8211,
+                "rmse": 55.2796,
+                "wape": 0.430863,
+                "bias": 0.289
+              },
+              "eligible_observations": {
+                "count": 228463,
+                "mae": 41.487,
+                "rmse": 59.9401,
+                "wape": 0.415564,
+                "bias": 0.3852
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 275814,
+                "mae": 36.8211,
+                "rmse": 55.2796,
+                "wape": 0.430863,
+                "bias": 0.289
+              },
+              "eligible_observations": {
+                "count": 228463,
+                "mae": 41.487,
+                "rmse": 59.9401,
+                "wape": 0.415564,
+                "bias": 0.3852
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 275814,
+                "mae": 36.3287,
+                "rmse": 50.5193,
+                "wape": 0.4251,
+                "bias": 22.1749
+              },
+              "eligible_observations": {
+                "count": 228463,
+                "mae": 28.0445,
+                "rmse": 39.5418,
+                "wape": 0.280914,
+                "bias": 10.9725
+              }
+            }
+          }
+        }
+      },
+      "by_area_type": {
+        "Commercial / office areas": {
+          "sample_counts": {
+            "all": 121275,
+            "eligible": 101149
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 121275,
+                "mae": 18.5425,
+                "rmse": 33.0588,
+                "wape": 0.427269,
+                "bias": -0.0649
+              },
+              "eligible_observations": {
+                "count": 101149,
+                "mae": 20.8749,
+                "rmse": 35.8445,
+                "wape": 0.41254,
+                "bias": -0.0725
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 121275,
+                "mae": 18.5425,
+                "rmse": 33.0588,
+                "wape": 0.427269,
+                "bias": -0.0649
+              },
+              "eligible_observations": {
+                "count": 101149,
+                "mae": 20.8749,
+                "rmse": 35.8445,
+                "wape": 0.41254,
+                "bias": -0.0725
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 121275,
+                "mae": 18.813,
+                "rmse": 30.3793,
+                "wape": 0.433501,
+                "bias": 12.2211
+              },
+              "eligible_observations": {
+                "count": 101149,
+                "mae": 14.4795,
+                "rmse": 23.4821,
+                "wape": 0.286151,
+                "bias": 6.5764
+              }
+            }
+          }
+        },
+        "Garment / industrial worker areas": {
+          "sample_counts": {
+            "all": 96866,
+            "eligible": 84140
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 96866,
+                "mae": 13.6355,
+                "rmse": 23.886,
+                "wape": 0.419621,
+                "bias": 0.2652
+              },
+              "eligible_observations": {
+                "count": 84140,
+                "mae": 14.922,
+                "rmse": 25.3669,
+                "wape": 0.407686,
+                "bias": 0.2993
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 96866,
+                "mae": 13.6355,
+                "rmse": 23.886,
+                "wape": 0.419621,
+                "bias": 0.2652
+              },
+              "eligible_observations": {
+                "count": 84140,
+                "mae": 14.922,
+                "rmse": 25.3669,
+                "wape": 0.407686,
+                "bias": 0.2993
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 96866,
+                "mae": 13.0846,
+                "rmse": 20.9322,
+                "wape": 0.402671,
+                "bias": 8.5491
+              },
+              "eligible_observations": {
+                "count": 84140,
+                "mae": 10.8661,
+                "rmse": 17.3478,
+                "wape": 0.296873,
+                "bias": 5.6473
+              }
+            }
+          }
+        },
+        "Lower-income / dense urban residential": {
+          "sample_counts": {
+            "all": 121891,
+            "eligible": 105910
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 121891,
+                "mae": 13.8141,
+                "rmse": 25.0621,
+                "wape": 0.434336,
+                "bias": -0.1471
+              },
+              "eligible_observations": {
+                "count": 105910,
+                "mae": 15.1335,
+                "rmse": 26.6138,
+                "wape": 0.423173,
+                "bias": -0.1871
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 121891,
+                "mae": 13.8141,
+                "rmse": 25.0621,
+                "wape": 0.434336,
+                "bias": -0.1471
+              },
+              "eligible_observations": {
+                "count": 105910,
+                "mae": 15.1335,
+                "rmse": 26.6138,
+                "wape": 0.423173,
+                "bias": -0.1871
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 121891,
+                "mae": 13.4538,
+                "rmse": 22.2974,
+                "wape": 0.423006,
+                "bias": 8.9421
+              },
+              "eligible_observations": {
+                "count": 105910,
+                "mae": 10.993,
+                "rmse": 17.8781,
+                "wape": 0.307391,
+                "bias": 5.8074
+              }
+            }
+          }
+        },
+        "Middle-income residential": {
+          "sample_counts": {
+            "all": 196196,
+            "eligible": 161083
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 196196,
+                "mae": 19.629,
+                "rmse": 35.0965,
+                "wape": 0.433944,
+                "bias": 0.405
+              },
+              "eligible_observations": {
+                "count": 161083,
+                "mae": 22.3207,
+                "rmse": 38.2442,
+                "wape": 0.417838,
+                "bias": 0.479
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 196196,
+                "mae": 19.629,
+                "rmse": 35.0965,
+                "wape": 0.433944,
+                "bias": 0.405
+              },
+              "eligible_observations": {
+                "count": 161083,
+                "mae": 22.3207,
+                "rmse": 38.2442,
+                "wape": 0.417838,
+                "bias": 0.479
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 196196,
+                "mae": 20.3138,
+                "rmse": 32.2191,
+                "wape": 0.449081,
+                "bias": 13.562
+              },
+              "eligible_observations": {
+                "count": 161083,
+                "mae": 15.8458,
+                "rmse": 25.7889,
+                "wape": 0.296629,
+                "bias": 7.627
+              }
+            }
+          }
+        },
+        "Mixed-income urban neighbourhoods": {
+          "sample_counts": {
+            "all": 108955,
+            "eligible": 89690
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 108955,
+                "mae": 18.3664,
+                "rmse": 33.1841,
+                "wape": 0.430129,
+                "bias": 0.4242
+              },
+              "eligible_observations": {
+                "count": 89690,
+                "mae": 20.807,
+                "rmse": 36.0866,
+                "wape": 0.415205,
+                "bias": 0.4685
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 108955,
+                "mae": 18.3664,
+                "rmse": 33.1841,
+                "wape": 0.430129,
+                "bias": 0.4242
+              },
+              "eligible_observations": {
+                "count": 89690,
+                "mae": 20.807,
+                "rmse": 36.0866,
+                "wape": 0.415205,
+                "bias": 0.4685
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 108955,
+                "mae": 18.7248,
+                "rmse": 30.5665,
+                "wape": 0.438522,
+                "bias": 12.3462
+              },
+              "eligible_observations": {
+                "count": 89690,
+                "mae": 14.6326,
+                "rmse": 24.176,
+                "wape": 0.291993,
+                "bias": 6.893
+              }
+            }
+          }
+        },
+        "Premium / affluent residential": {
+          "sample_counts": {
+            "all": 144529,
+            "eligible": 119632
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 144529,
+                "mae": 24.4282,
+                "rmse": 40.4041,
+                "wape": 0.43206,
+                "bias": -0.1348
+              },
+              "eligible_observations": {
+                "count": 119632,
+                "mae": 27.3911,
+                "rmse": 43.7292,
+                "wape": 0.416032,
+                "bias": -0.0793
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 144529,
+                "mae": 24.4282,
+                "rmse": 40.4041,
+                "wape": 0.43206,
+                "bias": -0.1348
+              },
+              "eligible_observations": {
+                "count": 119632,
+                "mae": 27.3911,
+                "rmse": 43.7292,
+                "wape": 0.416032,
+                "bias": -0.0793
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 144529,
+                "mae": 24.3665,
+                "rmse": 37.4882,
+                "wape": 0.430969,
+                "bias": 15.2932
+              },
+              "eligible_observations": {
+                "count": 119632,
+                "mae": 18.5826,
+                "rmse": 28.5632,
+                "wape": 0.282243,
+                "bias": 7.6291
+              }
+            }
+          }
+        },
+        "Rural-market or peri-urban areas": {
+          "sample_counts": {
+            "all": 41118,
+            "eligible": 34888
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 41118,
+                "mae": 10.5951,
+                "rmse": 16.4922,
+                "wape": 0.419428,
+                "bias": 0.0636
+              },
+              "eligible_observations": {
+                "count": 34888,
+                "mae": 11.8025,
+                "rmse": 17.723,
+                "wape": 0.405787,
+                "bias": 0.0427
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 41118,
+                "mae": 10.5951,
+                "rmse": 16.4922,
+                "wape": 0.419428,
+                "bias": 0.0636
+              },
+              "eligible_observations": {
+                "count": 34888,
+                "mae": 11.8025,
+                "rmse": 17.723,
+                "wape": 0.405787,
+                "bias": 0.0427
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 41118,
+                "mae": 10.5738,
+                "rmse": 14.7128,
+                "wape": 0.418585,
+                "bias": 7.2679
+              },
+              "eligible_observations": {
+                "count": 34888,
+                "mae": 8.5597,
+                "rmse": 12.0245,
+                "wape": 0.294296,
+                "bias": 4.664
+              }
+            }
+          }
+        },
+        "Semi-urban / small-town markets": {
+          "sample_counts": {
+            "all": 100100,
+            "eligible": 82561
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 100100,
+                "mae": 21.2678,
+                "rmse": 38.7013,
+                "wape": 0.441957,
+                "bias": -0.4145
+              },
+              "eligible_observations": {
+                "count": 82561,
+                "mae": 24.0603,
+                "rmse": 42.0533,
+                "wape": 0.425427,
+                "bias": -0.5058
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 100100,
+                "mae": 21.2678,
+                "rmse": 38.7013,
+                "wape": 0.441957,
+                "bias": -0.4145
+              },
+              "eligible_observations": {
+                "count": 82561,
+                "mae": 24.0603,
+                "rmse": 42.0533,
+                "wape": 0.425427,
+                "bias": -0.5058
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 100100,
+                "mae": 21.9781,
+                "rmse": 36.0562,
+                "wape": 0.456718,
+                "bias": 14.385
+              },
+              "eligible_observations": {
+                "count": 82561,
+                "mae": 16.8513,
+                "rmse": 28.1461,
+                "wape": 0.297958,
+                "bias": 7.6556
+              }
+            }
+          }
+        },
+        "University / student areas": {
+          "sample_counts": {
+            "all": 89782,
+            "eligible": 74687
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 89782,
+                "mae": 10.2696,
+                "rmse": 15.8797,
+                "wape": 0.434345,
+                "bias": -0.0406
+              },
+              "eligible_observations": {
+                "count": 74687,
+                "mae": 11.5594,
+                "rmse": 17.1988,
+                "wape": 0.419803,
+                "bias": -0.0214
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 89782,
+                "mae": 10.2696,
+                "rmse": 15.8797,
+                "wape": 0.434345,
+                "bias": -0.0406
+              },
+              "eligible_observations": {
+                "count": 74687,
+                "mae": 11.5594,
+                "rmse": 17.1988,
+                "wape": 0.419803,
+                "bias": -0.0214
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 89782,
+                "mae": 10.8641,
+                "rmse": 14.9845,
+                "wape": 0.459492,
+                "bias": 7.8807
+              },
+              "eligible_observations": {
+                "count": 74687,
+                "mae": 8.9304,
+                "rmse": 12.4761,
+                "wape": 0.324325,
+                "bias": 5.3464
+              }
+            }
+          }
+        }
+      },
+      "by_demand_level": {
+        "High (>50/wk)": {
+          "sample_counts": {
+            "all": 15591,
+            "eligible": 15585
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 15591,
+                "mae": 100.5722,
+                "rmse": 121.4916,
+                "wape": 0.558096,
+                "bias": 86.2129
+              },
+              "eligible_observations": {
+                "count": 15585,
+                "mae": 100.5523,
+                "rmse": 121.4751,
+                "wape": 0.557887,
+                "bias": 86.1875
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 15591,
+                "mae": 100.5722,
+                "rmse": 121.4916,
+                "wape": 0.558096,
+                "bias": 86.2129
+              },
+              "eligible_observations": {
+                "count": 15585,
+                "mae": 100.5523,
+                "rmse": 121.4751,
+                "wape": 0.557887,
+                "bias": 86.1875
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 15591,
+                "mae": 57.7384,
+                "rmse": 71.6899,
+                "wape": 0.320402,
+                "bias": 32.6316
+              },
+              "eligible_observations": {
+                "count": 15585,
+                "mae": 57.7145,
+                "rmse": 71.6612,
+                "wape": 0.320213,
+                "bias": 32.5981
+              }
+            }
+          }
+        },
+        "Low (2 to <10/wk)": {
+          "sample_counts": {
+            "all": 493702,
+            "eligible": 452787
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 493702,
+                "mae": 11.3524,
+                "rmse": 18.2397,
+                "wape": 0.431198,
+                "bias": -3.849
+              },
+              "eligible_observations": {
+                "count": 452787,
+                "mae": 11.389,
+                "rmse": 18.5411,
+                "wape": 0.412424,
+                "bias": -4.6777
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 493702,
+                "mae": 11.3524,
+                "rmse": 18.2397,
+                "wape": 0.431198,
+                "bias": -3.849
+              },
+              "eligible_observations": {
+                "count": 452787,
+                "mae": 11.389,
+                "rmse": 18.5411,
+                "wape": 0.412424,
+                "bias": -4.6777
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 493702,
+                "mae": 12.2081,
+                "rmse": 21.9155,
+                "wape": 0.463698,
+                "bias": 8.4973
+              },
+              "eligible_observations": {
+                "count": 452787,
+                "mae": 8.3564,
+                "rmse": 11.4857,
+                "wape": 0.302605,
+                "bias": 4.3124
+              }
+            }
+          }
+        },
+        "Medium (10 to 50/wk)": {
+          "sample_counts": {
+            "all": 304943,
+            "eligible": 300190
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 304943,
+                "mae": 32.5784,
+                "rmse": 45.4184,
+                "wape": 0.401882,
+                "bias": 4.4322
+              },
+              "eligible_observations": {
+                "count": 300190,
+                "mae": 32.5467,
+                "rmse": 45.4747,
+                "wape": 0.398617,
+                "bias": 4.1431
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 304943,
+                "mae": 32.5784,
+                "rmse": 45.4184,
+                "wape": 0.401882,
+                "bias": 4.4322
+              },
+              "eligible_observations": {
+                "count": 300190,
+                "mae": 32.5467,
+                "rmse": 45.4747,
+                "wape": 0.398617,
+                "bias": 4.1431
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 304943,
+                "mae": 24.2673,
+                "rmse": 34.0378,
+                "wape": 0.299357,
+                "bias": 11.3814
+              },
+              "eligible_observations": {
+                "count": 300190,
+                "mae": 23.3393,
+                "rmse": 32.2399,
+                "wape": 0.285848,
+                "bias": 10.2581
+              }
+            }
+          }
+        },
+        "Zero / Intermittent (<2/wk)": {
+          "sample_counts": {
+            "all": 206476,
+            "eligible": 85178
+          },
+          "baselines": {
+            "recent_period_persistence": {
+              "all_observations": {
+                "count": 206476,
+                "mae": 4.9182,
+                "rmse": 10.3896,
+                "wape": 0.706763,
+                "bias": -3.5445
+              },
+              "eligible_observations": {
+                "count": 85178,
+                "mae": 5.5859,
+                "rmse": 12.3222,
+                "wape": 0.541161,
+                "bias": -4.7325
+              }
+            },
+            "rolling_average_forecast": {
+              "all_observations": {
+                "count": 206476,
+                "mae": 4.9182,
+                "rmse": 10.3896,
+                "wape": 0.706763,
+                "bias": -3.5445
+              },
+              "eligible_observations": {
+                "count": 85178,
+                "mae": 5.5859,
+                "rmse": 12.3222,
+                "wape": 0.541161,
+                "bias": -4.7325
+              }
+            },
+            "planning_prior_benchmark": {
+              "all_observations": {
+                "count": 206476,
+                "mae": 19.4642,
+                "rmse": 32.0579,
+                "wape": 2.79709,
+                "bias": 18.8316
+              },
+              "eligible_observations": {
+                "count": 85178,
+                "mae": 3.5056,
+                "rmse": 5.299,
+                "wape": 0.339625,
+                "bias": 1.9835
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

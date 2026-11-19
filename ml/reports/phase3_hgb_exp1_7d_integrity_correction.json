@@ -1,0 +1,701 @@
+{
+  "stage": "Phase 3, Stage 3.5.1.3.2",
+  "experiment_id": "EXP1_HGB_FULL_7D",
+  "audit_status": "COMPLETED",
+  "all_tasks_passed": true,
+  "overall_conclusion": "EXP1 integrity checks passed for the verified scope, with explicitly documented limitations.",
+  "overall_verdict": "PASSED",
+  "task_a_reproducibility": {
+    "sample_size_validation_rows": 1000,
+    "sample_size_prediction_rows": 1000,
+    "matched_key_count": 1000,
+    "reproducibility_target_scope": "Both unclipped raw tree predictions and non-negative clipped forecasts (>= 0).",
+    "max_abs_diff_raw_vs_4dec_csv": 4.997868503053837e-05,
+    "max_abs_diff_clipped_vs_4dec_csv": 4.997868503053837e-05,
+    "max_abs_diff_after_4dec_rounding_raw": 0.0,
+    "max_abs_diff_after_4dec_rounding_clipped": 0.0,
+    "rounding_half_error_bound": 5.0001e-05,
+    "rounding_half_error_bound_passed": true,
+    "rounding_exact_zero_passed": true,
+    "schema_verification": {
+      "safe_registry_order_match": true,
+      "registry_order_differences": [],
+      "transform_features_same_set": true,
+      "transform_features_no_duplicates": true,
+      "numerical_features_count": 55,
+      "categorical_features_count": 12,
+      "total_features_count": 67,
+      "categorical_indices": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "categorical_indices_match_layout": true,
+      "dual_convention_differences_count": 34,
+      "dual_convention_differences": [
+        {
+          "index": 33,
+          "actual_model_feature": "outlet_type",
+          "expected_transform_feature": "inventory_capacity_sku"
+        },
+        {
+          "index": 34,
+          "actual_model_feature": "business_size",
+          "expected_transform_feature": "has_refrigeration"
+        },
+        {
+          "index": 35,
+          "actual_model_feature": "division",
+          "expected_transform_feature": "has_pos_system"
+        },
+        {
+          "index": 36,
+          "actual_model_feature": "district",
+          "expected_transform_feature": "typical_shelf_life_days"
+        },
+        {
+          "index": 37,
+          "actual_model_feature": "area_type",
+          "expected_transform_feature": "is_essential_item"
+        },
+        {
+          "index": 38,
+          "actual_model_feature": "inventory_capacity_sku",
+          "expected_transform_feature": "outlet_selling_price_bdt"
+        },
+        {
+          "index": 39,
+          "actual_model_feature": "has_refrigeration",
+          "expected_transform_feature": "outlet_purchase_cost_bdt"
+        },
+        {
+          "index": 40,
+          "actual_model_feature": "has_pos_system",
+          "expected_transform_feature": "day_of_week"
+        },
+        {
+          "index": 41,
+          "actual_model_feature": "category",
+          "expected_transform_feature": "day_of_month"
+        },
+        {
+          "index": 42,
+          "actual_model_feature": "subcategory",
+          "expected_transform_feature": "month"
+        },
+        {
+          "index": 43,
+          "actual_model_feature": "brand",
+          "expected_transform_feature": "week_of_year"
+        },
+        {
+          "index": 44,
+          "actual_model_feature": "unit",
+          "expected_transform_feature": "is_weekend"
+        },
+        {
+          "index": 45,
+          "actual_model_feature": "package_size",
+          "expected_transform_feature": "is_month_start"
+        },
+        {
+          "index": 46,
+          "actual_model_feature": "perishable_status",
+          "expected_transform_feature": "is_month_end"
+        },
+        {
+          "index": 47,
+          "actual_model_feature": "typical_shelf_life_days",
+          "expected_transform_feature": "is_ramadan"
+        },
+        {
+          "index": 48,
+          "actual_model_feature": "storage_type",
+          "expected_transform_feature": "is_eid_fitr"
+        },
+        {
+          "index": 49,
+          "actual_model_feature": "is_essential_item",
+          "expected_transform_feature": "is_eid_adha"
+        },
+        {
+          "index": 50,
+          "actual_model_feature": "outlet_selling_price_bdt",
+          "expected_transform_feature": "is_pohela_boishakh"
+        },
+        {
+          "index": 51,
+          "actual_model_feature": "outlet_purchase_cost_bdt",
+          "expected_transform_feature": "is_durga_puja"
+        },
+        {
+          "index": 52,
+          "actual_model_feature": "day_of_week",
+          "expected_transform_feature": "promotion_active_at_origin"
+        },
+        {
+          "index": 53,
+          "actual_model_feature": "day_of_month",
+          "expected_transform_feature": "promotion_days_last_7d"
+        },
+        {
+          "index": 54,
+          "actual_model_feature": "month",
+          "expected_transform_feature": "promotion_days_last_28d"
+        },
+        {
+          "index": 55,
+          "actual_model_feature": "week_of_year",
+          "expected_transform_feature": "outlet_type"
+        },
+        {
+          "index": 56,
+          "actual_model_feature": "is_weekend",
+          "expected_transform_feature": "business_size"
+        },
+        {
+          "index": 57,
+          "actual_model_feature": "is_month_start",
+          "expected_transform_feature": "division"
+        },
+        {
+          "index": 58,
+          "actual_model_feature": "is_month_end",
+          "expected_transform_feature": "district"
+        },
+        {
+          "index": 59,
+          "actual_model_feature": "is_ramadan",
+          "expected_transform_feature": "area_type"
+        },
+        {
+          "index": 60,
+          "actual_model_feature": "is_eid_fitr",
+          "expected_transform_feature": "category"
+        },
+        {
+          "index": 61,
+          "actual_model_feature": "is_eid_adha",
+          "expected_transform_feature": "subcategory"
+        },
+        {
+          "index": 62,
+          "actual_model_feature": "is_pohela_boishakh",
+          "expected_transform_feature": "brand"
+        },
+        {
+          "index": 63,
+          "actual_model_feature": "is_durga_puja",
+          "expected_transform_feature": "unit"
+        },
+        {
+          "index": 64,
+          "actual_model_feature": "promotion_active_at_origin",
+          "expected_transform_feature": "package_size"
+        },
+        {
+          "index": 65,
+          "actual_model_feature": "promotion_days_last_7d",
+          "expected_transform_feature": "perishable_status"
+        },
+        {
+          "index": 66,
+          "actual_model_feature": "promotion_days_last_28d",
+          "expected_transform_feature": "storage_type"
+        }
+      ]
+    },
+    "inference_implementation_checks": {
+      "forecaster_validates_required_cols": true,
+      "forecaster_extracts_num_in_order": true,
+      "forecaster_extracts_cat_in_order": true,
+      "forecaster_stacks_num_then_cat": true,
+      "matrix_layout_matches_categorical_indices": true,
+      "inference_uses_saved_fitted_encoder": true,
+      "unknown_category_handled_as_negative_one": true,
+      "matrix_finiteness_check_present": true,
+      "verified_file": "ml/models/forecaster.py"
+    },
+    "actual_estimator_configuration": {
+      "estimator_fitted": true,
+      "estimator_n_features_in_67": true,
+      "estimator_categorical_features_indices": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "expected_categorical_indices": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "estimator_categorical_indices_match": true,
+      "encoder_fitted_vocabularies_count": 12,
+      "encoder_has_12_vocabularies": true,
+      "categorical_column_order_matches_encoder": true,
+      "feature_mappings_consistent_with_matrix": true
+    },
+    "verdict": "PASSED"
+  },
+  "task_b_prediction_artifact": {
+    "file_name": "hgb_exp1_validation_predictions_7d.csv",
+    "total_rows": 1325600,
+    "row_counts_equal_across_artifacts": true,
+    "missing_values_by_column": {
+      "outlet_id": 0,
+      "product_id": 0,
+      "forecast_origin_date": 0,
+      "actual_target": 0,
+      "predicted_7d_raw": 0,
+      "predicted_7d_clipped": 0,
+      "baseline_prediction": 0,
+      "ridge_prediction": 0,
+      "is_eligible_acc_5of7": 0
+    },
+    "has_zero_missing_values": true,
+    "duplicate_triple_keys": 0,
+    "source_validation_key_uniqueness_verified": true,
+    "duplicate_source_val_keys": 0,
+    "key_coverage_matches_source_dataset": true,
+    "extra_keys_vs_source": 0,
+    "missing_keys_vs_source": 0,
+    "finiteness_checks": {
+      "counts": {
+        "hgb_actual_target": 0,
+        "hgb_predicted_7d_raw": 0,
+        "hgb_predicted_7d_clipped": 0,
+        "hgb_baseline_prediction": 0,
+        "hgb_ridge_prediction": 0,
+        "baseline_file_actual_target": 0,
+        "baseline_file_rolling_baseline": 0,
+        "ridge_file_actual_target": 0,
+        "ridge_file_clipped_prediction": 0
+      },
+      "all_finite_verified": true
+    },
+    "negative_clipped_count": 0,
+    "negative_actual_target_count": 0,
+    "max_clip_inconsistency": 0.0,
+    "inconsistent_clip_count": 0,
+    "baseline_alignment": {
+      "key_alignment_verified": true,
+      "max_target_diff": 0.0
+    },
+    "ridge_alignment": {
+      "key_alignment_verified": true,
+      "max_target_diff": 0.0
+    },
+    "benchmark_prediction_value_alignment": {
+      "embedded_baseline_aligned": true,
+      "max_diff_baseline_prediction": 0.0,
+      "mismatch_count_baseline_prediction": 0,
+      "embedded_ridge_aligned": true,
+      "max_diff_ridge_prediction": 0.0,
+      "mismatch_count_ridge_prediction": 0,
+      "all_compared_predictions_finite": true
+    },
+    "targets_identically_equal": true,
+    "verdict": "PASSED"
+  },
+  "task_c_metric_recalculation": {
+    "prerequisites_verified": true,
+    "comparative_metrics_valid": true,
+    "prerequisite_details": {
+      "equal_row_counts": true,
+      "total_rows": 1325600,
+      "keys_aligned": true,
+      "targets_identically_equal": true,
+      "max_target_diff_base": 0.0,
+      "max_target_diff_ridge": 0.0,
+      "all_values_finite": true,
+      "finite_checks": {
+        "hgb_actual_finite": true,
+        "hgb_raw_pred_finite": true,
+        "hgb_clip_pred_finite": true,
+        "base_pred_finite": true,
+        "ridge_pred_finite": true
+      },
+      "eligibility_binary_verified": true,
+      "eligible_observation_count": 1102601,
+      "eligible_observation_count_match": true
+    },
+    "all_valid_recalculated": {
+      "hgb_clipped": {
+        "count": 1325600,
+        "mae": 6.05981103553108,
+        "rmse": 10.952806654928732,
+        "wape": 0.6343003959913349,
+        "bias": 0.8004956477821364
+      },
+      "hgb_raw": {
+        "count": 1325600,
+        "mae": 6.064295086979481,
+        "rmse": 10.952900885726025,
+        "wape": 0.6347697564371787,
+        "bias": 0.7960115963337357
+      },
+      "baseline": {
+        "count": 1325600,
+        "mae": 7.065843014484007,
+        "rmse": 12.654427039824688,
+        "wape": 0.7396050794027811,
+        "bias": 0.04430257996378998
+      },
+      "ridge": {
+        "count": 1325600,
+        "mae": 7.390664953304164,
+        "rmse": 13.055423731859895,
+        "wape": 0.7736052624468125,
+        "bias": 3.1920505670639705
+      },
+      "absolute_wape_difference_pp_vs_baseline": 10.53,
+      "relative_wape_reduction_pct_vs_baseline": 14.24,
+      "absolute_wape_difference_pp_vs_ridge": 13.93,
+      "relative_wape_reduction_pct_vs_ridge": 18.01,
+      "relative_mae_reduction_pct_vs_baseline": 14.24,
+      "relative_mae_reduction_pct_vs_ridge": 18.01
+    },
+    "eligible_recalculated": {
+      "hgb_clipped": {
+        "count": 1102601,
+        "mae": 6.987032807697435,
+        "rmse": 11.872435095750028,
+        "wape": 0.6215095130878745,
+        "bias": 0.9364008761102157
+      },
+      "baseline": {
+        "count": 1102601,
+        "mae": 7.903207733350505,
+        "rmse": 13.590613557721216,
+        "wape": 0.7030049701177389,
+        "bias": -0.21343418879540288
+      },
+      "ridge": {
+        "count": 1102601,
+        "mae": 8.31856634439838,
+        "rmse": 14.092800505867325,
+        "wape": 0.7399518881034144,
+        "bias": 3.5547871842126026
+      }
+    },
+    "csv_vs_json_discrepancies": {
+      "all_valid": {
+        "mae_diff": 1.103553108006139e-05,
+        "rmse_diff": 6.654928732530152e-06,
+        "wape_diff": 3.959913349449451e-07,
+        "bias_diff": 4.352217863545782e-06
+      },
+      "eligible": {
+        "mae_diff": 3.280769743518874e-05,
+        "rmse_diff": 3.5095750027025474e-05,
+        "wape_diff": 4.869121255079989e-07,
+        "bias_diff": 8.761102157084366e-07
+      },
+      "documented_tolerances": {
+        "mae_tolerance": 5e-05,
+        "rmse_tolerance": 5e-05,
+        "bias_tolerance": 5e-05,
+        "wape_tolerance": 1e-05
+      },
+      "all_within_documented_tolerances": true,
+      "explanation": "Discrepancies are bounded by 5.0e-5 (half-error of four-decimal rounding), caused by rounding raw 64-bit float model predictions when serializing to CSV."
+    },
+    "verdict": "PASSED"
+  },
+  "task_d_training_partition": {
+    "training_partition": {
+      "expected_date_range": "2025-12-13 to 2026-07-01",
+      "expected_unique_dates": 201,
+      "actual_unique_dates": 201,
+      "is_consecutive_calendar_sequence": true,
+      "missing_dates": [],
+      "unexpected_dates": [],
+      "total_rows": 2664456,
+      "expected_rows": 2664456
+    },
+    "purge_partition": {
+      "purge_interval": "2026-07-02 to 2026-07-31",
+      "actual_rows": 0,
+      "expected_rows": 0,
+      "unique_dates": 0
+    },
+    "validation_partition": {
+      "expected_date_range": "2026-08-01 to 2026-11-08",
+      "expected_unique_dates": 100,
+      "actual_unique_dates": 100,
+      "is_consecutive_calendar_sequence": true,
+      "missing_dates": [],
+      "unexpected_dates": [],
+      "total_rows": 1325600,
+      "expected_rows": 1325600
+    },
+    "other_unclassified_rows": 0,
+    "feature_specification": {
+      "total_safe_features": 67,
+      "numerical_features_count": 55,
+      "categorical_features_count": 12,
+      "encoder_fitted_and_serialized": true,
+      "categorical_indices_match_transform_layout": true,
+      "categorical_indices": [
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "conditional_features_excluded": true,
+      "forbidden_columns_excluded": true,
+      "target_column": "target_7d",
+      "explicit_feature_type_verification": {
+        "numerical_features_count_55": true,
+        "categorical_features_count_12": true,
+        "total_safe_features_67": true,
+        "zero_numerical_categorical_overlap": true,
+        "no_missing_features": true,
+        "no_unexpected_features": true,
+        "categorical_transformation_order_match": true,
+        "numerical_transformation_order_match": true,
+        "categorical_indices_match_estimator": true
+      },
+      "safe_registry_comparison": {
+        "safe_registry_order_match": true,
+        "registry_order_differences": [],
+        "authoritative_source": "ml/reports/phase3_feature_safety_audit.json"
+      },
+      "transformation_order_verification": {
+        "transform_features_same_set": true,
+        "transform_features_no_duplicates": true,
+        "numerical_features_count": 55,
+        "categorical_features_count": 12,
+        "categorical_indices_match": true,
+        "dual_convention_differences_count": 34,
+        "dual_convention_differences": [
+          {
+            "index": 33,
+            "actual_model_feature": "outlet_type",
+            "expected_transform_feature": "inventory_capacity_sku"
+          },
+          {
+            "index": 34,
+            "actual_model_feature": "business_size",
+            "expected_transform_feature": "has_refrigeration"
+          },
+          {
+            "index": 35,
+            "actual_model_feature": "division",
+            "expected_transform_feature": "has_pos_system"
+          },
+          {
+            "index": 36,
+            "actual_model_feature": "district",
+            "expected_transform_feature": "typical_shelf_life_days"
+          },
+          {
+            "index": 37,
+            "actual_model_feature": "area_type",
+            "expected_transform_feature": "is_essential_item"
+          },
+          {
+            "index": 38,
+            "actual_model_feature": "inventory_capacity_sku",
+            "expected_transform_feature": "outlet_selling_price_bdt"
+          },
+          {
+            "index": 39,
+            "actual_model_feature": "has_refrigeration",
+            "expected_transform_feature": "outlet_purchase_cost_bdt"
+          },
+          {
+            "index": 40,
+            "actual_model_feature": "has_pos_system",
+            "expected_transform_feature": "day_of_week"
+          },
+          {
+            "index": 41,
+            "actual_model_feature": "category",
+            "expected_transform_feature": "day_of_month"
+          },
+          {
+            "index": 42,
+            "actual_model_feature": "subcategory",
+            "expected_transform_feature": "month"
+          },
+          {
+            "index": 43,
+            "actual_model_feature": "brand",
+            "expected_transform_feature": "week_of_year"
+          },
+          {
+            "index": 44,
+            "actual_model_feature": "unit",
+            "expected_transform_feature": "is_weekend"
+          },
+          {
+            "index": 45,
+            "actual_model_feature": "package_size",
+            "expected_transform_feature": "is_month_start"
+          },
+          {
+            "index": 46,
+            "actual_model_feature": "perishable_status",
+            "expected_transform_feature": "is_month_end"
+          },
+          {
+            "index": 47,
+            "actual_model_feature": "typical_shelf_life_days",
+            "expected_transform_feature": "is_ramadan"
+          },
+          {
+            "index": 48,
+            "actual_model_feature": "storage_type",
+            "expected_transform_feature": "is_eid_fitr"
+          },
+          {
+            "index": 49,
+            "actual_model_feature": "is_essential_item",
+            "expected_transform_feature": "is_eid_adha"
+          },
+          {
+            "index": 50,
+            "actual_model_feature": "outlet_selling_price_bdt",
+            "expected_transform_feature": "is_pohela_boishakh"
+          },
+          {
+            "index": 51,
+            "actual_model_feature": "outlet_purchase_cost_bdt",
+            "expected_transform_feature": "is_durga_puja"
+          },
+          {
+            "index": 52,
+            "actual_model_feature": "day_of_week",
+            "expected_transform_feature": "promotion_active_at_origin"
+          },
+          {
+            "index": 53,
+            "actual_model_feature": "day_of_month",
+            "expected_transform_feature": "promotion_days_last_7d"
+          },
+          {
+            "index": 54,
+            "actual_model_feature": "month",
+            "expected_transform_feature": "promotion_days_last_28d"
+          },
+          {
+            "index": 55,
+            "actual_model_feature": "week_of_year",
+            "expected_transform_feature": "outlet_type"
+          },
+          {
+            "index": 56,
+            "actual_model_feature": "is_weekend",
+            "expected_transform_feature": "business_size"
+          },
+          {
+            "index": 57,
+            "actual_model_feature": "is_month_start",
+            "expected_transform_feature": "division"
+          },
+          {
+            "index": 58,
+            "actual_model_feature": "is_month_end",
+            "expected_transform_feature": "district"
+          },
+          {
+            "index": 59,
+            "actual_model_feature": "is_ramadan",
+            "expected_transform_feature": "area_type"
+          },
+          {
+            "index": 60,
+            "actual_model_feature": "is_eid_fitr",
+            "expected_transform_feature": "category"
+          },
+          {
+            "index": 61,
+            "actual_model_feature": "is_eid_adha",
+            "expected_transform_feature": "subcategory"
+          },
+          {
+            "index": 62,
+            "actual_model_feature": "is_pohela_boishakh",
+            "expected_transform_feature": "brand"
+          },
+          {
+            "index": 63,
+            "actual_model_feature": "is_durga_puja",
+            "expected_transform_feature": "unit"
+          },
+          {
+            "index": 64,
+            "actual_model_feature": "promotion_active_at_origin",
+            "expected_transform_feature": "package_size"
+          },
+          {
+            "index": 65,
+            "actual_model_feature": "promotion_days_last_7d",
+            "expected_transform_feature": "perishable_status"
+          },
+          {
+            "index": 66,
+            "actual_model_feature": "promotion_days_last_28d",
+            "expected_transform_feature": "storage_type"
+          }
+        ],
+        "dual_convention_documentation": "model.safe_features strictly preserves authoritative Phase 3 registry order (where categorical features reside at indices 33..44, matching safe_feats_audit with 0 diffs). In contrast, transform design matrix layout stacks num_cols + cat_cols (where categorical features reside at indices 55..66, matching categorical_indices=[55..66]). This dual convention accounts for the 34 positional differences between external registry order and internal matrix layout without affecting inference correctness or feature safety."
+      }
+    },
+    "leakage_scope_limitation": "Schema verification confirms that model predictors strictly match the 67 SAFE feature specification. However, schema audit alone does not prove that upstream feature engineering scripts (Phase 2) were entirely leak-free across all intermediate calculation steps.",
+    "verdict": "PASSED"
+  },
+  "task_e_memory_correction": {
+    "true_peak_rss_status": "UNMONITORED_AND_UNAVAILABLE",
+    "host_available_ram_throughout_execution": "UNKNOWN",
+    "swap_activity": "NOT VERIFIED",
+    "nature_of_measurements": "Historical point-in-time RSS snapshots taken at specific code checkpoints, not continuous high-water mark tracking.",
+    "historical_point_in_time_snapshots": {
+      "baseline_process_rss_mb": 156.5,
+      "post_prep_process_rss_mb": 4445.41,
+      "post_fit_snapshot_rss_mb": 1750.64,
+      "final_process_rss_mb": 3482.72,
+      "system_ram_available_at_start_gb": 5.68
+    },
+    "post_preprocessing_rss_observation": "A historical point-in-time process RSS measurement of 4,445.41 MB was recorded immediately after feature matrix construction. The exact heap allocations comprising this resident set cannot be reconstructed post-hoc by this audit.",
+    "post_fit_snapshot_observation": "The 1,750.64 MB measurement recorded in the original metrics JSON was a point-in-time snapshot taken after hgb.fit() returned. It does not reflect transient peak memory reached during multithreaded Cython histogram computation.",
+    "audit_limitation": "This post-hoc audit cannot reconstruct historical runtime memory telemetry or prove the absence of temporary operating system swapping during the unmonitored training interval.",
+    "verdict": "PASSED"
+  }
+}

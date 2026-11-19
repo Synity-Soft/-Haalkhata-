@@ -1,0 +1,140 @@
+{
+  "stage": "Phase 3, Stage 3.4: Nonlinear Model Development Plan",
+  "project": "BazarBondhu AI",
+  "author": "Senior Machine Learning Engineer",
+  "date": "2026-11-17",
+  "status": "PLANNING_ONLY",
+  "environment": {
+    "os": "macOS ARM64 (Apple Silicon)",
+    "python_version": "3.13.5",
+    "scikit_learn_version": "1.5.1",
+    "total_system_ram_gb": 16.0,
+    "available_ram_gb": 3.9
+  },
+  "partitions": {
+    "training": {
+      "start_date": "2025-12-13",
+      "end_date": "2026-07-01",
+      "rows": 2664456,
+      "unique_origins": 201
+    },
+    "purge_window": {
+      "start_date": "2026-07-02",
+      "end_date": "2026-07-31",
+      "duration_days": 30,
+      "rows": 0
+    },
+    "validation_7d": {
+      "start_date": "2026-08-01",
+      "end_date": "2026-11-08",
+      "rows": 1325600,
+      "unique_origins": 100
+    },
+    "validation_30d": {
+      "start_date": "2026-08-01",
+      "end_date": "2026-10-16",
+      "rows": 1020712,
+      "unique_origins": 77
+    }
+  },
+  "feature_policy": {
+    "total_safe_features": 67,
+    "numerical_features_count": 55,
+    "categorical_features_count": 12,
+    "conditional_excluded": [
+      "outlet_average_daily_demand",
+      "average_selling_price_bdt",
+      "average_cost_price_bdt",
+      "average_restock_frequency_days",
+      "days_until_next_festival"
+    ],
+    "inventory_features_group": [
+      "current_stock_quantity",
+      "stock_received_7d",
+      "stock_received_28d",
+      "stock_wastage_7d",
+      "stock_wastage_28d",
+      "days_since_last_restock",
+      "stock_to_recent_sales_ratio",
+      "reorder_point",
+      "minimum_stock_level",
+      "maximum_stock_level",
+      "stock_expiring_next_7d",
+      "stock_expiring_next_30d",
+      "nearest_expiry_days",
+      "expiring_batch_count",
+      "inventory_capacity_sku"
+    ]
+  },
+  "recommended_algorithm": {
+    "name": "HistGradientBoostingRegressor",
+    "package": "sklearn.ensemble",
+    "rationale": "Native OpenMP histogram binning; built-in categorical support; zero external dependencies; peak memory < 1.8 GB; verified execution in < 60s per model on 2.66M rows.",
+    "categorical_strategy": "OrdinalEncoder(handle_unknown='use_encoded_value', unknown_value=-1) mapped to categorical_features parameter in HistGradientBoostingRegressor."
+  },
+  "experiment_matrix": [
+    {
+      "experiment_id": "EXP1_HGB_FULL",
+      "description": "Primary nonlinear model trained on all 67 SAFE features",
+      "features": "all_67_safe",
+      "algorithm": "HistGradientBoostingRegressor",
+      "hyperparameters": {
+        "loss": "squared_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    },
+    {
+      "experiment_id": "EXP2_HGB_NO_INVENTORY",
+      "description": "Controlled inventory feature ablation (52 non-inventory features)",
+      "features": "safe_excluding_inventory",
+      "algorithm": "HistGradientBoostingRegressor",
+      "hyperparameters": {
+        "loss": "squared_error",
+        "learning_rate": 0.1,
+        "max_iter": 100,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    },
+    {
+      "experiment_id": "EXP3_HGB_ABSOLUTE_ERROR",
+      "description": "Robust median-seeking loss for zero-inflated demand calibration",
+      "features": "all_67_safe",
+      "algorithm": "HistGradientBoostingRegressor",
+      "hyperparameters": {
+        "loss": "absolute_error",
+        "learning_rate": 0.08,
+        "max_iter": 100,
+        "max_leaf_nodes": 31,
+        "min_samples_leaf": 50,
+        "l2_regularization": 1.0,
+        "early_stopping": false,
+        "random_state": 42
+      }
+    }
+  ],
+  "benchmark_targets_to_beat": {
+    "7d": {
+      "rolling_baseline_wape": 0.739605,
+      "rolling_baseline_mae": 7.0658,
+      "ridge_wape": 0.773605,
+      "target": "Must beat Rolling Baseline (WAPE < 73.96%, MAE < 7.0658)"
+    },
+    "30d": {
+      "rolling_baseline_wape": 0.431860,
+      "rolling_baseline_mae": 17.7550,
+      "ridge_wape": 0.322068,
+      "ridge_mae": 13.2412,
+      "target": "Must beat Ridge Model (WAPE < 32.21%, MAE < 13.2412) while reducing Bias from +5.09 towards 0.0"
+    }
+  }
+}

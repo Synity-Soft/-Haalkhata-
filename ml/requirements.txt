@@ -1,0 +1,12 @@
+# BazarBondhu AI — Machine Learning Environment Dependencies
+# Tested on Python 3.13.5 (macOS arm64)
+
+pandas==2.2.2
+numpy==2.4.4
+scikit-learn==1.5.1
+matplotlib==3.11.1
+seaborn==0.13.2
+fastapi>=0.115.0
+uvicorn>=0.30.0
+pydantic>=2.9.0
+sqlalchemy>=2.0.0

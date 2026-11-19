@@ -1,0 +1,1090 @@
+{
+  "metadata_version": "2.0.0",
+  "project": "BazarBondhu AI (Phase 2: Feature Engineering)",
+  "feature_count": 72,
+  "entity_keys": [
+    "outlet_id",
+    "product_id",
+    "forecast_origin_date",
+    "split_set"
+  ],
+  "target_definitions": {
+    "target_7d": "sum(sales[t+1 : t+7])",
+    "target_30d": "sum(sales[t+1 : t+30])"
+  },
+  "availability_and_censoring_columns": {
+    "7d": [
+      "physical_avail_days_7d",
+      "accessible_avail_days_7d",
+      "is_eligible_phys_4of7",
+      "is_eligible_phys_5of7",
+      "is_eligible_phys_6of7",
+      "is_eligible_phys_7of7",
+      "is_eligible_acc_4of7",
+      "is_eligible_acc_5of7",
+      "is_eligible_acc_6of7",
+      "is_eligible_acc_7of7"
+    ],
+    "30d": [
+      "physical_avail_days_30d",
+      "accessible_avail_days_30d",
+      "is_eligible_phys_15of30",
+      "is_eligible_phys_20of30",
+      "is_eligible_phys_25of30",
+      "is_eligible_phys_30of30",
+      "is_eligible_acc_15of30",
+      "is_eligible_acc_20of30",
+      "is_eligible_acc_25of30",
+      "is_eligible_acc_30of30"
+    ]
+  },
+  "features": {
+    "sales_lag_1d": {
+      "feature_name": "sales_lag_1d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_1d",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t"
+    },
+    "sales_lag_2d": {
+      "feature_name": "sales_lag_2d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_2d",
+      "relative_date_rule": "t - 1",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t - 1"
+    },
+    "sales_lag_3d": {
+      "feature_name": "sales_lag_3d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_3d",
+      "relative_date_rule": "t - 2",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t - 2"
+    },
+    "sales_lag_7d": {
+      "feature_name": "sales_lag_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_7d",
+      "relative_date_rule": "t - 6",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t - 6"
+    },
+    "sales_lag_14d": {
+      "feature_name": "sales_lag_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_14d",
+      "relative_date_rule": "t - 13",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t - 13"
+    },
+    "sales_lag_28d": {
+      "feature_name": "sales_lag_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "lag_28d",
+      "relative_date_rule": "t - 27",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sales quantity on day t - 27"
+    },
+    "sales_sum_7d": {
+      "feature_name": "sales_sum_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sum of sales over window [t-6, t]"
+    },
+    "sales_mean_7d": {
+      "feature_name": "sales_mean_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Mean of sales over window [t-6, t]"
+    },
+    "sales_std_7d": {
+      "feature_name": "sales_std_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Standard deviation of sales over window [t-6, t]"
+    },
+    "sales_sum_14d": {
+      "feature_name": "sales_sum_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_14d",
+      "relative_date_rule": "[t-13, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sum of sales over window [t-13, t]"
+    },
+    "sales_mean_14d": {
+      "feature_name": "sales_mean_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_14d",
+      "relative_date_rule": "[t-13, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Mean of sales over window [t-13, t]"
+    },
+    "sales_std_14d": {
+      "feature_name": "sales_std_14d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_14d",
+      "relative_date_rule": "[t-13, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Standard deviation of sales over window [t-13, t]"
+    },
+    "sales_sum_28d": {
+      "feature_name": "sales_sum_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Sum of sales over window [t-27, t]"
+    },
+    "sales_mean_28d": {
+      "feature_name": "sales_mean_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_mean_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Mean of sales over window [t-27, t]"
+    },
+    "sales_std_28d": {
+      "feature_name": "sales_std_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_std_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Standard deviation of sales over window [t-27, t]"
+    },
+    "sales_max_7d": {
+      "feature_name": "sales_max_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_max_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Maximum sales over window [t-6, t]"
+    },
+    "sales_nonzero_days_7d": {
+      "feature_name": "sales_nonzero_days_7d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_nonzero_days_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Count of nonzero sales days over window [t-6, t]"
+    },
+    "sales_max_28d": {
+      "feature_name": "sales_max_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_max_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Maximum sales over window [t-27, t]"
+    },
+    "sales_nonzero_days_28d": {
+      "feature_name": "sales_nonzero_days_28d",
+      "feature_group": "historical_sales",
+      "source_dataset": "sales.csv",
+      "source_columns": [
+        "quantity_sold",
+        "sale_date"
+      ],
+      "transformation": "rolling_nonzero_days_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Count of nonzero sales days over window [t-27, t]"
+    },
+    "current_stock_quantity": {
+      "feature_name": "current_stock_quantity",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "reconstructed_closing_stock",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Reconstructed pair closing inventory at day t"
+    },
+    "stock_received_7d": {
+      "feature_name": "stock_received_7d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Total stock received in window [t-6, t]"
+    },
+    "stock_received_28d": {
+      "feature_name": "stock_received_28d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity",
+        "batch_received_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Total stock received in window [t-27, t]"
+    },
+    "stock_wastage_7d": {
+      "feature_name": "stock_wastage_7d",
+      "feature_group": "inventory",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation": "rolling_sum_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Total stock wasted in window [t-6, t]"
+    },
+    "stock_wastage_28d": {
+      "feature_name": "stock_wastage_28d",
+      "feature_group": "inventory",
+      "source_dataset": "wastage_records.csv",
+      "source_columns": [
+        "wasted_quantity",
+        "wastage_date"
+      ],
+      "transformation": "rolling_sum_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Total stock wasted in window [t-27, t]"
+    },
+    "days_since_last_restock": {
+      "feature_name": "days_since_last_restock",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "batch_received_date"
+      ],
+      "transformation": "days_since_event",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Days elapsed since most recent batch restock on or before t"
+    },
+    "stock_to_recent_sales_ratio": {
+      "feature_name": "stock_to_recent_sales_ratio",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "initial_quantity"
+      ],
+      "transformation": "ratio_stock_to_sales_7d",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Ratio of current stock quantity to (sales_sum_7d + 1.0)"
+    },
+    "reorder_point": {
+      "feature_name": "reorder_point",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "reorder_point"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Reorder point inventory threshold"
+    },
+    "minimum_stock_level": {
+      "feature_name": "minimum_stock_level",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "minimum_stock_level"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Minimum safety stock level"
+    },
+    "maximum_stock_level": {
+      "feature_name": "maximum_stock_level",
+      "feature_group": "inventory",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "maximum_stock_level"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Maximum stock level (shelf capacity)"
+    },
+    "stock_expiring_next_7d": {
+      "feature_name": "stock_expiring_next_7d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation": "forward_known_batch_expiry",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+7]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Stock in active batches at t scheduled to expire in [t+1, t+7]"
+    },
+    "stock_expiring_next_30d": {
+      "feature_name": "stock_expiring_next_30d",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "initial_quantity"
+      ],
+      "transformation": "forward_known_batch_expiry",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+30]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Stock in active batches at t scheduled to expire in [t+1, t+30]"
+    },
+    "nearest_expiry_days": {
+      "feature_name": "nearest_expiry_days",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation": "min_days_to_expiry",
+      "relative_date_rule": "known_at_t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Days until nearest expiry among active batches at day t (999 if no stock)"
+    },
+    "expiring_batch_count": {
+      "feature_name": "expiring_batch_count",
+      "feature_group": "inventory",
+      "source_dataset": "inventory_batches.csv",
+      "source_columns": [
+        "expiry_date",
+        "batch_received_date"
+      ],
+      "transformation": "count_batches_expiring_30d",
+      "relative_date_rule": "known_at_t_expiring_[t+1, t+30]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Count of active batches at day t scheduled to expire in [t+1, t+30]"
+    },
+    "outlet_type": {
+      "feature_name": "outlet_type",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "outlet_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Retail outlet format"
+    },
+    "business_size": {
+      "feature_name": "business_size",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "business_size"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Outlet business scale"
+    },
+    "division": {
+      "feature_name": "division",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "division"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Administrative division of Bangladesh"
+    },
+    "district": {
+      "feature_name": "district",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "district"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Administrative district"
+    },
+    "area_type": {
+      "feature_name": "area_type",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "area_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Neighborhood residential / commercial area type"
+    },
+    "inventory_capacity_sku": {
+      "feature_name": "inventory_capacity_sku",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "inventory_capacity_sku"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int32",
+      "description": "Total SKU carrying capacity of outlet"
+    },
+    "average_restock_frequency_days": {
+      "feature_name": "average_restock_frequency_days",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "average_restock_frequency_days"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Expected restock frequency in days"
+    },
+    "has_refrigeration": {
+      "feature_name": "has_refrigeration",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_refrigeration"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Flag indicating cold storage availability at outlet"
+    },
+    "has_pos_system": {
+      "feature_name": "has_pos_system",
+      "feature_group": "outlet",
+      "source_dataset": "outlets.csv",
+      "source_columns": [
+        "has_pos_system"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Flag indicating digital POS terminal"
+    },
+    "category": {
+      "feature_name": "category",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "category"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Broad product category"
+    },
+    "subcategory": {
+      "feature_name": "subcategory",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "subcategory"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Specific product subcategory"
+    },
+    "brand": {
+      "feature_name": "brand",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "brand"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Product manufacturer brand"
+    },
+    "unit": {
+      "feature_name": "unit",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "unit"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Unit of measurement"
+    },
+    "package_size": {
+      "feature_name": "package_size",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "package_size"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Standard packaging size"
+    },
+    "perishable_status": {
+      "feature_name": "perishable_status",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "perishable_status"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Perishable vs non-perishable status"
+    },
+    "typical_shelf_life_days": {
+      "feature_name": "typical_shelf_life_days",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "typical_shelf_life_days"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Catalog shelf life duration in days"
+    },
+    "storage_type": {
+      "feature_name": "storage_type",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "storage_type"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "string",
+      "description": "Required storage condition (Ambient, Chilled)"
+    },
+    "average_cost_price_bdt": {
+      "feature_name": "average_cost_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "average_cost_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Catalog average wholesale cost in BDT"
+    },
+    "average_selling_price_bdt": {
+      "feature_name": "average_selling_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "average_selling_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Catalog average retail selling price in BDT"
+    },
+    "is_essential_item": {
+      "feature_name": "is_essential_item",
+      "feature_group": "product",
+      "source_dataset": "products.csv",
+      "source_columns": [
+        "is_essential_item"
+      ],
+      "transformation": "boolean_to_int",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Flag indicating government essential grocery item"
+    },
+    "outlet_selling_price_bdt": {
+      "feature_name": "outlet_selling_price_bdt",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "selling_price_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Outlet-specific shelf selling price in BDT"
+    },
+    "outlet_purchase_cost_bdt": {
+      "feature_name": "outlet_purchase_cost_bdt",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "purchase_cost_bdt"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Outlet-specific acquisition cost in BDT"
+    },
+    "outlet_average_daily_demand": {
+      "feature_name": "outlet_average_daily_demand",
+      "feature_group": "product",
+      "source_dataset": "outlet_products.csv",
+      "source_columns": [
+        "average_daily_demand"
+      ],
+      "transformation": "identity",
+      "relative_date_rule": "<= t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "float32",
+      "description": "Baseline daily demand parameter from store planning"
+    },
+    "day_of_week": {
+      "feature_name": "day_of_week",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_day_of_week",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Day of week (0=Monday, 6=Sunday)"
+    },
+    "day_of_month": {
+      "feature_name": "day_of_month",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_day_of_month",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Day of month (1..31)"
+    },
+    "month": {
+      "feature_name": "month",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_month",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Month of year (1..12)"
+    },
+    "week_of_year": {
+      "feature_name": "week_of_year",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "gregorian_iso_week",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "ISO calendar week number (1..52)"
+    },
+    "is_weekend": {
+      "feature_name": "is_weekend",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "bangladesh_weekend",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Bangladesh weekend indicator (1 for Friday and Saturday, 0 otherwise)"
+    },
+    "is_month_start": {
+      "feature_name": "is_month_start",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "month_boundary_start",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Month start indicator (day_of_month <= 3)"
+    },
+    "is_month_end": {
+      "feature_name": "is_month_end",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "month_boundary_end",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Month end indicator (day_of_month >= 28)"
+    },
+    "is_ramadan": {
+      "feature_name": "is_ramadan",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator for holy month of Ramadan (2026-02-18 to 2026-03-19)"
+    },
+    "is_eid_fitr": {
+      "feature_name": "is_eid_fitr",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator for Eid-ul-Fitr holiday (2026-03-19 to 2026-03-23)"
+    },
+    "is_eid_adha": {
+      "feature_name": "is_eid_adha",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator for Eid-ul-Adha holiday (2026-05-26 to 2026-05-31)"
+    },
+    "is_pohela_boishakh": {
+      "feature_name": "is_pohela_boishakh",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator for Bangla New Year (2026-04-14)"
+    },
+    "is_durga_puja": {
+      "feature_name": "is_durga_puja",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "event_id",
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "calendar_window",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator for Durga Puja holiday (2026-10-20 to 2026-10-21)"
+    },
+    "days_until_next_festival": {
+      "feature_name": "days_until_next_festival",
+      "feature_group": "calendar",
+      "source_dataset": "calendar_events.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "days_to_upcoming_festival",
+      "relative_date_rule": "known_calendar_dates",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int16",
+      "description": "Days until start of next major festival from t (999 if none remaining)"
+    },
+    "promotion_active_at_origin": {
+      "feature_name": "promotion_active_at_origin",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date",
+        "end_date"
+      ],
+      "transformation": "promotion_on_day",
+      "relative_date_rule": "t",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Indicator if pair has an active promotion on origin date t"
+    },
+    "promotion_days_last_7d": {
+      "feature_name": "promotion_days_last_7d",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "rolling_count_7d",
+      "relative_date_rule": "[t-6, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Count of promotion days for pair in window [t-6, t]"
+    },
+    "promotion_days_last_28d": {
+      "feature_name": "promotion_days_last_28d",
+      "feature_group": "promotions",
+      "source_dataset": "promotions_discounts.csv",
+      "source_columns": [
+        "start_date"
+      ],
+      "transformation": "rolling_count_28d",
+      "relative_date_rule": "[t-27, t]",
+      "lead_days": 0,
+      "available_at_prediction": true,
+      "data_type": "int8",
+      "description": "Count of promotion days for pair in window [t-27, t]"
+    }
+  }
+}

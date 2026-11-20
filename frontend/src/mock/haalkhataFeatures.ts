@@ -4,6 +4,9 @@ import type {
   DistributorPriceComparison,
   PeerShopExchange,
   BatchStrategySuggestion,
+  Expense,
+  SupplierDue,
+  VoiceParsedTransaction,
 } from '@/types'
 
 // ─── 1. Verified Distributors ───────────────────────────────────────────────
@@ -282,26 +285,35 @@ export const INITIAL_PEER_EXCHANGES: PeerShopExchange[] = [
 
 /**
  * Generates an auto-incremented or standardized batch code & barcode
+ * Supports FB-001, FB-002 style codes (e.g. Fresh Bun -> FB-001)
  */
 export function generateBatchCode(productName: string, batchNumber: number = 1): {
   batchCode: string
   barcode: string
 } {
-  const prefix = productName.slice(0, 3).toUpperCase().replace(/[^A-Z]/g, 'PRD') || 'BAT'
-  const dateStr = new Date().toISOString().slice(2, 10).replace(/-/g, '')
-  const batchCode = `BATCH-${prefix}-${dateStr}-B${batchNumber}`
+  // Check if product has recognized initials like Fresh Bun -> FB
+  const words = productName.trim().split(/\s+/)
+  let initials = ''
+  if (words.length >= 2) {
+    initials = (words[0][0] + words[1][0]).toUpperCase().replace(/[^A-Z]/g, '')
+  }
+  if (!initials || initials.length < 2) {
+    initials = productName.slice(0, 2).toUpperCase().replace(/[^A-Z]/g, 'FB') || 'FB'
+  }
+  const paddedNum = String(batchNumber).padStart(3, '0')
+  const batchCode = `${initials}-${paddedNum}`
   const barcode = `894${Math.floor(100000000 + Math.random() * 900000000)}`
   return { batchCode, barcode }
 }
 
 /**
  * Computes business-driven dynamic clearance strategies to prevent food/grocery loss
- * FIFO Priority: Earlier batch released first
- * Discount Escalation:
- *   - > 15 days: 10% discount (Early clearance)
- *   - 8-15 days: 20% discount (Accelerate sell-through)
- *   - 3-7 days:  30% discount + Buy 1 Get 1 (BOGO)
- *   - <= 2 days: 50% discount + Buy 1 Get 3 / Flash clear-out (Capital recovery, 0 loss)
+ * FEFO (First Expired, First Out) Priority
+ * Discount Escalation according to Section 4.3:
+ *   - 15 days remaining: 10% discount
+ *   - 10 days remaining: 15–20% discount
+ *   - 5 days remaining:  25–30% discount
+ *   - Very close (<= 2 days): Special offers or bundle promotions: Buy 1 Get 1, Buy 2 Get 1, Bundle offers, Special clearance
  */
 export function calculateBatchClearingStrategy(
   batch: {
@@ -322,8 +334,8 @@ export function calculateBatchClearingStrategy(
   const expTime = new Date(batch.expiryDate).getTime()
   const daysUntil = Math.ceil((expTime - now) / (1000 * 60 * 60 * 24))
 
-  const cost = batch.purchasePrice || 80
-  const retail = batch.sellingPrice || Math.round(cost * 1.25)
+  const cost = batch.purchasePrice || 20
+  const retail = batch.sellingPrice || Math.round(cost * 1.5)
   const qty = batch.quantity || 1
   const unit = batch.unit || 'পিস'
 
@@ -332,24 +344,24 @@ export function calculateBatchClearingStrategy(
   let bundleOffer: string | undefined = undefined
   let advice = ''
 
-  if (daysUntil > 15) {
+  if (daysUntil > 12) {
     discountPercent = 10
     strategyType = 'early_clearance'
-    advice = '১৫ দিন সময় আছে। ১০% ছাড়ে পণ্যটি দ্রুত বিক্রয় নিশ্চিত করুন।'
-  } else if (daysUntil >= 8 && daysUntil <= 15) {
+    advice = '১৫ দিন সময় আছে। ১০% প্রারম্ভিক ছাড়ে স্বাভাবিক বিক্রির গতি নিশ্চিত করুন।'
+  } else if (daysUntil >= 8 && daysUntil <= 12) {
     discountPercent = 20
     strategyType = 'early_clearance'
-    advice = 'মেয়াদ ঘনিয়ে আসছে (৮-১৫ দিন)। ২০% ছাড় কার্যকর করে স্টক খালি করুন।'
+    advice = 'মেয়াদ ঘনিয়ে আসছে (১০ দিন বাকি)। ১৫–২০% ছাড়ে দ্রুত পণ্য সেল করুন।'
   } else if (daysUntil >= 3 && daysUntil <= 7) {
     discountPercent = 30
     strategyType = 'bundle_bogo'
     bundleOffer = '১টি কিনলে ১টি ফ্রি (Buy 1 Get 1)'
-    advice = 'জরুরি সময় (৩-৭ দিন)। ৩০% ছাড় বা ১টি কিনলে ১টি ফ্রি অফার দিয়ে ক্রেতাকে আকৃষ্ট করুন।'
+    advice = 'জরুরি সময় (৫ দিন বাকি)। ২৫–৩০% ছাড় বা ১টি কিনলে ১টি ফ্রি বান্ডেল অফারে কাস্টমার টানুন।'
   } else {
     discountPercent = 50
     strategyType = 'flash_clearout'
-    bundleOffer = '১টি কিনলে ৩টি ফ্রি (Buy 1 Get 3)'
-    advice = 'অতি জরুরি (<২ দিন)! ৫০% ফ্ল্যাশ সেল বা বান্ডেল অফারে মূলধন রক্ষা করুন, পণ্য নষ্ট হওয়া রোধ করুন।'
+    bundleOffer = '২টি কিনলে ১টি ফ্রি (Buy 2 Get 1) / ক্লিয়ারেন্স'
+    advice = 'অতি জরুরি (<২ দিন)! বিশেষ বান্ডেল বা ফ্ল্যাশ ক্লিয়ারেন্সে শতভাগ মূলধন উদ্ধার করুন, অপচয় রোধ করুন।'
   }
 
   const effectiveSellingPrice = Math.max(retail * (1 - discountPercent / 100), cost * 0.9)
@@ -359,7 +371,7 @@ export function calculateBatchClearingStrategy(
 
   return {
     batchId: batch.id,
-    batchCode: batch.batchCode || `BATCH-${batch.id.slice(0, 8)}`,
+    batchCode: batch.batchCode || `FB-${String(batch.fifoOrder || 1).padStart(3, '0')}`,
     barcode: batch.barcode || `894123456789`,
     productId: batch.id,
     productName: batch.productName,
@@ -396,5 +408,238 @@ export function formatCustomerSmsReminder({
   if (tone === 'urgent') {
     return `জরুরি তাগাদা: জনাব ${customerName}, ${shopName}-এ আপনার বকেয়া ৳${dueAmount.toLocaleString('en-US')} পরিশোধের সময় পার হয়ে গিয়েছে। অনুগ্রহ করে দ্রুত যোগাযোগ করে বাকি পরিশোধ করুন। ধন্যবাদ।`
   }
-  return `আসসালামু আলাইকুম ${customerName} ভাই, ${shopName} হালখাতা অনুযায়ী আপনার বকেয়া ৳${dueAmount.toLocaleString('en-US')}${dueDate ? ` (পরিশোধের তারিখ: ${dueDate})` : ''}। সুবিধাজনক সময়ে পরিশোধ করার বিনীত অনুরোধ। ধন্যবাদ।`
+  return `প্রিয় গ্রাহক, ${customerName} ভাই, ${shopName} হালখাতা অনুযায়ী আপনার বকেয়া ৳${dueAmount.toLocaleString('en-US')}${dueDate ? ` (পরিশোধের তারিখ: ${dueDate})` : ''}। অনুগ্রহ করে সুবিধাজনক সময়ে পরিশোধ করার অনুরোধ রইল। ধন্যবাদ।`
 }
+
+// ─── 6. AI Voice Bookkeeping Natural Language Processing (4.1) ───────────────
+export function parseNaturalLanguageTransaction(text: string): VoiceParsedTransaction {
+  // Normalize Bengali digits to English
+  const bnToEnMap: Record<string, string> = {
+    '০': '0', '১': '1', '২': '2', '৩': '3', '৪': '4',
+    '৫': '5', '৬': '6', '৭': '7', '৮': '8', '৯': '9'
+  }
+  let normalized = text.replace(/[০-৯]/g, (match) => bnToEnMap[match] || match).toLowerCase()
+
+  // Convert multipliers like "১৫ হাজার", "5k", "২ লাখ"
+  normalized = normalized.replace(/(\d+)\s*(হাজার|hazar|thousand|k)/gi, (_, n) => String(Number(n) * 1000))
+  normalized = normalized.replace(/(\d+)\s*(লাখ|lac|lakh)/gi, (_, n) => String(Number(n) * 100000))
+
+  let totalSales: number | undefined = undefined
+  let cashReceived: number | undefined = undefined
+  let customerCredit: number | undefined = undefined
+  let expenseAmount: number | undefined = undefined
+  let customerName: string | undefined = undefined
+  let expenseCategory: string | undefined = undefined
+  const items: string[] = []
+
+  // Extract products mentioned
+  const itemKeywords = [
+    'চাল', 'ডাল', 'তেল', 'চিনি', 'বান', 'পাউরুটি', 'দুধ', 'মসলা', 'নুডলস', 'বিস্কুট',
+    'আটা', 'ময়দা', 'লবণ', 'সেমাই', 'ছোলা', 'খেজুর', 'rice', 'oil', 'sugar', 'bread', 'milk'
+  ]
+  for (const it of itemKeywords) {
+    if (normalized.includes(it)) {
+      items.push(it)
+    }
+  }
+
+  // Detect customer name (e.g., "রহিম ভাই", "করিম সাহেব", "Mr. John")
+  const custMatch = normalized.match(/([^\s]+)\s*(ভাই|কাকু|সাহেব|আঙ্কেল|কাস্টমার|mr\.|md\.)/i)
+  if (custMatch) {
+    customerName = `${custMatch[1]} ${custMatch[2]}`
+  }
+
+  // Detect expense
+  const isExpense =
+    normalized.includes('খরচ') ||
+    normalized.includes('বিল') ||
+    normalized.includes('ভাড়া') ||
+    normalized.includes('ভাড়া') ||
+    normalized.includes('বেতন') ||
+    normalized.includes('expense') ||
+    normalized.includes('rent') ||
+    normalized.includes('bill')
+
+  if (isExpense) {
+    const expMatch =
+      normalized.match(/(\d+)\s*(টাকা|টাকার|tk)?\s*(খরচ|বিল|ভাড়া|ভাড়া|বেতন|expense)/) ||
+      normalized.match(/(ভাড়া|ভাড়া|বিল|খরচ|বেতন|expense)\s*(\d+)/) ||
+      normalized.match(/(\d+)/)
+    if (expMatch) {
+      const val = Number(expMatch[1] || expMatch[2])
+      if (!isNaN(val) && val > 0) expenseAmount = val
+    }
+
+    if (normalized.includes('ভাড়া') || normalized.includes('ভাড়া') || normalized.includes('rent')) {
+      expenseCategory = 'rent'
+    } else if (normalized.includes('বিল') || normalized.includes('বিদ্যুৎ') || normalized.includes('utility')) {
+      expenseCategory = 'utility'
+    } else if (normalized.includes('নাস্তা') || normalized.includes('চা') || normalized.includes('snack')) {
+      expenseCategory = 'snack'
+    } else if (normalized.includes('বেতন') || normalized.includes('salary')) {
+      expenseCategory = 'salary'
+    } else {
+      expenseCategory = 'other'
+    }
+  }
+
+  // Detect sales, cash, credit
+  const salesMatch =
+    normalized.match(/(\d+)\s*(টাকা|টাকার|tk)?\s*(বিক্রি|সেল|sales|sold)/) ||
+    normalized.match(/(বিক্রি|সেল|sales)\s*(হয়েছে|হলো)?\s*(\d+)/)
+  const cashMatch =
+    normalized.match(/(\d+)\s*(টাকা|tk)?\s*(ক্যাশ|নগদ|নগদে|cash)/) ||
+    normalized.match(/(ক্যাশ|নগদ|cash)\s*(\d+)/)
+  const creditMatch =
+    normalized.match(/(\d+)\s*(টাকা|tk)?\s*(বাকি|ধার|credit|due)/) ||
+    normalized.match(/(বাকি|ধার|credit|due)\s*(\d+)/)
+
+  if (salesMatch) {
+    totalSales = Number(salesMatch[1] || salesMatch[3])
+  }
+  if (cashMatch) {
+    cashReceived = Number(cashMatch[1] || cashMatch[2])
+  }
+  if (creditMatch) {
+    customerCredit = Number(creditMatch[1] || creditMatch[2])
+  }
+
+  // Fallback pattern parser (e.g. "১৫ হাজার বিক্রি, ৫ হাজার ক্যাশ, ১০ হাজার বাকি")
+  const allNumbers = (normalized.match(/\b\d+\b/g) || []).map(Number).filter((n) => n >= 10)
+  if (!totalSales && !cashReceived && !customerCredit && !expenseAmount && allNumbers.length > 0) {
+    if (allNumbers.length === 3) {
+      totalSales = allNumbers[0]
+      cashReceived = allNumbers[1]
+      customerCredit = allNumbers[2]
+    } else if (allNumbers.length === 2 && normalized.includes('বাকি')) {
+      cashReceived = allNumbers[0]
+      customerCredit = allNumbers[1]
+      totalSales = cashReceived + customerCredit
+    } else if (normalized.includes('বাকি') || normalized.includes('credit')) {
+      customerCredit = allNumbers[0]
+    } else if (normalized.includes('খরচ') || normalized.includes('expense')) {
+      expenseAmount = allNumbers[0]
+    } else {
+      totalSales = allNumbers[0]
+      cashReceived = allNumbers[0]
+    }
+  }
+
+  // Reconcile amounts
+  if (totalSales && cashReceived !== undefined && customerCredit === undefined) {
+    customerCredit = Math.max(0, totalSales - cashReceived)
+  } else if (cashReceived !== undefined && customerCredit !== undefined && !totalSales) {
+    totalSales = cashReceived + customerCredit
+  }
+
+  let type: VoiceParsedTransaction['type'] = 'sale'
+  if (expenseAmount) {
+    type = 'expense'
+  } else if (cashReceived !== undefined && customerCredit && customerCredit > 0) {
+    type = 'mixed'
+  } else if (customerCredit && customerCredit > 0 && (!cashReceived || cashReceived === 0)) {
+    type = 'credit'
+  }
+
+  return {
+    type,
+    rawText: text,
+    totalSales,
+    cashReceived,
+    customerCredit,
+    expenseAmount,
+    customerName,
+    expenseCategory,
+    items: items.length > 0 ? items : undefined,
+    date: new Date().toISOString().slice(0, 10),
+    confidence: (totalSales || expenseAmount || customerCredit) ? 0.95 : 0.6,
+  }
+}
+
+// ─── 7. Digital Ledger Expenses & Supplier Dues Data (4.2) ───────────────────
+export const INITIAL_EXPENSES: Expense[] = [
+  {
+    id: 'exp-01',
+    shopId: 'shop-student-01',
+    category: 'rent',
+    title: 'দোকান ভাড়া (চলতি মাস)',
+    amount: 8000,
+    date: new Date().toISOString().slice(0, 10),
+    note: 'মার্কেট মালিক সমিতিকে পরিশোধ',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'exp-02',
+    shopId: 'shop-student-01',
+    category: 'utility',
+    title: 'বিদ্যুৎ বিল ও ডেসকো চার্জ',
+    amount: 1450,
+    date: new Date(Date.now() - 86400000 * 2).toISOString().slice(0, 10),
+    note: 'অক্টোবর মাসের বিল',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'exp-03',
+    shopId: 'shop-student-01',
+    category: 'transport',
+    title: 'মোকাম থেকে ভ্যান ও কুলি খরচ',
+    amount: 600,
+    date: new Date(Date.now() - 86400000 * 4).toISOString().slice(0, 10),
+    note: 'চাল ও তেলের বস্তা আনয়ন',
+    createdAt: new Date().toISOString(),
+  },
+  {
+    id: 'exp-04',
+    shopId: 'shop-student-01',
+    category: 'snack',
+    title: 'দোকানের চা ও নাস্তা খরচ',
+    amount: 250,
+    date: new Date().toISOString().slice(0, 10),
+    createdAt: new Date().toISOString(),
+  },
+]
+
+export const INITIAL_SUPPLIER_DUES: SupplierDue[] = [
+  {
+    id: 'sup-01',
+    shopId: 'shop-student-01',
+    supplierName: 'তারেক মাহমুদ (এরিয়া ম্যানেজার)',
+    companyName: 'মেঘনা গ্রুপ (ফ্রেশ ডিস্ট্রিবিউশন)',
+    supplierPhone: '01711-234567',
+    amount: 18500,
+    paidAmount: 10000,
+    dueDate: new Date(Date.now() + 86400000 * 5).toISOString().slice(0, 10),
+    status: 'partial',
+    note: 'সয়াবিন তেল ও ময়দা চালানের বকেয়া',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'sup-02',
+    shopId: 'shop-student-01',
+    supplierName: 'কবির হোসেন (ডিলার)',
+    companyName: 'আকিজ এসেনশিয়ালস লিমিটেড',
+    supplierPhone: '01819-876543',
+    amount: 12000,
+    paidAmount: 12000,
+    dueDate: new Date(Date.now() - 86400000 * 2).toISOString().slice(0, 10),
+    status: 'paid',
+    note: 'মিনিকেট চাল ২৫ কেজি বস্তা পরিশোধিত',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'sup-03',
+    shopId: 'shop-student-01',
+    supplierName: 'সোহেল রানা',
+    companyName: 'সিটি গ্রুপ (তীর ডিলার)',
+    supplierPhone: '01912-345678',
+    amount: 9500,
+    paidAmount: 0,
+    dueDate: new Date(Date.now() + 86400000 * 3).toISOString().slice(0, 10),
+    status: 'unpaid',
+    note: 'চিনি ও ডাল সরবরাহের পাওনা',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+]

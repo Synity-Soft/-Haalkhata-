@@ -7,6 +7,7 @@ export interface CreditStats {
   totalPaid: number
   overdueCount: number
   overdueAmount: number
+  unpaidCount: number
   byCustomer: Array<{ customerName: string; total: number; unpaidCount: number }>
 }
 
@@ -16,6 +17,7 @@ export function calcCreditStats(credits: Credit[]): CreditStats {
   let totalPaid = 0
   let overdueCount = 0
   let overdueAmount = 0
+  let unpaidCount = 0
 
   const customerMap = new Map<string, { total: number; unpaidCount: number }>()
 
@@ -28,6 +30,7 @@ export function calcCreditStats(credits: Credit[]): CreditStats {
     if (credit.isPaid) {
       totalPaid += credit.amount
     } else {
+      unpaidCount += 1
       totalOutstanding += credit.amount
       existing.total += credit.amount
       existing.unpaidCount += 1
@@ -59,6 +62,7 @@ export function calcCreditStats(credits: Credit[]): CreditStats {
     totalPaid,
     overdueCount,
     overdueAmount,
+    unpaidCount,
     byCustomer,
   }
 }

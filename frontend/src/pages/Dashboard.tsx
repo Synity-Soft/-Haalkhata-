@@ -6,6 +6,7 @@ import {
   AlertTriangle,
   Clock,
   TrendingUp,
+  TrendingDown,
   ShoppingBag,
   ArrowRight,
   CheckCircle2,
@@ -18,6 +19,9 @@ import {
   Server,
   Layers,
   Store,
+  Mic,
+  DollarSign,
+  Wallet,
 } from 'lucide-react'
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from 'recharts'
 import { format, subDays, startOfWeek, startOfMonth } from 'date-fns'
@@ -32,9 +36,11 @@ import { Card, Badge, SoftIcon, ProductIcon, DemoBadge } from '@/components/ui'
 import { greetingTime, getRiskBadgeColor, getProductName } from '@/lib/utils'
 import { TimeScene, SpringTabs, type TabItem, AnimatedNumber, Sparkline, StockBar, ProgressRing } from '@/components/motion'
 import { QuickSaleModal } from '@/components/sales/QuickSaleModal'
+import { VoiceBookkeepingModal } from '@/components/voice/VoiceBookkeepingModal'
 import { toBengaliDigits, formatBengaliCurrency } from '@/lib/bn'
 import { api, getAuditedOutletId, type DashboardSummaryResponse } from '@/lib/api'
-import type { BatchWithRisk, Product } from '@/types'
+import { INITIAL_EXPENSES } from '@/mock/haalkhataFeatures'
+import type { BatchWithRisk, Product, Expense } from '@/types'
 
 export default function Dashboard() {
   const { t, lang, formatNum } = useLang()
@@ -43,6 +49,29 @@ export default function Dashboard() {
 
   const [periodTab, setPeriodTab] = useState<'today' | 'week' | 'month'>('today')
   const [quickSaleOpen, setQuickSaleOpen] = useState(false)
+  const [voiceModalOpen, setVoiceModalOpen] = useState(false)
+
+  const [expenses, setExpenses] = useState<Expense[]>(() => {
+    try {
+      const saved = localStorage.getItem('haalkhata_expenses')
+      return saved ? JSON.parse(saved) : INITIAL_EXPENSES
+    } catch {
+      return INITIAL_EXPENSES
+    }
+  })
+
+  useEffect(() => {
+    const handleSync = () => {
+      try {
+        const saved = localStorage.getItem('haalkhata_expenses')
+        if (saved) setExpenses(JSON.parse(saved))
+      } catch (e) {
+        console.warn(e)
+      }
+    }
+    window.addEventListener('focus', handleSync)
+    return () => window.removeEventListener('focus', handleSync)
+  }, [])
 
   const shopId = currentShop?.id || 'shop-student-01'
   const rawProducts = useProducts(shopId) as Product[] | undefined
@@ -224,6 +253,23 @@ export default function Dashboard() {
   const displayedExpiringBatches = backendSummary
     ? backendSummary.batches_expiring_7d
     : expiryStats.highRiskBatches
+
+  // Expenses, Cash Received, and Estimated Gross Profit for Section 4.11
+  const displayedExpenses = useMemo(() => {
+    const sum = expenses.reduce((acc, e) => acc + e.amount, 0)
+    if (periodTab === 'today') return Math.round(sum / 30)
+    if (periodTab === 'week') return Math.round((sum / 30) * 7)
+    return sum
+  }, [expenses, periodTab])
+
+  const displayedCashReceived = useMemo(() => {
+    return Math.max(0, Math.round(salesTotal * 0.85))
+  }, [salesTotal])
+
+  const displayedGrossProfit = useMemo(() => {
+    const margin = Math.round(salesTotal * 0.22)
+    return Math.max(0, margin - displayedExpenses)
+  }, [salesTotal, displayedExpenses])
 
   // Sparkline data (last 7 daily totals)
   const sparklineData = useMemo(() => {
@@ -434,52 +480,112 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 4. 4 Primary Action Buttons (বিক্রি লিখুন / মাল কিনুন / বাকি লিখুন / দোকান নেটওয়ার্ক) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {/* বিক্রি লিখুন */}
-        <button
-          onClick={() => setQuickSaleOpen(true)}
-          className="card p-4 flex items-center gap-3.5 hover:border-[#F4A900] transition-all group text-left"
-        >
-          <SoftIcon icon={ShoppingBag} tone="yellow" size={62} delayIndex={0} />
-          <div className="min-w-0">
-            <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#F4A900] transition-colors leading-tight">
-              বিক্রি লিখুন
+      {/* 3b. AI Voice Bookkeeping Banner (Section 4.1) */}
+      <div className="card p-4 sm:p-5 bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-amber-500/5 border-2 border-brand-yellow/50 rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm">
+        <div className="flex items-center gap-3.5">
+          <div className="relative">
+            <button
+              onClick={() => setVoiceModalOpen(true)}
+              className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-500 to-orange-500 text-white flex items-center justify-center shadow-md hover:scale-105 active:scale-95 transition-all group cursor-pointer"
+              title={lang === 'bn' ? 'ভয়েস খাতা চালু করুন' : 'Launch Voice Bookkeeping'}
+            >
+              <Mic className="w-6 h-6 animate-pulse" />
+            </button>
+            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-brand-orange"></span>
+            </span>
+          </div>
+          <div>
+            <div className="flex items-center gap-2 flex-wrap">
+              <h2 className="text-sm sm:text-base font-extrabold text-brand-brown dark:text-brand-cream">
+                {lang === 'bn' ? '🎙️ এআই ভয়েস খাতা (বাংলা ও ইংরেজি কথা বলে হিসাব)' : '🎙️ AI Voice Bookkeeping (Bangla & English)'}
+              </h2>
+              <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-400/20 text-brand-orange border border-amber-400/30">
+                ফিচার ৪.১
+              </span>
             </div>
-            <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              পণ্যে ট্যাপ করে দ্রুত বিক্রি ও রসিদ
+            <p className="text-xs text-brand-brown/70 dark:text-brand-cream/70 mt-0.5">
+              {lang === 'bn'
+                ? 'মুখে বলুন: "আজকে ১৫ হাজার টাকার বিক্রি হয়েছে। ৫ হাজার ক্যাশ, ১০ হাজার বাকি" — এআই নিজে লেনদেন বিশ্লেষণ করে ডিজিটাল খাতায় এন্ট্রি করবে।'
+                : 'Say: "Today 15 thousand sold. 5 thousand cash, 10 thousand credit" — AI automatically parses and records into ledger.'}
+            </p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setVoiceModalOpen(true)}
+          className="w-full sm:w-auto py-2.5 px-5 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2 shadow-sm transition-all shrink-0 cursor-pointer"
+        >
+          <Mic className="w-4 h-4" />
+          <span>{lang === 'bn' ? 'হিসাব বলুন' : 'Speak Entry'}</span>
+        </button>
+      </div>
+
+      {/* 4. 5 Primary Action Buttons */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+        {/* ভয়েস খাতা */}
+        <button
+          onClick={() => setVoiceModalOpen(true)}
+          className="card p-3.5 sm:p-4 flex items-center gap-3 hover:border-brand-orange transition-all group text-left cursor-pointer"
+        >
+          <div className="w-12 h-12 rounded-2xl bg-amber-500/15 text-amber-600 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+            <Mic className="w-6 h-6" />
+          </div>
+          <div className="min-w-0">
+            <div className="text-sm sm:text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-brand-orange transition-colors leading-tight">
+              ভয়েস খাতা
+            </div>
+            <div className="text-[11px] text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              কথা বলে হিসাব এন্ট্রি
             </div>
           </div>
         </button>
 
-        {/* মাল কিনুন */}
+        {/* বিক্রি লিখুন */}
+        <button
+          onClick={() => setQuickSaleOpen(true)}
+          className="card p-3.5 sm:p-4 flex items-center gap-3 hover:border-[#F4A900] transition-all group text-left cursor-pointer"
+        >
+          <SoftIcon icon={ShoppingBag} tone="yellow" size={56} delayIndex={0} />
+          <div className="min-w-0">
+            <div className="text-sm sm:text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#F4A900] transition-colors leading-tight">
+              বিক্রি লিখুন
+            </div>
+            <div className="text-[11px] text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              দ্রুত বিক্রি ও রসিদ
+            </div>
+          </div>
+        </button>
+
+        {/* মাল ও ডিস্ট্রিবিউটর */}
         <Link
           to="/purchase"
-          className="card p-4 flex items-center gap-3.5 hover:border-[#2563EB] transition-all group text-left"
+          className="card p-3.5 sm:p-4 flex items-center gap-3 hover:border-[#2563EB] transition-all group text-left"
         >
-          <SoftIcon icon={ShoppingCart} tone="blue" size={62} delayIndex={1} />
+          <SoftIcon icon={ShoppingCart} tone="blue" size={56} delayIndex={1} />
           <div className="min-w-0">
-            <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#2563EB] transition-colors leading-tight">
+            <div className="text-sm sm:text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#2563EB] transition-colors leading-tight">
               মাল ও ডিস্ট্রিবিউটর
             </div>
-            <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              চাহিদা পূর্বাভাস ও ডিস্ট্রিবিউটর কানেক্ট
+            <div className="text-[11px] text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              চাহিদা পূর্বাভাস ও পাইকারি
             </div>
           </div>
         </Link>
 
-        {/* বাকি লিখুন */}
+        {/* বাকি খাতা ও এসএমএস */}
         <Link
           to="/credit"
-          className="card p-4 flex items-center gap-3.5 hover:border-[#16A34A] transition-all group text-left"
+          className="card p-3.5 sm:p-4 flex items-center gap-3 hover:border-[#16A34A] transition-all group text-left"
         >
-          <SoftIcon icon={CreditCard} tone="green" size={62} delayIndex={2} />
+          <SoftIcon icon={CreditCard} tone="green" size={56} delayIndex={2} />
           <div className="min-w-0">
-            <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#16A34A] transition-colors leading-tight">
+            <div className="text-sm sm:text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-[#16A34A] transition-colors leading-tight">
               বাকি খাতা ও এসএমএস
             </div>
-            <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              কাস্টমার খাতা ও স্বয়ংক্রিয় তাগাদা
+            <div className="text-[11px] text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              ডিজিটাল খাতা ও তাগাদা
             </div>
           </div>
         </Link>
@@ -487,86 +593,120 @@ export default function Dashboard() {
         {/* দোকান নেটওয়ার্ক */}
         <Link
           to="/network"
-          className="card p-4 flex items-center gap-3.5 hover:border-amber-600 transition-all group text-left"
+          className="card p-3.5 sm:p-4 flex items-center gap-3 hover:border-amber-600 transition-all group text-left"
         >
-          <SoftIcon icon={Store} tone="purple" size={62} delayIndex={3} />
+          <SoftIcon icon={Store} tone="purple" size={56} delayIndex={3} />
           <div className="min-w-0">
-            <div className="text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-amber-600 transition-colors leading-tight">
+            <div className="text-sm sm:text-base font-bold text-brand-brown dark:text-brand-cream group-hover:text-amber-600 transition-colors leading-tight">
               দোকান নেটওয়ার্ক
             </div>
-            <div className="text-xs text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
-              অতিরিক্ত স্টক বিক্রি ও জরুরি ধার
+            <div className="text-[11px] text-brand-brown/65 dark:text-brand-cream/65 mt-0.5">
+              অতিরিক্ত স্টক ও জরুরি ধার
             </div>
           </div>
         </Link>
       </div>
 
-      {/* 5. 4 KPI Cards (আজকের বিক্রি, আজকের কেনা, মোট বাকি, মেয়াদ ঝুঁকি) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-        {/* আজকের বিক্রি */}
+      {/* 5. Section 4.11 Business Performance Dashboard - 6 Centralized KPIs */}
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4">
+        {/* মোট বিক্রি */}
         <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#F4A900]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
-              আজকের বিক্রি
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              {periodTab === 'today' ? 'আজকের বিক্রি' : periodTab === 'week' ? 'সাপ্তাহিক বিক্রি' : 'মাসিক বিক্রি'}
             </span>
             <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-brand-orange">
-              <ShoppingBag className="w-4 h-4" />
+              <ShoppingBag className="w-3.5 h-3.5" />
             </div>
           </div>
           <div className="mt-2.5">
-            <span className="text-xl sm:text-2xl font-black text-brand-brown dark:text-brand-cream">
+            <span className="text-lg sm:text-xl font-black text-brand-brown dark:text-brand-cream">
               <AnimatedNumber value={salesTotal} isCurrency />
             </span>
           </div>
         </Card>
 
-        {/* আজকের কেনা / কম মজুদ */}
-        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#2563EB]">
+        {/* নগদ আদায় (Cash Received) */}
+        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#10B981]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
-              {backendSummary ? 'কম মজুদ সতর্কতা' : 'প্রস্তাবিত কেনা'}
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              নগদ জমা
             </span>
-            <div className="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-[#2563EB]">
-              <ShoppingCart className="w-4 h-4" />
+            <div className="p-1.5 rounded-lg bg-emerald-100 dark:bg-emerald-950/60 text-[#10B981]">
+              <Wallet className="w-3.5 h-3.5" />
             </div>
           </div>
           <div className="mt-2.5">
-            <span className="text-xl sm:text-2xl font-black text-[#2563EB] dark:text-blue-400">
-              {toBengaliDigits(displayedLowStockCount)} টি পণ্য
+            <span className="text-lg sm:text-xl font-black text-[#10B981] dark:text-emerald-400">
+              <AnimatedNumber value={displayedCashReceived} isCurrency />
             </span>
           </div>
         </Card>
 
-        {/* মোট বাকি */}
-        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#16A34A]">
+        {/* দোকান খরচ (Expenses) */}
+        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#F59E0B]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
-              মোট বাকি পাওনা
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              দোকান খরচ
             </span>
-            <div className="p-1.5 rounded-lg bg-green-100 dark:bg-green-950/60 text-[#16A34A]">
-              <CreditCard className="w-4 h-4" />
+            <div className="p-1.5 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-600">
+              <TrendingDown className="w-3.5 h-3.5" />
             </div>
           </div>
           <div className="mt-2.5">
-            <span className="text-xl sm:text-2xl font-black text-[#16A34A] dark:text-emerald-400">
+            <span className="text-lg sm:text-xl font-black text-amber-700 dark:text-amber-400">
+              <AnimatedNumber value={displayedExpenses} isCurrency />
+            </span>
+          </div>
+        </Card>
+
+        {/* আনুমানিক মোট লাভ (Estimated Gross Profit) */}
+        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#8B5CF6]">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              আনুমানিক মুনাফা
+            </span>
+            <div className="p-1.5 rounded-lg bg-purple-100 dark:bg-purple-950/60 text-purple-600">
+              <TrendingUp className="w-3.5 h-3.5" />
+            </div>
+          </div>
+          <div className="mt-2.5">
+            <span className="text-lg sm:text-xl font-black text-purple-700 dark:text-purple-400">
+              <AnimatedNumber value={displayedGrossProfit} isCurrency />
+            </span>
+          </div>
+        </Card>
+
+        {/* মোট বাকি পাওনা (Customer Dues) */}
+        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#EF4444]">
+          <div className="flex items-center justify-between">
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              মোট বাকি পাওনা
+            </span>
+            <div className="p-1.5 rounded-lg bg-red-100 dark:bg-red-950/60 text-red-600">
+              <CreditCard className="w-3.5 h-3.5" />
+            </div>
+          </div>
+          <div className="mt-2.5">
+            <span className="text-lg sm:text-xl font-black text-red-600 dark:text-rose-400">
               <AnimatedNumber value={totalCreditUnpaid} isCurrency />
             </span>
           </div>
         </Card>
 
-        {/* মেয়াদ ঝুঁকি */}
-        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#DC2626]">
+        {/* মজুদ ও মেয়াদ সতর্কতা (Inventory & Expiry) */}
+        <Card className="p-4 flex flex-col justify-between border-l-4 border-l-[#2563EB]">
           <div className="flex items-center justify-between">
-            <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
-              মেয়াদ ঝুঁকি
+            <span className="text-[11px] font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70">
+              মজুদ ও মেয়াদ
             </span>
-            <div className="p-1.5 rounded-lg bg-red-100 dark:bg-red-950/60 text-[#DC2626]">
-              <Clock className="w-4 h-4" />
+            <div className="p-1.5 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-[#2563EB]">
+              <Clock className="w-3.5 h-3.5" />
             </div>
           </div>
           <div className="mt-2.5">
-            <span className="text-xl sm:text-2xl font-black text-[#DC2626] dark:text-rose-400">
-              {toBengaliDigits(displayedExpiringBatches)} টি ব্যাচ
+            <span className="text-sm sm:text-base font-black text-[#2563EB] dark:text-blue-400 leading-tight block">
+              {toBengaliDigits(displayedExpiringBatches)}টি ঝুঁকি • {toBengaliDigits(displayedLowStockCount)}টি কম
             </span>
           </div>
         </Card>
@@ -768,6 +908,12 @@ export default function Dashboard() {
       <QuickSaleModal
         isOpen={quickSaleOpen}
         onClose={() => setQuickSaleOpen(false)}
+      />
+
+      {/* AI Voice Bookkeeping Modal (Section 4.1) */}
+      <VoiceBookkeepingModal
+        isOpen={voiceModalOpen}
+        onClose={() => setVoiceModalOpen(false)}
       />
     </div>
   )

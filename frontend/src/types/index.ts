@@ -114,6 +114,48 @@ export interface Credit {
   deleted: boolean | number
 }
 
+// ─── Smart Digital Ledger & Voice Bookkeeping ────────────────────────────────
+export interface Expense {
+  id: string
+  shopId: string
+  category: 'rent' | 'utility' | 'salary' | 'transport' | 'snack' | 'stock' | 'other'
+  title: string
+  amount: number
+  date: string
+  note?: string
+  createdAt: string
+}
+
+export interface SupplierDue {
+  id: string
+  shopId: string
+  supplierName: string
+  supplierPhone?: string
+  companyName: string
+  amount: number
+  paidAmount: number
+  dueDate?: string
+  status: 'unpaid' | 'partial' | 'paid'
+  note?: string
+  createdAt: string
+  updatedAt: string
+}
+
+export interface VoiceParsedTransaction {
+  type: 'sale' | 'expense' | 'credit' | 'mixed'
+  rawText: string
+  totalSales?: number
+  cashReceived?: number
+  customerCredit?: number
+  expenseAmount?: number
+  customerName?: string
+  supplierName?: string
+  expenseCategory?: string
+  items?: string[]
+  date: string
+  confidence: number
+}
+
 // ─── Distributor & Wholesale ────────────────────────────────────────────────
 export interface Distributor {
   id: string

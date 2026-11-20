@@ -11,7 +11,7 @@ import {
   Package,
 } from 'lucide-react'
 import { useLang } from '@/i18n'
-import { getUpcomingFestivals } from '@/engines/festival'
+import { getUpcomingFestivals, FESTIVAL_RECOMMENDED_PRODUCTS } from '@/engines/festival'
 import { Card, DemoBadge, EmptyState, ProductIcon } from '@/components/ui'
 import { Stagger } from '@/components/motion'
 
@@ -170,6 +170,25 @@ export default function Festivals() {
                         ))}
                       </ul>
                     </div>
+
+                    {/* Specific Recommended Restock Products (Section 4.6) */}
+                    {FESTIVAL_RECOMMENDED_PRODUCTS[fest.name] && (
+                      <div className="mt-3 p-3 rounded-xl bg-amber-50/60 dark:bg-amber-950/30 border border-amber-200/60 space-y-2">
+                        <span className="text-[11px] font-bold text-brand-brown dark:text-brand-cream block">
+                          {lang === 'bn' ? '📌 বিশেষ পণ্যভিত্তিক আগাম মজুদের তালিকা:' : '📌 Recommended Restock Items:'}
+                        </span>
+                        <div className="grid grid-cols-2 gap-1.5 text-xs">
+                          {FESTIVAL_RECOMMENDED_PRODUCTS[fest.name].map((prod, pIdx) => (
+                            <div key={pIdx} className="flex items-center justify-between p-1.5 rounded-lg bg-card border border-border">
+                              <span className="font-semibold text-text truncate">{prod.name}</span>
+                              <span className="text-[10px] font-black text-green-600 bg-green-100 dark:bg-green-950 px-1.5 py-0.2 rounded ml-1">
+                                {prod.recommendedMultiplier}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Footer */}

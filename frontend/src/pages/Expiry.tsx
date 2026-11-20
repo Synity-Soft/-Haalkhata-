@@ -38,12 +38,12 @@ import {
 } from '@/mock/haalkhataFeatures'
 import type { BatchWithRisk, Product, ExpiryRisk, BatchStrategySuggestion } from '@/types'
 
-// Default sample batches showcasing the user's specific "Fresh Bun" scenario
+// Default sample batches showcasing Section 4.3 specification (Fresh Bun FB-001, FB-002)
 const INITIAL_DEMO_BATCHES = [
   {
     id: 'bat-fresh-bun-01',
-    productName: 'ফ্রেশ বান (Fresh Bun)',
-    batchCode: 'BATCH-BUN-261010-B1',
+    productName: 'Fresh Bun (ফ্রেশ বান)',
+    batchCode: 'FB-001',
     barcode: '894101026001',
     quantity: 25,
     unit: 'পিস',
@@ -55,21 +55,21 @@ const INITIAL_DEMO_BATCHES = [
   },
   {
     id: 'bat-fresh-bun-02',
-    productName: 'ফ্রেশ বান (Fresh Bun)',
-    batchCode: 'BATCH-BUN-261020-B2',
+    productName: 'Fresh Bun (ফ্রেশ বান)',
+    batchCode: 'FB-002',
     barcode: '894102026002',
     quantity: 40,
     unit: 'পিস',
     purchasePrice: 20,
     sellingPrice: 30,
     receiveDate: '2026-10-20',
-    expiryDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 18).toISOString().slice(0, 10), // 18 days left
+    expiryDate: new Date(Date.now() + 1000 * 60 * 60 * 24 * 15).toISOString().slice(0, 10), // 15 days left
     fifoOrder: 2,
   },
   {
     id: 'bat-bread-01',
-    productName: 'ড্যানিশ স্লাইস পাউরুটি (Danish Bread)',
-    batchCode: 'BATCH-BRD-261015-B1',
+    productName: 'Danish Bread (ড্যানিশ পাউরুটি)',
+    batchCode: 'DB-001',
     barcode: '894101526003',
     quantity: 14,
     unit: 'পিস',
@@ -108,9 +108,9 @@ export default function Expiry() {
   const [isAddBatchModalOpen, setIsAddBatchModalOpen] = useState(false)
 
   // Form Fields
-  const [newProductName, setNewProductName] = useState('ফ্রেশ বান (Fresh Bun)')
+  const [newProductName, setNewProductName] = useState('Fresh Bun (ফ্রেশ বান)')
   const [newBatchNumber, setNewBatchNumber] = useState<number>(3)
-  const [newBatchCode, setNewBatchCode] = useState('BATCH-BUN-261119-B3')
+  const [newBatchCode, setNewBatchCode] = useState('FB-003')
   const [newBarcode, setNewBarcode] = useState('894829103841')
   const [newReceiveDate, setNewReceiveDate] = useState(new Date().toISOString().slice(0, 10))
   const [newExpiryDate, setNewExpiryDate] = useState(
@@ -348,45 +348,45 @@ export default function Expiry() {
       {/* ─── TAB 1: BATCH RECOGNIZER & FIFO CLEARANCE STRATEGY ───────────────── */}
       {activeTab === 'recognizer' && (
         <div className="space-y-6">
-          {/* Dynamic Strategy Explanation Cards */}
+          {/* Dynamic Strategy Explanation Cards (Section 4.3) */}
           <div className="grid grid-cols-1 sm:grid-cols-4 gap-3">
             <Card className="p-3.5 border-l-4 border-l-blue-500 bg-blue-50/20 dark:bg-blue-950/20">
               <span className="text-[10px] font-bold uppercase text-blue-700 dark:text-blue-300 block">
-                {lang === 'bn' ? 'ধাপ ১ (১৫ দিনের বেশি বাকি)' : 'Tier 1 (> 15 Days Left)'}
+                {lang === 'bn' ? 'মেয়াদ বাকি: ১৫ দিন' : 'Shelf Life: 15 Days'}
               </span>
-              <strong className="text-base text-blue-800 dark:text-blue-200 block mt-1">১০% আগাম ছাড়</strong>
+              <strong className="text-base text-blue-800 dark:text-blue-200 block mt-1">১০% ছাড় সুপারিশ</strong>
               <p className="text-[11px] text-brand-brown/70 dark:text-brand-cream/70 mt-1">
-                স্বাভাবিক গতিতে দ্রুত বিক্রি বাড়াতে প্রারম্ভিক ছাড়।
+                স্বাভাবিক গতিতে দ্রুত বিক্রি নিশ্চিত করে অপচয় রোধ।
               </p>
             </Card>
 
             <Card className="p-3.5 border-l-4 border-l-amber-500 bg-amber-50/20 dark:bg-amber-950/20">
               <span className="text-[10px] font-bold uppercase text-amber-700 dark:text-amber-300 block">
-                ধাপ ২ (৮ - ১৫ দিন বাকি)
+                {lang === 'bn' ? 'মেয়াদ বাকি: ১০ দিন' : 'Shelf Life: 10 Days'}
               </span>
-              <strong className="text-base text-amber-800 dark:text-amber-200 block mt-1">২০% সেল এক্সেলেটর</strong>
+              <strong className="text-base text-amber-800 dark:text-amber-200 block mt-1">১৫–২০% ছাড়</strong>
               <p className="text-[11px] text-brand-brown/70 dark:text-brand-cream/70 mt-1">
-                মেয়াদ ঘনিয়ে আসার আগে পর্যাপ্ত স্টক খালি করার স্ট্র্যাটেজি।
+                মেয়াদ ঘনিয়ে আসার আগে সেল বেগবান করার সুপারিশ।
               </p>
             </Card>
 
             <Card className="p-3.5 border-l-4 border-l-orange-500 bg-orange-50/20 dark:bg-orange-950/20">
               <span className="text-[10px] font-bold uppercase text-orange-700 dark:text-orange-300 block">
-                ধাপ ৩ (৩ - ৭ দিন বাকি)
+                {lang === 'bn' ? 'মেয়াদ বাকি: ৫ দিন' : 'Shelf Life: 5 Days'}
               </span>
-              <strong className="text-base text-orange-800 dark:text-orange-200 block mt-1">৩০% ছাড় / Buy 1 Get 1</strong>
+              <strong className="text-base text-orange-800 dark:text-orange-200 block mt-1">২৫–৩০% ছাড় / Buy 1 Get 1</strong>
               <p className="text-[11px] text-brand-brown/70 dark:text-brand-cream/70 mt-1">
-                জরুরি বান্ডেল অফার দিয়ে কাস্টমার আকর্ষণ ও দ্রুত বিক্রি।
+                জরুরি আকর্ষণীয় বান্ডেল অফারে দ্রুত স্টক খালি করা।
               </p>
             </Card>
 
             <Card className="p-3.5 border-l-4 border-l-red-500 bg-red-50/20 dark:bg-red-950/20">
               <span className="text-[10px] font-bold uppercase text-red-700 dark:text-red-300 block">
-                ধাপ ৪ (≤ ২ দিন বাকি)
+                {lang === 'bn' ? 'মেয়াদ অতি সন্নিকটে (≤ ২ দিন)' : 'Very Close to Expiry'}
               </span>
-              <strong className="text-base text-red-800 dark:text-red-200 block mt-1">৫০% ছাড় / Buy 1 Get 3</strong>
+              <strong className="text-base text-red-800 dark:text-red-200 block mt-1">Buy 2 Get 1 / স্পেশাল অফার</strong>
               <p className="text-[11px] text-brand-brown/70 dark:text-brand-cream/70 mt-1">
-                পণ্য ফেলে নষ্ট না করে শতভাগ মূলধন পুনরুদ্ধার।
+                পণ্য নষ্ট হওয়ার আগেই সর্বোচ্চ মূলধন পুনরুদ্ধার।
               </p>
             </Card>
           </div>
@@ -420,15 +420,15 @@ export default function Expiry() {
                               {item.productName}
                             </h3>
 
-                            {/* FIFO Order Badge */}
+                            {/* FEFO Order Badge */}
                             {isFifoFirst ? (
                               <span className="px-2.5 py-0.5 rounded-full bg-red-600 text-white font-extrabold text-xs flex items-center gap-1 shadow-sm">
                                 <Zap className="w-3.5 h-3.5" />
-                                <span>FIFO অগ্রাধিকার: আগে এই ব্যাচটি রিলিজ করুন</span>
+                                <span>FEFO অগ্রাধিকার: আগে এই ব্যাচটি রিলিজ করুন (Earlier Expiry)</span>
                               </span>
                             ) : (
                               <span className="px-2 py-0.5 rounded-full bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-300 font-semibold text-xs">
-                                FIFO ক্রম #{formatNum(item.fifoOrder)} (হোল্ডে রাখুন)
+                                FEFO ক্রম #{formatNum(item.fifoOrder)} (পরের ব্যাচ / হোল্ড)
                               </span>
                             )}
 

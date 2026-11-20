@@ -64,11 +64,37 @@ async def lifespan(app: FastAPI):
     # 1. Initialize & Verify Database Connectivity
     t_db = time.time()
     try:
+        from backend.models import Base
+        Base.metadata.create_all(bind=engine)
+
         with engine.connect() as conn:
-            conn.execute(text("SELECT 1"))
+            cnt = conn.execute(text("SELECT count(*) FROM outlets")).scalar()
+            if cnt == 0:
+                logger.info("Outlets table is empty. Running initial master seed from DataSets/...")
+                data_dir = REPO_ROOT / "DataSets"
+                if (data_dir / "outlets.csv").exists():
+                    from backend.scripts.seed_db import (
+                        seed_outlets,
+                        seed_products,
+                        seed_suppliers,
+                        seed_outlet_products,
+                        seed_inventory_batches,
+                    )
+                    with engine.begin() as seed_conn:
+                        seed_outlets(seed_conn, data_dir)
+                        if (data_dir / "products.csv").exists():
+                            seed_products(seed_conn, data_dir)
+                        if (data_dir / "suppliers.csv").exists():
+                            seed_suppliers(seed_conn, data_dir)
+                        if (data_dir / "outlet_products.csv").exists():
+                            seed_outlet_products(seed_conn, data_dir)
+                        if (data_dir / "inventory_batches.csv").exists():
+                            seed_inventory_batches(seed_conn, data_dir)
+                        logger.info("Core master data seeded successfully.")
+
         app.state.db_ready = True
         app.state.db_init_error = None
-        logger.info(f"Database connected successfully to {DEFAULT_DB_PATH.name} in {time.time() - t_db:.3f} s")
+        logger.info(f"Database connected and verified in {time.time() - t_db:.3f} s")
     except Exception as e:
         logger.error(f"Database connection failed during startup: {e}", exc_info=True)
         app.state.db_ready = False

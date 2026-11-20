@@ -316,7 +316,7 @@ npm run dev
 ## 👥 Authors & Acknowledgments
 
 - **Developed by:** Synity Soft Team
-- **Event:** SQAT Summit 2026 Project Showcase / Capstone Presentation
+- **Event:** International Ai Builders Congress / Capstone Presentation
 - **Theme:** Transforming informal retail through resilient offline-first AI architecture.
 
 ---

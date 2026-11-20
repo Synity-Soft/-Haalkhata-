@@ -1,5 +1,11 @@
 // All API calls go through this module. Frontend never calls Gemini or Supabase directly.
-const BASE_URL = ((import.meta as any).env?.VITE_API_BASE_URL as string) || 'http://localhost:8000'
+const RAW_URL =
+  ((import.meta as any).env?.VITE_API_BASE_URL as string) ||
+  ((import.meta as any).env?.MODE === 'production' || (import.meta as any).env?.PROD
+    ? 'https://haalkhata-vjfs.onrender.com'
+    : 'http://localhost:8000')
+
+const BASE_URL = RAW_URL.replace(/\/+$/, '')
 
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
   const res = await fetch(`${BASE_URL}${path}`, {

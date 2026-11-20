@@ -9,6 +9,7 @@ from backend.routers.dashboard import router as dashboard_router
 from backend.routers.inventory import router as inventory_router
 from backend.routers.expiry import router as expiry_router
 from backend.routers.reports import router as reports_router
+from backend.routers.auth import router as auth_router
 
 __all__ = [
     "health_router",
@@ -18,4 +19,5 @@ __all__ = [
     "inventory_router",
     "expiry_router",
     "reports_router",
+    "auth_router",
 ]

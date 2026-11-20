@@ -310,3 +310,25 @@ class WastageRecord(Base):
 
     def __repr__(self) -> str:
         return f"<WastageRecord(id={self.wastage_id}, outlet={self.outlet_id}, qty={self.wasted_quantity}, reason='{self.wastage_reason}')>"
+
+
+class User(Base):
+    """
+    Centralized user accounts for cross-device authentication across PC, mobile, and browsers.
+    """
+    __tablename__ = "users"
+
+    id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    username: Mapped[str] = mapped_column(String(64), unique=True, nullable=False, index=True)
+    password_hash: Mapped[str] = mapped_column(String(256), nullable=False)
+    full_name: Mapped[Optional[str]] = mapped_column(String(128))
+    shop_name: Mapped[Optional[str]] = mapped_column(String(128))
+    role: Mapped[str] = mapped_column(String(64), default="Shop Owner")
+    phone: Mapped[Optional[str]] = mapped_column(String(32))
+    address: Mapped[Optional[str]] = mapped_column(String(256))
+    district: Mapped[Optional[str]] = mapped_column(String(64))
+    area: Mapped[Optional[str]] = mapped_column(String(64))
+    created_at: Mapped[str] = mapped_column(String(32))
+
+    def __repr__(self) -> str:
+        return f"<User(id='{self.id}', username='{self.username}', shop='{self.shop_name}')>"

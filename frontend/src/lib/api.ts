@@ -223,4 +223,18 @@ export const api = {
     if (params?.end_date) q.append('end_date', params.end_date)
     return request<SalesTrendResponse>(`/api/v1/reports/sales-trend?${q.toString()}`)
   },
+
+  authLogin: (credentials: { username: string; password: string }) => {
+    return request<{ success: boolean; user?: any; error?: string }>('/api/auth/login', {
+      method: 'POST',
+      body: JSON.stringify(credentials),
+    })
+  },
+
+  authRegister: (data: any) => {
+    return request<{ success: boolean; user?: any; error?: string }>('/api/auth/register', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    })
+  },
 }

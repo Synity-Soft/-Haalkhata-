@@ -41,6 +41,7 @@ from backend.routers import (
     inventory_router,
     expiry_router,
     reports_router,
+    auth_router,
 )
 from ml.inference.prediction_service import get_prediction_service
 from ml.api.schemas import RootResponse
@@ -131,16 +132,10 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# Configure CORS for Frontend Client
-raw_cors = os.environ.get(
-    "CORS_ORIGINS",
-    "http://localhost:3000,http://localhost:5173,http://localhost:8000,http://127.0.0.1:3000,http://127.0.0.1:5173,http://127.0.0.1:8000"
-)
-allowed_origins = [o.strip() for o in raw_cors.split(",") if o.strip()]
-
+# Configure CORS for Frontend Client (Allows Localhost, Vercel, and Mobile Clients)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -199,6 +194,7 @@ app.include_router(dashboard_router)
 app.include_router(inventory_router)
 app.include_router(expiry_router)
 app.include_router(reports_router)
+app.include_router(auth_router, prefix="/api")
 
 
 if __name__ == "__main__":

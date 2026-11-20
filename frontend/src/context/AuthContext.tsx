@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from 'react'
 import type { AuthUser, Shop } from '@/types'
 import { db } from '@/db/schema'
+import { api } from '@/lib/api'
 
 export interface StoredUser extends AuthUser {
   password: string
@@ -131,6 +132,45 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       return { success: false, error: 'Please enter both username and password.' }
     }
 
+    // 1. Try centralized backend authentication (enables login across any PC, phone, or browser)
+    try {
+      const res = await api.authLogin({ username: cleanUsername, password: cleanPassword })
+      if (res && res.success && res.user) {
+        const authUser: AuthUser = {
+          id: res.user.id,
+          username: res.user.username,
+          fullName: res.user.fullName || res.user.username,
+          shopName: res.user.shopName || 'হালখাতা স্টোর',
+          role: res.user.role || 'Shop Owner',
+          phone: res.user.phone || '',
+          address: res.user.address || '',
+          createdAt: res.user.createdAt,
+        }
+
+        // Cache locally for offline capability
+        const currentUsers = getStoredUsers()
+        if (!currentUsers.some((u) => u.username.toLowerCase() === cleanUsername)) {
+          saveStoredUsers([...currentUsers, { ...authUser, password: cleanPassword }])
+        }
+
+        setUser(authUser)
+        localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(authUser))
+        return { success: true }
+      } else if (res && res.error) {
+        // Backend returned explicit failure. Check local demo accounts before failing
+        const localUsers = getStoredUsers()
+        const localFound = localUsers.find(
+          (u) => u.username.toLowerCase() === cleanUsername && u.password === cleanPassword
+        )
+        if (!localFound) {
+          return { success: false, error: res.error || 'Invalid username or password. Please try again.' }
+        }
+      }
+    } catch (apiErr) {
+      console.warn('Backend login connection unavailable, attempting local offline login:', apiErr)
+    }
+
+    // 2. Fallback to offline local storage accounts
     const users = getStoredUsers()
     const found = users.find(
       (u) => u.username.toLowerCase() === cleanUsername && u.password === cleanPassword
@@ -144,7 +184,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       id: found.id,
       username: found.username,
       fullName: found.fullName || found.username,
-      shopName: found.shopName || 'Smart Grocery',
+      shopName: found.shopName || 'হালখাতা স্টোর',
       role: found.role || 'Shop Owner',
       phone: found.phone || '',
       address: found.address || '',
@@ -170,6 +210,25 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
     if (cleanPassword.length < 4) {
       return { success: false, error: 'Password must be at least 4 characters long.' }
+    }
+
+    // 1. Sync with centralized backend (makes account available across all devices and browsers)
+    try {
+      const res = await api.authRegister({
+        username: cleanUsername,
+        password: cleanPassword,
+        fullName: data.fullName?.trim() || data.username.trim(),
+        shopName: data.shopName?.trim() || 'হালখাতা স্টোর',
+        phone: data.phone?.trim() || '',
+        address: data.address?.trim() || '',
+        district: data.district || '',
+        area: data.area || '',
+      })
+      if (res && !res.success && res.error) {
+        return { success: false, error: res.error }
+      }
+    } catch (apiErr) {
+      console.warn('Backend registration failed, saving locally:', apiErr)
     }
 
     const users = getStoredUsers()

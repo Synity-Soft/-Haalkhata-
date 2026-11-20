@@ -1,6 +1,6 @@
-# MASTER PROMPT — HAAT-BAZAAR
+# MASTER PROMPT — Haalkhata
 
-Project: HAAT-BAZAAR
+Project: Haalkhata
 Tagline: Your Intelligent Grocery Business Assistant.
 
 What: An offline-first, AI-powered inventory and supply-chain assistant (PWA) for grocery shops and supershops in Bangladesh. It helps shopkeepers decide what to buy and how much, which products are about to expire, what discount to give, and what to prepare for upcoming festivals.

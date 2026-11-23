@@ -7,10 +7,47 @@ const RAW_URL =
 
 const BASE_URL = RAW_URL.replace(/\/+$/, '')
 
+const TOKEN_STORAGE_KEY = 'hb_auth_token'
+
+export function getAuthToken(): string | null {
+  try {
+    return localStorage.getItem(TOKEN_STORAGE_KEY)
+  } catch {
+    return null
+  }
+}
+
+export function setAuthToken(token: string): void {
+  try {
+    if (token) {
+      localStorage.setItem(TOKEN_STORAGE_KEY, token)
+    } else {
+      localStorage.removeItem(TOKEN_STORAGE_KEY)
+    }
+  } catch (err) {
+    console.error('Failed to set auth token:', err)
+  }
+}
+
+export function clearAuthToken(): void {
+  try {
+    localStorage.removeItem(TOKEN_STORAGE_KEY)
+  } catch (err) {
+    console.error('Failed to clear auth token:', err)
+  }
+}
+
 async function request<T>(path: string, options?: RequestInit): Promise<T> {
+  const token = getAuthToken()
+  const headers: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...(token ? { Authorization: `Bearer ${token}` } : {}),
+    ...(options?.headers as Record<string, string> | undefined),
+  }
+
   const res = await fetch(`${BASE_URL}${path}`, {
-    headers: { 'Content-Type': 'application/json', ...options?.headers },
     ...options,
+    headers,
   })
   if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
   return res.json() as Promise<T>
@@ -230,17 +267,29 @@ export const api = {
     return request<SalesTrendResponse>(`/api/v1/reports/sales-trend?${q.toString()}`)
   },
 
+  setAuthToken,
+  getAuthToken,
+  clearAuthToken,
+
   authLogin: (credentials: { username: string; password: string }) => {
-    return request<{ success: boolean; user?: any; error?: string }>('/api/auth/login', {
+    return request<{ success: boolean; access_token?: string; token_type?: string; user?: any; error?: string }>('/api/auth/login', {
       method: 'POST',
       body: JSON.stringify(credentials),
     })
   },
 
   authRegister: (data: any) => {
-    return request<{ success: boolean; user?: any; error?: string }>('/api/auth/register', {
+    return request<{ success: boolean; access_token?: string; token_type?: string; user?: any; error?: string }>('/api/auth/register', {
       method: 'POST',
       body: JSON.stringify(data),
     })
+  },
+
+  authBranches: () => {
+    return request<{ success: boolean; branches: Array<{ outlet_id: string; outlet_name: string; outlet_type: string; district?: string; area?: string; role: string; is_primary: boolean }> }>('/api/auth/branches')
+  },
+
+  authProfile: () => {
+    return request<any>('/api/auth/me')
   },
 }

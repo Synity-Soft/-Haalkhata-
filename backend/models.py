@@ -57,6 +57,9 @@ class Outlet(Base):
     )
     sales: Mapped[List["Sale"]] = relationship("Sale", back_populates="outlet")
     wastage_records: Mapped[List["WastageRecord"]] = relationship("WastageRecord", back_populates="outlet")
+    user_outlets: Mapped[List["UserOutlet"]] = relationship(
+        "UserOutlet", back_populates="outlet", cascade="all, delete-orphan"
+    )
 
     def __repr__(self) -> str:
         return f"<Outlet(id={self.outlet_id}, name='{self.outlet_name}', type='{self.outlet_type}')>"
@@ -330,5 +333,41 @@ class User(Base):
     area: Mapped[Optional[str]] = mapped_column(String(64))
     created_at: Mapped[str] = mapped_column(String(32))
 
+    # Relationships
+    user_outlets: Mapped[List["UserOutlet"]] = relationship(
+        "UserOutlet", back_populates="user", cascade="all, delete-orphan"
+    )
+
     def __repr__(self) -> str:
         return f"<User(id='{self.id}', username='{self.username}', shop='{self.shop_name}')>"
+
+
+class UserOutlet(Base):
+    """
+    Explicit association mapping user accounts to authorized shop branches/outlets.
+    Enforces multi-branch ownership and access control.
+    """
+    __tablename__ = "user_outlets"
+
+    id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
+    user_id: Mapped[str] = mapped_column(
+        String(64), ForeignKey("users.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    outlet_id: Mapped[str] = mapped_column(
+        String(32), ForeignKey("outlets.outlet_id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    role: Mapped[str] = mapped_column(String(32), default="owner")  # 'owner', 'manager', 'cashier'
+    is_primary: Mapped[bool] = mapped_column(Boolean, default=False)
+    created_at: Mapped[str] = mapped_column(String(32))
+
+    __table_args__ = (
+        UniqueConstraint("user_id", "outlet_id", name="uq_user_outlet"),
+    )
+
+    # Relationships
+    user: Mapped["User"] = relationship("User", back_populates="user_outlets")
+    outlet: Mapped["Outlet"] = relationship("Outlet", back_populates="user_outlets")
+
+    def __repr__(self) -> str:
+        return f"<UserOutlet(user='{self.user_id}', outlet='{self.outlet_id}', role='{self.role}')>"
+

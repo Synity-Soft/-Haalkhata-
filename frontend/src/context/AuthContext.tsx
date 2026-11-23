@@ -136,6 +136,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     try {
       const res = await api.authLogin({ username: cleanUsername, password: cleanPassword })
       if (res && res.success && res.user) {
+        // Store backend JWT access token for authenticated API requests
+        if (res.access_token) {
+          api.setAuthToken(res.access_token)
+        }
+
         const authUser: AuthUser = {
           id: res.user.id,
           username: res.user.username,
@@ -170,7 +175,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       console.warn('Backend login connection unavailable, attempting local offline login:', apiErr)
     }
 
-    // 2. Fallback to offline local storage accounts
+    // 2. Fallback to offline local storage accounts (clear token so offline accounts are not treated as authenticated backend users)
+    api.clearAuthToken()
     const users = getStoredUsers()
     const found = users.find(
       (u) => u.username.toLowerCase() === cleanUsername && u.password === cleanPassword
@@ -223,9 +229,17 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         address: data.address?.trim() || '',
         district: data.district || '',
         area: data.area || '',
+        branches: data.branches?.map((b) => ({
+          name: b.name || `${b.area || ''}, ${b.district || ''}`.trim() || 'Branch',
+          district: b.district,
+          area: b.area,
+        })),
       })
       if (res && !res.success && res.error) {
         return { success: false, error: res.error }
+      }
+      if (res && res.success && res.access_token) {
+        api.setAuthToken(res.access_token)
       }
     } catch (apiErr) {
       console.warn('Backend registration failed, saving locally:', apiErr)
@@ -344,6 +358,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setUser(null)
+    api.clearAuthToken()
     localStorage.removeItem(AUTH_STORAGE_KEY)
   }
 

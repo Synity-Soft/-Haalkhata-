@@ -39,7 +39,27 @@ class ChatResponse(BaseModel):
     tools_used: List[str]
     outlet_id: str
     outlet_name: Optional[str] = None
+    provider: Optional[str] = "gemini_live"
     error: Optional[str] = None
+
+
+@router.get("/health")
+def ai_health():
+    """Diagnostic health check for the AI Copilot router."""
+    import os
+    return {
+        "status": "healthy",
+        "service": "ai_copilot",
+        "chat_endpoint": "/api/ai/chat",
+        "model": os.getenv("GEMINI_MODEL", "gemini-3.5-flash"),
+        "mcp_server": "http://127.0.0.1:8001/mcp",
+    }
+
+
+@router.get("/status")
+def ai_status():
+    """Alias for health status check."""
+    return ai_health()
 
 
 @router.post("/chat", response_model=ChatResponse)
@@ -93,6 +113,7 @@ async def ai_chat(
             tools_used=result.get("tools_used", []),
             outlet_id=outlet.outlet_id,
             outlet_name=outlet.outlet_name,
+            provider=result.get("provider", "gemini_live"),
         )
     except Exception as e:
         logger.error(f"Error processing AI chat request: {e}", exc_info=True)

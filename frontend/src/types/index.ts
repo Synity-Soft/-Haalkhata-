@@ -12,6 +12,7 @@ export type ProductCategory =
   | 'other'
 
 export type ExpiryRisk = 'expired' | 'high' | 'medium' | 'low' | 'safe'
+export type ExpiryTier = 'EXPIRED' | 'EXPIRING_TODAY' | 'NEAR_EXPIRY' | 'SAFE'
 
 export interface AuthUser {
   id: string
@@ -228,7 +229,8 @@ export interface BatchStrategySuggestion {
   purchaseCost: number
   retailPrice: number
   discountPercent: number
-  strategyType: 'standard' | 'early_clearance' | 'bundle_bogo' | 'flash_clearout'
+  strategyType: 'standard' | 'early_clearance' | 'bundle_bogo' | 'flash_clearout' | 'quarantine_expired' | 'expiring_today'
+  expiryTier?: ExpiryTier
   bundleOffer?: string
   projectedProfitOrLoss: number
   advice: string
@@ -269,6 +271,7 @@ export interface BatchWithRisk extends Batch {
   remainingQty: number
   daysRemaining: number
   risk: ExpiryRisk
+  expiryTier?: ExpiryTier
   expectedSalesBefore: number
   expectedUnsold: number
   potentialLoss: number

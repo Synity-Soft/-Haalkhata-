@@ -3,7 +3,7 @@ export * from './bn'
 import { clsx, type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 import { differenceInDays, parseISO, format } from 'date-fns'
-import type { ExpiryRisk } from '@/types'
+import type { ExpiryRisk, ExpiryTier } from '@/types'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -23,8 +23,15 @@ export function daysUntilExpiry(expiryDate: string): number {
   return differenceInDays(parseISO(expiryDate), new Date())
 }
 
+export function getExpiryTier(daysRemaining: number): ExpiryTier {
+  if (daysRemaining < 0) return 'EXPIRED'
+  if (daysRemaining === 0) return 'EXPIRING_TODAY'
+  if (daysRemaining <= 15) return 'NEAR_EXPIRY'
+  return 'SAFE'
+}
+
 export function getExpiryRisk(daysRemaining: number): ExpiryRisk {
-  if (daysRemaining < 0) return 'expired'
+  if (daysRemaining <= 0) return 'expired'
   if (daysRemaining <= 3) return 'high'
   if (daysRemaining <= 7) return 'medium'
   if (daysRemaining <= 14) return 'low'

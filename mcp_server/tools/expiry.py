@@ -83,6 +83,7 @@ def execute_check_expiry(
 
         batches_output: List[Dict[str, Any]] = []
         already_expired_count = 0
+        expiring_today_count = 0
         urgent_clearance_count = 0
         total_loss_exposure_poisha = 0
 
@@ -92,25 +93,35 @@ def execute_check_expiry(
             exposure_poisha = int(r.remaining_quantity * cost_poisha)
             total_loss_exposure_poisha += exposure_poisha
 
-            # Haalkhata Section 4.3 FEFO Discount & Urgency Strategy
+            # Haalkhata Section 4.3 Strict 4-Tier Expiry & Compliance Strategy
             if days_rem < 0:
                 urgency = "ALREADY_EXPIRED"
+                tier = "EXPIRED"
                 action = "DO NOT SELL. Quarantined stock. Record in wastage log to prevent health violations."
                 already_expired_count += 1
+            elif days_rem == 0:
+                urgency = "EXPIRING_TODAY"
+                tier = "EXPIRING_TODAY"
+                action = "EXPIRING TODAY! Remove from sale shelves immediately. Mandatory compliance review. NO discounts or BOGO."
+                expiring_today_count += 1
             elif days_rem <= 2:
                 urgency = "CRITICAL_CLEARANCE"
-                action = "Apply Buy 1 Get 1 Free (BOGO) or Buy 2 Get 1 bundle immediately to recover cost."
+                tier = "NEAR_EXPIRY"
+                action = "Apply Buy 1 Get 1 Free (BOGO) or 35% clearance bundle immediately to recover cost before expiration."
                 urgent_clearance_count += 1
             elif days_rem <= 7:
                 urgency = "URGENT_CLEARANCE"
+                tier = "NEAR_EXPIRY"
                 action = "Apply 25% – 30% discount. Move batch to front eye-level checkout shelves."
                 urgent_clearance_count += 1
             elif days_rem <= 15:
                 urgency = "APPROACHING_EXPIRY"
+                tier = "NEAR_EXPIRY"
                 action = "Apply 15% – 20% discount. Recommend FEFO priority to customers."
             else:
                 urgency = "MONITOR"
-                action = "Apply 10% promotional discount if volume is slow-moving."
+                tier = "SAFE"
+                action = "Safe shelf-life. Apply 10% promotional discount if volume is slow-moving."
 
             batches_output.append({
                 "batch_id": r.batch_id,
@@ -125,6 +136,7 @@ def execute_check_expiry(
                 "unit_cost_bdt": round(cost_poisha / 100.0, 2),
                 "financial_loss_exposure_bdt": round(exposure_poisha / 100.0, 2),
                 "urgency_status": urgency,
+                "expiry_tier": tier,
                 "recommended_clearance_action": action,
             })
 
@@ -135,6 +147,7 @@ def execute_check_expiry(
             "days_ahead": days_ahead,
             "total_batches_at_risk": len(batches_output),
             "already_expired_count": already_expired_count,
+            "expiring_today_count": expiring_today_count,
             "urgent_clearance_count": urgent_clearance_count,
             "total_financial_loss_exposure_bdt": round(total_loss_exposure_poisha / 100.0, 2),
             "batches": batches_output,

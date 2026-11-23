@@ -77,6 +77,65 @@ describe('suggestDiscount', () => {
     expect(suggestion?.suggestedPrice).toBe(360)
   })
 
+  it('SAFETY: strictly returns null for batches expiring today (0 days remaining)', () => {
+    const expiringTodayBatch: BatchWithRisk = {
+      id: 'batch-broccoli-today',
+      productId: 'prod-broccoli',
+      shopId: 'shop-1',
+      quantity: 15,
+      expiryDate: new Date().toISOString().split('T')[0],
+      addedAt: '2026-11-10',
+      updatedAt: new Date().toISOString(),
+      deleted: false,
+      productName: 'ব্রোকলি',
+      productCategory: 'vegetables',
+      remainingQty: 15,
+      daysRemaining: 0,
+      risk: 'expired',
+      expiryTier: 'EXPIRING_TODAY',
+      expectedSalesBefore: 0,
+      expectedUnsold: 15,
+      potentialLoss: 1350,
+    }
+
+    const suggestion = suggestDiscount({
+      batchWithRisk: expiringTodayBatch,
+      product: { ...dummyProduct, id: 'prod-broccoli', name: 'ব্রোকলি' },
+      recentDailySales: 2,
+    })
+
+    expect(suggestion).toBeNull()
+  })
+
+  it('SAFETY: returns null for zero remaining stock', () => {
+    const zeroStockBatch: BatchWithRisk = {
+      id: 'batch-zero',
+      productId: 'prod-milk',
+      shopId: 'shop-1',
+      quantity: 10,
+      expiryDate: '2026-11-20',
+      addedAt: '2026-11-01',
+      updatedAt: new Date().toISOString(),
+      deleted: false,
+      productName: 'মিল্ক পাউডার',
+      productCategory: 'dairy',
+      remainingQty: 0,
+      daysRemaining: 3,
+      risk: 'high',
+      expectedSalesBefore: 0,
+      expectedUnsold: 0,
+      potentialLoss: 0,
+    }
+
+    const suggestion = suggestDiscount({
+      batchWithRisk: zeroStockBatch,
+      product: dummyProduct,
+      recentDailySales: 2,
+    })
+
+    expect(suggestion).toBeNull()
+  })
+
   it('returns null for safe batches', () => {
     const safeBatch: BatchWithRisk = {
       id: 'batch-safe',

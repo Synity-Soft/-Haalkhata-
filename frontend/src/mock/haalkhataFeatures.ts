@@ -343,28 +343,53 @@ export function calculateBatchClearingStrategy(
   let strategyType: BatchStrategySuggestion['strategyType'] = 'standard'
   let bundleOffer: string | undefined = undefined
   let advice = ''
+  let expiryTier: 'EXPIRED' | 'EXPIRING_TODAY' | 'NEAR_EXPIRY' | 'SAFE' = 'SAFE'
 
-  if (daysUntil > 12) {
-    discountPercent = 10
-    strategyType = 'early_clearance'
-    advice = '১৫ দিন সময় আছে। ১০% প্রারম্ভিক ছাড়ে স্বাভাবিক বিক্রির গতি নিশ্চিত করুন।'
-  } else if (daysUntil >= 8 && daysUntil <= 12) {
-    discountPercent = 20
-    strategyType = 'early_clearance'
-    advice = 'মেয়াদ ঘনিয়ে আসছে (১০ দিন বাকি)। ১৫–২০% ছাড়ে দ্রুত পণ্য সেল করুন।'
-  } else if (daysUntil >= 3 && daysUntil <= 7) {
-    discountPercent = 30
+  if (daysUntil < 0) {
+    // TIER 1: EXPIRED (< 0 days) - STRICT PROHIBITION OF SALE / DISCOUNT
+    expiryTier = 'EXPIRED'
+    discountPercent = 0
+    strategyType = 'quarantine_expired'
+    bundleOffer = undefined
+    advice = '🚫 মেয়াদোত্তীর্ণ! বিক্রি সম্পূর্ণ নিষিদ্ধ। অবিলম্বে কোয়ারেন্টাইন করুন এবং অপচয় (Wastage) হিসাবে লিপিবদ্ধ করুন।'
+  } else if (daysUntil === 0) {
+    // TIER 2: EXPIRING TODAY (0 days) - REMOVE FROM SHELF IMMEDIATELY
+    expiryTier = 'EXPIRING_TODAY'
+    discountPercent = 0
+    strategyType = 'expiring_today'
+    bundleOffer = undefined
+    advice = '⚠️ আজই মেয়াদ উত্তীর্ণের দিন! অবিলম্বে তাক থেকে প্রত্যাহার ও কোয়ারেন্টাইন করুন। কোনো ছাড় বা BOGO অফার প্রযোজ্য নয়।'
+  } else if (daysUntil <= 2) {
+    // TIER 3: NEAR EXPIRY - CRITICAL (1-2 days)
+    expiryTier = 'NEAR_EXPIRY'
+    discountPercent = 35
+    strategyType = 'flash_clearout'
+    bundleOffer = '১টি কিনলে ১টি ফ্রি (Buy 1 Get 1) / স্পেশাল অফার'
+    advice = 'অতি জরুরি (১-২ দিন বাকি)! নষ্ট হওয়ার আগেই নিরাপদভাবে মূলধন উদ্ধারে ক্লিয়ারেন্স ছাড়।'
+  } else if (daysUntil <= 7) {
+    // TIER 3: NEAR EXPIRY - URGENT (3-7 days)
+    expiryTier = 'NEAR_EXPIRY'
+    discountPercent = 25
     strategyType = 'bundle_bogo'
     bundleOffer = '১টি কিনলে ১টি ফ্রি (Buy 1 Get 1)'
-    advice = 'জরুরি সময় (৫ দিন বাকি)। ২৫–৩০% ছাড় বা ১টি কিনলে ১টি ফ্রি বান্ডেল অফারে কাস্টমার টানুন।'
+    advice = 'জরুরি সময় (৩-৭ দিন বাকি)। ২৫% ছাড় বা ১টি কিনলে ১টি ফ্রি বান্ডেল অফারে কাস্টমার টানুন।'
+  } else if (daysUntil <= 12) {
+    // TIER 3: NEAR EXPIRY - APPROACHING (8-12 days)
+    expiryTier = 'NEAR_EXPIRY'
+    discountPercent = 15
+    strategyType = 'early_clearance'
+    advice = 'মেয়াদ ঘনিয়ে আসছে (৮-১২ দিন বাকি)। ১৫% ছাড়ে স্বাভাবিক বিক্রির গতি বাড়ান।'
   } else {
-    discountPercent = 50
-    strategyType = 'flash_clearout'
-    bundleOffer = '২টি কিনলে ১টি ফ্রি (Buy 2 Get 1) / ক্লিয়ারেন্স'
-    advice = 'অতি জরুরি (<২ দিন)! বিশেষ বান্ডেল বা ফ্ল্যাশ ক্লিয়ারেন্সে শতভাগ মূলধন উদ্ধার করুন, অপচয় রোধ করুন।'
+    // TIER 4: SAFE (> 12 days)
+    expiryTier = 'SAFE'
+    discountPercent = 0
+    strategyType = 'standard'
+    advice = 'পর্যাপ্ত মেয়াদ রয়েছে। স্বাভাবিক বিক্রয় চলমান রাখুন।'
   }
 
-  const effectiveSellingPrice = Math.max(retail * (1 - discountPercent / 100), cost * 0.9)
+  const effectiveSellingPrice = discountPercent > 0
+    ? Math.max(retail * (1 - discountPercent / 100), cost * 0.9)
+    : retail
   const totalRevenue = effectiveSellingPrice * qty
   const totalCost = cost * qty
   const projectedProfitOrLoss = Math.round(totalRevenue - totalCost)
@@ -385,6 +410,7 @@ export function calculateBatchClearingStrategy(
     retailPrice: retail,
     discountPercent,
     strategyType,
+    expiryTier,
     bundleOffer,
     projectedProfitOrLoss,
     advice,

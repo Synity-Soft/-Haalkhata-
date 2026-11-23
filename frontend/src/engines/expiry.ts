@@ -1,6 +1,6 @@
 // Expiry and wastage risk engine — works fully offline
-import type { Batch, Product, Sale, BatchWithRisk, ExpiryRisk } from '@/types'
-import { daysUntilExpiry, getExpiryRisk } from '@/lib/utils'
+import type { Batch, Product, Sale, BatchWithRisk, ExpiryRisk, ExpiryTier } from '@/types'
+import { daysUntilExpiry, getExpiryRisk, getExpiryTier } from '@/lib/utils'
 
 const RISK_ORDER: ExpiryRisk[] = ['expired', 'high', 'medium', 'low', 'safe']
 
@@ -33,6 +33,7 @@ export function calculateBatchRisk(params: {
   const cost = product.costPrice ?? product.pricePerUnit ?? 0
   const potentialLoss = expectedUnsold * cost
   const risk = getExpiryRisk(daysRemaining)
+  const expiryTier = getExpiryTier(daysRemaining)
 
   return {
     ...batch,
@@ -42,6 +43,7 @@ export function calculateBatchRisk(params: {
     remainingQty,
     daysRemaining,
     risk,
+    expiryTier,
     expectedSalesBefore,
     expectedUnsold,
     potentialLoss,
@@ -57,14 +59,16 @@ export function sortBatchesByRisk(batches: BatchWithRisk[]): BatchWithRisk[] {
 
 export function calcExpiryStats(batches: BatchWithRisk[]): {
   totalExpired: number
-  totalExpiringSoon: number  // daysRemaining <= 7
+  totalExpiringToday: number
+  totalExpiringSoon: number  // daysRemaining > 0 && daysRemaining <= 7
   highRiskBatches: number
   estimatedLoss: number
 } {
   return {
-    totalExpired: batches.filter((b) => b.risk === 'expired').length,
-    totalExpiringSoon: batches.filter((b) => b.daysRemaining <= 7 && b.daysRemaining >= 0).length,
-    highRiskBatches: batches.filter((b) => b.risk === 'high').length,
+    totalExpired: batches.filter((b) => b.daysRemaining < 0).length,
+    totalExpiringToday: batches.filter((b) => b.daysRemaining === 0).length,
+    totalExpiringSoon: batches.filter((b) => b.daysRemaining > 0 && b.daysRemaining <= 7).length,
+    highRiskBatches: batches.filter((b) => b.daysRemaining > 0 && b.daysRemaining <= 3).length,
     estimatedLoss: batches.reduce((sum, b) => sum + b.potentialLoss, 0),
   }
 }

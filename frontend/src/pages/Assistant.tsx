@@ -26,7 +26,7 @@ import { useProducts, useBatches, useSales, useCredits } from '@/db/hooks'
 import { calculateBatchRisk, calcExpiryStats } from '@/engines/expiry'
 import { calcPurchaseSuggestion } from '@/engines/purchase'
 import { getUpcomingFestivals } from '@/engines/festival'
-import { api, getAuditedOutletId } from '@/lib/api'
+import { api, getAuditedOutletId, BASE_URL, ApiError } from '@/lib/api'
 import { Card, Button, SoftIcon } from '@/components/ui'
 import { getProductName } from '@/lib/utils'
 import { ThinkingDots, showSaveToast } from '@/components/motion'
@@ -329,11 +329,16 @@ export default function Assistant() {
             advice = isBn
               ? 'বিক্রি সম্পূর্ণ নিষিদ্ধ! অবিলম্বে কোয়ারেন্টাইন করুন এবং ওয়েস্টেজে নথিভুক্ত করুন'
               : 'DO NOT SELL. Quarantined stock. Record in wastage log to prevent violations.'
-          } else if (b.daysRemaining <= 2) {
+          } else if (b.daysRemaining === 0) {
             statusIcon = '⚠️'
             advice = isBn
-              ? '৫০% ছাড় বা Buy 1 Get 1 বান্ডেলে দ্রুত বিক্রি করুন (FEFO)'
-              : 'Apply Buy 1 Get 1 Free (BOGO) bundle immediately (FEFO)'
+              ? 'আজই মেয়াদ শেষ! অবিলম্বে তাক থেকে প্রত্যাহার ও কোয়ারেন্টাইন করুন (ছাড় ও BOGO নিষিদ্ধ)'
+              : 'EXPIRING TODAY! Remove from sale immediately. Do not discount or bundle.'
+          } else if (b.daysRemaining <= 2) {
+            statusIcon = '⏰'
+            advice = isBn
+              ? 'জরুরি ক্লিয়ারেন্স: ৩৫% ছাড় দিয়ে দ্রুত বিক্রি করুন (FEFO)'
+              : 'Apply 35% clearance discount immediately (FEFO)'
           } else if (b.daysRemaining <= 7) {
             statusIcon = '⏰'
             advice = isBn
@@ -348,6 +353,10 @@ export default function Assistant() {
               ? isBn
                 ? `${formatNum(Math.abs(b.daysRemaining))} দিন আগে মেয়াদ শেষ হয়েছে`
                 : `Expired ${Math.abs(b.daysRemaining)} days ago`
+              : b.daysRemaining === 0
+              ? isBn
+                ? 'আজই মেয়াদের শেষ দিন'
+                : 'Expires today'
               : isBn
               ? `${formatNum(b.daysRemaining)} দিন বাকি`
               : `${b.daysRemaining} days left`
@@ -357,21 +366,18 @@ export default function Assistant() {
         .join('\n')
 
       const hasExpired = atRisk.some((b) => b.daysRemaining < 0)
-      const hasValidNearExpiry = atRisk.some((b) => b.daysRemaining >= 0)
+      const hasExpiringToday = atRisk.some((b) => b.daysRemaining === 0)
+      const hasValidNearExpiry = atRisk.some((b) => b.daysRemaining > 0)
 
       let guidance = ''
-      if (hasExpired && hasValidNearExpiry) {
+      if (hasExpired || hasExpiringToday) {
         guidance = isBn
-          ? '\n\n👉 *নীতিমালা: মেয়াদোত্তীর্ণ পণ্য বিক্রি সম্পূর্ণ নিষিদ্ধ। শুধুমাত্র বৈধ মেয়াদের পণ্যেই FEFO ছাড় কার্যকর করুন।*'
-          : '\n\n👉 *Policy: Expired goods cannot be sold. Apply FEFO discounts only to valid near-expiry items.*'
-      } else if (hasExpired) {
-        guidance = isBn
-          ? '\n\n👉 *জরুরি নীতি: মেয়াদোত্তীর্ণ কোনো পণ্য বিক্রি করা আইনত দণ্ডনীয়। অবিলম্বে কোয়ারেন্টাইন করে নষ্ট পণ্য হিসেবে রেজিস্টারে তুলুন।*'
-          : '\n\n👉 *Urgent Compliance: Selling expired products is prohibited. Quarantine immediately and log as wastage.*'
+          ? '\n\n👉 *খাদ্য নিরাপত্তা আইন ও নীতি:* মেয়াদোত্তীর্ণ বা আজই মেয়াদ শেষ হওয়া কোনো পণ্যে কোনো ছাড় বা অফার দেওয়া সম্পূর্ণ নিষিদ্ধ। শুধুমাত্র নিরাপদ ও ভোজ্য আসন্ন মেয়াদের পণ্যেই FEFO ছাড় প্রযোজ্য।'
+          : '\n\n👉 *Food Safety Policy:* Expired products and products expiring today must never be discounted or sold. FEFO clearance discounts apply exclusively to safe batches nearing expiry.'
       } else {
         guidance = isBn
-          ? '\n\n👉 *পরামর্শ: FEFO নীতি অনুসরণ করে ছাড় দিয়ে আগে বিক্রি করুন।*'
-          : '\n\n👉 *Tip: Follow FEFO clearance policy to prevent wastage.*'
+          ? '\n\n👉 *পরামর্শ:* আসন্ন মেয়াদের পণ্যগুলোতে FEFO নীতি অনুযায়ী নিয়মতান্ত্রিক ছাড় দিয়ে দ্রুত বিক্রি সম্পন্ন করুন।'
+          : '\n\n👉 *Tip:* Apply systematic FEFO discounts to liquidate near-expiry stock before expiration.'
       }
 
       return isBn
@@ -429,10 +435,11 @@ export default function Assistant() {
     setLoading(true)
 
     // Check if we should call backend or use local Copilot engine
+    const auditedId =
+      getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
+
     if (isOnline) {
       try {
-        const auditedId =
-          getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
         const response = await api.aiChat(text, auditedId)
 
         if (response && response.success) {
@@ -442,10 +449,15 @@ export default function Assistant() {
             content += `\n\n🔍 *বিশ্লেষিত টুলস (MCP Tools Executed):* ${toolNames}`
           }
 
+          const modeBadge =
+            response.provider === 'deterministic_mcp'
+              ? '*(⚙️ মোড: ডিটারমিনিস্টিক সেন্ট্রাল এমসিপি - জেমিনি কোটা সীমাবদ্ধতা)*'
+              : '*(✨ মোড: জেমিনি এআই + সেন্ট্রাল এমসিপি)*'
+
           const botMsg: ChatMessage = {
             id: `b-${Date.now()}`,
             role: 'assistant',
-            content: `${content}\n\n*(✨ মোড: জেমিনি এআই + সেন্ট্রাল এমসিপি)*`,
+            content: `${content}\n\n${modeBadge}`,
             timestamp: new Date().toISOString(),
           }
           setMessages((prev) => [...prev, botMsg])
@@ -453,13 +465,50 @@ export default function Assistant() {
           throw new Error(response?.error || 'AI Copilot response unsuccessful')
         }
       } catch (err: any) {
-        console.warn('AI backend unavailable, falling back to local deterministic Copilot:', err)
-        const errMsg = err?.message || 'সার্ভারে সাময়িক সমস্যা'
-        const fallback = generateOfflineReply(text)
+        console.warn('AI backend unavailable or error received:', err)
+        const status =
+          err?.status ??
+          (err?.message?.includes('404')
+            ? 404
+            : err?.message?.includes('401')
+            ? 401
+            : err?.message?.includes('403')
+            ? 403
+            : 0)
+
+        let errorBadge = ''
+        let explanation = ''
+        let shouldProvideLocalFallback = false
+
+        if (status === 404) {
+          errorBadge = '🔴 **[HTTP 404 Not Found] এআই সার্ভিস এন্ডপয়েন্ট পাওয়া যায়নি**'
+          explanation = `এন্ডপয়েন্ট \`/api/ai/chat\` (${BASE_URL}) সার্ভারে খুঁজে পাওয়া যায়নি।\n\n**সম্ভাব্য কারণ ও সমাধান:**\n1. লোকাল ব্যাকএন্ড সার্ভার চালু না থাকলে টার্মিনালে চালু করুন: \`python3 -m uvicorn backend.main:app --port 8000\`\n2. প্রোডাকশন রিমোট সার্ভার (Render) এ নতুন কোড ডিপ্লয় না থাকলে স্থানীয় লোকালহোস্ট API ব্যবহার করুন।`
+        } else if (status === 401) {
+          errorBadge = '🔒 **[HTTP 401 Unauthorized] প্রমাণীকরণ প্রয়োজন**'
+          explanation = 'এআই কো-পাইলট ব্যবহার করার জন্য বৈধ JWT লগইন সেশন আবশ্যক। অনুগ্রহ করে আপনার অ্যাকাউন্টে পুনরায় লগইন করুন।'
+        } else if (status === 403) {
+          errorBadge = '🚫 **[HTTP 403 Forbidden] শাখার অনুমতি নেই**'
+          explanation = `আপনার বর্তমান অ্যাকাউন্টের এই শাখা (${auditedId || shopId}) অ্যাক্সেস করার অনুমতি নেই। অনুগ্রহ করে আপনার অনুমোদিত শাখা নির্বাচন করুন।`
+        } else if (status >= 500) {
+          errorBadge = '⚠️ **[HTTP 5xx Server Error] এআই ক্লাউড সার্ভিস সাময়িক অনুপলব্ধ**'
+          explanation = `সার্ভার বা গুগল জেমিনি এআই ক্লাউডে সাময়িক ত্রুটি হয়েছে: ${err.message}`
+          shouldProvideLocalFallback = true
+        } else {
+          errorBadge = `⚠️ **সংযোগ ব্যর্থ (Network/Server Error):** ${err?.message || 'সার্ভারে সংযোগ করা সম্ভব হয়নি'}`
+          explanation = `ব্যাকএন্ড সার্ভার (${BASE_URL}) সংযোগ করা যায়নি। ব্যাকএন্ড পোর্ট 8000 চালু আছে কিনা পরীক্ষা করুন।`
+          shouldProvideLocalFallback = true
+        }
+
+        let replyContent = `${errorBadge}\n\n${explanation}`
+        if (shouldProvideLocalFallback) {
+          const fallback = generateOfflineReply(text)
+          replyContent += `\n\n---\n*(📦 অফলাইন লোকাল ডেক্সি ইঞ্জিন বিকল্প থেকে উত্তর:)*\n\n${fallback}`
+        }
+
         const botMsg: ChatMessage = {
           id: `b-${Date.now()}`,
           role: 'assistant',
-          content: `⚠️ **এআই সার্ভিস সংযোগ ব্যর্থ:** ${errMsg}\n\n*(📦 অফলাইন লোকাল ইঞ্জিন বিকল্প থেকে উত্তর:)*\n\n${fallback}`,
+          content: replyContent,
           timestamp: new Date().toISOString(),
         }
         setMessages((prev) => [...prev, botMsg])

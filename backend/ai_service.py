@@ -57,15 +57,22 @@ Core Instructions:
    - Summarize key takeaways with bullet points, emojis, and clear currency formatting (৳ or BDT).
    - Provide practical, actionable merchant advice (e.g. restock reorder warnings).
 
-5. EXPIRY & FOOD SAFETY COMPLIANCE (CRITICAL):
-   - Already-expired products (days_remaining < 0 or ALREADY_EXPIRED):
-     * MUST be clearly and prominently classified as EXPIRED (মেয়াদোত্তীর্ণ).
-     * NEVER recommend discounting, selling, promotional clearance, or FEFO release for already-expired products.
-     * Prescribe IMMEDIATE quarantine, removal from customer displays, and recording in the wastage/loss register.
-   - Products approaching expiration (days_remaining >= 0):
-     * Clearly distinguish from expired stock.
-     * Recommend FEFO (First Expired, First Out) clearance priority.
-     * Prescribe dynamic clearance discounts ONLY for valid, safe-to-consume inventory.
+5. EXPIRY & FOOD SAFETY COMPLIANCE (CRITICAL — STRICT 4-TIER CLASSIFICATION):
+   - Strict 4-Tier Expiry Classification:
+     1. EXPIRED (days_remaining < 0):
+        * MUST be clearly and prominently classified as EXPIRED (মেয়াদোত্তীর্ণ).
+        * NEVER recommend discounting, selling, promotional clearance, Buy-1-Get-1 (BOGO), or FEFO release.
+        * Prescribe IMMEDIATE quarantine, removal from customer displays, and recording in the wastage/loss register.
+     2. EXPIRING_TODAY (days_remaining == 0):
+        * End of shelf-life! MUST be classified as EXPIRING TODAY (আজই মেয়াদের শেষ দিন).
+        * NEVER recommend automatic discounts or BOGO offers.
+        * Prescribe IMMEDIATE removal from shelves and mandatory compliance review / quarantine for safe disposal.
+     3. NEAR_EXPIRY (days_remaining > 0 and days_remaining <= 15):
+        * Clearly distinguish from expired stock. Safe for consumption before expiration.
+        * Recommend FEFO (First Expired, First Out) clearance priority.
+        * Prescribe dynamic clearance discounts (e.g. 1-2 days critical clearance, 3-7 days urgent clearance, 8-15 days approaching).
+     4. SAFE (days_remaining > 15):
+        * Normal inventory recommendations.
 """
 
 # Tool function declarations matching the 6 MCP tools
@@ -317,6 +324,7 @@ class AIBusinessAgent:
                 "success": True,
                 "reply": reply_text,
                 "tools_used": tools_used,
+                "provider": "gemini_live",
             }
 
         except Exception as e:
@@ -367,7 +375,7 @@ class AIBusinessAgent:
                     f"- 📈 **Profit Margin:** {margin:.1f}%\n\n"
                     f"*(Source: Haalkhata Sales Ledger)*"
                 )
-            return {"success": True, "reply": reply, "tools_used": tools_used}
+            return {"success": True, "reply": reply, "tools_used": tools_used, "provider": "deterministic_mcp"}
 
         # 2. Low stock question
         if any(w in q_lower for w in ["শেষ", "কম", "লো স্টক", "stock", "low", "shortage"]):
@@ -387,7 +395,7 @@ class AIBusinessAgent:
                     reply = f"📦 **Low Stock Alert for {shop_label}:**\n\n" + "\n".join(lines)
                 else:
                     reply = f"✅ **All inventory items at {shop_label} have healthy stock levels.**"
-            return {"success": True, "reply": reply, "tools_used": tools_used}
+            return {"success": True, "reply": reply, "tools_used": tools_used, "provider": "deterministic_mcp"}
 
         # 3. Expiry question
         if any(w in q_lower for w in ["মেয়াদ", "মেয়াদ", "এক্সপায়ার", "এক্সপায়ার", "ঝুঁকি", "expiry", "expire", "batch"]):
@@ -397,7 +405,8 @@ class AIBusinessAgent:
             total_risk = data.get("total_batches_at_risk", 0)
 
             expired_items = [b for b in batches if b.get("days_remaining", 0) < 0]
-            valid_near_expiry = [b for b in batches if b.get("days_remaining", 0) >= 0]
+            expiring_today_items = [b for b in batches if b.get("days_remaining", 0) == 0]
+            valid_near_expiry = [b for b in batches if b.get("days_remaining", 0) > 0]
 
             if is_bn:
                 if not batches:
@@ -415,6 +424,17 @@ class AIBusinessAgent:
                             f"⚠️ **মেয়াদোত্তীর্ণ স্টক ({len(expired_items)} টি ব্যাচ - বিক্রি সম্পূর্ণ নিষিদ্ধ):**\n"
                             + "\n".join(exp_lines)
                         )
+                    if expiring_today_items:
+                        today_lines = [
+                            f"  - ⚠️ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'একক')} "
+                            f"(আজই মেয়াদের শেষ দিন) → "
+                            f"*অবিলম্বে সেলফ থেকে প্রত্যাহার ও কোয়ারেন্টাইন করুন, কোনো ছাড় বা BOGO প্রযোজ্য নয়*"
+                            for b in expiring_today_items[:4]
+                        ]
+                        sections.append(
+                            f"⚠️ **আজই মেয়াদ শেষ হওয়া স্টক ({len(expiring_today_items)} টি ব্যাচ - বিক্রয় বন্ধ ও প্রত্যাহার আবশ্যক):**\n"
+                            + "\n".join(today_lines)
+                        )
                     if valid_near_expiry:
                         valid_lines = [
                             f"  - ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'একক')} "
@@ -428,7 +448,7 @@ class AIBusinessAgent:
                         )
 
                     guidance = (
-                        "👉 *নিরাপত্তা নির্দেশিকা: মেয়াদোত্তীর্ণ কোনো পণ্য কখনো বিক্রি বা ছাড় দেওয়া যাবে না। "
+                        "👉 *নিরাপত্তা নির্দেশিকা: মেয়াদোত্তীর্ণ বা আজই মেয়াদ শেষ হওয়া কোনো পণ্য কখনো বিক্রি বা ছাড় দেওয়া যাবে না। "
                         "শুধুমাত্র নিরাপদ ও বৈধ মেয়াদের পণ্যেই FEFO নীতি অনুযায়ী ছাড় প্রযোজ্য।*"
                     )
                     reply = (
@@ -452,6 +472,17 @@ class AIBusinessAgent:
                             f"⚠️ **Expired Batches ({len(expired_items)} batches - SALE STRICTLY PROHIBITED):**\n"
                             + "\n".join(exp_lines)
                         )
+                    if expiring_today_items:
+                        today_lines = [
+                            f"  - ⚠️ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'units')} "
+                            f"(Expiring today) → "
+                            f"*REMOVE FROM SHELVES IMMEDIATELY. Quarantine for compliance. NO discounts or BOGO.*"
+                            for b in expiring_today_items[:4]
+                        ]
+                        sections.append(
+                            f"⚠️ **Expiring Today ({len(expiring_today_items)} batches - REMOVE FROM SALE IMMEDIATELY):**\n"
+                            + "\n".join(today_lines)
+                        )
                     if valid_near_expiry:
                         valid_lines = [
                             f"  - ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'units')} "
@@ -465,7 +496,7 @@ class AIBusinessAgent:
                         )
 
                     guidance = (
-                        "👉 *Compliance Notice: Expired goods must never be discounted or sold. "
+                        "👉 *Compliance Notice: Expired goods and goods expiring today must never be discounted or sold. "
                         "Apply FEFO discounts only to valid, safe-for-consumption inventory.*"
                     )
                     reply = (
@@ -473,7 +504,7 @@ class AIBusinessAgent:
                         + "\n\n".join(sections)
                         + f"\n\n{guidance}"
                     )
-            return {"success": True, "reply": reply, "tools_used": tools_used}
+            return {"success": True, "reply": reply, "tools_used": tools_used, "provider": "deterministic_mcp"}
 
         # 4. General / insights question
         tools_used.append("get_business_insights")
@@ -503,7 +534,7 @@ class AIBusinessAgent:
         if error_note:
             reply += f"\n\n*(Note: Gemini live synthesis fallback activated: {error_note})*"
 
-        return {"success": True, "reply": reply, "tools_used": tools_used}
+        return {"success": True, "reply": reply, "tools_used": tools_used, "provider": "deterministic_mcp"}
 
 
 # Global agent singleton

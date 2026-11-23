@@ -49,6 +49,11 @@ export default function Discounts() {
       const prodSales = sales.filter((s) => s.productId === b.productId)
       const batchWithRisk = calculateBatchRisk({ batch: b, product, recentSales: prodSales })
 
+      // Strict Expiry Safety: NEVER discount expired items, items expiring today, or zero-stock batches
+      if (batchWithRisk.daysRemaining <= 0 || batchWithRisk.risk === 'expired' || batchWithRisk.remainingQty <= 0) {
+        continue
+      }
+
       // Expiry safety check: engine automatically returns null for expired or safe
       const totalSaleQty = prodSales.reduce((acc, s) => acc + s.quantity, 0)
       const recentDailySales = prodSales.length > 0 ? totalSaleQty / 30 : 0

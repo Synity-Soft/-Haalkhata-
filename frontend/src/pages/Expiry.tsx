@@ -499,28 +499,79 @@ export default function Expiry() {
 
                     {/* Right: Discount Callout & Action */}
                     <div className="flex lg:flex-col items-center justify-between lg:justify-center border-t lg:border-t-0 pt-3 lg:pt-0 min-w-[170px] gap-3">
-                      <div className="text-center">
-                        <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70 block">
-                          প্রস্তাবিত ছাড়
-                        </span>
-                        <div className="px-4 py-2 rounded-2xl bg-brand-yellow border-2 border-brand-orange text-brand-brown font-black text-2xl mt-0.5 shadow-sm">
-                          {formatNum(item.discountPercent)}% OFF
-                        </div>
-                        {item.bundleOffer && (
-                          <span className="text-[10px] text-red-600 font-bold mt-1 block">
-                            বান্ডেল সক্রিয়
+                      {item.daysUntilExpiry < 0 ? (
+                        <div className="text-center w-full">
+                          <span className="px-3 py-1 rounded-full bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-300 font-extrabold text-xs block mb-2 border border-red-300">
+                            🚫 বিক্রি সম্পূর্ণ নিষিদ্ধ
                           </span>
-                        )}
-                      </div>
+                          <span className="text-[11px] text-red-600 block mb-2 font-medium">
+                            {formatNum(Math.abs(item.daysUntilExpiry))} দিন আগে মেয়াদ শেষ
+                          </span>
+                          <Button
+                            size="sm"
+                            variant="danger"
+                            onClick={() => {
+                              showSaveToast(
+                                lang === 'bn'
+                                  ? 'ব্যাচটি কোয়ারেন্টাইনে পাঠানো হয়েছে ও অপচয় নথিভুক্ত হয়েছে ✓'
+                                  : 'Quarantined & logged to wastage ✓'
+                              )
+                            }}
+                            className="w-full text-xs font-bold"
+                          >
+                            <Trash2 className="w-3.5 h-3.5 mr-1" />
+                            <span>কোয়ারেন্টাইন / অপচয় লগ</span>
+                          </Button>
+                        </div>
+                      ) : item.daysUntilExpiry === 0 ? (
+                        <div className="text-center w-full">
+                          <span className="px-3 py-1 rounded-full bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 font-extrabold text-xs block mb-2 border border-amber-300">
+                            ⚠️ আজই মেয়াদ শেষ (বিক্রি বন্ধ)
+                          </span>
+                          <span className="text-[11px] text-amber-700 dark:text-amber-300 block mb-2 font-medium">
+                            কোনো ছাড় বা BOGO প্রযোজ্য নয়
+                          </span>
+                          <Button
+                            size="sm"
+                            onClick={() => {
+                              showSaveToast(
+                                lang === 'bn'
+                                  ? 'পণ্যটি তাক থেকে প্রত্যাহার ও কোয়ারেন্টাইন করা হয়েছে ✓'
+                                  : 'Removed from shelf & quarantined ✓'
+                              )
+                            }}
+                            className="w-full bg-amber-600 hover:bg-amber-700 text-white text-xs font-bold"
+                          >
+                            <AlertTriangle className="w-3.5 h-3.5 mr-1" />
+                            <span>তাক থেকে প্রত্যাহার করুন</span>
+                          </Button>
+                        </div>
+                      ) : (
+                        <>
+                          <div className="text-center">
+                            <span className="text-xs font-bold uppercase text-brand-brown/70 dark:text-brand-cream/70 block">
+                              প্রস্তাবিত ছাড়
+                            </span>
+                            <div className="px-4 py-2 rounded-2xl bg-brand-yellow border-2 border-brand-orange text-brand-brown font-black text-2xl mt-0.5 shadow-sm">
+                              {formatNum(item.discountPercent)}% OFF
+                            </div>
+                            {item.bundleOffer && (
+                              <span className="text-[10px] text-red-600 font-bold mt-1 block">
+                                বান্ডেল সক্রিয়
+                              </span>
+                            )}
+                          </div>
 
-                      <Button
-                        size="sm"
-                        onClick={() => handleApplyStrategy(item)}
-                        className="bg-brand-orange hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1.5 px-3.5 py-2 rounded-xl shadow-sm whitespace-nowrap"
-                      >
-                        <Tag className="w-3.5 h-3.5" />
-                        <span>ছাড় কার্যকর করুন</span>
-                      </Button>
+                          <Button
+                            size="sm"
+                            onClick={() => handleApplyStrategy(item)}
+                            className="bg-brand-orange hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-1.5 px-3.5 py-2 rounded-xl shadow-sm whitespace-nowrap"
+                          >
+                            <Tag className="w-3.5 h-3.5" />
+                            <span>ছাড় কার্যকর করুন</span>
+                          </Button>
+                        </>
+                      )}
                     </div>
                   </div>
                 </Card>
@@ -638,9 +689,17 @@ export default function Expiry() {
                               <h3 className="font-bold text-base sm:text-lg text-brand-brown dark:text-brand-cream">
                                 {getProductName(item, lang)}
                               </h3>
-                              <Badge className={getRiskBadgeColor(item.risk)}>
-                                {isExpired
-                                  ? t.expiry.expired
+                              <Badge className={
+                                item.daysRemaining < 0
+                                  ? 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200 font-bold'
+                                  : item.daysRemaining === 0
+                                  ? 'bg-amber-100 text-amber-900 dark:bg-amber-900 dark:text-amber-200 font-bold'
+                                  : getRiskBadgeColor(item.risk)
+                              }>
+                                {item.daysRemaining < 0
+                                  ? '🚫 মেয়াদোত্তীর্ণ (বিক্রি নিষিদ্ধ)'
+                                  : item.daysRemaining === 0
+                                  ? '⚠️ আজই মেয়াদ শেষ (বিক্রি বন্ধ)'
                                   : item.risk === 'high'
                                   ? t.expiry.highRisk
                                   : item.risk === 'medium'
@@ -672,7 +731,7 @@ export default function Expiry() {
                       </div>
 
                       <div className="flex items-center justify-end gap-2 border-t md:border-t-0 pt-3 md:pt-0">
-                        {isExpired ? (
+                        {item.daysRemaining < 0 ? (
                           <Button
                             variant="danger"
                             size="sm"
@@ -681,6 +740,15 @@ export default function Expiry() {
                           >
                             <Trash2 className="w-4 h-4" />
                             <span>{t.expiry.removeFromSale}</span>
+                          </Button>
+                        ) : item.daysRemaining === 0 ? (
+                          <Button
+                            size="sm"
+                            onClick={() => handleRemoveFromSale(item.id)}
+                            className="bg-amber-600 hover:bg-amber-700 text-white flex items-center gap-1.5 text-xs font-bold whitespace-nowrap"
+                          >
+                            <AlertTriangle className="w-4 h-4" />
+                            <span>তাক থেকে প্রত্যাহার করুন</span>
                           </Button>
                         ) : (
                           <button

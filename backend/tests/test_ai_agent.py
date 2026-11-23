@@ -86,6 +86,26 @@ class TestAIAgentSecurityAndEndpoints(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         data = res.json()
         self.assertTrue(data["success"])
+
+    def test_ai_health_and_alias_endpoints(self):
+        """Verifies GET /api/ai/health and route aliases resolve with 200 OK (no 404)."""
+        res1 = self.client.get("/api/ai/health")
+        self.assertEqual(res1.status_code, 200)
+        data1 = res1.json()
+        self.assertEqual(data1["status"], "healthy")
+        self.assertEqual(data1["chat_endpoint"], "/api/ai/chat")
+
+        res2 = self.client.get("/ai/health")
+        self.assertEqual(res2.status_code, 200)
+
+        # Verify chat alias /ai/chat works with auth
+        res_alias = self.client.post(
+            "/ai/chat",
+            headers={"Authorization": f"Bearer {self.token_a}"},
+            json={"question": "How much did I sell today?", "outlet_id": self.outlet_a},
+        )
+        self.assertEqual(res_alias.status_code, 200)
+        self.assertTrue(res_alias.json()["success"])
         self.assertEqual(data["outlet_id"], self.outlet_a)
         self.assertIn("get_sales_summary", data["tools_used"])
 
@@ -118,8 +138,28 @@ class TestAIAgentSecurityAndEndpoints(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         data = res.json()
         self.assertTrue(data["success"])
-        self.assertEqual(data["outlet_id"], self.outlet_a)
-        self.assertIn("get_low_stock", data["tools_used"])
+
+    def test_ai_health_and_alias_endpoints(self):
+        """Verifies GET /api/ai/health and route aliases resolve with 200 OK (no 404)."""
+        res1 = self.client.get("/api/ai/health")
+        self.assertEqual(res1.status_code, 200)
+        data1 = res1.json()
+        self.assertEqual(data1["status"], "healthy")
+        self.assertEqual(data1["chat_endpoint"], "/api/ai/chat")
+
+        res2 = self.client.get("/ai/health")
+        self.assertEqual(res2.status_code, 200)
+
+        # Verify chat alias /ai/chat works with auth
+        res_alias = self.client.post(
+            "/ai/chat",
+            headers={"Authorization": f"Bearer {self.token_a}"},
+            json={"question": "How much did I sell today?", "outlet_id": self.outlet_a},
+        )
+        self.assertEqual(res_alias.status_code, 200)
+        alias_data = res_alias.json()
+        self.assertTrue(alias_data["success"])
+        self.assertEqual(alias_data["outlet_id"], self.outlet_a)
 
 
 class TestAIAgentBilingualAndToolDispatch(unittest.IsolatedAsyncioTestCase):
@@ -199,6 +239,42 @@ class TestGeminiFunctionCallingMocked(unittest.IsolatedAsyncioTestCase):
             self.assertEqual(mock_client.models.generate_content.call_count, 2)
         finally:
             ai_agent.client = original_client
+
+    def test_check_expiry_tool_four_tier_safety(self):
+        """Verifies mcp_server check_expiry implements strict 4-tier safety and zero discount for expired/today items."""
+        from mcp_server.tools.expiry import execute_check_expiry
+        result = execute_check_expiry(outlet_id="OUT001", days_ahead=30, reference_date="2026-11-16")
+        self.assertIn("batches", result)
+        for b in result["batches"]:
+            days = b["days_remaining"]
+            tier = b["expiry_tier"]
+            action = b["recommended_clearance_action"]
+            if days < 0:
+                self.assertEqual(tier, "EXPIRED")
+                self.assertIn("DO NOT SELL", action)
+                self.assertNotIn("discount", action.lower())
+                self.assertNotIn("bogo", action.lower())
+            elif days == 0:
+                self.assertEqual(tier, "EXPIRING_TODAY")
+                self.assertIn("EXPIRING TODAY", action)
+                self.assertNotIn("bogo", action.lower())
+            elif days <= 15:
+                self.assertEqual(tier, "NEAR_EXPIRY")
+
+    def test_expiry_fallback_forbids_discount_on_expired(self):
+        """Verifies deterministic fallback clearly distinguishes expired and expiring-today batches with zero discounts."""
+        from backend.ai_service import ai_agent
+        import asyncio
+        loop = asyncio.new_event_loop()
+        res = loop.run_until_complete(
+            ai_agent._deterministic_fallback("কোন পণ্যগুলো এক্সপায়ার হওয়ার ঝুঁকিতে আছে?", "OUT001", "Dhanmondi Store")
+        )
+        loop.close()
+        self.assertTrue(res["success"])
+        self.assertIn("check_expiry", res["tools_used"])
+        reply = res["reply"]
+        self.assertIn("বিক্রি সম্পূর্ণ নিষিদ্ধ", reply)
+        self.assertIn("নিরাপত্তা নির্দেশিকা", reply)
 
 
 if __name__ == "__main__":

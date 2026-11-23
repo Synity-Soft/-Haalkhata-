@@ -19,11 +19,13 @@ export function suggestDiscount(params: {
   recentDailySales: number  // avg daily sales rate
 }): DiscountSuggestion | null {
   const { batchWithRisk, product, recentDailySales } = params
-  const { risk } = batchWithRisk
+  const { risk, daysRemaining, remainingQty } = batchWithRisk
 
-  // SAFETY: never discount expired products
-  if (risk === 'expired') return null
-  if (risk === 'safe') return null
+  // SAFETY: strictly never discount expired products, items expiring today, or out-of-stock items
+  if (daysRemaining < 0 || risk === 'expired') return null
+  if (daysRemaining === 0) return null // Expiring today must be quarantined/removed from sale
+  if (remainingQty <= 0) return null
+  if (risk === 'safe' || daysRemaining > 15) return null
 
   const discountPercent = DISCOUNT_BY_RISK[risk]
   if (discountPercent === undefined) return null

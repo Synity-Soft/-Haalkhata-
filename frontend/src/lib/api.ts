@@ -3,6 +3,8 @@ const isLocalhost =
   typeof window !== 'undefined' &&
   (window.location.hostname === 'localhost' ||
     window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '0.0.0.0' ||
+    window.location.hostname.endsWith('.local') ||
     window.location.hostname === '')
 
 const RAW_URL =
@@ -13,7 +15,19 @@ const RAW_URL =
         ? 'https://haalkhata-vjfs.onrender.com'
         : 'http://localhost:8000'))
 
-const BASE_URL = RAW_URL.replace(/\/+$/, '')
+export const BASE_URL = RAW_URL.replace(/\/+$/, '')
+
+export class ApiError extends Error {
+  status: number
+  detail: string
+
+  constructor(status: number, message: string, detail?: string) {
+    super(message)
+    this.name = 'ApiError'
+    this.status = status
+    this.detail = detail || message
+  }
+}
 
 const TOKEN_STORAGE_KEY = 'hb_auth_token'
 
@@ -53,12 +67,27 @@ async function request<T>(path: string, options?: RequestInit): Promise<T> {
     ...(options?.headers as Record<string, string> | undefined),
   }
 
-  const res = await fetch(`${BASE_URL}${path}`, {
-    ...options,
-    headers,
-  })
-  if (!res.ok) throw new Error(`API error ${res.status}: ${await res.text()}`)
-  return res.json() as Promise<T>
+  try {
+    const res = await fetch(`${BASE_URL}${path}`, {
+      ...options,
+      headers,
+    })
+    if (!res.ok) {
+      const errorBody = await res.text()
+      let detail = errorBody
+      try {
+        const parsed = JSON.parse(errorBody)
+        if (parsed.detail) {
+          detail = typeof parsed.detail === 'string' ? parsed.detail : JSON.stringify(parsed.detail)
+        }
+      } catch {}
+      throw new ApiError(res.status, `API error ${res.status}: ${detail}`, detail)
+    }
+    return res.json() as Promise<T>
+  } catch (err: any) {
+    if (err instanceof ApiError) throw err
+    throw new ApiError(0, `Network error: ${err.message || 'Server unreachable'}`)
+  }
 }
 
 // ─── Audited Shop Mapping ───────────────────────────────────────────────────
@@ -308,6 +337,7 @@ export const api = {
       tools_used: string[]
       outlet_id: string
       outlet_name?: string
+      provider?: 'gemini_live' | 'deterministic_mcp'
       error?: string
     }>('/api/ai/chat', {
       method: 'POST',

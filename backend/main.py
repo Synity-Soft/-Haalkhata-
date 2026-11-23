@@ -202,6 +202,7 @@ app.include_router(expiry_router)
 app.include_router(reports_router)
 app.include_router(auth_router, prefix="/api")
 app.include_router(ai_router, prefix="/api")
+app.include_router(ai_router)  # Route alias: permits both /api/ai/chat and /ai/chat
 
 
 

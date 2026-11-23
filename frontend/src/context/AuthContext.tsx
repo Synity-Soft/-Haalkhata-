@@ -171,8 +171,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           return { success: false, error: res.error || 'Invalid username or password. Please try again.' }
         }
       }
-    } catch (apiErr) {
+    } catch (apiErr: any) {
       console.warn('Backend login connection unavailable, attempting local offline login:', apiErr)
+      // Surface critical server configuration errors (e.g. 500 missing JWT_SECRET_KEY)
+      if (apiErr?.status >= 500) {
+        return {
+          success: false,
+          error: `সার্ভার কনফিগারেশন ত্রুটি (HTTP ${apiErr.status}): ${apiErr.detail || 'সার্ভার অভ্যন্তরীণ ত্রুটি। JWT_SECRET_KEY কনফিগার করা আছে কিনা পরীক্ষা করুন।'}`
+        }
+      }
     }
 
     // 2. Fallback to offline local storage accounts (clear token so offline accounts are not treated as authenticated backend users)
@@ -219,6 +226,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     // 1. Sync with centralized backend (makes account available across all devices and browsers)
+    let backendUserId: string | undefined
     try {
       const res = await api.authRegister({
         username: cleanUsername,
@@ -238,11 +246,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       if (res && !res.success && res.error) {
         return { success: false, error: res.error }
       }
-      if (res && res.success && res.access_token) {
-        api.setAuthToken(res.access_token)
+      if (res && res.success) {
+        if (res.access_token) {
+          api.setAuthToken(res.access_token)
+        }
+        if (res.user?.id) {
+          backendUserId = res.user.id
+        }
       }
-    } catch (apiErr) {
+    } catch (apiErr: any) {
       console.warn('Backend registration failed, saving locally:', apiErr)
+      if (apiErr?.status >= 500) {
+        return {
+          success: false,
+          error: `সার্ভার কনফিগারেশন ত্রুটি (HTTP ${apiErr.status}): ${apiErr.detail || 'সার্ভার অভ্যন্তরীণ ত্রুটি। JWT_SECRET_KEY কনফিগার করা আছে কিনা পরীক্ষা করুন।'}`
+        }
+      }
     }
 
     const users = getStoredUsers()
@@ -252,7 +271,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     const newUser: StoredUser = {
-      id: `user-${Date.now()}`,
+      id: backendUserId || `user-${Date.now()}`,
       username: data.username.trim(),
       password: cleanPassword,
       fullName: data.fullName?.trim() || data.username.trim(),

@@ -437,8 +437,9 @@ export default function Assistant() {
     // Check if we should call backend or use local Copilot engine
     const auditedId =
       getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
+    const authToken = api.getAuthToken()
 
-    if (isOnline) {
+    if (isOnline && authToken) {
       try {
         const response = await api.aiChat(text, auditedId)
 
@@ -484,8 +485,10 @@ export default function Assistant() {
           errorBadge = '🔴 **[HTTP 404 Not Found] এআই সার্ভিস এন্ডপয়েন্ট পাওয়া যায়নি**'
           explanation = `এন্ডপয়েন্ট \`/api/ai/chat\` (${BASE_URL}) সার্ভারে খুঁজে পাওয়া যায়নি।\n\n**সম্ভাব্য কারণ ও সমাধান:**\n1. লোকাল ব্যাকএন্ড সার্ভার চালু না থাকলে টার্মিনালে চালু করুন: \`python3 -m uvicorn backend.main:app --port 8000\`\n2. প্রোডাকশন রিমোট সার্ভার (Render) এ নতুন কোড ডিপ্লয় না থাকলে স্থানীয় লোকালহোস্ট API ব্যবহার করুন।`
         } else if (status === 401) {
-          errorBadge = '🔒 **[HTTP 401 Unauthorized] প্রমাণীকরণ প্রয়োজন**'
+          api.clearAuthToken()
+          errorBadge = '🔒 **[HTTP 401 Unauthorized] প্রমাণীকরণ প্রয়োজন বা সেশন মেয়াদোত্তীর্ণ**'
           explanation = 'এআই কো-পাইলট ব্যবহার করার জন্য বৈধ JWT লগইন সেশন আবশ্যক। অনুগ্রহ করে আপনার অ্যাকাউন্টে পুনরায় লগইন করুন।'
+          shouldProvideLocalFallback = true
         } else if (status === 403) {
           errorBadge = '🚫 **[HTTP 403 Forbidden] শাখার অনুমতি নেই**'
           explanation = `আপনার বর্তমান অ্যাকাউন্টের এই শাখা (${auditedId || shopId}) অ্যাক্সেস করার অনুমতি নেই। অনুগ্রহ করে আপনার অনুমোদিত শাখা নির্বাচন করুন।`
@@ -518,10 +521,13 @@ export default function Assistant() {
     } else {
       setTimeout(() => {
         const reply = generateOfflineReply(text)
+        const note = !authToken && isOnline
+          ? '*(🔒 অফলাইন লোকাল সেশন: কেন্দ্রীয় ক্লাউড এআই অ্যাক্সেস করতে অনুগ্রহ করে কেন্দ্রীয় অ্যাকাউন্টে অনলাইন লগইন করুন। অফলাইন ডেক্সি ডাটাবেস থেকে হিসাব প্রদর্শন করা হচ্ছে)*'
+          : '*(হালখাতা অফলাইন কো-পাইলট)*'
         const botMsg: ChatMessage = {
           id: `b-${Date.now()}`,
           role: 'assistant',
-          content: `${reply}\n\n*(হালখাতা অফলাইন কো-পাইলট)*`,
+          content: `${reply}\n\n${note}`,
           timestamp: new Date().toISOString(),
         }
         setMessages((prev) => [...prev, botMsg])

@@ -22,6 +22,8 @@ import Settings  from '@/pages/Settings'
 import Credit    from '@/pages/Credit'
 import ShopNetwork from '@/pages/ShopNetwork'
 
+import { api } from '@/lib/api'
+
 function LoginGate() {
   const { isAuthenticated, isLoading } = useAuth()
 
@@ -33,7 +35,8 @@ function LoginGate() {
     )
   }
 
-  if (isAuthenticated) {
+  // Only redirect to dashboard if the user is authenticated AND possesses a valid backend token
+  if (isAuthenticated && api.getAuthToken()) {
     return <Navigate to="/" replace />
   }
 

@@ -114,8 +114,37 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       getStoredUsers()
 
       const savedUser = localStorage.getItem(AUTH_STORAGE_KEY)
+      const existingToken = api.getAuthToken()
+
       if (savedUser) {
-        setUser(JSON.parse(savedUser) as AuthUser)
+        const parsed = JSON.parse(savedUser) as AuthUser
+        setUser(parsed)
+
+        // If local user exists but backend JWT token is missing, attempt auto-refresh from stored credentials
+        if (!existingToken) {
+          const storedUsers = getStoredUsers()
+          const matched = storedUsers.find(
+            (u) => u.username.toLowerCase() === parsed.username.toLowerCase()
+          )
+          if (matched && matched.password) {
+            api.authLogin({ username: matched.username, password: matched.password })
+              .then((res) => {
+                if (res && res.success && res.access_token) {
+                  api.setAuthToken(res.access_token)
+                  console.info('Acquired backend JWT session on initialization for:', parsed.username)
+                  if (res.user?.branches && res.user.branches.length > 0) {
+                    const primary = res.user.branches.find((b: any) => b.is_primary) || res.user.branches[0]
+                    if (primary) {
+                      localStorage.setItem('hb-selected-shop-id', primary.outlet_id)
+                    }
+                  }
+                }
+              })
+              .catch((err) => {
+                console.warn('Could not auto-acquire backend token on init:', err)
+              })
+          }
+        }
       }
     } catch (err) {
       console.error('Failed to restore auth session:', err)
@@ -144,18 +173,32 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const authUser: AuthUser = {
           id: res.user.id,
           username: res.user.username,
-          fullName: res.user.fullName || res.user.username,
-          shopName: res.user.shopName || 'হালখাতা স্টোর',
+          fullName: res.user.fullName || res.user.full_name || res.user.username,
+          shopName: res.user.shopName || res.user.shop_name || 'হালখাতা স্টোর',
           role: res.user.role || 'Shop Owner',
           phone: res.user.phone || '',
           address: res.user.address || '',
-          createdAt: res.user.createdAt,
+          branches: res.user.branches?.map((b: any) => ({
+            id: b.outlet_id,
+            name: b.outlet_name,
+            district: b.district || '',
+            area: b.area || '',
+          })),
+          createdAt: res.user.createdAt || res.user.created_at,
         }
 
         // Cache locally for offline capability
         const currentUsers = getStoredUsers()
         if (!currentUsers.some((u) => u.username.toLowerCase() === cleanUsername)) {
           saveStoredUsers([...currentUsers, { ...authUser, password: cleanPassword }])
+        }
+
+        // Select the primary authorized branch from the backend
+        if (res.user.branches && res.user.branches.length > 0) {
+          const primaryBranch = res.user.branches.find((b: any) => b.is_primary) || res.user.branches[0]
+          if (primaryBranch) {
+            localStorage.setItem('hb-selected-shop-id', primaryBranch.outlet_id)
+          }
         }
 
         setUser(authUser)

@@ -553,11 +553,19 @@ export default function Assistant() {
         </div>
 
         <div className="flex items-center gap-1.5 text-xs">
-          {isOnline ? (
+          {isOnline && api.getAuthToken() ? (
             <span className="flex items-center gap-1 text-green-700 dark:text-green-400 font-semibold">
               <Wifi className="w-3.5 h-3.5" />
               <span>{t.dashboard.online} (Gemini AI)</span>
             </span>
+          ) : isOnline && !api.getAuthToken() ? (
+            <a
+              href="/login"
+              className="flex items-center gap-1 text-amber-700 dark:text-amber-400 hover:underline font-semibold bg-amber-500/10 px-2 py-0.5 rounded-lg border border-amber-300 dark:border-amber-800"
+              title="কেন্দ্রীয় ক্লাউড এআই ব্যবহার করতে অনলাইন লগইন করুন"
+            >
+              <span>🔒 অফলাইন মোড (অনলাইন লগইন করুন)</span>
+            </a>
           ) : (
             <span className="flex items-center gap-1 text-amber-700 dark:text-amber-400 font-semibold">
               <WifiOff className="w-3.5 h-3.5" />

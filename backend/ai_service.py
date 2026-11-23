@@ -149,7 +149,7 @@ class AIBusinessAgent:
         api_key = os.environ.get("GEMINI_API_KEY")
         if api_key and api_key != "YOUR_GEMINI_API_KEY" and not api_key.startswith("your-"):
             try:
-                self.client = genai.Client(api_key=api_key)
+                self.client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=15000))
                 logger.info(f"Initialized Google GenAI Client with model '{self.model_name}'")
             except Exception as e:
                 logger.warning(f"Could not initialize Google GenAI Client: {e}")
@@ -163,7 +163,7 @@ class AIBusinessAgent:
         or 503 (temporary high demand spike on free tier).
         """
         candidate_models = [self.model_name]
-        for fallback in ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash"]:
+        for fallback in ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-3.6-flash"]:
             if fallback not in candidate_models:
                 candidate_models.append(fallback)
 
@@ -183,7 +183,17 @@ class AIBusinessAgent:
             except Exception as e:
                 last_error = e
                 err_str = str(e)
-                if "404" in err_str or "503" in err_str or "NOT_FOUND" in err_str or "UNAVAILABLE" in err_str:
+                if (
+                    "404" in err_str
+                    or "503" in err_str
+                    or "504" in err_str
+                    or "429" in err_str
+                    or "NOT_FOUND" in err_str
+                    or "UNAVAILABLE" in err_str
+                    or "DEADLINE_EXCEEDED" in err_str
+                    or "RESOURCE_EXHAUSTED" in err_str
+                    or "Timeout" in err_str
+                ):
                     logger.warning(
                         f"Model '{m}' temporarily unavailable ({type(e).__name__}: {err_str[:80]}). "
                         f"Cascading to next candidate model..."

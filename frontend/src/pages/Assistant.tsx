@@ -284,7 +284,17 @@ export default function Assistant() {
     }
 
     // 5. Question: কোন পণ্যগুলো এক্সপায়ার হওয়ার ঝুঁকিতে আছে? (Expiry risk)
-    if (q.includes('এক্সপায়ার') || q.includes('মেয়াদ') || q.includes('expire') || q.includes('expiry') || q.includes('waste')) {
+    if (
+      q.includes('এক্সপায়ার') ||
+      q.includes('এক্সপায়ার') ||
+      q.includes('মেয়াদ') ||
+      q.includes('মেয়াদ') ||
+      q.includes('ঝুঁকি') ||
+      q.includes('ঝুঁকিতে') ||
+      q.includes('expire') ||
+      q.includes('expiry') ||
+      q.includes('waste')
+    ) {
       const prodMap = new Map(products.map((p) => [p.id, p]))
       const atRisk = batches
         .filter((b) => !b.deleted)
@@ -379,33 +389,36 @@ export default function Assistant() {
     // Check if we should call backend or use local Copilot engine
     if (isOnline) {
       try {
-        const auditedId = getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
+        const auditedId =
+          getAuditedOutletId(shopId) ||
+          (shopId.startsWith('OUT') ? shopId : (shopId === 'shop-student-01' ? 'OUT001' : undefined))
         const response = await api.aiChat(text, auditedId)
 
         if (response && response.success) {
           let content = response.reply
           if (response.tools_used && response.tools_used.length > 0) {
             const toolNames = response.tools_used.map((t) => `\`${t}\``).join(', ')
-            content += `\n\n🔍 *বিশ্লেষিত টুলস (Tools Executed):* ${toolNames}`
+            content += `\n\n🔍 *বিশ্লেষিত টুলস (MCP Tools Executed):* ${toolNames}`
           }
 
           const botMsg: ChatMessage = {
             id: `b-${Date.now()}`,
             role: 'assistant',
-            content,
+            content: `${content}\n\n*(✨ মোড: জেমিনি এআই + সেন্ট্রাল এমসিপি)*`,
             timestamp: new Date().toISOString(),
           }
           setMessages((prev) => [...prev, botMsg])
         } else {
           throw new Error(response?.error || 'AI Copilot response unsuccessful')
         }
-      } catch (err) {
+      } catch (err: any) {
         console.warn('AI backend unavailable, falling back to local deterministic Copilot:', err)
+        const errMsg = err?.message || 'সার্ভারে সাময়িক সমস্যা'
         const fallback = generateOfflineReply(text)
         const botMsg: ChatMessage = {
           id: `b-${Date.now()}`,
           role: 'assistant',
-          content: `${fallback}\n\n*(হালখাতা ইন্টেলিজেন্ট ইঞ্জিন দ্বারা বিশ্লেষিত)*`,
+          content: `⚠️ **এআই সার্ভিস সংযোগ ব্যর্থ:** ${errMsg}\n\n*(📦 অফলাইন লোকাল ইঞ্জিন বিকল্প থেকে উত্তর:)*\n\n${fallback}`,
           timestamp: new Date().toISOString(),
         }
         setMessages((prev) => [...prev, botMsg])

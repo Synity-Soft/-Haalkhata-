@@ -1,9 +1,17 @@
 // All API calls go through this module. Frontend never calls Gemini or Supabase directly.
+const isLocalhost =
+  typeof window !== 'undefined' &&
+  (window.location.hostname === 'localhost' ||
+    window.location.hostname === '127.0.0.1' ||
+    window.location.hostname === '')
+
 const RAW_URL =
   ((import.meta as any).env?.VITE_API_BASE_URL as string) ||
-  ((import.meta as any).env?.MODE === 'production' || (import.meta as any).env?.PROD
-    ? 'https://haalkhata-vjfs.onrender.com'
-    : 'http://localhost:8000')
+  (isLocalhost
+    ? 'http://localhost:8000'
+    : ((import.meta as any).env?.MODE === 'production' || (import.meta as any).env?.PROD
+        ? 'https://haalkhata-vjfs.onrender.com'
+        : 'http://localhost:8000'))
 
 const BASE_URL = RAW_URL.replace(/\/+$/, '')
 

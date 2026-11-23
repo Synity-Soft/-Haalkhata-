@@ -322,19 +322,61 @@ export default function Assistant() {
 
       const listStr = atRisk
         .map((b, idx) => {
-          const discountAdvice =
-            b.daysRemaining <= 2
-              ? '৫০% ছাড় বা Buy 1 Get 1 বান্ডেল অফার দিন'
-              : b.daysRemaining <= 7
-              ? '২৫-৩০% ছাড় দিয়ে দ্রুত বিক্রি করুন'
-              : '১০-১৫% প্রারম্ভিক ছাড় প্রযোজ্য'
-          return `${idx + 1}. ⏰ **${getProductName(b, lang)}**: ${formatNum(b.remainingQty)} একক (${formatNum(b.daysRemaining)} দিন বাকি) → *${discountAdvice}*`
+          let advice: string
+          let statusIcon: string
+          if (b.daysRemaining < 0) {
+            statusIcon = '🚫'
+            advice = isBn
+              ? 'বিক্রি সম্পূর্ণ নিষিদ্ধ! অবিলম্বে কোয়ারেন্টাইন করুন এবং ওয়েস্টেজে নথিভুক্ত করুন'
+              : 'DO NOT SELL. Quarantined stock. Record in wastage log to prevent violations.'
+          } else if (b.daysRemaining <= 2) {
+            statusIcon = '⚠️'
+            advice = isBn
+              ? '৫০% ছাড় বা Buy 1 Get 1 বান্ডেলে দ্রুত বিক্রি করুন (FEFO)'
+              : 'Apply Buy 1 Get 1 Free (BOGO) bundle immediately (FEFO)'
+          } else if (b.daysRemaining <= 7) {
+            statusIcon = '⏰'
+            advice = isBn
+              ? '২৫-৩০% ছাড় দিয়ে সেলফের সামনে রাখুন (FEFO)'
+              : 'Apply 25%-30% discount on front checkout shelves (FEFO)'
+          } else {
+            statusIcon = '⏰'
+            advice = isBn ? '১০-১৫% প্রারম্ভিক ছাড় প্রযোজ্য' : 'Apply 10%-15% promotional discount'
+          }
+          const daysText =
+            b.daysRemaining < 0
+              ? isBn
+                ? `${formatNum(Math.abs(b.daysRemaining))} দিন আগে মেয়াদ শেষ হয়েছে`
+                : `Expired ${Math.abs(b.daysRemaining)} days ago`
+              : isBn
+              ? `${formatNum(b.daysRemaining)} দিন বাকি`
+              : `${b.daysRemaining} days left`
+
+          return `${idx + 1}. ${statusIcon} **${getProductName(b, lang)}**: ${formatNum(b.remainingQty)} একক (${daysText}) → *${advice}*`
         })
         .join('\n')
 
+      const hasExpired = atRisk.some((b) => b.daysRemaining < 0)
+      const hasValidNearExpiry = atRisk.some((b) => b.daysRemaining >= 0)
+
+      let guidance = ''
+      if (hasExpired && hasValidNearExpiry) {
+        guidance = isBn
+          ? '\n\n👉 *নীতিমালা: মেয়াদোত্তীর্ণ পণ্য বিক্রি সম্পূর্ণ নিষিদ্ধ। শুধুমাত্র বৈধ মেয়াদের পণ্যেই FEFO ছাড় কার্যকর করুন।*'
+          : '\n\n👉 *Policy: Expired goods cannot be sold. Apply FEFO discounts only to valid near-expiry items.*'
+      } else if (hasExpired) {
+        guidance = isBn
+          ? '\n\n👉 *জরুরি নীতি: মেয়াদোত্তীর্ণ কোনো পণ্য বিক্রি করা আইনত দণ্ডনীয়। অবিলম্বে কোয়ারেন্টাইন করে নষ্ট পণ্য হিসেবে রেজিস্টারে তুলুন।*'
+          : '\n\n👉 *Urgent Compliance: Selling expired products is prohibited. Quarantine immediately and log as wastage.*'
+      } else {
+        guidance = isBn
+          ? '\n\n👉 *পরামর্শ: FEFO নীতি অনুসরণ করে ছাড় দিয়ে আগে বিক্রি করুন।*'
+          : '\n\n👉 *Tip: Follow FEFO clearance policy to prevent wastage.*'
+      }
+
       return isBn
-        ? `⚠️ **আসন্ন মেয়াদের ঝুঁকিপূর্ণ ব্যাচসমূহ (FEFO অনুযায়ী আগে রিলিজ করুন):**\n\n${listStr}\n\n👉 *'মেয়াদ ব্যবস্থাপনা' পেজে গিয়ে এক ক্লিকে ক্লিয়ারেন্স ছাড় কার্যকর করতে পারেন।*`
-        : `⚠️ **Expiring Batches at Risk (Prioritize FEFO Release):**\n\n${listStr}\n\n👉 *Apply dynamic clearance discounts from the Expiry page.*`
+        ? `⚠️ **মেয়াদের ঝুঁকিপূর্ণ ব্যাচ রিপোর্ট:**\n\n${listStr}${guidance}`
+        : `⚠️ **Batch Expiry Risk Audit:**\n\n${listStr}${guidance}`
     }
 
     // 6. Question: কোন পণ্যের স্টক বেশি হয়ে গেছে? (Overstocked items)
@@ -390,8 +432,7 @@ export default function Assistant() {
     if (isOnline) {
       try {
         const auditedId =
-          getAuditedOutletId(shopId) ||
-          (shopId.startsWith('OUT') ? shopId : (shopId === 'shop-student-01' ? 'OUT001' : undefined))
+          getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
         const response = await api.aiChat(text, auditedId)
 
         if (response && response.success) {

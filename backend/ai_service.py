@@ -55,7 +55,17 @@ Core Instructions:
 
 4. FORMATTING & ACTIONABILITY:
    - Summarize key takeaways with bullet points, emojis, and clear currency formatting (৳ or BDT).
-   - Provide practical, actionable merchant advice (e.g. FEFO discount clearance for near-expiry items, restock reorder warnings).
+   - Provide practical, actionable merchant advice (e.g. restock reorder warnings).
+
+5. EXPIRY & FOOD SAFETY COMPLIANCE (CRITICAL):
+   - Already-expired products (days_remaining < 0 or ALREADY_EXPIRED):
+     * MUST be clearly and prominently classified as EXPIRED (মেয়াদোত্তীর্ণ).
+     * NEVER recommend discounting, selling, promotional clearance, or FEFO release for already-expired products.
+     * Prescribe IMMEDIATE quarantine, removal from customer displays, and recording in the wastage/loss register.
+   - Products approaching expiration (days_remaining >= 0):
+     * Clearly distinguish from expired stock.
+     * Recommend FEFO (First Expired, First Out) clearance priority.
+     * Prescribe dynamic clearance discounts ONLY for valid, safe-to-consume inventory.
 """
 
 # Tool function declarations matching the 6 MCP tools
@@ -383,21 +393,86 @@ class AIBusinessAgent:
         if any(w in q_lower for w in ["মেয়াদ", "মেয়াদ", "এক্সপায়ার", "এক্সপায়ার", "ঝুঁকি", "expiry", "expire", "batch"]):
             tools_used.append("check_expiry")
             data = await mcp_client.call_tool("check_expiry", {"days_ahead": 30}, authorized_outlet_id)
-            batches = data.get("batches", [])[:4]
+            batches = data.get("batches", [])
             total_risk = data.get("total_batches_at_risk", 0)
 
+            expired_items = [b for b in batches if b.get("days_remaining", 0) < 0]
+            valid_near_expiry = [b for b in batches if b.get("days_remaining", 0) >= 0]
+
             if is_bn:
-                if batches:
-                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} একক (মেয়াদ বাকি: {b.get('days_remaining', b.get('days_to_expiry'))} দিন) → *{b.get('recommended_clearance_action', b.get('urgency_status'))}*" for i, b in enumerate(batches)]
-                    reply = f"⚠️ **{shop_label}-এ মেয়াদের ঝুঁকিতে থাকা পণ্যসমূহ (মোট {total_risk} টি ব্যাচ):**\n\n" + "\n".join(lines) + "\n\n👉 *পরামর্শ: FEFO নীতি অনুসরণ করে ছাড় দিয়ে আগে বিক্রি করুন।*"
+                if not batches:
+                    reply = f"✅ **{shop_label}-এর কোনো পণ্যের মেয়াদ এই মুহূর্তে ঝুঁকিপূর্ণ নয়।** সব পণ্যের মজুদ নিরাপদ রয়েছে।"
                 else:
-                    reply = f"✅ **{shop_label}-এর কোনো পণ্যের মেয়াদ এই মুহূর্তে ঝুঁকিপূর্ণ নয়।**"
+                    sections = []
+                    if expired_items:
+                        exp_lines = [
+                            f"  - 🚫 **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'একক')} "
+                            f"({abs(b.get('days_remaining', 0))} দিন আগে মেয়াদ শেষ হয়েছে) → "
+                            f"*অবিলম্বে কোয়ারেন্টাইন করুন, বিক্রি সম্পূর্ণ নিষিদ্ধ, ওয়েস্টেজে লিপিবদ্ধ করুন*"
+                            for b in expired_items[:4]
+                        ]
+                        sections.append(
+                            f"⚠️ **মেয়াদোত্তীর্ণ স্টক ({len(expired_items)} টি ব্যাচ - বিক্রি সম্পূর্ণ নিষিদ্ধ):**\n"
+                            + "\n".join(exp_lines)
+                        )
+                    if valid_near_expiry:
+                        valid_lines = [
+                            f"  - ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'একক')} "
+                            f"(মেয়াদ বাকি: {b.get('days_remaining', 0)} দিন) → "
+                            f"*{b.get('recommended_clearance_action', 'FEFO ছাড় প্রযোজ্য')}*"
+                            for b in valid_near_expiry[:4]
+                        ]
+                        sections.append(
+                            f"📦 **আসন্ন মেয়াদের বৈধ পণ্য ({len(valid_near_expiry)} টি ব্যাচ - FEFO বিক্রির উপযোগী):**\n"
+                            + "\n".join(valid_lines)
+                        )
+
+                    guidance = (
+                        "👉 *নিরাপত্তা নির্দেশিকা: মেয়াদোত্তীর্ণ কোনো পণ্য কখনো বিক্রি বা ছাড় দেওয়া যাবে না। "
+                        "শুধুমাত্র নিরাপদ ও বৈধ মেয়াদের পণ্যেই FEFO নীতি অনুযায়ী ছাড় প্রযোজ্য।*"
+                    )
+                    reply = (
+                        f"📋 **{shop_label}-এর মেয়াদ নিরীক্ষা রিপোর্ট (মোট {total_risk} টি ব্যাচ পর্যালোচিত):**\n\n"
+                        + "\n\n".join(sections)
+                        + f"\n\n{guidance}"
+                    )
             else:
-                if batches:
-                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} units ({b.get('days_remaining', b.get('days_to_expiry'))} days left) → *{b.get('recommended_clearance_action', b.get('urgency_status'))}*" for i, b in enumerate(batches)]
-                    reply = f"⚠️ **Expiry Risk Batches for {shop_label} ({total_risk} batches at risk):**\n\n" + "\n".join(lines)
+                if not batches:
+                    reply = f"✅ **No batches at {shop_label} have expiry risk.** Stock is in healthy status."
                 else:
-                    reply = f"✅ **No batches at {shop_label} are approaching expiry in the next 30 days.**"
+                    sections = []
+                    if expired_items:
+                        exp_lines = [
+                            f"  - 🚫 **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'units')} "
+                            f"(Expired {abs(b.get('days_remaining', 0))} days ago) → "
+                            f"*QUARANTINE IMMEDIATELY. Sale prohibited. Log in wastage.*"
+                            for b in expired_items[:4]
+                        ]
+                        sections.append(
+                            f"⚠️ **Expired Batches ({len(expired_items)} batches - SALE STRICTLY PROHIBITED):**\n"
+                            + "\n".join(exp_lines)
+                        )
+                    if valid_near_expiry:
+                        valid_lines = [
+                            f"  - ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} {b.get('unit', 'units')} "
+                            f"({b.get('days_remaining', 0)} days left) → "
+                            f"*{b.get('recommended_clearance_action', 'Apply FEFO clearance discount')}*"
+                            for b in valid_near_expiry[:4]
+                        ]
+                        sections.append(
+                            f"📦 **Valid Approaching Expiry ({len(valid_near_expiry)} batches - Safe for FEFO Sale):**\n"
+                            + "\n".join(valid_lines)
+                        )
+
+                    guidance = (
+                        "👉 *Compliance Notice: Expired goods must never be discounted or sold. "
+                        "Apply FEFO discounts only to valid, safe-for-consumption inventory.*"
+                    )
+                    reply = (
+                        f"📋 **Expiry Risk Audit for {shop_label} ({total_risk} total batches reviewed):**\n\n"
+                        + "\n\n".join(sections)
+                        + f"\n\n{guidance}"
+                    )
             return {"success": True, "reply": reply, "tools_used": tools_used}
 
         # 4. General / insights question

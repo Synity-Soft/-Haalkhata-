@@ -32,6 +32,11 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
+from backend.security import load_env_if_present
+
+# Load environment variables from project-root .env if present
+load_env_if_present()
+
 from backend.database import engine, DEFAULT_DB_PATH
 from backend.routers import (
     health_router,

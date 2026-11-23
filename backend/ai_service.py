@@ -24,8 +24,8 @@ from backend.security import load_env_if_present
 
 logger = logging.getLogger("bazarbondhu.ai_service")
 
-# Configurable Gemini model (default: gemini-2.5-flash or gemini-1.5-flash)
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-2.5-flash")
+# Configurable Gemini model (default: gemini-3.5-flash)
+DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
 
 # System instruction establishing persona, bilingual rules, and grounded calculation constraints
 SYSTEM_INSTRUCTION = """
@@ -147,6 +147,34 @@ class AIBusinessAgent:
         else:
             self.client = None
 
+    def _generate_with_fallback(self, contents: Any, config: Any) -> Tuple[Any, str]:
+        """
+        Generate content with automatic model cascade if Google returns 404 (model retired)
+        or 503 (temporary high demand spike on free tier).
+        """
+        candidate_models = [self.model_name]
+        for fallback in ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-3.6-flash", "gemini-3.8-flash"]:
+            if fallback not in candidate_models:
+                candidate_models.append(fallback)
+
+        last_error = None
+        for m in candidate_models:
+            try:
+                response = self.client.models.generate_content(
+                    model=m,
+                    contents=contents,
+                    config=config,
+                )
+                return response, m
+            except Exception as e:
+                last_error = e
+                err_str = str(e)
+                if "404" in err_str or "503" in err_str or "NOT_FOUND" in err_str or "UNAVAILABLE" in err_str:
+                    logger.warning(f"Model '{m}' unavailable ({err_str[:80]}), trying next candidate in cascade...")
+                    continue
+                raise e
+        raise last_error or RuntimeError("All candidate Gemini models failed.")
+
     async def chat(
         self,
         question: str,
@@ -186,12 +214,8 @@ class AIBusinessAgent:
         contents = [user_content]
 
         try:
-            # Turn 1: Model determines which tools to call
-            response = self.client.models.generate_content(
-                model=self.model_name,
-                contents=contents,
-                config=config,
-            )
+            # Turn 1: Model determines which tools to call (with automatic 404/503 cascade)
+            response, active_model = self._generate_with_fallback(contents=contents, config=config)
 
             # Check if Gemini requested function calls
             if response.function_calls:
@@ -222,12 +246,12 @@ class AIBusinessAgent:
                 contents.append(types.Content(role="user", parts=response_parts))
 
                 # Turn 2: Generate final natural language synthesis
-                final_response = self.client.models.generate_content(
-                    model=self.model_name,
-                    contents=contents,
-                    config=config,
-                )
-                reply_text = final_response.text or "তথ্য বিশ্লেষিত হয়েছে।"
+                final_response, _ = self._generate_with_fallback(contents=contents, config=config)
+                texts = [
+                    p.text for p in (final_response.candidates[0].content.parts or [])
+                    if getattr(p, "text", None)
+                ]
+                reply_text = "\n\n".join(texts) if texts else (final_response.text or "তথ্য বিশ্লেষিত হয়েছে।")
                 return {
                     "success": True,
                     "reply": reply_text,

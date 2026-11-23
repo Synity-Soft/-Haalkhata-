@@ -138,10 +138,27 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
-# Configure CORS for Frontend Client (Allows Localhost, Vercel, and Mobile Clients)
+# Configure CORS: Strict Origin Whitelist for Production & Local Development
+allowed_origins_env = os.environ.get("CORS_ALLOWED_ORIGINS")
+default_origins = [
+    "https://haalkhata.vercel.app",
+    "https://haalkhata-vjfs.onrender.com",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+]
+if allowed_origins_env:
+    allowed_origins = [orig.strip() for orig in allowed_origins_env.split(",") if orig.strip()]
+else:
+    allowed_origins = default_origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=allowed_origins,
+    allow_origin_regex=r"^https:\/\/haalkhata(-[a-z0-9-]+)?\.vercel\.app$",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

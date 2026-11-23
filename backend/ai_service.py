@@ -25,7 +25,7 @@ from backend.security import load_env_if_present
 logger = logging.getLogger("bazarbondhu.ai_service")
 
 # Configurable Gemini model (default: gemini-3.5-flash)
-DEFAULT_GEMINI_MODEL = os.environ.get("GEMINI_MODEL", "gemini-3.5-flash")
+DEFAULT_GEMINI_MODEL = "gemini-3.5-flash"
 
 # System instruction establishing persona, bilingual rules, and grounded calculation constraints
 SYSTEM_INSTRUCTION = """
@@ -35,19 +35,27 @@ Core Instructions:
 1. BILINGUAL FLUENCY:
    - If the user asks in Bengali (বাংলা), respond entirely in natural, professional Bengali.
    - If the user asks in English, respond in English.
-   - Maintain a respectful, helpful merchant copilot tone (e.g., using 'আপনি', 'টাকা / BDT').
+   - Maintain a respectful, helpful merchant copilot tone (e.g., using 'আপনি', 'টাকা / BDT', '৳').
 
 2. GROUNDED IN BUSINESS TRUTH:
    - ALWAYS call the appropriate MCP business tool to retrieve actual data before answering questions regarding sales, inventory stock, expiring batches, low stock, or financial summaries.
+   - Tool selection guide:
+     * Sales / revenue / turnover queries -> call get_sales_summary.
+     * Low stock / shortage / reorder queries -> call get_low_stock.
+     * Expiry / shelf-life risk queries -> call check_expiry.
+     * Business performance / health / general analytics queries -> call get_business_insights.
+     * General inventory / stock queries -> call get_inventory.
+     * Customer dues / credit ledger -> call get_customer_dues.
    - NEVER invent, hallucinate, or extrapolate financial or stock figures.
-   - If a tool returns no records, state clearly that no items were found matching the criteria.
+   - Base all answers strictly on the figures returned by the tools.
+   - Temporal reference: The current operating date is 2026-11-16. The latest recorded business sales day in the ledger is 2026-11-15. When asked for 'today's sales' (আজকের বিক্রি), query the latest recorded sales date (2026-11-15) and report the exact figures from the ledger.
 
 3. ARCHITECTURAL TRANSPARENCY:
-   - Note on customer dues (*বাকির খাতা*): Explain that individual customer credit ledger balances are stored securely offline in the shop's local browser database (Dexie.js / IndexedDB), while backend tools report supplier liabilities and central inventory.
+   - Note on customer dues (*বাকির খাতা*): Individual customer credit ledger balances are stored securely offline in the shop's local browser database (Dexie.js / IndexedDB), while backend tools report supplier liabilities and central inventory.
 
-4. ACCESSIBILITY:
-   - Summarize key takeaways with bullet points, emojis, and clear Bengali/English currency formatting (৳ or BDT).
-   - Provide practical, actionable advice (e.g. FEFO discount clearance for expiring batches, restock reorder warnings).
+4. FORMATTING & ACTIONABILITY:
+   - Summarize key takeaways with bullet points, emojis, and clear currency formatting (৳ or BDT).
+   - Provide practical, actionable merchant advice (e.g. FEFO discount clearance for near-expiry items, restock reorder warnings).
 """
 
 # Tool function declarations matching the 6 MCP tools
@@ -82,8 +90,8 @@ MCP_TOOL_DECLARATIONS = [
         parameters=types.Schema(
             type=types.Type.OBJECT,
             properties={
-                "start_date": types.Schema(type=types.Type.STRING, description="Start date in YYYY-MM-DD format (dataset default: '2026-11-16')."),
-                "end_date": types.Schema(type=types.Type.STRING, description="End date in YYYY-MM-DD format (dataset default: '2026-11-16')."),
+                "start_date": types.Schema(type=types.Type.STRING, description="Start date in YYYY-MM-DD format (default: '2026-11-15')."),
+                "end_date": types.Schema(type=types.Type.STRING, description="End date in YYYY-MM-DD format (default: '2026-11-15')."),
             },
         ),
     ),
@@ -128,14 +136,16 @@ class AIBusinessAgent:
     Orchestrates user queries, Gemini tool invocation, MCP execution, and response synthesis.
     """
 
-    def __init__(self, model_name: str = DEFAULT_GEMINI_MODEL):
-        self.model_name = model_name
+    def __init__(self, model_name: Optional[str] = None):
+        load_env_if_present()
+        self.model_name = model_name or os.environ.get("GEMINI_MODEL", DEFAULT_GEMINI_MODEL)
         self.client: Optional[genai.Client] = None
         self._init_client()
 
     def _init_client(self) -> None:
         """Initialize Google GenAI client if GEMINI_API_KEY is available."""
         load_env_if_present()
+        self.model_name = os.environ.get("GEMINI_MODEL", self.model_name or DEFAULT_GEMINI_MODEL)
         api_key = os.environ.get("GEMINI_API_KEY")
         if api_key and api_key != "YOUR_GEMINI_API_KEY" and not api_key.startswith("your-"):
             try:
@@ -153,7 +163,7 @@ class AIBusinessAgent:
         or 503 (temporary high demand spike on free tier).
         """
         candidate_models = [self.model_name]
-        for fallback in ["gemini-3.5-flash-lite", "gemini-3.5-flash", "gemini-3.6-flash", "gemini-3.8-flash"]:
+        for fallback in ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash"]:
             if fallback not in candidate_models:
                 candidate_models.append(fallback)
 
@@ -165,12 +175,19 @@ class AIBusinessAgent:
                     contents=contents,
                     config=config,
                 )
+                if m != self.model_name:
+                    logger.info(
+                        f"Generated response using fallback model '{m}' because configured model '{self.model_name}' was unavailable."
+                    )
                 return response, m
             except Exception as e:
                 last_error = e
                 err_str = str(e)
                 if "404" in err_str or "503" in err_str or "NOT_FOUND" in err_str or "UNAVAILABLE" in err_str:
-                    logger.warning(f"Model '{m}' unavailable ({err_str[:80]}), trying next candidate in cascade...")
+                    logger.warning(
+                        f"Model '{m}' temporarily unavailable ({type(e).__name__}: {err_str[:80]}). "
+                        f"Cascading to next candidate model..."
+                    )
                     continue
                 raise e
         raise last_error or RuntimeError("All candidate Gemini models failed.")
@@ -208,25 +225,45 @@ class AIBusinessAgent:
 
         user_content = types.Content(
             role="user",
-            parts=[types.Part.from_text(text=f"Outlet: {shop_label} (ID: {authorized_outlet_id})\nQuestion: {question}")],
+            parts=[types.Part.from_text(
+                text=f"Outlet: {shop_label} (ID: {authorized_outlet_id})\n"
+                     f"Reference date: 2026-11-16 (Latest recorded sales date: 2026-11-15)\n"
+                     f"Question: {question}"
+            )],
         )
 
         contents = [user_content]
 
         try:
-            # Turn 1: Model determines which tools to call (with automatic 404/503 cascade)
-            response, active_model = self._generate_with_fallback(contents=contents, config=config)
+            # Multi-turn Agent loop supporting tool execution and synthesis
+            max_turns = 5
+            turn_count = 0
+            while turn_count < max_turns:
+                turn_count += 1
+                response, active_model = self._generate_with_fallback(contents=contents, config=config)
 
-            # Check if Gemini requested function calls
-            if response.function_calls:
-                # Add candidate response to conversation history
+                # If Gemini did not request any function calls, it produced its final text response
+                if not response.function_calls:
+                    texts = [
+                        p.text for p in (response.candidates[0].content.parts or [])
+                        if getattr(p, "text", None)
+                    ]
+                    reply_text = "\n\n".join(texts) if texts else (response.text or "তথ্য বিশ্লেষিত হয়েছে।")
+                    return {
+                        "success": True,
+                        "reply": reply_text,
+                        "tools_used": tools_used,
+                    }
+
+                # Add model's function call turn to conversation history
                 contents.append(response.candidates[0].content)
 
-                # Execute each tool call securely via MCP client
+                # Execute all requested tool calls securely via MCP client
                 response_parts: List[types.Part] = []
                 for call in response.function_calls:
                     tool_name = call.name
-                    tools_used.append(tool_name)
+                    if tool_name not in tools_used:
+                        tools_used.append(tool_name)
                     tool_args = dict(call.args or {})
 
                     # CRITICAL SECURITY RULE: Force the authorized outlet ID
@@ -245,25 +282,22 @@ class AIBusinessAgent:
                 # Add tool responses as next turn
                 contents.append(types.Content(role="user", parts=response_parts))
 
-                # Turn 2: Generate final natural language synthesis
-                final_response, _ = self._generate_with_fallback(contents=contents, config=config)
-                texts = [
-                    p.text for p in (final_response.candidates[0].content.parts or [])
-                    if getattr(p, "text", None)
-                ]
-                reply_text = "\n\n".join(texts) if texts else (final_response.text or "তথ্য বিশ্লেষিত হয়েছে।")
-                return {
-                    "success": True,
-                    "reply": reply_text,
-                    "tools_used": tools_used,
-                }
-            else:
-                # Direct answer without tool call (e.g. general greeting or conceptual question)
-                return {
-                    "success": True,
-                    "reply": response.text or "আপনার প্রশ্নের জন্য ধন্যবাদ।",
-                    "tools_used": [],
-                }
+            # If loop reached max_turns, synthesize final answer
+            final_config = types.GenerateContentConfig(
+                temperature=0.2,
+                system_instruction=SYSTEM_INSTRUCTION,
+            )
+            final_resp, _ = self._generate_with_fallback(contents=contents, config=final_config)
+            texts = [
+                p.text for p in (final_resp.candidates[0].content.parts or [])
+                if getattr(p, "text", None)
+            ]
+            reply_text = "\n\n".join(texts) if texts else (final_resp.text or "তথ্য বিশ্লেষিত হয়েছে।")
+            return {
+                "success": True,
+                "reply": reply_text,
+                "tools_used": tools_used,
+            }
 
         except Exception as e:
             logger.error(f"Gemini API interaction failed: {e}", exc_info=True)
@@ -290,16 +324,16 @@ class AIBusinessAgent:
             tools_used.append("get_sales_summary")
             data = await mcp_client.call_tool(
                 "get_sales_summary",
-                {"start_date": "2026-11-16", "end_date": "2026-11-16"},
+                {"start_date": "2026-11-15", "end_date": "2026-11-15"},
                 authorized_outlet_id,
             )
             revenue = data.get("total_sales_bdt", 0.0)
-            tx_count = data.get("total_transactions", 0)
-            margin = data.get("profit_margin_pct", 0.0)
+            tx_count = data.get("transaction_count", 0)
+            margin = data.get("profit_margin_percent", data.get("profit_margin_pct", 0.0))
 
             if is_bn:
                 reply = (
-                    f"📊 **{shop_label}-এর আজকের বিক্রির হিসাব (১৬ নভেম্বর ২০২৬):**\n\n"
+                    f"📊 **{shop_label}-এর সর্বশেষ বিক্রির হিসাব (১৫ নভেম্বর ২০২৬):**\n\n"
                     f"- 💰 **মোট বিক্রি:** {revenue:,.2f} টাকা\n"
                     f"- 🧾 **মোট লেনদেন:** {tx_count:,} টি\n"
                     f"- 📈 **মুনাফা মার্জিন:** {margin:.1f}%\n\n"
@@ -307,7 +341,7 @@ class AIBusinessAgent:
                 )
             else:
                 reply = (
-                    f"📊 **Sales Summary for {shop_label} (Nov 16, 2026):**\n\n"
+                    f"📊 **Sales Summary for {shop_label} (Nov 15, 2026):**\n\n"
                     f"- 💰 **Total Revenue:** {revenue:,.2f} BDT\n"
                     f"- 🧾 **Transactions:** {tx_count:,}\n"
                     f"- 📈 **Profit Margin:** {margin:.1f}%\n\n"
@@ -344,13 +378,13 @@ class AIBusinessAgent:
 
             if is_bn:
                 if batches:
-                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} একক (মেয়াদ বাকি: {b.get('days_to_expiry')} দিন) → *{b.get('action_recommended')}*" for i, b in enumerate(batches)]
+                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} একক (মেয়াদ বাকি: {b.get('days_remaining', b.get('days_to_expiry'))} দিন) → *{b.get('recommended_clearance_action', b.get('urgency_status'))}*" for i, b in enumerate(batches)]
                     reply = f"⚠️ **{shop_label}-এ মেয়াদের ঝুঁকিতে থাকা পণ্যসমূহ (মোট {total_risk} টি ব্যাচ):**\n\n" + "\n".join(lines) + "\n\n👉 *পরামর্শ: FEFO নীতি অনুসরণ করে ছাড় দিয়ে আগে বিক্রি করুন।*"
                 else:
                     reply = f"✅ **{shop_label}-এর কোনো পণ্যের মেয়াদ এই মুহূর্তে ঝুঁকিপূর্ণ নয়।**"
             else:
                 if batches:
-                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} units ({b.get('days_to_expiry')} days left) → *{b.get('action_recommended')}*" for i, b in enumerate(batches)]
+                    lines = [f"{i+1}. ⏰ **{b.get('product_name')}**: {b.get('remaining_quantity')} units ({b.get('days_remaining', b.get('days_to_expiry'))} days left) → *{b.get('recommended_clearance_action', b.get('urgency_status'))}*" for i, b in enumerate(batches)]
                     reply = f"⚠️ **Expiry Risk Batches for {shop_label} ({total_risk} batches at risk):**\n\n" + "\n".join(lines)
                 else:
                     reply = f"✅ **No batches at {shop_label} are approaching expiry in the next 30 days.**"
@@ -363,21 +397,21 @@ class AIBusinessAgent:
         recs = data.get("actionable_recommendations", [])[:2]
 
         if is_bn:
-            rec_text = "\n".join([f"- 💡 {r}" if isinstance(r, str) else f"- 💡 {r.get('title')}: {r.get('description')}" for r in recs])
+            rec_text = "\n".join([f"- 💡 {r}" if isinstance(r, str) else f"- 💡 {r.get('title', '')}: {r.get('description', '')}" for r in recs])
             reply = (
                 f"🏪 **{shop_label}-এর সার্বিক ব্যবসায়িক রিপোর্ট (বিগত ৩০ দিন):**\n\n"
-                f"- 💰 **মোট আয়:** {fin.get('total_revenue_bdt', 0):,.2f} টাকা\n"
-                f"- 📈 **মোট মুনাফা:** {fin.get('gross_profit_bdt', 0):,.2f} টাকা (মার্জিন: {fin.get('profit_margin_pct', 0):.1f}%)\n"
-                f"- 🧾 **গড় দৈনিক বিক্রি:** {fin.get('average_daily_revenue_bdt', 0):,.2f} টাকা\n\n"
+                f"- 💰 **মোট আয়:** {fin.get('total_sales_bdt', fin.get('total_revenue_bdt', 0)):,.2f} টাকা\n"
+                f"- 📈 **মোট মুনাফা:** {fin.get('gross_profit_bdt', 0):,.2f} টাকা (মার্জিন: {fin.get('gross_margin_percent', fin.get('profit_margin_pct', 0)):.1f}%)\n"
+                f"- 🧾 **গড় দৈনিক বিক্রি:** {fin.get('average_daily_sales_bdt', fin.get('average_daily_revenue_bdt', 0)):,.2f} টাকা\n\n"
                 f"**প্রয়োজনীয় পদক্ষেপ:**\n{rec_text}"
             )
         else:
-            rec_text = "\n".join([f"- 💡 {r}" if isinstance(r, str) else f"- 💡 {r.get('title')}: {r.get('description')}" for r in recs])
+            rec_text = "\n".join([f"- 💡 {r}" if isinstance(r, str) else f"- 💡 {r.get('title', '')}: {r.get('description', '')}" for r in recs])
             reply = (
                 f"🏪 **Business Insights for {shop_label} (Past 30 Days):**\n\n"
-                f"- 💰 **Revenue:** {fin.get('total_revenue_bdt', 0):,.2f} BDT\n"
-                f"- 📈 **Gross Profit:** {fin.get('gross_profit_bdt', 0):,.2f} BDT ({fin.get('profit_margin_pct', 0):.1f}%)\n"
-                f"- 🧾 **Avg Daily Sales:** {fin.get('average_daily_revenue_bdt', 0):,.2f} BDT\n\n"
+                f"- 💰 **Revenue:** {fin.get('total_sales_bdt', fin.get('total_revenue_bdt', 0)):,.2f} BDT\n"
+                f"- 📈 **Gross Profit:** {fin.get('gross_profit_bdt', 0):,.2f} BDT ({fin.get('gross_margin_percent', fin.get('profit_margin_pct', 0)):.1f}%)\n"
+                f"- 🧾 **Avg Daily Sales:** {fin.get('average_daily_sales_bdt', fin.get('average_daily_revenue_bdt', 0)):,.2f} BDT\n\n"
                 f"**Recommendations:**\n{rec_text}"
             )
 

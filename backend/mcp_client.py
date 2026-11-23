@@ -58,9 +58,9 @@ class MCPClientBridge:
 
         if name == "get_sales_summary":
             if "start_date" not in enforced_args:
-                enforced_args["start_date"] = "2026-11-16"
+                enforced_args["start_date"] = "2026-11-15"
             if "end_date" not in enforced_args:
-                enforced_args["end_date"] = "2026-11-16"
+                enforced_args["end_date"] = "2026-11-15"
 
         # 1. Try Streamable HTTP transport first
         try:

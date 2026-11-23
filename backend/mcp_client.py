@@ -62,7 +62,11 @@ class MCPClientBridge:
             if "end_date" not in enforced_args:
                 enforced_args["end_date"] = "2026-11-15"
 
-        # 1. Try Streamable HTTP transport first
+        # 1. Direct in-process execution if explicitly configured
+        if not self.server_url or self.server_url.lower() in ("in_process", "internal", "none", "disabled", ""):
+            return await self._call_in_process(name, enforced_args)
+
+        # 2. Try Streamable HTTP transport first
         try:
             return await asyncio.wait_for(
                 self._call_streamable_http(name, enforced_args),
@@ -74,7 +78,7 @@ class MCPClientBridge:
                 f"Falling back to in-process MCP server dispatch."
             )
 
-        # 2. Resilient in-process protocol dispatch
+        # 3. Resilient in-process protocol dispatch
         return await self._call_in_process(name, enforced_args)
 
     async def _call_streamable_http(self, name: str, arguments: Dict[str, Any]) -> Dict[str, Any]:

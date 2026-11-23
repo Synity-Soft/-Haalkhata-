@@ -47,12 +47,13 @@ class ChatResponse(BaseModel):
 def ai_health():
     """Diagnostic health check for the AI Copilot router."""
     import os
+    mcp_url = os.getenv("MCP_SERVER_URL", "in_process")
     return {
         "status": "healthy",
         "service": "ai_copilot",
         "chat_endpoint": "/api/ai/chat",
         "model": os.getenv("GEMINI_MODEL", "gemini-3.5-flash"),
-        "mcp_server": "http://127.0.0.1:8001/mcp",
+        "mcp_server": mcp_url,
     }
 
 

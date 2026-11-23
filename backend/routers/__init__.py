@@ -10,6 +10,7 @@ from backend.routers.inventory import router as inventory_router
 from backend.routers.expiry import router as expiry_router
 from backend.routers.reports import router as reports_router
 from backend.routers.auth import router as auth_router
+from backend.routers.ai import router as ai_router
 
 __all__ = [
     "health_router",
@@ -20,4 +21,5 @@ __all__ = [
     "expiry_router",
     "reports_router",
     "auth_router",
+    "ai_router",
 ]

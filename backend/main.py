@@ -42,6 +42,7 @@ from backend.routers import (
     expiry_router,
     reports_router,
     auth_router,
+    ai_router,
 )
 from ml.inference.prediction_service import get_prediction_service
 from ml.api.schemas import RootResponse
@@ -195,6 +196,8 @@ app.include_router(inventory_router)
 app.include_router(expiry_router)
 app.include_router(reports_router)
 app.include_router(auth_router, prefix="/api")
+app.include_router(ai_router, prefix="/api")
+
 
 
 if __name__ == "__main__":

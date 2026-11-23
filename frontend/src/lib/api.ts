@@ -292,4 +292,18 @@ export const api = {
   authProfile: () => {
     return request<any>('/api/auth/me')
   },
+
+  aiChat: (question: string, outletId?: string) => {
+    return request<{
+      success: boolean
+      reply: string
+      tools_used: string[]
+      outlet_id: string
+      outlet_name?: string
+      error?: string
+    }>('/api/ai/chat', {
+      method: 'POST',
+      body: JSON.stringify({ question, outlet_id: outletId }),
+    })
+  },
 }

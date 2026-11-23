@@ -26,7 +26,7 @@ import { useProducts, useBatches, useSales, useCredits } from '@/db/hooks'
 import { calculateBatchRisk, calcExpiryStats } from '@/engines/expiry'
 import { calcPurchaseSuggestion } from '@/engines/purchase'
 import { getUpcomingFestivals } from '@/engines/festival'
-import { api } from '@/lib/api'
+import { api, getAuditedOutletId } from '@/lib/api'
 import { Card, Button, SoftIcon } from '@/components/ui'
 import { getProductName } from '@/lib/utils'
 import { ThinkingDots, showSaveToast } from '@/components/motion'
@@ -379,19 +379,28 @@ export default function Assistant() {
     // Check if we should call backend or use local Copilot engine
     if (isOnline) {
       try {
-        const response = await api.assistant(shopId, text, {
-          totalProducts: products.length,
-          totalBatches: batches.length,
-        })
+        const auditedId = getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
+        const response = await api.aiChat(text, auditedId)
 
-        const botMsg: ChatMessage = {
-          id: `b-${Date.now()}`,
-          role: 'assistant',
-          content: response.reply,
-          timestamp: new Date().toISOString(),
+        if (response && response.success) {
+          let content = response.reply
+          if (response.tools_used && response.tools_used.length > 0) {
+            const toolNames = response.tools_used.map((t) => `\`${t}\``).join(', ')
+            content += `\n\n🔍 *বিশ্লেষিত টুলস (Tools Executed):* ${toolNames}`
+          }
+
+          const botMsg: ChatMessage = {
+            id: `b-${Date.now()}`,
+            role: 'assistant',
+            content,
+            timestamp: new Date().toISOString(),
+          }
+          setMessages((prev) => [...prev, botMsg])
+        } else {
+          throw new Error(response?.error || 'AI Copilot response unsuccessful')
         }
-        setMessages((prev) => [...prev, botMsg])
       } catch (err) {
+        console.warn('AI backend unavailable, falling back to local deterministic Copilot:', err)
         const fallback = generateOfflineReply(text)
         const botMsg: ChatMessage = {
           id: `b-${Date.now()}`,

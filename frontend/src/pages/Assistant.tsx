@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 import { format } from 'date-fns'
 import { useLang } from '@/i18n'
+import { useAuth } from '@/context/AuthContext'
 import { useShopContext } from '@/hooks/useShopContext'
 import { useOnlineStatus } from '@/hooks/useOnlineStatus'
 import { useProducts, useBatches, useSales, useCredits } from '@/db/hooks'
@@ -34,6 +35,7 @@ import type { ChatMessage, Product, Batch, Sale, Credit } from '@/types'
 
 export default function Assistant() {
   const { t, lang, formatNum, formatCurrency } = useLang()
+  const { user } = useAuth()
   const { currentShop } = useShopContext()
   const isOnline = useOnlineStatus()
 
@@ -434,14 +436,46 @@ export default function Assistant() {
     setInputText('')
     setLoading(true)
 
-    // Check if we should call backend or use local Copilot engine
-    const auditedId =
-      getAuditedOutletId(shopId) || (shopId.startsWith('OUT') ? shopId : undefined)
     const authToken = api.getAuthToken()
 
     if (isOnline && authToken) {
+      // 1. Check if user is authenticated with backend, but has NO authorized branches
+      if (user && Array.isArray(user.branches) && user.branches.length === 0) {
+        const errorBadge = '🚫 **[অনুমোদিত শাখা অনুপস্থিত]**'
+        const explanation =
+          'আপনার অ্যাকাউন্টের সাথে কোনো অনুমোদিত শাখা সংযুক্ত নেই। এআই কো-পাইলট ব্যবহার করার জন্য অনুমোদিত শাখা থাকা আবশ্যক। অনুগ্রহ করে আপনার প্রশাসকের (Administrator) সাথে যোগাযোগ করুন।'
+        const botMsg: ChatMessage = {
+          id: `b-${Date.now()}`,
+          role: 'assistant',
+          content: `${errorBadge}\n\n${explanation}`,
+          timestamp: new Date().toISOString(),
+        }
+        setMessages((prev) => [...prev, botMsg])
+        setLoading(false)
+        return
+      }
+
+      // 2. Resolve and strictly enforce authorized outlet ID
+      let targetOutletId: string | undefined = undefined
+
+      if (user?.branches && user.branches.length > 0) {
+        const authorizedIds = user.branches.map((b) => b.outlet_id || b.id)
+        if (currentShop?.id && authorizedIds.includes(currentShop.id)) {
+          targetOutletId = currentShop.id
+        } else {
+          // Auto-select primary authorized branch if current selection is invalid or stale
+          const primary = user.branches.find((b) => b.is_primary) || user.branches[0]
+          targetOutletId = primary ? (primary.outlet_id || primary.id) : authorizedIds[0]
+        }
+      } else {
+        targetOutletId =
+          (currentShop?.id && currentShop.id.startsWith('OUT'))
+            ? currentShop.id
+            : (currentShop?.id ? getAuditedOutletId(currentShop.id) || undefined : undefined)
+      }
+
       try {
-        const response = await api.aiChat(text, auditedId)
+        const response = await api.aiChat(text, targetOutletId)
 
         if (response && response.success) {
           let content = response.reply
@@ -491,7 +525,7 @@ export default function Assistant() {
           shouldProvideLocalFallback = true
         } else if (status === 403) {
           errorBadge = '🚫 **[HTTP 403 Forbidden] শাখার অনুমতি নেই**'
-          explanation = `আপনার বর্তমান অ্যাকাউন্টের এই শাখা (${auditedId || shopId}) অ্যাক্সেস করার অনুমতি নেই। অনুগ্রহ করে আপনার অনুমোদিত শাখা নির্বাচন করুন।`
+          explanation = `আপনার বর্তমান অ্যাকাউন্টের এই শাখা (${targetOutletId || currentShop?.id || shopId}) অ্যাক্সেস করার অনুমতি নেই। অনুগ্রহ করে আপনার অনুমোদিত শাখা নির্বাচন করুন।`
         } else if (status >= 500) {
           errorBadge = '⚠️ **[HTTP 5xx Server Error] এআই ক্লাউড সার্ভিস সাময়িক অনুপলব্ধ**'
           explanation = `সার্ভার বা গুগল জেমিনি এআই ক্লাউডে সাময়িক ত্রুটি হয়েছে: ${err.message}`

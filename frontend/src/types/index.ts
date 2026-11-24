@@ -14,6 +14,18 @@ export type ProductCategory =
 export type ExpiryRisk = 'expired' | 'high' | 'medium' | 'low' | 'safe'
 export type ExpiryTier = 'EXPIRED' | 'EXPIRING_TODAY' | 'NEAR_EXPIRY' | 'SAFE'
 
+export interface AuthBranch {
+  id: string
+  name: string
+  district?: string
+  area?: string
+  outlet_id?: string
+  outlet_name?: string
+  outlet_type?: string
+  role?: string
+  is_primary?: boolean
+}
+
 export interface AuthUser {
   id: string
   username: string
@@ -24,7 +36,7 @@ export interface AuthUser {
   address?: string
   district?: string
   area?: string
-  branches?: Array<{ id: string; name: string; district: string; area: string }>
+  branches?: AuthBranch[]
   createdAt?: string
 }
 

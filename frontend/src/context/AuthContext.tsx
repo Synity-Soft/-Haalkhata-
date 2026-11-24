@@ -120,6 +120,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         const parsed = JSON.parse(savedUser) as AuthUser
         setUser(parsed)
 
+        // Ensure selected branch is authorized against user's branches
+        if (parsed.branches && parsed.branches.length > 0) {
+          const authorizedIds = parsed.branches.map((b) => b.outlet_id || b.id)
+          const currentSelected = localStorage.getItem('hb-selected-shop-id')
+          if (!currentSelected || !authorizedIds.includes(currentSelected)) {
+            const primary = parsed.branches.find((b) => b.is_primary) || parsed.branches[0]
+            if (primary) {
+              localStorage.setItem('hb-selected-shop-id', primary.outlet_id || primary.id)
+            }
+          }
+        }
+
         // If local user exists but backend JWT token is missing, attempt auto-refresh from stored credentials
         if (!existingToken) {
           const storedUsers = getStoredUsers()
@@ -135,7 +147,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                   if (res.user?.branches && res.user.branches.length > 0) {
                     const primary = res.user.branches.find((b: any) => b.is_primary) || res.user.branches[0]
                     if (primary) {
-                      localStorage.setItem('hb-selected-shop-id', primary.outlet_id)
+                      localStorage.setItem('hb-selected-shop-id', primary.outlet_id || primary.id)
                     }
                   }
                 }
@@ -144,6 +156,41 @@ export function AuthProvider({ children }: { children: ReactNode }) {
                 console.warn('Could not auto-acquire backend token on init:', err)
               })
           }
+        } else {
+          // If valid token exists, refresh branches from backend to keep authorization synchronized
+          api.authBranches()
+            .then((res) => {
+              if (res && res.success && res.branches && res.branches.length > 0) {
+                const updatedBranches = res.branches.map((b: any) => ({
+                  id: b.outlet_id,
+                  name: b.outlet_name,
+                  outlet_id: b.outlet_id,
+                  outlet_name: b.outlet_name,
+                  outlet_type: b.outlet_type,
+                  district: b.district || '',
+                  area: b.area || '',
+                  role: b.role || 'owner',
+                  is_primary: !!b.is_primary,
+                }))
+                setUser((prev) => {
+                  if (!prev) return prev
+                  const updated = { ...prev, branches: updatedBranches }
+                  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(updated))
+                  return updated
+                })
+                const validIds = updatedBranches.map((b) => b.id)
+                const currentSelected = localStorage.getItem('hb-selected-shop-id')
+                if (!currentSelected || !validIds.includes(currentSelected)) {
+                  const primary = updatedBranches.find((b) => b.is_primary) || updatedBranches[0]
+                  if (primary) {
+                    localStorage.setItem('hb-selected-shop-id', primary.id)
+                  }
+                }
+              }
+            })
+            .catch((err) => {
+              console.warn('Could not refresh branches on init:', err)
+            })
         }
       }
     } catch (err) {
@@ -179,10 +226,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           phone: res.user.phone || '',
           address: res.user.address || '',
           branches: res.user.branches?.map((b: any) => ({
-            id: b.outlet_id,
-            name: b.outlet_name,
+            id: b.outlet_id || b.id,
+            name: b.outlet_name || b.name,
+            outlet_id: b.outlet_id || b.id,
+            outlet_name: b.outlet_name || b.name,
+            outlet_type: b.outlet_type,
             district: b.district || '',
             area: b.area || '',
+            role: b.role || 'owner',
+            is_primary: !!b.is_primary,
           })),
           createdAt: res.user.createdAt || res.user.created_at,
         }
@@ -194,10 +246,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         }
 
         // Select the primary authorized branch from the backend
-        if (res.user.branches && res.user.branches.length > 0) {
-          const primaryBranch = res.user.branches.find((b: any) => b.is_primary) || res.user.branches[0]
+        if (authUser.branches && authUser.branches.length > 0) {
+          const primaryBranch = authUser.branches.find((b: any) => b.is_primary) || authUser.branches[0]
           if (primaryBranch) {
-            localStorage.setItem('hb-selected-shop-id', primaryBranch.outlet_id)
+            localStorage.setItem('hb-selected-shop-id', primaryBranch.outlet_id || primaryBranch.id)
           }
         }
 
@@ -422,6 +474,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setUser(null)
     api.clearAuthToken()
     localStorage.removeItem(AUTH_STORAGE_KEY)
+    localStorage.removeItem('hb-selected-shop-id')
   }
 
   return (
